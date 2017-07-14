@@ -11,7 +11,7 @@ use App\Language;
 use App\Message;
 use App\Order;
 use App\Place;
-use App\Request;
+use App\Requests;
 use App\User;
 use App\Wallet;
 use App\WorkTime;
@@ -41,19 +41,20 @@ class RouteServiceProvider extends ServiceProvider
         //
         parent::boot();
 
-        Route::model('id', AdditionalInfo::class);
-        Route::model('id', Article::class);
-        Route::model('id', Comment::class);
-        Route::model('id', EmergencyCall::class);
-        Route::model('id', Message::class);
-        Route::model('id', Job::class);
-        Route::model('id', Language::class);
-        Route::model('id', Order::class);
-        Route::model('id', Place::class);
-        Route::model('id', Request::class);
-        Route::model('id', User::class);
-        Route::model('id', Wallet::class);
-        Route::model('id', WorkTime::class);
+        Route::model('info_id', AdditionalInfo::class);
+        Route::model('article_id', Article::class);
+        Route::model('comment_id', Comment::class);
+        Route::model('emergency_call_id', EmergencyCall::class);
+        Route::model('message_id', Message::class);
+        Route::model('job_id', Job::class);
+        Route::model('language_id', Language::class);
+        Route::model('order_id', Order::class);
+        Route::model('place_id', Place::class);
+        Route::model('request_id', Requests::class);
+        Route::model('user_id', User::class);
+        Route::model('art_id', User::class);
+        Route::model('wallet_id', Wallet::class);
+        Route::model('work_time_id', WorkTime::class);
     }
 
     /**

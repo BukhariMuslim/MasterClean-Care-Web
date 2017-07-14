@@ -13,11 +13,11 @@ Route::group(['prefix' => 'job', 'middleware' => ['api']], function () {
 
     Route::post('/', 'JobController@store');
 
-    Route::get('/{id}', 'JobController@show')->where('id', '[0-9]+');
+    Route::get('/{job_id}', 'JobController@show')->where('job_id', '[0-9]+');
 
-    Route::patch('/{id}', 'JobController@update')->where('id', '[0-9]+');
+    Route::patch('/{job_id}', 'JobController@update')->where('job_id', '[0-9]+');
 
-    Route::delete('/{id}', 'JobController@destroy')->where('id', '[0-9]+');
+    Route::delete('/{job_id}', 'JobController@destroy')->where('job_id', '[0-9]+');
 
     Route::get('/search/{param}/{text}', 'JobController@searchByParam');
 });

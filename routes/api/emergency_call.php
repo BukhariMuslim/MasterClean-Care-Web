@@ -13,11 +13,11 @@ Route::group(['prefix' => 'emergency_call', 'middleware' => ['api']], function (
 
     Route::post('/', 'EmergencyCallController@store');
 
-    Route::get('/{id}', 'EmergencyCallController@show')->where('id', '[0-9]+');
+    Route::get('/{emergency_call_id}', 'EmergencyCallController@show')->where('emergency_call_id', '[0-9]+');
 
-    Route::patch('/{id}', 'EmergencyCallController@update')->where('id', '[0-9]+');
+    Route::patch('/{emergency_call_id}', 'EmergencyCallController@update')->where('emergency_call_id', '[0-9]+');
 
-    Route::delete('/{id}', 'EmergencyCallController@destroy')->where('id', '[0-9]+');
+    Route::delete('/{emergency_call_id}', 'EmergencyCallController@destroy')->where('emergency_call_id', '[0-9]+');
 
     Route::get('/search/{param}/{operator}/{text}', 'EmergencyCallController@searchByParam');
     

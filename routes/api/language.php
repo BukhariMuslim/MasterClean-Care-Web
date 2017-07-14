@@ -13,11 +13,11 @@ Route::group(['prefix' => 'language', 'middleware' => ['api']], function () {
 
     Route::post('/', 'LanguageController@store');
 
-    Route::get('/{id}', 'LanguageController@show')->where('id', '[0-9]+');
+    Route::get('/{language_id}', 'LanguageController@show')->where('language_id', '[0-9]+');
 
-    Route::patch('/{id}', 'LanguageController@update')->where('id', '[0-9]+');
+    Route::patch('/{language_id}', 'LanguageController@update')->where('language_id', '[0-9]+');
 
-    Route::delete('/{id}', 'LanguageController@destroy')->where('id', '[0-9]+');
+    Route::delete('/{language_id}', 'LanguageController@destroy')->where('language_id', '[0-9]+');
 
     Route::get('/search/{param}/{text}', 'LanguageController@searchByParam');
 });

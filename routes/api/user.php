@@ -17,11 +17,13 @@ Route::group(['prefix' => 'user', 'middleware' => ['api']], function () {
 
     Route::post('/', 'UserController@store');
 
-    Route::get('/{id}', 'UserController@show')->where('id', '[0-9]+')->middleware('auth');
+    Route::get('/{user_id}', 'UserController@show')->where('user_id', '[0-9]+');
 
-    Route::patch('/{id}', 'UserController@update')->where('id', '[0-9]+')->middleware('auth');
+    Route::patch('/{user_id}', 'UserController@update')->where('user_id', '[0-9]+');
 
-    Route::delete('/{id}', 'UserController@destroy')->where('id', '[0-9]+')->middleware('auth');
+    Route::delete('/{user_id}', 'UserController@destroy')->where('user_id', '[0-9]+');
+
+    // ->middleware('auth');
 
     Route::get('/search/{text}', 'UserController@search');
     

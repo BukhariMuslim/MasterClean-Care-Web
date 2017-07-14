@@ -13,11 +13,11 @@ Route::group(['prefix' => 'place', 'middleware' => ['api']], function () {
 
     Route::post('/', 'PlaceController@store');
 
-    Route::get('/{id}', 'PlaceController@show')->where('id', '[0-9]+');
+    Route::get('/{place_id}', 'PlaceController@show')->where('place_id', '[0-9]+');
 
-    Route::patch('/{id}', 'PlaceController@update')->where('id', '[0-9]+');
+    Route::patch('/{place_id}', 'PlaceController@update')->where('place_id', '[0-9]+');
 
-    Route::delete('/{id}', 'PlaceController@destroy')->where('id', '[0-9]+');
+    Route::delete('/{place_id}', 'PlaceController@destroy')->where('place_id', '[0-9]+');
 
     Route::get('/search/{param}/{operator}/{text}', 'PlaceController@searchByParam');
     
