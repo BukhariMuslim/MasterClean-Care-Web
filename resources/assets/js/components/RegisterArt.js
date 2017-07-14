@@ -114,8 +114,8 @@ class RegisterArt extends Component {
                 name = 'work_time_id'
             }
             else if (type === 'userAdditionalInfo') {
-                curIdx = values.findIndex(x => x.additional_info_id == obj.id)
-                name = 'additional_info_id'
+                curIdx = values.findIndex(x => x.info_id == obj.id)
+                name = 'info_id'
             }
             const checked = curIdx > -1
             return (

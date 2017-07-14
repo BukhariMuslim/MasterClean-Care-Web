@@ -23251,9 +23251,9 @@ var RegisterArt = function (_Component) {
                     name = 'work_time_id';
                 } else if (type === 'userAdditionalInfo') {
                     curIdx = values.findIndex(function (x) {
-                        return x.additional_info_id == obj.id;
+                        return x.info_id == obj.id;
                     });
-                    name = 'additional_info_id';
+                    name = 'info_id';
                 }
                 var checked = curIdx > -1;
                 return _react2.default.createElement(
