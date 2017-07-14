@@ -1,0 +1,42 @@
+.full-width {
+    width: 100%;
+}
+
+.line-through,
+.line-through * {
+    text-decoration: line-through
+}
+
+.all-transition {
+    -o-transition:.5s;
+    -ms-transition:.5s;
+    -moz-transition:.5s;
+    -webkit-transition:.5s;
+    transition:.5s;
+}
+
+input[type=number]:not(.browser-default):focus:not([readonly]),
+input[type=password]:not(.browser-default):focus:not([readonly]),
+input[type=text]:not(.browser-default):focus:not([readonly]) {
+    border-bottom: initial;
+    box-shadow: initial;
+}
+
+.loading {
+    z-index: 9999999999;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    background: rgba(0 ,0, 0, 0.7);
+}
+
+.loading .loadingSpin {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
