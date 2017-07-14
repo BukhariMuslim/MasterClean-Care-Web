@@ -5,14 +5,16 @@ import { simpleAuthentication } from '../containers/LoginContainer'
 import NotificationContainer from '../containers/NotificationContainer'
 import AppDrawerContainer from '../containers/AppDrawerContainer'
 import LoadingSpinContainer from '../containers/LoadingSpinContainer'
-import history from '../modules/history'
 
-const App = () => {
+const App = (props) => {
     return (
         <div>
             <AppDrawerContainer />
             <NotificationContainer />
             <LoadingSpinContainer />
+            <div className="container" style={{ paddingTop: "75px" }}>
+                { props.children }
+            </div>
         </div>
     )
 }

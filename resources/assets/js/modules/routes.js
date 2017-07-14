@@ -6,6 +6,7 @@ import LoginContainer from '../containers/LoginContainer'
 import RegisterMemberContainer from '../containers/RegisterMemberContainer'
 import RegisterArtContainer from '../containers/RegisterArtContainer'
 import UserProfileContainer from '../containers/UserProfileContainer'
+import Article from '../components/Article'
 
 const routes = (store) => {
     const requireAuth = (store) => {
@@ -25,11 +26,15 @@ const routes = (store) => {
 
     return (
         <Switch>
-            <Route exact path="/" component={ App } />
             <Route path="/login" component={ LoginContainer }/>
             <Route path="/register_member" component={ RegisterMemberContainer }/>
             <Route path="/register_art" component={ RegisterArtContainer }/>
             <Route path="/user" component={ UserProfileContainer } onEnter={ requireAuth(store) } />
+            <Route path="/" >
+                <App>
+                    <Route path="/article" component={ Article }/>                    
+                </App>
+            </Route>
         </Switch>
     )
 }

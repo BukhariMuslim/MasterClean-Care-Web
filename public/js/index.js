@@ -22269,19 +22269,20 @@ var _LoadingSpinContainer = __webpack_require__(84);
 
 var _LoadingSpinContainer2 = _interopRequireDefault(_LoadingSpinContainer);
 
-var _history = __webpack_require__(86);
-
-var _history2 = _interopRequireDefault(_history);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var App = function App() {
+var App = function App(props) {
     return _react2.default.createElement(
         'div',
         null,
         _react2.default.createElement(_AppDrawerContainer2.default, null),
         _react2.default.createElement(_NotificationContainer2.default, null),
-        _react2.default.createElement(_LoadingSpinContainer2.default, null)
+        _react2.default.createElement(_LoadingSpinContainer2.default, null),
+        _react2.default.createElement(
+            'div',
+            { className: 'container', style: { paddingTop: "75px" } },
+            props.children
+        )
     );
 };
 
@@ -22381,6 +22382,7 @@ var AppDrawer = function (_Component) {
         _this.state = {
             actAddTodo: 'ADD_TODO',
             actHome: 'HOME',
+            actArticle: 'ARTICLE',
             open: false
         };
         return _this;
@@ -22388,9 +22390,11 @@ var AppDrawer = function (_Component) {
 
     _createClass(AppDrawer, [{
         key: 'onAddTodoItemClick',
-        value: function onAddTodoItemClick(history, action) {
+        value: function onAddTodoItemClick(action) {
             if (action == this.state.actHome) {
-                history.push('/');
+                this.props.history.push('/');
+            } else if (action == this.state.actArticle) {
+                this.props.history.push('/article');
             }
         }
     }, {
@@ -22445,20 +22449,20 @@ var AppDrawer = function (_Component) {
                         )
                     }),
                     _react2.default.createElement(_Divider2.default, null),
-                    _react2.default.createElement(_MenuItem2.default, { primaryText: 'Tambah Lowongan',
+                    _react2.default.createElement(_MenuItem2.default, { primaryText: 'Article',
+                        onClick: function onClick() {
+                            _this2.handleClose();
+                            _this2.onAddTodoItemClick(_this2.state.actArticle);
+                        },
                         rightIcon: _react2.default.createElement(
                             _FontIcon2.default,
                             { className: 'material-icons' },
                             'receipt'
-                        ),
-                        onClick: function onClick() {
-                            _this2.handleClose();
-                            _this2.onAddTodoItemClick(_this2.props.history, _this2.state.actAddTodo);
-                        } }),
+                        )
+                    }),
                     _react2.default.createElement(_Divider2.default, null),
                     _react2.default.createElement(_LogoutContainer2.default, null)
-                ),
-                _react2.default.createElement('div', { className: 'container', style: { paddingTop: "75px" } })
+                )
             );
         }
     }]);
@@ -22466,7 +22470,7 @@ var AppDrawer = function (_Component) {
     return AppDrawer;
 }(_react.Component);
 
-exports.default = AppDrawer;
+exports.default = (0, _reactRouterDom.withRouter)(AppDrawer);
 
 /***/ }),
 /* 273 */
@@ -25133,6 +25137,10 @@ var _UserProfileContainer = __webpack_require__(287);
 
 var _UserProfileContainer2 = _interopRequireDefault(_UserProfileContainer);
 
+var _Article = __webpack_require__(659);
+
+var _Article2 = _interopRequireDefault(_Article);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var routes = function routes(store) {
@@ -25154,11 +25162,19 @@ var routes = function routes(store) {
     return _react2.default.createElement(
         _reactRouter.Switch,
         null,
-        _react2.default.createElement(_reactRouter.Route, { exact: true, path: '/', component: _App2.default }),
         _react2.default.createElement(_reactRouter.Route, { path: '/login', component: _LoginContainer2.default }),
         _react2.default.createElement(_reactRouter.Route, { path: '/register_member', component: _RegisterMemberContainer2.default }),
         _react2.default.createElement(_reactRouter.Route, { path: '/register_art', component: _RegisterArtContainer2.default }),
-        _react2.default.createElement(_reactRouter.Route, { path: '/user', component: _UserProfileContainer2.default, onEnter: requireAuth(store) })
+        _react2.default.createElement(_reactRouter.Route, { path: '/user', component: _UserProfileContainer2.default, onEnter: requireAuth(store) }),
+        _react2.default.createElement(
+            _reactRouter.Route,
+            { path: '/' },
+            _react2.default.createElement(
+                _App2.default,
+                null,
+                _react2.default.createElement(_reactRouter.Route, { path: '/article', component: _Article2.default })
+            )
+        )
     );
 };
 
@@ -66161,6 +66177,77 @@ __webpack_require__(251);
 __webpack_require__(252);
 module.exports = __webpack_require__(253);
 
+
+/***/ }),
+/* 644 */,
+/* 645 */,
+/* 646 */,
+/* 647 */,
+/* 648 */,
+/* 649 */,
+/* 650 */,
+/* 651 */,
+/* 652 */,
+/* 653 */,
+/* 654 */,
+/* 655 */,
+/* 656 */,
+/* 657 */,
+/* 658 */,
+/* 659 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _propTypes = __webpack_require__(1);
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Article = function (_Component) {
+    _inherits(Article, _Component);
+
+    function Article(props) {
+        _classCallCheck(this, Article);
+
+        return _possibleConstructorReturn(this, (Article.__proto__ || Object.getPrototypeOf(Article)).call(this, props));
+    }
+
+    _createClass(Article, [{
+        key: 'render',
+        value: function render() {
+            return _react2.default.createElement(
+                'div',
+                null,
+                'Testing'
+            );
+        }
+    }]);
+
+    return Article;
+}(_react.Component);
+
+Article.propTypes = {};
+
+exports.default = Article;
 
 /***/ })
 /******/ ]);

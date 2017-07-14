@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Route, Redirect, NavLink } from 'react-router-dom'
 import PropTypes from 'prop-types'
-import { Link } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 // import AddTodoContainer from '../containers/AddTodoContainer'
 // import Main from './Main'
 import LogoutContainer from '../containers/LogoutContainer'
@@ -26,13 +26,17 @@ class AppDrawer extends Component {
         this.state = {
             actAddTodo: 'ADD_TODO',
             actHome: 'HOME',
+            actArticle: 'ARTICLE',
             open: false,
         }
     }
 
-    onAddTodoItemClick(history, action) {
+    onAddTodoItemClick(action) {
         if (action == this.state.actHome) {
-            history.push('/')    
+            this.props.history.push('/')    
+        }
+        else if (action == this.state.actArticle) {
+            this.props.history.push('/article')
         }
     }
 
@@ -67,22 +71,20 @@ class AppDrawer extends Component {
                                 />
                     }
                     <Divider />
-                    <MenuItem primaryText="Tambah Lowongan" 
-                        rightIcon={<FontIcon className="material-icons">receipt</FontIcon>}
+                    {/* containerElement={<Link to="/article" />}                      */}
+                    <MenuItem primaryText="Article" 
                         onClick={() => {
                             this.handleClose()
-                            this.onAddTodoItemClick(this.props.history, this.state.actAddTodo)
-                        }}/>
+                            this.onAddTodoItemClick(this.state.actArticle)
+                        }}
+                        rightIcon={<FontIcon className="material-icons">receipt</FontIcon>}
+                        />
                     <Divider />
                     <LogoutContainer />
                 </Drawer>
-                <div className="container" style={{ paddingTop: "75px" }}>
-                    {/*<Route exact path="/" component={Main} />*/}
-                    {/*<Route path="/Add-Todo" component={AddTodoContainer} />*/}
-                </div>
             </div>
         )
     }
 }
 
-export default AppDrawer
+export default withRouter(AppDrawer)
