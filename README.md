@@ -10,7 +10,8 @@
 1. Configure `/config/database.php` settings.
 2. Run `php artisan migrate`.
 3. Run `php artisan passport:install`.
-4. Run `php artisan db:seed`. (optional)
+4. Run `php artisan passport:client`.
+5. Run `php artisan db:seed`. (optional)
 
 ## Web Instalation
 
