@@ -62,4 +62,12 @@ class Requests extends Model
     {
         return $this->belongsTo('App\Place', 'city');
     }
+
+    /**
+     * Get the requestsTaskList record associated with the additionalInfo.
+     */
+    public function requestsTaskList()
+    {
+        return $this->hasMany('App\RequestsTaskList');
+    }
 }

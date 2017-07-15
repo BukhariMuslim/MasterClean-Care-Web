@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class TaskList extends Model
+class OrderTaskList extends Model
 {
     /**
      * The attributes that are mass assignable.
@@ -12,8 +12,7 @@ class TaskList extends Model
      * @var array
      */
     protected $fillable = [
-        'trc_id',
-        'trc_typ',
+        'order_id',
         'task',
         'status',
     ];
@@ -24,4 +23,12 @@ class TaskList extends Model
      * @var array
      */
     protected $hidden = [ ];
+
+    /**
+     * Get the order record associated with the additionalInfo.
+     */
+    public function order()
+    {
+        return $this->belongsTo('App\Order');
+    }
 }

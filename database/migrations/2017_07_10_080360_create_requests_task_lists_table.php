@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTaskListsTable extends Migration
+class CreateRequestsTaskListsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,16 @@ class CreateTaskListsTable extends Migration
      */
     public function up()
     {
-        Schema::create('task_lists', function (Blueprint $table) {
-            $table->integer('trc_id');
-            $table->integer('trc_typ');
+        Schema::create('requests_task_lists', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('requests_id')->unsigned();
             $table->string('task');
             $table->integer('status');
             $table->timestamps();
+
+            $table->foreign('requests_id')
+                  ->references('id')->on('requests')
+                  ->onDelete('cascade');
         });
     }
 

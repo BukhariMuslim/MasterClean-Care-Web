@@ -31,4 +31,12 @@ class ReviewOrder extends Model
     {
         return $this->belongsTo('App\Order');
     }
+
+    /**
+     * Get the orderTaskList record associated with the additionalInfo.
+     */
+    public function orderTaskList()
+    {
+        return $this->hasMany('App\OrderTaskList');
+    }
 }

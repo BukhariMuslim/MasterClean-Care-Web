@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\TaskList;
+use App\Models\OrderTaskList;
 use Illuminate\Http\Request;
 use App\Helper\Operator;
 use Exception;
 
-class TaskListController extends Controller
+class OrderTaskListController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,7 +16,7 @@ class TaskListController extends Controller
      */
     public function index()
     {
-        return TaskList::all();
+        return OrderTaskList::all();
     }
 
     /**
@@ -44,9 +44,9 @@ class TaskListController extends Controller
                 $data = $data['data'];
             }
 
-            $taskList = TaskList::create($data);
+            $OrderTaskList = OrderTaskList::create($data);
 
-            return response()->json([ 'data' => $taskList, 
+            return response()->json([ 'data' => $OrderTaskList, 
                                       'status' => 201]);
         }
         catch(Exception $e) {
@@ -58,21 +58,21 @@ class TaskListController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\TaskList  $taskList
+     * @param  \App\OrderTaskList  $OrderTaskList
      * @return \Illuminate\Http\Response
      */
-    public function show(TaskList $taskList)
+    public function show(OrderTaskList $OrderTaskList)
     {
-        return $taskList;
+        return $OrderTaskList;
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\TaskList  $taskList
+     * @param  \App\OrderTaskList  $OrderTaskList
      * @return \Illuminate\Http\Response
      */
-    public function edit(TaskList $taskList)
+    public function edit(OrderTaskList $OrderTaskList)
     {
         //
     }
@@ -81,10 +81,10 @@ class TaskListController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\TaskList  $taskList
+     * @param  \App\OrderTaskList  $OrderTaskList
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, TaskList $taskList)
+    public function update(Request $request, OrderTaskList $OrderTaskList)
     {
         $data = $request->all();
 
@@ -92,22 +92,19 @@ class TaskListController extends Controller
             if (array_key_exists('data', $data)) {
                 $data = $data['data'];
             }
-            if (array_key_exists('trc_id', $data)) {
-                $taskList->trc_id = $data['trc_id'];
-            }
-            if (array_key_exists('trc_typ', $data)) {
-                $taskList->trc_typ = $data['trc_typ'];
+            if (array_key_exists('order_id', $data)) {
+                $OrderTaskList->order_id = $data['order_id'];
             }
             if (array_key_exists('task', $data)) {
-                $taskList->task = $data['task'];
+                $OrderTaskList->task = $data['task'];
             }
             if (array_key_exists('status', $data)) {
                 $requestedArt->status = $data['status'];
             }
 
-            $taskList->save();
+            $OrderTaskList->save();
 
-            return response()->json([ 'data' => $taskList, 
+            return response()->json([ 'data' => $OrderTaskList, 
                                       'status' => 200]);
         }
         catch(Exception $e) {
@@ -119,12 +116,12 @@ class TaskListController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\TaskList  $taskList
+     * @param  \App\OrderTaskList  $OrderTaskList
      * @return \Illuminate\Http\Response
      */
-    public function destroy(TaskList $taskList)
+    public function destroy(OrderTaskList $OrderTaskList)
     {
-        $taskList->delete();
+        $OrderTaskList->delete();
 
         return response()->json([ 'message' => 'Deleted', 
                                   'status' => 200]);
@@ -134,14 +131,14 @@ class TaskListController extends Controller
      * Search the specified resource from storage by parameter.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\TaskList  $taskList
+     * @param  \App\OrderTaskList  $OrderTaskList
      * @param  Parameter  $param
      * @param  Text  $text
      * @return \Illuminate\Http\Response
      */
-    public function searchByParam(Request $request, TaskList $taskList, $param = 'info', $text)
+    public function searchByParam(Request $request, OrderTaskList $OrderTaskList, $param = 'info', $text)
     {
-        return $taskList
+        return $OrderTaskList
             ->where($param,
                 Operator::LIKE,
                 '%'.$text.'%')

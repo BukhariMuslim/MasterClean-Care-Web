@@ -14,7 +14,7 @@ class CreateRequestedArtsTable extends Migration
     public function up()
     {
         Schema::create('requested_arts', function (Blueprint $table) {
-            $table->integer('request_id')->unsigned();
+            $table->integer('requests_id')->unsigned();
             $table->integer('art_id')->unsigned();
             $table->integer('status');
             $table->timestamps();

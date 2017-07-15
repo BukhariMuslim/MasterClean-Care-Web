@@ -6,8 +6,9 @@ use App\Models\Requests;
 use Illuminate\Http\Request;
 use App\Helper\Operator;
 use Exception;
+use DB;
 
-class RequestController extends Controller
+class RequestsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -44,12 +45,20 @@ class RequestController extends Controller
                 $data = $data['data'];
             }
 
+            DB::beginTransaction();
+            
             $requests = Requests::create($data);
+
+            $requests->orderTaskList()->createMany($data['orderTaskList']);
+
+            DB::commit();
 
             return response()->json([ 'data' => $requests, 
                                       'status' => 201]);
         }
         catch(Exception $e) {
+            DB::rollBack();
+
             return response()->json([ 'message' => $e->getMessage(), 
                                       'status' => 400 ]);
         }
@@ -89,6 +98,8 @@ class RequestController extends Controller
         $data = $request->all();
 
         try {
+            DB::beginTransaction();
+
             if (array_key_exists('data', $data)) {
                 $data = $data['data'];
             }
@@ -125,10 +136,17 @@ class RequestController extends Controller
 
             $requests->save();
 
+            $requests->orderTaskList()->delete();
+            $requests->orderTaskList()->createMany($data['orderTaskList']);
+
+            DB::commit();
+
             return response()->json([ 'data' => $requests, 
                                       'status' => 200]);
         }
         catch(Exception $e) {
+            DB::rollBack();
+
             return response()->json([ 'message' => $e->getMessage(), 
                                       'status' => 400 ]);
         }
