@@ -58,7 +58,7 @@ class UserAdditionalInfoController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\UserAdditionalInfo  $userAdditionalInfo
+     * @param  \App\Models\UserAdditionalInfo  $userAdditionalInfo
      * @return \Illuminate\Http\Response
      */
     public function show(UserAdditionalInfo $userAdditionalInfo)
@@ -69,7 +69,7 @@ class UserAdditionalInfoController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\UserAdditionalInfo  $userAdditionalInfo
+     * @param  \App\Models\UserAdditionalInfo  $userAdditionalInfo
      * @return \Illuminate\Http\Response
      */
     public function edit(UserAdditionalInfo $userAdditionalInfo)
@@ -81,7 +81,7 @@ class UserAdditionalInfoController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\UserAdditionalInfo  $userAdditionalInfo
+     * @param  \App\Models\UserAdditionalInfo  $userAdditionalInfo
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, UserAdditionalInfo $userAdditionalInfo)
@@ -114,7 +114,7 @@ class UserAdditionalInfoController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\UserAdditionalInfo  $userAdditionalInfo
+     * @param  \App\Models\UserAdditionalInfo  $userAdditionalInfo
      * @return \Illuminate\Http\Response
      */
     public function destroy(UserAdditionalInfo $userAdditionalInfo)

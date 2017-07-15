@@ -57,7 +57,7 @@ class AdditionalInfoController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\AdditionalInfo  $additionalInfo
+     * @param  \App\Models\AdditionalInfo  $additionalInfo
      * @return \Illuminate\Http\Response
      */
     public function show(AdditionalInfo $additionalInfo)
@@ -68,7 +68,7 @@ class AdditionalInfoController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\AdditionalInfo  $additionalInfo
+     * @param  \App\Models\AdditionalInfo  $additionalInfo
      * @return \Illuminate\Http\Response
      */
     public function edit(AdditionalInfo $additionalInfo)
@@ -80,7 +80,7 @@ class AdditionalInfoController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\AdditionalInfo  $additionalInfo
+     * @param  \App\Models\AdditionalInfo  $additionalInfo
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, AdditionalInfo $additionalInfo)
@@ -107,7 +107,7 @@ class AdditionalInfoController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\AdditionalInfo  $additionalInfo
+     * @param  \App\Models\AdditionalInfo  $additionalInfo
      * @return \Illuminate\Http\Response
      */
     public function destroy(AdditionalInfo $additionalInfo)
@@ -122,7 +122,7 @@ class AdditionalInfoController extends Controller
      * Search the specified resource from storage by parameter.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\AdditionalInfo  $additionalInfo
+     * @param  \App\Models\AdditionalInfo  $additionalInfo
      * @param  Parameter  $param
      * @param  Text  $text
      * @return \Illuminate\Http\Response

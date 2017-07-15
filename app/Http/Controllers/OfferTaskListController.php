@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\RequestsTaskList;
+use App\Models\OfferTaskList;
 use Illuminate\Http\Request;
 use App\Helper\Operator;
 use Exception;
 
-class RequestsTaskListController extends Controller
+class OfferTaskListController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,7 +16,7 @@ class RequestsTaskListController extends Controller
      */
     public function index()
     {
-        return RequestsTaskList::all();
+        return OfferTaskList::all();
     }
 
     /**
@@ -44,9 +44,9 @@ class RequestsTaskListController extends Controller
                 $data = $data['data'];
             }
 
-            $RequestsTaskList = RequestsTaskList::create($data);
+            $OfferTaskList = OfferTaskList::create($data);
 
-            return response()->json([ 'data' => $RequestsTaskList, 
+            return response()->json([ 'data' => $OfferTaskList, 
                                       'status' => 201]);
         }
         catch(Exception $e) {
@@ -58,21 +58,21 @@ class RequestsTaskListController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\RequestsTaskList  $RequestsTaskList
+     * @param  \App\Models\OfferTaskList  $OfferTaskList
      * @return \Illuminate\Http\Response
      */
-    public function show(RequestsTaskList $RequestsTaskList)
+    public function show(OfferTaskList $OfferTaskList)
     {
-        return $RequestsTaskList;
+        return $OfferTaskList;
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\RequestsTaskList  $RequestsTaskList
+     * @param  \App\Models\OfferTaskList  $OfferTaskList
      * @return \Illuminate\Http\Response
      */
-    public function edit(RequestsTaskList $RequestsTaskList)
+    public function edit(OfferTaskList $OfferTaskList)
     {
         //
     }
@@ -81,10 +81,10 @@ class RequestsTaskListController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\RequestsTaskList  $RequestsTaskList
+     * @param  \App\Models\OfferTaskList  $OfferTaskList
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, RequestsTaskList $RequestsTaskList)
+    public function update(Request $request, OfferTaskList $OfferTaskList)
     {
         $data = $request->all();
 
@@ -92,19 +92,19 @@ class RequestsTaskListController extends Controller
             if (array_key_exists('data', $data)) {
                 $data = $data['data'];
             }
-            if (array_key_exists('requests_id', $data)) {
-                $RequestsTaskList->requests_id = $data['requests_id'];
+            if (array_key_exists('offer_id', $data)) {
+                $OfferTaskList->offer_id = $data['offer_id'];
             }
             if (array_key_exists('task', $data)) {
-                $RequestsTaskList->task = $data['task'];
+                $OfferTaskList->task = $data['task'];
             }
             if (array_key_exists('status', $data)) {
                 $requestedArt->status = $data['status'];
             }
 
-            $RequestsTaskList->save();
+            $OfferTaskList->save();
 
-            return response()->json([ 'data' => $RequestsTaskList, 
+            return response()->json([ 'data' => $OfferTaskList, 
                                       'status' => 200]);
         }
         catch(Exception $e) {
@@ -116,12 +116,12 @@ class RequestsTaskListController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\RequestsTaskList  $RequestsTaskList
+     * @param  \App\Models\OfferTaskList  $OfferTaskList
      * @return \Illuminate\Http\Response
      */
-    public function destroy(RequestsTaskList $RequestsTaskList)
+    public function destroy(OfferTaskList $OfferTaskList)
     {
-        $RequestsTaskList->delete();
+        $OfferTaskList->delete();
 
         return response()->json([ 'message' => 'Deleted', 
                                   'status' => 200]);
@@ -131,14 +131,14 @@ class RequestsTaskListController extends Controller
      * Search the specified resource from storage by parameter.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\RequestsTaskList  $RequestsTaskList
+     * @param  \App\Models\OfferTaskList  $OfferTaskList
      * @param  Parameter  $param
      * @param  Text  $text
      * @return \Illuminate\Http\Response
      */
-    public function searchByParam(Request $request, RequestsTaskList $RequestsTaskList, $param = 'info', $text)
+    public function searchByParam(Request $request, OfferTaskList $OfferTaskList, $param = 'info', $text)
     {
-        return $RequestsTaskList
+        return $OfferTaskList
             ->where($param,
                 Operator::LIKE,
                 '%'.$text.'%')

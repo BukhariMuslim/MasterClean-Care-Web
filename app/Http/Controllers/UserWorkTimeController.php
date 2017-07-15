@@ -57,7 +57,7 @@ class UserWorkTimeController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\UserWorkTime  $userWorkTime
+     * @param  \App\Models\UserWorkTime  $userWorkTime
      * @return \Illuminate\Http\Response
      */
     public function show(UserWorkTime $userWorkTime)
@@ -68,7 +68,7 @@ class UserWorkTimeController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\UserWorkTime  $userWorkTime
+     * @param  \App\Models\UserWorkTime  $userWorkTime
      * @return \Illuminate\Http\Response
      */
     public function edit(UserWorkTime $userWorkTime)
@@ -80,7 +80,7 @@ class UserWorkTimeController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\UserWorkTime  $userWorkTime
+     * @param  \App\Models\UserWorkTime  $userWorkTime
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, UserWorkTime $userWorkTime)
@@ -116,7 +116,7 @@ class UserWorkTimeController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\UserWorkTime  $userWorkTime
+     * @param  \App\Models\UserWorkTime  $userWorkTime
      * @return \Illuminate\Http\Response
      */
     public function destroy(UserWorkTime $userWorkTime)

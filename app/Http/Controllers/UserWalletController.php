@@ -58,7 +58,7 @@ class UserWalletController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\UserWallet  $userWallet
+     * @param  \App\Models\UserWallet  $userWallet
      * @return \Illuminate\Http\Response
      */
     public function show(UserWallet $userWallet)
@@ -69,7 +69,7 @@ class UserWalletController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\UserWallet  $userWallet
+     * @param  \App\Models\UserWallet  $userWallet
      * @return \Illuminate\Http\Response
      */
     public function edit(UserWallet $userWallet)
@@ -81,7 +81,7 @@ class UserWalletController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\UserWallet  $userWallet
+     * @param  \App\Models\UserWallet  $userWallet
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, UserWallet $userWallet)
@@ -113,7 +113,7 @@ class UserWalletController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\UserWallet  $userWallet
+     * @param  \App\Models\UserWallet  $userWallet
      * @return \Illuminate\Http\Response
      */
     public function destroy(UserWallet $userWallet)

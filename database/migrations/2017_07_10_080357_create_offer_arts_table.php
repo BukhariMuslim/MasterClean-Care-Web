@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateRequestedArtsTable extends Migration
+class CreateOfferArtsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,15 @@ class CreateRequestedArtsTable extends Migration
      */
     public function up()
     {
-        Schema::create('requested_arts', function (Blueprint $table) {
-            $table->integer('requests_id')->unsigned();
+        Schema::create('offer_arts', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('offer_id')->unsigned();
             $table->integer('art_id')->unsigned();
             $table->integer('status');
             $table->timestamps();
 
-            $table->foreign('request_id')
-                  ->references('id')->on('requests');
+            $table->foreign('offer_id')
+                  ->references('id')->on('offers');
 
             $table->foreign('art_id')
                   ->references('id')->on('users');
@@ -34,6 +35,6 @@ class CreateRequestedArtsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('requested_arts');
+        Schema::dropIfExists('offer_arts');
     }
 }

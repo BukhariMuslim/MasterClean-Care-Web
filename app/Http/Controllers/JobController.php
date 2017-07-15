@@ -57,7 +57,7 @@ class JobController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Job  $job
+     * @param  \App\Models\Job  $job
      * @return \Illuminate\Http\Response
      */
     public function show(Job $job)
@@ -68,7 +68,7 @@ class JobController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Job  $job
+     * @param  \App\Models\Job  $job
      * @return \Illuminate\Http\Response
      */
     public function edit(Job $job)
@@ -80,7 +80,7 @@ class JobController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Job  $job
+     * @param  \App\Models\Job  $job
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Job $job)
@@ -110,7 +110,7 @@ class JobController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Job  $job
+     * @param  \App\Models\Job  $job
      * @return \Illuminate\Http\Response
      */
     public function destroy(Job $job)
@@ -125,7 +125,7 @@ class JobController extends Controller
      * Search the specified resource from storage by parameter.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Job  $job
+     * @param  \App\Models\Job  $job
      * @param  Parameter  $param
      * @param  Text  $text
      * @return \Illuminate\Http\Response

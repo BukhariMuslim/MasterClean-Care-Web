@@ -58,7 +58,7 @@ class UserLanguageController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\UserLanguage  $userLanguage
+     * @param  \App\Models\UserLanguage  $userLanguage
      * @return \Illuminate\Http\Response
      */
     public function show(UserLanguage $userLanguage)
@@ -69,7 +69,7 @@ class UserLanguageController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\UserLanguage  $userLanguage
+     * @param  \App\Models\UserLanguage  $userLanguage
      * @return \Illuminate\Http\Response
      */
     public function edit(UserLanguage $userLanguage)
@@ -81,7 +81,7 @@ class UserLanguageController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\UserLanguage  $userLanguage
+     * @param  \App\Models\UserLanguage  $userLanguage
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, UserLanguage $userLanguage)
@@ -113,7 +113,7 @@ class UserLanguageController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\UserLanguage  $userLanguage
+     * @param  \App\Models\UserLanguage  $userLanguage
      * @return \Illuminate\Http\Response
      */
     public function destroy(UserLanguage $userLanguage)

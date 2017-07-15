@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Requests;
+use App\Models\Offer;
 use Illuminate\Http\Request;
 use App\Helper\Operator;
 use Exception;
 use DB;
 
-class RequestsController extends Controller
+class OfferController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,7 +17,7 @@ class RequestsController extends Controller
      */
     public function index()
     {
-        return Requests::all();
+        return Offer::all();
     }
 
     /**
@@ -47,13 +47,13 @@ class RequestsController extends Controller
 
             DB::beginTransaction();
             
-            $requests = Requests::create($data);
+            $offer = Offer::create($data);
 
-            $requests->orderTaskList()->createMany($data['orderTaskList']);
+            $offer->orderTaskList()->createMany($data['orderTaskList']);
 
             DB::commit();
 
-            return response()->json([ 'data' => $requests, 
+            return response()->json([ 'data' => $offer, 
                                       'status' => 201]);
         }
         catch(Exception $e) {
@@ -67,21 +67,21 @@ class RequestsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Requests  $requests
+     * @param  \App\Models\Offer  $offer
      * @return \Illuminate\Http\Response
      */
-    public function show(Requests $requests)
+    public function show(Offer $offer)
     {
-        return $requests;
+        return $offer;
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Requests  $requests
+     * @param  \App\Models\Offer  $offer
      * @return \Illuminate\Http\Response
      */
-    public function edit(Requests $requests)
+    public function edit(Offer $offer)
     {
         //
     }
@@ -90,10 +90,10 @@ class RequestsController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Requests  $requests
+     * @param  \App\Models\Offer  $offer
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Requests $requests)
+    public function update(Request $request, Offer $offer)
     {
         $data = $request->all();
 
@@ -104,44 +104,44 @@ class RequestsController extends Controller
                 $data = $data['data'];
             }
             if (array_key_exists('member_id', $data)) {
-                $requests->member_id = $data['member_id'];
+                $offer->member_id = $data['member_id'];
             }
             if (array_key_exists('work_time_id', $data)) {
-                $requests->work_time_id = $data['work_time_id'];
+                $offer->work_time_id = $data['work_time_id'];
             }
             if (array_key_exists('start_date', $data)) {
-                $requests->start_date = $data['start_date'];
+                $offer->start_date = $data['start_date'];
             }
             if (array_key_exists('end_date', $data)) {
-                $requests->end_date = $data['end_date'];
+                $offer->end_date = $data['end_date'];
             }
             if (array_key_exists('province', $data)) {
-                $requests->province = $data['province'];
+                $offer->province = $data['province'];
             }
             if (array_key_exists('city', $data)) {
-                $requests->city = $data['city'];
+                $offer->city = $data['city'];
             }
             if (array_key_exists('address', $data)) {
-                $requests->address = $data['address'];
+                $offer->address = $data['address'];
             }
             if (array_key_exists('location', $data)) {
-                $requests->location = $data['location'];
+                $offer->location = $data['location'];
             }
             if (array_key_exists('remark', $data)) {
-                $requests->remark = $data['remark'];
+                $offer->remark = $data['remark'];
             }
             if (array_key_exists('status', $data)) {
-                $requests->status = $data['status'];
+                $offer->status = $data['status'];
             }
 
-            $requests->save();
+            $offer->save();
 
-            $requests->orderTaskList()->delete();
-            $requests->orderTaskList()->createMany($data['orderTaskList']);
+            $offer->orderTaskList()->delete();
+            $offer->orderTaskList()->createMany($data['orderTaskList']);
 
             DB::commit();
 
-            return response()->json([ 'data' => $requests, 
+            return response()->json([ 'data' => $offer, 
                                       'status' => 200]);
         }
         catch(Exception $e) {
@@ -155,12 +155,12 @@ class RequestsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Requests  $requests
+     * @param  \App\Models\Offer  $offer
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Requests $requests)
+    public function destroy(Offer $offer)
     {
-        $requests->delete();
+        $offer->delete();
 
         return response()->json([ 'message' => 'Deleted', 
                                   'status' => 200]);
@@ -170,14 +170,14 @@ class RequestsController extends Controller
      * Search the specified resource from storage by parameter.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Requests  $requests
+     * @param  \App\Models\Offer  $offer
      * @param  Parameter  $param
      * @param  Text  $text
      * @return \Illuminate\Http\Response
      */
-    public function searchByParam(Request $request, Requests $requests, $param = 'info', $text)
+    public function searchByParam(Request $request, Offer $offer, $param = 'info', $text)
     {
-        return $requests
+        return $offer
             ->where($param,
                 Operator::LIKE,
                 '%'.$text.'%')

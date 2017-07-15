@@ -58,7 +58,7 @@ class PlaceController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Place  $place
+     * @param  \App\Models\Place  $place
      * @return \Illuminate\Http\Response
      */
     public function show(Place $place)
@@ -69,7 +69,7 @@ class PlaceController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Place  $place
+     * @param  \App\Models\Place  $place
      * @return \Illuminate\Http\Response
      */
     public function edit(Place $place)
@@ -81,7 +81,7 @@ class PlaceController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Place  $place
+     * @param  \App\Models\Place  $place
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Place $place)
@@ -114,7 +114,7 @@ class PlaceController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Place  $place
+     * @param  \App\Models\Place  $place
      * @return \Illuminate\Http\Response
      */
     public function destroy(Place $place)
@@ -129,7 +129,7 @@ class PlaceController extends Controller
      * Search the specified resource from storage by parameter.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Place  $place
+     * @param  \App\Models\Place  $place
      * @param  Parameter  $param
      * @param  Text  $operator
      * @param  Text  $text

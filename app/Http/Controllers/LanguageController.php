@@ -57,7 +57,7 @@ class LanguageController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Language  $language
+     * @param  \App\Models\Language  $language
      * @return \Illuminate\Http\Response
      */
     public function show(Language $language)
@@ -68,7 +68,7 @@ class LanguageController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Language  $language
+     * @param  \App\Models\Language  $language
      * @return \Illuminate\Http\Response
      */
     public function edit(Language $language)
@@ -80,7 +80,7 @@ class LanguageController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Language  $language
+     * @param  \App\Models\Language  $language
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Language $language)
@@ -109,7 +109,7 @@ class LanguageController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Language  $language
+     * @param  \App\Models\Language  $language
      * @return \Illuminate\Http\Response
      */
     public function destroy(Language $language)
@@ -124,7 +124,7 @@ class LanguageController extends Controller
      * Search the specified resource from storage by parameter.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Language  $language
+     * @param  \App\Models\Language  $language
      * @param  Parameter  $param
      * @param  Text  $text
      * @return \Illuminate\Http\Response

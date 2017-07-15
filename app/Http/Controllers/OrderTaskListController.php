@@ -58,7 +58,7 @@ class OrderTaskListController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\OrderTaskList  $OrderTaskList
+     * @param  \App\Models\OrderTaskList  $OrderTaskList
      * @return \Illuminate\Http\Response
      */
     public function show(OrderTaskList $OrderTaskList)
@@ -69,7 +69,7 @@ class OrderTaskListController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\OrderTaskList  $OrderTaskList
+     * @param  \App\Models\OrderTaskList  $OrderTaskList
      * @return \Illuminate\Http\Response
      */
     public function edit(OrderTaskList $OrderTaskList)
@@ -81,7 +81,7 @@ class OrderTaskListController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\OrderTaskList  $OrderTaskList
+     * @param  \App\Models\OrderTaskList  $OrderTaskList
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, OrderTaskList $OrderTaskList)
@@ -116,7 +116,7 @@ class OrderTaskListController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\OrderTaskList  $OrderTaskList
+     * @param  \App\Models\OrderTaskList  $OrderTaskList
      * @return \Illuminate\Http\Response
      */
     public function destroy(OrderTaskList $OrderTaskList)
@@ -131,7 +131,7 @@ class OrderTaskListController extends Controller
      * Search the specified resource from storage by parameter.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\OrderTaskList  $OrderTaskList
+     * @param  \App\Models\OrderTaskList  $OrderTaskList
      * @param  Parameter  $param
      * @param  Text  $text
      * @return \Illuminate\Http\Response

@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class RequestsTaskList extends Model
+class OfferTaskList extends Model
 {
     /**
      * The attributes that are mass assignable.
@@ -12,7 +12,7 @@ class RequestsTaskList extends Model
      * @var array
      */
     protected $fillable = [
-        'requests_id',
+        'offer_id',
         'task',
         'status',
     ];
@@ -25,10 +25,10 @@ class RequestsTaskList extends Model
     protected $hidden = [ ];
 
     /**
-     * Get the requests record associated with the additionalInfo.
+     * Get the offer record associated with the additionalInfo.
      */
-    public function requests()
+    public function offer()
     {
-        return $this->belongsTo('App\Requests');
+        return $this->belongsTo('App\Offer');
     }
 }

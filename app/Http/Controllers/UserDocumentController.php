@@ -58,7 +58,7 @@ class UserDocumentController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\UserDocument  $userDocument
+     * @param  \App\Models\UserDocument  $userDocument
      * @return \Illuminate\Http\Response
      */
     public function show(UserDocument $userDocument)
@@ -69,7 +69,7 @@ class UserDocumentController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\UserDocument  $userDocument
+     * @param  \App\Models\UserDocument  $userDocument
      * @return \Illuminate\Http\Response
      */
     public function edit(UserDocument $userDocument)
@@ -81,7 +81,7 @@ class UserDocumentController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\UserDocument  $userDocument
+     * @param  \App\Models\UserDocument  $userDocument
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, UserDocument $userDocument)
@@ -122,7 +122,7 @@ class UserDocumentController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\UserDocument  $userDocument
+     * @param  \App\Models\UserDocument  $userDocument
      * @return \Illuminate\Http\Response
      */
     public function destroy(UserDocument $userDocument)

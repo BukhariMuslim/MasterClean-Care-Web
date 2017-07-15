@@ -58,7 +58,7 @@ class EmergencyCallController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\EmergencyCall  $emergencyCall
+     * @param  \App\Models\EmergencyCall  $emergencyCall
      * @return \Illuminate\Http\Response
      */
     public function show(EmergencyCall $emergencyCall)
@@ -69,7 +69,7 @@ class EmergencyCallController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\EmergencyCall  $emergencyCall
+     * @param  \App\Models\EmergencyCall  $emergencyCall
      * @return \Illuminate\Http\Response
      */
     public function edit(EmergencyCall $emergencyCall)
@@ -81,7 +81,7 @@ class EmergencyCallController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\EmergencyCall  $emergencyCall
+     * @param  \App\Models\EmergencyCall  $emergencyCall
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, EmergencyCall $emergencyCall)
@@ -116,7 +116,7 @@ class EmergencyCallController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\EmergencyCall  $emergencyCall
+     * @param  \App\Models\EmergencyCall  $emergencyCall
      * @return \Illuminate\Http\Response
      */
     public function destroy(EmergencyCall $emergencyCall)
@@ -131,7 +131,7 @@ class EmergencyCallController extends Controller
      * Search the specified resource from storage by parameter.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\EmergencyCall  $emergencyCall
+     * @param  \App\Models\EmergencyCall  $emergencyCall
      * @param  Parameter  $param
      * @param  Text  $text
      * @return \Illuminate\Http\Response

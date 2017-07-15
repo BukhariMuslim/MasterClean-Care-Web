@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\RequestedArt;
+use App\Models\OfferArt;
 use Illuminate\Http\Request;
 use App\Helper\Operator;
 use Exception;
 
-class RequestedArtController extends Controller
+class OfferArtController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,7 +16,7 @@ class RequestedArtController extends Controller
      */
     public function index()
     {
-        return RequestedArt::all();
+        return OfferArt::all();
     }
 
     /**
@@ -44,9 +44,9 @@ class RequestedArtController extends Controller
                 $data = $data['data'];
             }
 
-            $requestedArt = RequestedArt::create($data);
+            $offerArt = OfferArt::create($data);
 
-            return response()->json([ 'data' => $requestedArt, 
+            return response()->json([ 'data' => $offerArt, 
                                       'status' => 201]);
         }
         catch(Exception $e) {
@@ -58,21 +58,21 @@ class RequestedArtController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\RequestedArt  $requestedArt
+     * @param  \App\Models\OfferArt  $offerArt
      * @return \Illuminate\Http\Response
      */
-    public function show(RequestedArt $requestedArt)
+    public function show(OfferArt $offerArt)
     {
-        return $requestedArt;
+        return $offerArt;
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\RequestedArt  $requestedArt
+     * @param  \App\Models\OfferArt  $offerArt
      * @return \Illuminate\Http\Response
      */
-    public function edit(RequestedArt $requestedArt)
+    public function edit(OfferArt $offerArt)
     {
         //
     }
@@ -81,10 +81,10 @@ class RequestedArtController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\RequestedArt  $requestedArt
+     * @param  \App\Models\OfferArt  $offerArt
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, RequestedArt $requestedArt)
+    public function update(Request $request, OfferArt $offerArt)
     {
         $data = $request->all();
 
@@ -93,18 +93,18 @@ class RequestedArtController extends Controller
                 $data = $data['data'];
             }
             if (array_key_exists('request_id', $data)) {
-                $requestedArt->request_id = $data['request_id'];
+                $offerArt->request_id = $data['request_id'];
             }
             if (array_key_exists('art_id', $data)) {
-                $requestedArt->art_id = $data['art_id'];
+                $offerArt->art_id = $data['art_id'];
             }
             if (array_key_exists('status', $data)) {
-                $requestedArt->status = $data['status'];
+                $offerArt->status = $data['status'];
             }
 
-            $requestedArt->save();
+            $offerArt->save();
 
-            return response()->json([ 'data' => $requestedArt, 
+            return response()->json([ 'data' => $offerArt, 
                                       'status' => 200]);
         }
         catch(Exception $e) {
@@ -116,12 +116,12 @@ class RequestedArtController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\RequestedArt  $requestedArt
+     * @param  \App\Models\OfferArt  $offerArt
      * @return \Illuminate\Http\Response
      */
-    public function destroy(RequestedArt $requestedArt)
+    public function destroy(OfferArt $offerArt)
     {
-        $requestedArt->delete();
+        $offerArt->delete();
 
         return response()->json([ 'message' => 'Deleted', 
                                   'status' => 200]);
@@ -131,14 +131,14 @@ class RequestedArtController extends Controller
      * Search the specified resource from storage by parameter.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\RequestedArt  $requestedArt
+     * @param  \App\Models\OfferArt  $offerArt
      * @param  Parameter  $param
      * @param  Text  $text
      * @return \Illuminate\Http\Response
      */
-    public function searchByParam(Request $request, RequestedArt $requestedArt, $param = 'info', $text)
+    public function searchByParam(Request $request, OfferArt $offerArt, $param = 'info', $text)
     {
-        return $requestedArt
+        return $offerArt
             ->where($param,
                 Operator::LIKE,
                 '%'.$text.'%')

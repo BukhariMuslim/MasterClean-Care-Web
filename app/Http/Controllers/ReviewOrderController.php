@@ -58,7 +58,7 @@ class ReviewOrderController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\ReviewOrder  $reviewOrder
+     * @param  \App\Models\ReviewOrder  $reviewOrder
      * @return \Illuminate\Http\Response
      */
     public function show(ReviewOrder $reviewOrder)
@@ -69,7 +69,7 @@ class ReviewOrderController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\ReviewOrder  $reviewOrder
+     * @param  \App\Models\ReviewOrder  $reviewOrder
      * @return \Illuminate\Http\Response
      */
     public function edit(ReviewOrder $reviewOrder)
@@ -81,7 +81,7 @@ class ReviewOrderController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\ReviewOrder  $reviewOrder
+     * @param  \App\Models\ReviewOrder  $reviewOrder
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, ReviewOrder $reviewOrder)
@@ -116,7 +116,7 @@ class ReviewOrderController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\ReviewOrder  $reviewOrder
+     * @param  \App\Models\ReviewOrder  $reviewOrder
      * @return \Illuminate\Http\Response
      */
     public function destroy(ReviewOrder $reviewOrder)
@@ -131,7 +131,7 @@ class ReviewOrderController extends Controller
      * Search the specified resource from storage by parameter.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\ReviewOrder  $reviewOrder
+     * @param  \App\Models\ReviewOrder  $reviewOrder
      * @param  Parameter  $param
      * @param  Text  $text
      * @return \Illuminate\Http\Response

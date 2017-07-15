@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Requests extends Model
+class Offer extends Model
 {
     /**
      * The attributes that are mass assignable.
@@ -64,10 +64,10 @@ class Requests extends Model
     }
 
     /**
-     * Get the requestsTaskList record associated with the additionalInfo.
+     * Get the offerTaskList record associated with the additionalInfo.
      */
-    public function requestsTaskList()
+    public function offerTaskList()
     {
-        return $this->hasMany('App\RequestsTaskList');
+        return $this->hasMany('App\OfferTaskList');
     }
 }
