@@ -24715,7 +24715,7 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch, ownProps) {
     return {
         onUpdateSnack: function onUpdateSnack(open, message) {
             dispatch((0, _DefaultAction.updateSnack)({
-                open: open,
+                open: true,
                 message: message
             }));
         },
@@ -24739,7 +24739,7 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch, ownProps) {
                 }
             }).catch(function (error) {
                 dispatch((0, _DefaultAction.updateSnack)({
-                    open: open,
+                    open: true,
                     message: error
                 }));
             });
@@ -24760,8 +24760,9 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch, ownProps) {
                 }
                 self.setState(_defineProperty({}, type, dataPlace));
             }).catch(function (error) {
+                console.log(error);
                 dispatch((0, _DefaultAction.updateSnack)({
-                    open: open,
+                    open: true,
                     message: error
                 }));
                 self.setState(_defineProperty({}, type, dataPlace));
@@ -24782,7 +24783,7 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch, ownProps) {
                 self.setState(_defineProperty({}, type, dataLanguage));
             }).catch(function (error) {
                 dispatch((0, _DefaultAction.updateSnack)({
-                    open: open,
+                    open: true,
                     message: error
                 }));
                 self.setState(_defineProperty({}, type, dataLanguage));
@@ -24803,7 +24804,7 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch, ownProps) {
                 self.setState(_defineProperty({}, type, dataJob));
             }).catch(function (error) {
                 dispatch((0, _DefaultAction.updateSnack)({
-                    open: open,
+                    open: true,
                     message: error
                 }));
                 self.setState(_defineProperty({}, type, dataLanguage));
@@ -24824,7 +24825,7 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch, ownProps) {
                 self.setState(_defineProperty({}, type, dataWorkTime));
             }).catch(function (error) {
                 dispatch((0, _DefaultAction.updateSnack)({
-                    open: open,
+                    open: true,
                     message: error
                 }));
                 self.setState(_defineProperty({}, type, dataLanguage));
@@ -24845,7 +24846,7 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch, ownProps) {
                 self.setState(_defineProperty({}, type, dataAdditionalInfo));
             }).catch(function (error) {
                 dispatch((0, _DefaultAction.updateSnack)({
-                    open: open,
+                    open: true,
                     message: error
                 }));
                 self.setState(_defineProperty({}, type, dataAdditionalInfo));

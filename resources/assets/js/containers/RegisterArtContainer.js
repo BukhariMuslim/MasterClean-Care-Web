@@ -17,7 +17,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     return {
         onUpdateSnack: (open, message) => {
             dispatch(updateSnack({
-                open: open,
+                open: true,
                 message: message
             }))
         },
@@ -44,7 +44,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
             })
             .catch(function (error) {
                 dispatch(updateSnack({
-                    open: open,
+                    open: true,
                     message: error
                 }))
             })
@@ -67,8 +67,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
                 self.setState({ [type]: dataPlace })
             })
             .catch(function (error) {
+                console.log(error)
                 dispatch(updateSnack({
-                    open: open,
+                    open: true,
                     message: error
                 }))
                 self.setState({ [type]: dataPlace })
@@ -93,7 +94,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
             })
             .catch(function (error) {
                 dispatch(updateSnack({
-                    open: open,
+                    open: true,
                     message: error
                 }))
                 self.setState({ [type]: dataLanguage })
@@ -118,7 +119,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
             })
             .catch(function (error) {
                 dispatch(updateSnack({
-                    open: open,
+                    open: true,
                     message: error
                 }))
                 self.setState({ [type]: dataLanguage })
@@ -143,7 +144,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
             })
             .catch(function (error) {
                 dispatch(updateSnack({
-                    open: open,
+                    open: true,
                     message: error
                 }))
                 self.setState({ [type]: dataLanguage })
@@ -168,7 +169,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
             })
             .catch(function (error) {
                 dispatch(updateSnack({
-                    open: open,
+                    open: true,
                     message: error
                 }))
                 self.setState({ [type]: dataAdditionalInfo })
