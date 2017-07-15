@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\WorkTime;
+use App\Models\WorkTime;
 use Illuminate\Http\Request;
 use App\Helper\Operator;
 use Exception;

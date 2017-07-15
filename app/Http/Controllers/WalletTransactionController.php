@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\WalletTransaction;
+use App\Models\WalletTransaction;
 use Illuminate\Http\Request;
 use App\Helper\Operator;
 use Exception;

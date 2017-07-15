@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Job;
+use App\Models\Job;
 use Illuminate\Http\Request;
 use App\Helper\Operator;
 use Exception;

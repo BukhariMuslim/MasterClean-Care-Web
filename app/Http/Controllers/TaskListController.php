@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\TaskList;
+use App\Models\TaskList;
 use Illuminate\Http\Request;
 use App\Helper\Operator;
 use Exception;

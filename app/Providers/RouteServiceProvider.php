@@ -2,19 +2,19 @@
 
 namespace App\Providers;
 
-use App\AdditionalInfo;
-use App\Article;
-use App\Comment;
-use App\EmergencyCall;
-use App\Job;
-use App\Language;
-use App\Message;
-use App\Order;
-use App\Place;
-use App\Requests;
-use App\User;
-use App\Wallet;
-use App\WorkTime;
+use App\Models\AdditionalInfo;
+use App\Models\Article;
+use App\Models\Comment;
+use App\Models\EmergencyCall;
+use App\Models\Job;
+use App\Models\Language;
+use App\Models\Message;
+use App\Models\Order;
+use App\Models\Place;
+use App\Models\Requests;
+use App\Models\User;
+use App\Models\Wallet;
+use App\Models\WorkTime;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use \Iterator;

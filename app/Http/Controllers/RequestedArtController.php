@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\RequestedArt;
+use App\Models\RequestedArt;
 use Illuminate\Http\Request;
 use App\Helper\Operator;
 use Exception;

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\ReviewOrder;
+use App\Models\ReviewOrder;
 use Illuminate\Http\Request;
 use App\Helper\Operator;
 use Exception;

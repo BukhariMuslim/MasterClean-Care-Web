@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\EmergencyCall;
+use App\Models\EmergencyCall;
 use Illuminate\Http\Request;
 use App\Helper\Operator;
 use Exception;

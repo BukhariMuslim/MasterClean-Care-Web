@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Comment;
+use App\Models\Comment;
 use Illuminate\Http\Request;
 use App\Helper\Operator;
 use Exception;

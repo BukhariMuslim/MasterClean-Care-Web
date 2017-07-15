@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\User;
-use App\UserWallet;
-use App\UserLanguage;
-use App\UserJob;
-use App\UserWorkTime;
-use App\UserDocument;
-use App\UserAdditionalInfo;
+use App\Models\User;
+use App\Models\UserWallet;
+use App\Models\UserLanguage;
+use App\Models\UserJob;
+use App\Models\UserWorkTime;
+use App\Models\UserDocument;
+use App\Models\UserAdditionalInfo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Collection;

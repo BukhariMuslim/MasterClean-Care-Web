@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\UserAdditionalInfo;
+use App\Models\UserAdditionalInfo;
 use Illuminate\Http\Request;
 use App\Helper\Operator;
 use Exception;

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Place;
+use App\Models\Place;
 use Illuminate\Http\Request;
 use App\Helper\Operators;
 use Exception;
