@@ -12,6 +12,7 @@ class Comment extends Model
      * @var array
      */
     protected $fillable = [
+        'article_id',
         'user_id',
         'comment',
     ];
@@ -29,5 +30,13 @@ class Comment extends Model
     public function user()
     {
         return $this->belongsTo('App\User');
+    }
+
+    /**
+     * Get the article record associated with the additionalInfo.
+     */
+    public function article()
+    {
+        return $this->belongsTo('App\Article');
     }
 }

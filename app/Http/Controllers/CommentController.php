@@ -92,6 +92,9 @@ class CommentController extends Controller
             if (array_key_exists('data', $data)) {
                 $data = $data['data'];
             }
+            if (array_key_exists('article_id', $data)) {
+                $comment->article_id = $data['article_id'];
+            }
             if (array_key_exists('user_id', $data)) {
                 $comment->user_id = $data['user_id'];
             }
