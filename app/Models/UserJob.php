@@ -28,7 +28,7 @@ class UserJob extends Model
      */
     public function user()
     {
-        return $this->belongsTo('App\User');
+        return $this->belongsTo('App\Models\User');
     }
 
     /**
@@ -36,6 +36,6 @@ class UserJob extends Model
      */
     public function job()
     {
-        return $this->belongsTo('App\Job');
+        return $this->belongsTo('App\Models\Job');
     }
 }

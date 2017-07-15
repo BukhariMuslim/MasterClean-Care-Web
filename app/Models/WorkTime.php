@@ -27,7 +27,7 @@ class WorkTime extends Model
      */
     public function userWorkTime()
     {
-        return $this->hasMany('App\UserWorkTime');
+        return $this->hasMany('App\Models\UserWorkTime');
     }
 
     /**
@@ -35,7 +35,7 @@ class WorkTime extends Model
      */
     public function order()
     {
-        return $this->hasMany('App\Order');
+        return $this->hasMany('App\Models\Order');
     }
 
     /**

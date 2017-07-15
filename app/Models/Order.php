@@ -37,7 +37,7 @@ class Order extends Model
      */
     public function member()
     {
-        return $this->belongsTo('App\User', 'member_id');
+        return $this->belongsTo('App\Models\User', 'member_id');
     }
 
     /**
@@ -45,7 +45,7 @@ class Order extends Model
      */
     public function art()
     {
-        return $this->belongsTo('App\User', 'art_id');
+        return $this->belongsTo('App\Models\User', 'art_id');
     }
 
     /**
@@ -53,7 +53,7 @@ class Order extends Model
      */
     public function work_time()
     {
-        return $this->belongsTo('App\WorkTime');
+        return $this->belongsTo('App\Models\WorkTime');
     }
 
     /**
@@ -61,7 +61,7 @@ class Order extends Model
      */
     public function province()
     {
-        return $this->belongsTo('App\Place', 'province');
+        return $this->belongsTo('App\Models\Place', 'province');
     }
 
     /**
@@ -69,6 +69,14 @@ class Order extends Model
      */
     public function city()
     {
-        return $this->belongsTo('App\Place', 'city');
+        return $this->belongsTo('App\Models\Place', 'city');
+    }
+
+    /**
+     * Get the reviewOrder record associated with the additionalInfo.
+     */
+    public function reviewOrder()
+    {
+        return $this->hasMany('App\Models\ReviewOrder');
     }
 }

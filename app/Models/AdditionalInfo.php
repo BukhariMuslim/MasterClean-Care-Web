@@ -27,6 +27,6 @@ class AdditionalInfo extends Model
      */
     public function userAdditionalInfo()
     {
-        return $this->hasMany('App\UserAdditionalInfo');
+        return $this->hasMany('App\Models\UserAdditionalInfo');
     }
 }

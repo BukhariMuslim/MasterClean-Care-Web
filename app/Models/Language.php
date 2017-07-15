@@ -27,6 +27,6 @@ class Language extends Model
      */
     public function userLanguage()
     {
-        return $this->hasMany('App\UserLanguage');
+        return $this->hasMany('App\Models\UserLanguage');
     }
 }

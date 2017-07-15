@@ -28,7 +28,7 @@ class UserAdditionalInfo extends Model
      */
     public function user()
     {
-        return $this->belongsTo('App\User');
+        return $this->belongsTo('App\Models\User');
     }
 
     /**
@@ -36,6 +36,6 @@ class UserAdditionalInfo extends Model
      */
     public function additionalInfo()
     {
-        return $this->belongsTo('App\AdditionalInfo');
+        return $this->belongsTo('App\Models\AdditionalInfo');
     }
 }

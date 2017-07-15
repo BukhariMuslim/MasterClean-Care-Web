@@ -27,6 +27,6 @@ class Job extends Model
      */
     public function userJob()
     {
-        return $this->hasMany('App\UserJob');
+        return $this->hasMany('App\Models\UserJob');
     }
 }

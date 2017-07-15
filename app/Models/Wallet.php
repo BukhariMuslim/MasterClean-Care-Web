@@ -28,7 +28,7 @@ class Wallet extends Model
      */
     public function userWallet()
     {
-        return $this->hasMany('App\UserWallet');
+        return $this->hasMany('App\Models\UserWallet');
     }
 
     /**
@@ -36,6 +36,6 @@ class Wallet extends Model
      */
     public function walletTransaction()
     {
-        return $this->hasMany('App\WalletTransaction');
+        return $this->hasMany('App\Models\WalletTransaction');
     }
 }

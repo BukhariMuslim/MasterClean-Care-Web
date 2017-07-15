@@ -36,7 +36,7 @@ class Offer extends Model
      */
     public function member()
     {
-        return $this->belongsTo('App\User', 'member_id');
+        return $this->belongsTo('App\Models\User', 'member_id');
     }
 
     /**
@@ -44,7 +44,7 @@ class Offer extends Model
      */
     public function work_time()
     {
-        return $this->belongsTo('App\WorkTime');
+        return $this->belongsTo('App\Models\WorkTime');
     }
 
     /**
@@ -52,7 +52,7 @@ class Offer extends Model
      */
     public function province()
     {
-        return $this->belongsTo('App\Place', 'province');
+        return $this->belongsTo('App\Models\Place', 'province');
     }
 
     /**
@@ -60,7 +60,7 @@ class Offer extends Model
      */
     public function city()
     {
-        return $this->belongsTo('App\Place', 'city');
+        return $this->belongsTo('App\Models\Place', 'city');
     }
 
     /**
@@ -68,6 +68,6 @@ class Offer extends Model
      */
     public function offerTaskList()
     {
-        return $this->hasMany('App\OfferTaskList');
+        return $this->hasMany('App\Models\OfferTaskList');
     }
 }

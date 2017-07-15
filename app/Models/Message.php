@@ -31,7 +31,7 @@ class Message extends Model
      */
     public function sender()
     {
-        return $this->belongsTo('App\User', 'sender_id');
+        return $this->belongsTo('App\Models\User', 'sender_id');
     }
 
     /**
@@ -39,6 +39,6 @@ class Message extends Model
      */
     public function receiver()
     {
-        return $this->belongsTo('App\User', 'receiver_id');
+        return $this->belongsTo('App\Models\User', 'receiver_id');
     }
 }

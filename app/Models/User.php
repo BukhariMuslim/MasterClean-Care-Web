@@ -49,7 +49,7 @@ class User extends Authenticatable
      */
     public function province()
     {
-        return $this->belongsTo('App\Places', 'province');
+        return $this->belongsTo('App\Models\Places', 'province');
     }
 
     /**
@@ -57,7 +57,7 @@ class User extends Authenticatable
      */
     public function city()
     {
-        return $this->belongsTo('App\Places', 'city');
+        return $this->belongsTo('App\Models\Places', 'city');
     }
 
     /**
@@ -65,7 +65,7 @@ class User extends Authenticatable
      */
     public function userWallet()
     {
-        return $this->hasMany('App\UserWallet');
+        return $this->hasMany('App\Models\UserWallet');
     }
 
     /**
@@ -73,7 +73,7 @@ class User extends Authenticatable
      */
     public function userLanguage()
     {
-        return $this->hasMany('App\UserLanguage');
+        return $this->hasMany('App\Models\UserLanguage');
     }
 
     /**
@@ -81,7 +81,7 @@ class User extends Authenticatable
      */
     public function language()
     {
-        return $this->hasManyThrough('App\Language', 'App\UserLanguage');
+        return $this->hasManyThrough('App\Models\Language', 'App\Models\UserLanguage');
     }
 
     /**
@@ -89,7 +89,7 @@ class User extends Authenticatable
      */
     public function userJob()
     {
-        return $this->hasMany('App\UserJob');
+        return $this->hasMany('App\Models\UserJob');
     }
 
     /**
@@ -97,7 +97,7 @@ class User extends Authenticatable
      */
     public function job()
     {
-        return $this->hasManyThrough('App\Job', 'App\UserJob');
+        return $this->hasManyThrough('App\Models\Job', 'App\Models\UserJob');
     }
 
     /**
@@ -105,7 +105,7 @@ class User extends Authenticatable
      */
     public function userWorkTime()
     {
-        return $this->hasMany('App\UserWorkTime');
+        return $this->hasMany('App\Models\UserWorkTime');
     }
 
     /**
@@ -113,7 +113,7 @@ class User extends Authenticatable
      */
     public function workTime()
     {
-        return $this->hasManyThrough('App\WorkTime', 'App\UserWorkTime');
+        return $this->hasManyThrough('App\Models\WorkTime', 'App\Models\UserWorkTime');
     }
 
     /**
@@ -121,7 +121,7 @@ class User extends Authenticatable
      */
     public function userDocument()
     {
-        return $this->hasMany('App\UserDocument');
+        return $this->hasMany('App\Models\UserDocument');
     }
 
     /**
@@ -129,7 +129,7 @@ class User extends Authenticatable
      */
     public function userAdditionalInfo()
     {
-        return $this->hasMany('App\UserAdditionalInfo');
+        return $this->hasMany('App\Models\UserAdditionalInfo');
     }
 
     /**
@@ -137,7 +137,7 @@ class User extends Authenticatable
      */
     public function additionalInfo()
     {
-        return $this->hasManyThrough('App\AdditionalInfo', 'App\UserAdditionalInfo');
+        return $this->hasManyThrough('App\Models\AdditionalInfo', 'App\Models\UserAdditionalInfo');
     }
 
     /**
@@ -145,7 +145,7 @@ class User extends Authenticatable
      */
     public function walletTransaction()
     {
-        return $this->hasMany('App\WalletTransaction');
+        return $this->hasMany('App\Models\WalletTransaction');
     }
 
     /**
@@ -153,7 +153,7 @@ class User extends Authenticatable
      */
     public function wallet()
     {
-        return $this->hasManyThrough('App\Wallet', 'App\WalletTransaction');
+        return $this->hasManyThrough('App\Models\Wallet', 'App\Models\WalletTransaction');
     }
 
     /**
@@ -161,7 +161,7 @@ class User extends Authenticatable
      */
     public function article()
     {
-        return $this->hasMany('App\Article');
+        return $this->hasMany('App\Models\Article');
     }
 
     /**
@@ -169,7 +169,7 @@ class User extends Authenticatable
      */
     public function comment()
     {
-        return $this->hasMany('App\Comment');
+        return $this->hasMany('App\Models\Comment');
     }
 
     /**
@@ -177,23 +177,23 @@ class User extends Authenticatable
      */
     public function order()
     {
-        return $this->hasMany('App\Order');
+        return $this->hasMany('App\Models\Order');
     }
 
     /**
-     * Get the request record associated with the user.
+     * Get the offer record associated with the user.
      */
-    public function request()
+    public function offer()
     {
-        return $this->hasMany('App\Request');
+        return $this->hasMany('App\Offer');
     }
 
     /**
-     * Get the requestedArt record associated with the user.
+     * Get the offerArt record associated with the user.
      */
-    public function requestedArt()
+    public function offerArt()
     {
-        return $this->hasMany('App\RequestedArt');
+        return $this->hasMany('App\OfferArt');
     }
 
     /**
@@ -201,7 +201,7 @@ class User extends Authenticatable
      */
     public function emergencyCall()
     {
-        return $this->hasMany('App\EmergencyCall');
+        return $this->hasMany('App\Models\EmergencyCall');
     }
 
     /**
@@ -209,6 +209,6 @@ class User extends Authenticatable
      */
     public function message()
     {
-        return $this->hasMany('App\Message');
+        return $this->hasMany('App\Models\Message');
     }
 }

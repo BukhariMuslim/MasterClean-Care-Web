@@ -33,6 +33,6 @@ class CreateOrderTaskListsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('task_lists');
+        Schema::dropIfExists('order_task_lists');
     }
 }
