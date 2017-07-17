@@ -36,7 +36,43 @@ class UserController extends Controller
             'order_rate'
         ])->get();
 
+        $users->map(function ($user) {
+            if ($user->order_rate->first()) {
+                $user->rate = $user->order_rate->avg('rate');
+            }
+            else {
+                $user->rate = 0;
+            }
+        });
+
         return $users;
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Models\User $user
+     * @return \Illuminate\Http\Response
+     */
+    public function show(User $user)
+    {
+        $user->load([
+            'user_additional_info',
+            'user_document',
+            'user_language',
+            'user_job',
+            'user_wallet',
+            'user_work_time',
+        ]);
+
+        if ($user->order_rate->first()) {
+            $user->rate = $user->order_rate->avg('rate');
+        }
+        else {
+            $user->rate = 0;
+        }
+        
+        return $user;
     }
 
     /**
@@ -168,27 +204,6 @@ class UserController extends Controller
             return response()->json([ 'message' => $e->getMessage(), 
                                       'status' => 400 ]);
         }
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\User $user
-     * @return \Illuminate\Http\Response
-     */
-    public function show(User $user)
-    {
-        $user->load([
-            'user_additional_info',
-            'user_document',
-            'user_language',
-            'user_job',
-            'user_wallet',
-            'user_work_time',
-            'order_rate'
-        ]);
-        
-        return $user;
     }
 
     /**
