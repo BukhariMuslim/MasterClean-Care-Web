@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Article;
 use Illuminate\Http\Request;
-use App\Helper\Operator;
+use App\Helper\Operators;
 use Exception;
 
 class ArticleController extends Controller
@@ -146,7 +146,7 @@ class ArticleController extends Controller
     {
         return $article
             ->where($param,
-                Operator::LIKE,
+                Operators::LIKE,
                 '%'.$text.'%')
             ->get();
     }

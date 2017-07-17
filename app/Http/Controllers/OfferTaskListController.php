@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\OfferTaskList;
 use Illuminate\Http\Request;
-use App\Helper\Operator;
+use App\Helper\Operators;
 use Exception;
 
 class OfferTaskListController extends Controller
@@ -140,7 +140,7 @@ class OfferTaskListController extends Controller
     {
         return $OfferTaskList
             ->where($param,
-                Operator::LIKE,
+                Operators::LIKE,
                 '%'.$text.'%')
             ->get();
     }

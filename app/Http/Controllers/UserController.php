@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Collection;
 use Exception;
 use DB;
-use App\Helper\Operator;
+use App\Helper\Operators;
 use Auth;
 
 class UserController extends Controller
@@ -369,7 +369,7 @@ class UserController extends Controller
     {
         return $user
             ->where($param,
-                Operator::LIKE,
+                Operators::LIKE,
                 '%'.$text.'%')
             ->get();
     }
@@ -385,13 +385,25 @@ class UserController extends Controller
      */
     public function search(Request $request, User $user, $text)
     {
-        return $user
-            ->where('name',
-                Operator::LIKE,
-                '%'.$text.'%')
-            ->orWhere('city',
-                Operator::LIKE,
-                '%'.$text.'%')
-            ->get();
+        $params = explode(";", $text);
+        $query = array();
+        foreach($params as $param) {
+            list($key, $value) = explode("=", $param);
+            array_push($query, 
+                array($key,
+                    Operators::LIKE,
+                    "%".$value."%"
+                )
+            );
+        }
+
+        return $user->where($query)->get()->load([
+            'user_additional_info',
+            'user_document',
+            'user_language',
+            'user_job',
+            'user_wallet',
+            'user_work_time',
+        ]);
     }
 }

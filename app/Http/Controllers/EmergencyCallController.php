@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\EmergencyCall;
 use Illuminate\Http\Request;
-use App\Helper\Operator;
+use App\Helper\Operators;
 use Exception;
 
 class EmergencyCallController extends Controller
@@ -140,7 +140,7 @@ class EmergencyCallController extends Controller
     {
         return $emergencyCall
             ->where($param,
-                Operator::LIKE,
+                Operators::LIKE,
                 '%'.$text.'%')
             ->get();
     }

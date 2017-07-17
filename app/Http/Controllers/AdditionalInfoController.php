@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\AdditionalInfo;
 use Illuminate\Http\Request;
-use App\Helper\Operator;
+use App\Helper\Operators;
 use Exception;
 
 class AdditionalInfoController extends Controller
@@ -131,7 +131,7 @@ class AdditionalInfoController extends Controller
     {
         return $additionalInfo
             ->where($param,
-                Operator::LIKE,
+                Operators::LIKE,
                 '%'.$text.'%')
             ->get();
     }

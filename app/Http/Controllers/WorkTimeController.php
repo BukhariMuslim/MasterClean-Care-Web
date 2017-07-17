@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\WorkTime;
 use Illuminate\Http\Request;
-use App\Helper\Operator;
+use App\Helper\Operators;
 use Exception;
 
 class WorkTimeController extends Controller
@@ -135,7 +135,7 @@ class WorkTimeController extends Controller
     {
         return $workTime
             ->where($param,
-                Operator::EQUAL,
+                Operators::EQUAL,
                 '%'.$text.'%')
             ->get();
     }

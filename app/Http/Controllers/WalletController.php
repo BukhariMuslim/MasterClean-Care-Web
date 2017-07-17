@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Wallet;
 use Illuminate\Http\Request;
-use App\Helper\Operator;
+use App\Helper\Operators;
 use Exception;
 
 class WalletController extends Controller
@@ -137,7 +137,7 @@ class WalletController extends Controller
     {
         return $wallet
             ->where($param,
-                Operator::EQUAL,
+                Operators::EQUAL,
                 '%'.$text.'%')
             ->get();
     }

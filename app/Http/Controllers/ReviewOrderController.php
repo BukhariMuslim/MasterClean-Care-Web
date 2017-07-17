@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\ReviewOrder;
 use Illuminate\Http\Request;
-use App\Helper\Operator;
+use App\Helper\Operators;
 use Exception;
 
 class ReviewOrderController extends Controller
@@ -140,7 +140,7 @@ class ReviewOrderController extends Controller
     {
         return $reviewOrder
             ->where($param,
-                Operator::LIKE,
+                Operators::LIKE,
                 '%'.$text.'%')
             ->get();
     }

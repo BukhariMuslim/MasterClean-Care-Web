@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\OfferArt;
 use Illuminate\Http\Request;
-use App\Helper\Operator;
+use App\Helper\Operators;
 use Exception;
 
 class OfferArtController extends Controller
@@ -140,7 +140,7 @@ class OfferArtController extends Controller
     {
         return $offerArt
             ->where($param,
-                Operator::LIKE,
+                Operators::LIKE,
                 '%'.$text.'%')
             ->get();
     }

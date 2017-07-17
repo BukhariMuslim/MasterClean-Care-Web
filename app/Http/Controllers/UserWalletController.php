@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\UserWallet;
 use Illuminate\Http\Request;
-use App\Helper\Operator;
+use App\Helper\Operators;
 use Exception;
 
 class UserWalletController extends Controller

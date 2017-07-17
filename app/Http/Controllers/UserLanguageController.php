@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\UserLanguage;
 use Illuminate\Http\Request;
-use App\Helper\Operator;
+use App\Helper\Operators;
 use Exception;
 
 class UserLanguageController extends Controller
