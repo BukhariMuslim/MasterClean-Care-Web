@@ -24,25 +24,40 @@ class AppDrawer extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            actAddTodo: 'ADD_TODO',
-            actHome: 'HOME',
-            actArticle: 'ARTICLE',
             open: false,
+            menuCollection: [
+                {
+                    id: 1,
+                    label: 'Artikel',
+                    link: '\article',
+                    iconLabel: 'receipt',
+                },
+            ],
         }
     }
 
-    onAddTodoItemClick(action) {
-        if (action == this.state.actHome) {
-            this.props.history.push('/')    
-        }
-        else if (action == this.state.actArticle) {
-            this.props.history.push('/article')
-        }
+    onAddTodoItemClick(link) {
+        this.props.history.push(link)    
     }
 
     handleToggle() { this.setState({open: !this.state.open}) }
 
     handleClose() { this.setState({open: false}) }
+
+    menuList(collection) {
+        return collection.map((obj, idx) => {
+            return (
+                <MenuItem primaryText={ obj.label }
+                    key={ obj.id }
+                    onClick={() => {
+                        this.handleClose()
+                        this.onAddTodoItemClick(obj.link)
+                    }}
+                    rightIcon={<FontIcon className="material-icons">{ obj.iconLabel }</FontIcon>}
+                    />
+            )
+        })
+    }
 
     render() {
         const isLoggedIn = this.props.user ? true : false
@@ -72,13 +87,7 @@ class AppDrawer extends Component {
                     }
                     <Divider />
                     {/* containerElement={<Link to="/article" />}                      */}
-                    <MenuItem primaryText="Article" 
-                        onClick={() => {
-                            this.handleClose()
-                            this.onAddTodoItemClick(this.state.actArticle)
-                        }}
-                        rightIcon={<FontIcon className="material-icons">receipt</FontIcon>}
-                        />
+                    { this.menuList(this.state.menuCollection) }
                     <Divider />
                     <LogoutContainer />
                 </Drawer>

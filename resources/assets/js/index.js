@@ -2,7 +2,7 @@ import React from 'react'
 import { render } from 'react-dom'
 import { Provider } from 'react-redux'
 import { createStore } from 'redux'
-import { BrowserRouter as Router, Route } from "react-router-dom"
+import { ConnectedRouter, routerMiddleware } from 'react-router-redux'
 import routes from './modules/routes'
 import history from './modules/history'
 import configureStore from './stores/configureStore'
@@ -11,14 +11,14 @@ import injectTapEventPlugin from 'react-tap-event-plugin'
 
 injectTapEventPlugin()
 
-const store = configureStore()
+const store = configureStore(routerMiddleware(history))
 
 render(
     <MuiThemeProvider>
         <Provider store={ store }>
-            <Router history={ history } >
+            <ConnectedRouter history={ history } >
                 { routes(store) }
-            </Router>
+            </ConnectedRouter>
         </Provider>
     </MuiThemeProvider>,
     document.getElementById('root')

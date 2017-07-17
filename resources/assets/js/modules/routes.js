@@ -7,6 +7,7 @@ import RegisterMemberContainer from '../containers/RegisterMemberContainer'
 import RegisterArtContainer from '../containers/RegisterArtContainer'
 import UserProfileContainer from '../containers/UserProfileContainer'
 import Article from '../components/Article'
+import DetailArticle from '../components/DetailArticle'
 
 const routes = (store) => {
     const requireAuth = (store) => {
@@ -33,6 +34,7 @@ const routes = (store) => {
             <Route path="/" >
                 <App>
                     <Route path="/article" component={ Article }/>                    
+                    <Route path="/detail_article" component={ DetailArticle }/>
                 </App>
             </Route>
         </Switch>

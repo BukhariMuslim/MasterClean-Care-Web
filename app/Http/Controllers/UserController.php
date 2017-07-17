@@ -168,6 +168,13 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
+        $user->userAdditionalInfo = $user->userAdditionalInfo;
+        $user->userDocument = $user->userDocument;
+        $user->userLanguage = $user->userLanguage;
+        $user->userJob = $user->userJob;
+        $user->userWallet = $user->userWallet;
+        $user->userWorkTime = $user->userWorkTime;
+        
         return $user;
     }
 
