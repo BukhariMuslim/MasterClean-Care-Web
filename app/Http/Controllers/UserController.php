@@ -26,7 +26,18 @@ class UserController extends Controller
      */
     public function index()
     {
-        return User::all();
+        $users = User::all();
+
+        foreach($users as $user) {
+            $user->userAdditionalInfo = $user->userAdditionalInfo;
+            $user->userDocument = $user->userDocument;
+            $user->userLanguage = $user->userLanguage;
+            $user->userJob = $user->userJob;
+            $user->userWallet = $user->userWallet;
+            $user->userWorkTime = $user->userWorkTime;
+        }
+
+        return $users;
     }
 
     /**
