@@ -61,17 +61,17 @@ class User extends Authenticatable
     }
 
     /**
-     * Get the userWallet record associated with the user.
+     * Get the user_wallet record associated with the user.
      */
-    public function userWallet()
+    public function user_wallet()
     {
         return $this->hasMany('App\Models\UserWallet');
     }
 
     /**
-     * Get the userLanguage record associated with the user.
+     * Get the user_language record associated with the user.
      */
-    public function userLanguage()
+    public function user_language()
     {
         return $this->hasMany('App\Models\UserLanguage');
     }
@@ -85,9 +85,9 @@ class User extends Authenticatable
     }
 
     /**
-     * Get the userJob record associated with the user.
+     * Get the user_job record associated with the user.
      */
-    public function userJob()
+    public function user_job()
     {
         return $this->hasMany('App\Models\UserJob');
     }
@@ -101,49 +101,49 @@ class User extends Authenticatable
     }
 
     /**
-     * Get the userWorkTime record associated with the user.
+     * Get the user_work_Time record associated with the user.
      */
-    public function userWorkTime()
+    public function user_work_Time()
     {
         return $this->hasMany('App\Models\UserWorkTime');
     }
 
     /**
-     * Get the workTime record associated with the user.
+     * Get the work_Time record associated with the user.
      */
-    public function workTime()
+    public function work_Time()
     {
         return $this->hasManyThrough('App\Models\WorkTime', 'App\Models\UserWorkTime');
     }
 
     /**
-     * Get the userDocument record associated with the user.
+     * Get the user_document record associated with the user.
      */
-    public function userDocument()
+    public function user_document()
     {
         return $this->hasMany('App\Models\UserDocument');
     }
 
     /**
-     * Get the userAdditionalInfo record associated with the user.
+     * Get the user_additional_info record associated with the user.
      */
-    public function userAdditionalInfo()
+    public function user_additional_info()
     {
         return $this->hasMany('App\Models\UserAdditionalInfo');
     }
 
     /**
-     * Get the additionalInfo record associated with the user.
+     * Get the additional_info record associated with the user.
      */
-    public function additionalInfo()
+    public function additional_info()
     {
         return $this->hasManyThrough('App\Models\AdditionalInfo', 'App\Models\UserAdditionalInfo');
     }
 
     /**
-     * Get the walletTransaction record associated with the user.
+     * Get the wallet_transaction record associated with the user.
      */
-    public function walletTransaction()
+    public function wallet_transaction()
     {
         return $this->hasMany('App\Models\WalletTransaction');
     }
@@ -177,7 +177,15 @@ class User extends Authenticatable
      */
     public function order()
     {
-        return $this->hasMany('App\Models\Order');
+        return $this->hasMany('App\Models\Order', 'member_id');
+    }
+
+    /**
+     * Get the order_rate record associated with the user.
+     */
+    public function order_rate()
+    {
+        return $this->hasManyThrough('App\Models\ReviewOrder', 'App\Models\Order', 'member_id');
     }
 
     /**
@@ -189,17 +197,17 @@ class User extends Authenticatable
     }
 
     /**
-     * Get the offerArt record associated with the user.
+     * Get the offer_art record associated with the user.
      */
-    public function offerArt()
+    public function offer_art()
     {
         return $this->hasMany('App\OfferArt');
     }
 
     /**
-     * Get the emergencyCall record associated with the user.
+     * Get the emergency_call record associated with the user.
      */
-    public function emergencyCall()
+    public function emergency_call()
     {
         return $this->hasMany('App\Models\EmergencyCall');
     }

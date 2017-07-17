@@ -26,16 +26,15 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::all();
-
-        foreach($users as $user) {
-            $user->userAdditionalInfo = $user->userAdditionalInfo;
-            $user->userDocument = $user->userDocument;
-            $user->userLanguage = $user->userLanguage;
-            $user->userJob = $user->userJob;
-            $user->userWallet = $user->userWallet;
-            $user->userWorkTime = $user->userWorkTime;
-        }
+        $users = User::with([
+            'user_additional_info',
+            'user_document',
+            'user_language',
+            'user_job',
+            'user_wallet',
+            'user_work_time',
+            'order_rate'
+        ])->get();
 
         return $users;
     }
@@ -90,29 +89,29 @@ class UserController extends Controller
 
             if ($user->user_type == 1) {
                 // Initial Wallet
-                $userWallet = new UserWallet;
-                $userWallet->amt = 0; 
-                $user->userWallet()->save($userWallet);
+                $user_wallet = new UserWallet;
+                $user_wallet->amt = 0; 
+                $user->user_wallet()->save($user_wallet);
             }
             else if ($user->user_type == 2)
             {
                 // Save Wallet
-                $user->userWallet()->createMany($data['userWallet']);
+                $user->user_wallet()->createMany($data['user_wallet']);
 
                 // Save Language
-                $user->userLanguage()->createMany($data['userLanguage']);
+                $user->user_language()->createMany($data['user_language']);
 
                 // Save Job
-                $user->userJob()->createMany($data['userJob']);
+                $user->user_job()->createMany($data['user_job']);
 
                 // Save Document
-                $user->userDocument()->createMany($data['userDocument']);
+                $user->user_document()->createMany($data['user_document']);
 
                 // Save AdditionalInfo
-                $user->userAdditionalInfo()->createMany($data['userAdditionalInfo']);
+                $user->user_additional_info()->createMany($data['user_additional_info']);
 
                 // Save WorkTime
-                $user->userWorkTime()->createMany($data['userWorkTime']);
+                $user->user_work_time()->createMany($data['user_work_time']);
             }
 
             DB::commit();
@@ -179,12 +178,15 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        $user->userAdditionalInfo = $user->userAdditionalInfo;
-        $user->userDocument = $user->userDocument;
-        $user->userLanguage = $user->userLanguage;
-        $user->userJob = $user->userJob;
-        $user->userWallet = $user->userWallet;
-        $user->userWorkTime = $user->userWorkTime;
+        $user->load([
+            'user_additional_info',
+            'user_document',
+            'user_language',
+            'user_job',
+            'user_wallet',
+            'user_work_time',
+            'order_rate'
+        ]);
         
         return $user;
     }
@@ -276,39 +278,39 @@ class UserController extends Controller
             }
 
             // Update Wallet
-            if (array_key_exists('userWallet', $data)) {
-                $user->userWallet()->delete();
-                $user->userWallet()->createMany($data['userWallet']);
+            if (array_key_exists('user_wallet', $data)) {
+                $user->user_wallet()->delete();
+                $user->user_wallet()->createMany($data['user_wallet']);
             }
 
             // Update Language
-            if (array_key_exists('userLanguage', $data)) {
-                $user->userLanguage()->delete();
-                $user->userLanguage()->createMany($data['userLanguage']);
+            if (array_key_exists('user_language', $data)) {
+                $user->user_language()->delete();
+                $user->user_language()->createMany($data['user_language']);
             }
 
             // Update Job
-            if (array_key_exists('userJob', $data)) {
-                $user->userJob()->delete();
-                $user->userJob()->createMany($data['userJob']);
+            if (array_key_exists('user_job', $data)) {
+                $user->user_job()->delete();
+                $user->user_job()->createMany($data['user_job']);
             }
 
             // Update Document
-            if (array_key_exists('userDocument', $data)) {
-                $user->userDocument()->delete();
-                $user->userDocument()->createMany($data['userDocument']);
+            if (array_key_exists('user_document', $data)) {
+                $user->user_document()->delete();
+                $user->user_document()->createMany($data['user_document']);
             }
 
             // Update AdditionalInfo
-            if (array_key_exists('userAdditionalInfo', $data)) {
-                $user->userAdditionalInfo()->delete();
-                $user->userAdditionalInfo()->createMany($data['userAdditionalInfo']);
+            if (array_key_exists('user_additional_info', $data)) {
+                $user->user_additional_info()->delete();
+                $user->user_additional_info()->createMany($data['user_additional_info']);
             }
 
             // Update WorkTime
-            if (array_key_exists('userWorkTime', $data)) {
-                $user->userWorkTime()->delete();
-                $user->userWorkTime()->createMany($data['userWorkTime']);
+            if (array_key_exists('user_work_time', $data)) {
+                $user->user_work_time()->delete();
+                $user->user_work_time()->createMany($data['user_work_time']);
             }
 
             DB::commit();
