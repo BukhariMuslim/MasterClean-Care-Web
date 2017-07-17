@@ -25,7 +25,7 @@ Route::group(['prefix' => 'user', 'middleware' => ['api']], function () {
 
     // ->middleware('auth');
 
-    Route::get('/search/{text}', 'UserController@search');
+    Route::get('/search', 'UserController@search');
     
     Route::get('/search/{param}/{text}', 'UserController@searchByParam');
 });

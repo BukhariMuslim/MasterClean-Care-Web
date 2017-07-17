@@ -380,19 +380,30 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\User  $user
      * @param  Parameter  $param
-     * @param  Text  $text
      * @return \Illuminate\Http\Response
      */
-    public function search(Request $request, User $user, $text)
+    public function search(Request $request, User $user)
     {
-        $params = explode(";", $text);
+        // $params = explode(";", $text);
+        // $query = array();
+        // foreach($params as $param) {
+        //     list($key, $value) = explode("=", $param);
+        //     array_push($query, 
+        //         array($key,
+        //             Operators::LIKE,
+        //             "%".$value."%"
+        //         )
+        //     );
+        // }
+        
+        $inputs = $request->all();
         $query = array();
-        foreach($params as $param) {
-            list($key, $value) = explode("=", $param);
+
+        foreach($inputs as $key => $input) {
             array_push($query, 
                 array($key,
                     Operators::LIKE,
-                    "%".$value."%"
+                    "%".$input."%"
                 )
             );
         }
