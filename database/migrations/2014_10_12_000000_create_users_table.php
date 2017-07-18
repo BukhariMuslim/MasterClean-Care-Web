@@ -21,11 +21,6 @@ class CreateUsersTable extends Migration
             $table->tinyInteger('gender');
             $table->string('born_place');
             $table->date('born_date');
-            $table->string('phone');
-            $table->integer('province')->unsigned();
-            $table->integer('city')->unsigned();
-            $table->string('address')->nullable();
-            $table->string('location')->nullable();
             $table->integer('religion');
             $table->string('race')->nullable();
             $table->tinyInteger('user_type');
@@ -34,11 +29,6 @@ class CreateUsersTable extends Migration
             $table->tinyInteger('status');
             $table->rememberToken();
             $table->timestamps();
-
-            $table->foreign('province')
-                  ->references('id')->on('places');
-            $table->foreign('city')
-                  ->references('id')->on('places');
         });
     }
 

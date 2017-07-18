@@ -122,6 +122,8 @@ class UserController extends Controller
             
             $user = User::create($data);
             
+            // Save Contact
+            $user->contact()->create($data['contact']);
 
             if ($user->user_type == 1) {
                 // Initial Wallet
@@ -258,21 +260,21 @@ class UserController extends Controller
             if (array_key_exists('born_date', $data)) {
                 $user->born_date = $data['born_date'];
             }
-            if (array_key_exists('phone', $data)) {
-                $user->phone = $data['phone'];
-            }
-            if (array_key_exists('province', $data)) {
-                $user->city = $data['province'];
-            }
-            if (array_key_exists('city', $data)) {
-                $user->city = $data['city'];
-            }
-            if (array_key_exists('address', $data)) {
-                $user->address = $data['address'];
-            }
-            if (array_key_exists('location', $data)) {
-                $user->location = $data['location'];
-            }
+            // if (array_key_exists('phone', $data)) {
+            //     $user->phone = $data['phone'];
+            // }
+            // if (array_key_exists('province', $data)) {
+            //     $user->city = $data['province'];
+            // }
+            // if (array_key_exists('city', $data)) {
+            //     $user->city = $data['city'];
+            // }
+            // if (array_key_exists('address', $data)) {
+            //     $user->address = $data['address'];
+            // }
+            // if (array_key_exists('location', $data)) {
+            //     $user->location = $data['location'];
+            // }
             if (array_key_exists('religion', $data)) {
                 $user->religion = $data['religion'];
             }
@@ -292,6 +294,12 @@ class UserController extends Controller
                 $user->status = $data['status'];
             }
 
+            if (array_key_exists('contact', $data)) {
+                // Save Contact
+                $user->contact()->delete();
+                $user->contact()->create($data['contact']);
+            }
+            
             // Update Wallet
             if (array_key_exists('user_wallet', $data)) {
                 $user->user_wallet()->delete();
@@ -400,15 +408,30 @@ class UserController extends Controller
         $query = array();
 
         foreach($inputs as $key => $input) {
-            array_push($query, 
-                array($key,
-                    Operators::LIKE,
-                    "%".$input."%"
-                )
-            );
+            if ($key == "user_job") {
+                $user->has("user_job", $input);
+            }
+            else if ($key == "user_language") {
+                $user->has("user_language", $input);
+            }
+            else if ($key == "user_work_time") {
+                $user->has("user_work_time", $input);
+            }
+            else {
+                array_push($query, 
+                    array($key,
+                        Operators::LIKE,
+                        "%".$input."%"
+                    )
+                );
+            }
         }
 
-        return $user->where($query)->get()->load([
+        if (count($query)) {
+            $user->where($query);
+        }
+
+        return $user->get()->load([
             'user_additional_info',
             'user_document',
             'user_language',

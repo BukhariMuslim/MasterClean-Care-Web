@@ -17,10 +17,6 @@ class Order extends Model
         'work_time_id',
         'start_date',
         'end_date',
-        'province',
-        'city',
-        'address',
-        'location',
         'remark',
         'status',
     ];
@@ -57,26 +53,18 @@ class Order extends Model
     }
 
     /**
-     * Get the province record associated with the additionalInfo.
-     */
-    public function province()
-    {
-        return $this->belongsTo('App\Models\Place', 'province');
-    }
-
-    /**
-     * Get the city record associated with the additionalInfo.
-     */
-    public function city()
-    {
-        return $this->belongsTo('App\Models\Place', 'city');
-    }
-
-    /**
      * Get the reviewOrder record associated with the additionalInfo.
      */
     public function reviewOrder()
     {
         return $this->hasMany('App\Models\ReviewOrder');
+    }
+
+    /**
+     * Get the contact record associated with the user.
+     */
+    public function contact()
+    {
+        return $this->hasMany(OrderContact::class);
     }
 }

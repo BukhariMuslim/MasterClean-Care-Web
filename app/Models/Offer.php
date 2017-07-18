@@ -16,10 +16,6 @@ class Offer extends Model
         'work_time_id',
         'start_date',
         'end_date',
-        'province',
-        'city',
-        'address',
-        'location',
         'remark',
         'status',
     ];
@@ -69,5 +65,13 @@ class Offer extends Model
     public function offerTaskList()
     {
         return $this->hasMany('App\Models\OfferTaskList');
+    }
+
+    /**
+     * Get the contact record associated with the user.
+     */
+    public function contact()
+    {
+        return $this->hasMany(OfferContact::class);
     }
 }

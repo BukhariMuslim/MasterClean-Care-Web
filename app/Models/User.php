@@ -22,11 +22,6 @@ class User extends Authenticatable
         'gender', 
         'born_place', 
         'born_date', 
-        'phone',
-        'province',
-        'city',
-        'address', 
-        'location',
         'religion',
         'race',
         'user_type',
@@ -45,19 +40,11 @@ class User extends Authenticatable
     ];
 
     /**
-     * Get the province record associated with the user.
+     * Get the contact record associated with the user.
      */
-    public function province()
+    public function contact()
     {
-        return $this->belongsTo(Places::class, 'province');
-    }
-
-    /**
-     * Get the city record associated with the user.
-     */
-    public function city()
-    {
-        return $this->belongsTo(Places::class, 'city');
+        return $this->hasMany(UserContact::class);
     }
 
     /**
@@ -97,7 +84,7 @@ class User extends Authenticatable
      */
     public function job()
     {
-        return $this->hasManyThrough('App\Models\Job', 'App\Models\UserJob');
+        return $this->hasManyThrough(Job::class, UserJob::class);
     }
 
     /**
@@ -105,7 +92,7 @@ class User extends Authenticatable
      */
     public function user_work_Time()
     {
-        return $this->hasMany('App\Models\UserWorkTime');
+        return $this->hasMany(UserWorkTime::class);
     }
 
     /**
@@ -113,7 +100,7 @@ class User extends Authenticatable
      */
     public function work_Time()
     {
-        return $this->hasManyThrough('App\Models\WorkTime', 'App\Models\UserWorkTime');
+        return $this->hasManyThrough(WorkTime::class, UserWorkTime::class);
     }
 
     /**
@@ -121,7 +108,7 @@ class User extends Authenticatable
      */
     public function user_document()
     {
-        return $this->hasMany('App\Models\UserDocument');
+        return $this->hasMany(UserDocument::class);
     }
 
     /**
@@ -129,7 +116,7 @@ class User extends Authenticatable
      */
     public function user_additional_info()
     {
-        return $this->hasMany('App\Models\UserAdditionalInfo');
+        return $this->hasMany(UserAdditionalInfo::class);
     }
 
     /**
@@ -137,7 +124,7 @@ class User extends Authenticatable
      */
     public function additional_info()
     {
-        return $this->hasManyThrough('App\Models\AdditionalInfo', 'App\Models\UserAdditionalInfo');
+        return $this->hasManyThrough(AdditionalInfo::class, UserAdditionalInfo::class);
     }
 
     /**
@@ -145,7 +132,7 @@ class User extends Authenticatable
      */
     public function wallet_transaction()
     {
-        return $this->hasMany('App\Models\WalletTransaction');
+        return $this->hasMany(WalletTransaction::class);
     }
 
     /**
@@ -153,7 +140,7 @@ class User extends Authenticatable
      */
     public function wallet()
     {
-        return $this->hasManyThrough('App\Models\Wallet', 'App\Models\WalletTransaction');
+        return $this->hasManyThrough(Wallet::class, WalletTransaction::class);
     }
 
     /**
@@ -161,7 +148,7 @@ class User extends Authenticatable
      */
     public function article()
     {
-        return $this->hasMany('App\Models\Article');
+        return $this->hasMany(Article::class);
     }
 
     /**
@@ -169,7 +156,7 @@ class User extends Authenticatable
      */
     public function comment()
     {
-        return $this->hasMany('App\Models\Comment');
+        return $this->hasMany(Comment::class);
     }
 
     /**
@@ -177,7 +164,7 @@ class User extends Authenticatable
      */
     public function order()
     {
-        return $this->hasMany('App\Models\Order', 'member_id');
+        return $this->hasMany(Order::class, 'member_id');
     }
 
     /**
@@ -185,7 +172,7 @@ class User extends Authenticatable
      */
     public function order_rate()
     {
-        return $this->hasManyThrough('App\Models\ReviewOrder', 'App\Models\Order', 'member_id');
+        return $this->hasManyThrough(ReviewOrder::class, Order::class, 'member_id');
     }
 
     /**
@@ -209,7 +196,7 @@ class User extends Authenticatable
      */
     public function emergency_call()
     {
-        return $this->hasMany('App\Models\EmergencyCall');
+        return $this->hasMany(EmergencyCall::class);
     }
 
     /**
