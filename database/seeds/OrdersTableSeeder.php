@@ -11,21 +11,22 @@ class OrdersTableSeeder extends Seeder
      *
      * @return void
      */
-    public function run()1
+    public function run()
     { 
         DB::table('orders')->insert([
-
-			'member_id'=>1,
-			'art_id'=>1,
-			'work_time_id'=>1,
-			'start_date'=> Carbon::now(),
-			'end_date'=> ,
-			'province'=>1,
-			'city'=>5,
-			'address'=>'Jl. Besar',
-			'location'=>'',
-			'remark'=>'',
-			'status'=>1
+        	[
+				'member_id'=>1,
+				'art_id'=>1,
+				'work_time_id'=>1,
+				'start_date'=> Carbon::now(),
+				'end_date'=> Carbon::now(),
+				'province'=>1,
+				'city'=>5,
+				'address'=>'Jl. Besar',
+				'location'=>'',
+				'remark'=>'',
+				'status'=>1,
+			],
 
     	]);
     }

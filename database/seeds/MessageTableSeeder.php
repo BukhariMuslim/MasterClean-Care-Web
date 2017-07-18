@@ -15,25 +15,24 @@ class MessageTableSeeder extends Seeder
             [
                 'sender_id' => 1,
             
-                'reciver_id' => 2,
+                'receiver_id' => 2,
             
                 'subject' => 'Lorem Ipsum',
             
-                'message' => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum',
+                'message' => 'Lorem Ipsum is simply dummy text',
 
-                'status' => 0
-                
+                'status' => 1
             ],
             [
                 'sender_id' => 2,
                         
-                'reciver_id' => 1,
+                'receiver_id' => 1,
 
-                'subject' => 'Lorem Ipsum dari 2 ke 1   ',        
+                'subject' => 'Lorem Ipsum dari 2 ke 1',        
                 
-                'message' => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum',
+                'message' => 'Lorem Ipsum is simply dummy text',
 
-                'status' => 1              
+                'status' => 0              
             ],
         ]);
     }
