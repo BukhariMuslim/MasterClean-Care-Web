@@ -17,7 +17,7 @@ class CreateReviewOrdersTable extends Migration
             $table->increments('id');
             $table->integer('order_id')->unsigned();
             $table->integer('rate');
-            $table->string('remark');
+            $table->string('remark', 200);
             $table->timestamps();
 
             $table->foreign('order_id')

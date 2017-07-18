@@ -19,7 +19,7 @@ class CreateArticlesTable extends Migration
             $table->string('title');
             $table->string('tag');
             $table->dateTime('published_date');
-            $table->string('content');
+            $table->string('content', 2000);
             $table->timestamps();
 
             $table->foreign('user_id')

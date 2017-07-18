@@ -24,7 +24,7 @@ class CreateOrdersTable extends Migration
             $table->integer('city')->unsigned();
             $table->string('address');
             $table->string('location')->nullable();
-            $table->string('remark')->nullable();
+            $table->string('remark', 200)->nullable();
             $table->integer('status');
             $table->timestamps();
 
