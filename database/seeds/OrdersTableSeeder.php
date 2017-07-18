@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Carbon\Carbon;
+
 
 class OrdersTableSeeder extends Seeder
 {
@@ -9,8 +11,22 @@ class OrdersTableSeeder extends Seeder
      *
      * @return void
      */
-    public function run()
-    {
-        //
+    public function run()1
+    { 
+        DB::table('orders')->insert([
+
+			'member_id'=>1,
+			'art_id'=>1,
+			'work_time_id'=>1,
+			'start_date'=> Carbon::now(),
+			'end_date'=> ,
+			'province'=>1,
+			'city'=>5,
+			'address'=>'Jl. Besar',
+			'location'=>'',
+			'remark'=>'',
+			'status'=>1
+
+    	]);
     }
 }

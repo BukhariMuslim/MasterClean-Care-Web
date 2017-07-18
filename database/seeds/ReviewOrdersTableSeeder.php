@@ -30,18 +30,7 @@ class ReviewOrdersTableSeeder extends Seeder
 	        	'rate'=>4,
 	        	'remark'=>'bla bla bla by order id 3'
 	        ],
-
-	        [
-	        	'order_id'=>4,
-	        	'rate'=>4,
-	        	'remark'=>'bla bla bla by order id 4'
-	        ],
-
-	        [
-	        	'order_id'=>5,
-	        	'rate'=>3,
-	        	'remark'=>'bla bla bla by order id 5'
-	        ],
+	        
         ]);
     }
 }

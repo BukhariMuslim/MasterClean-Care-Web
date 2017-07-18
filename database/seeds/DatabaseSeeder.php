@@ -24,10 +24,11 @@ class DatabaseSeeder extends Seeder
         $this->call(UserJobTableSeeder::class);
         $this->call(UserLanguageTableSeeder::class);
         $this->call(UserWorkTimeTableSeeder::class);
+
         $this->call(MessagesTableSeeder::class);
         $this->call(EmergencyCallsSeeder::class);
         $this->call(ReviewOrdersTableSeeder::class);
-        $this->call(OrderTaskListTableSeeder::class);
+        $this->call(OrderTaskListTableSeeder::class);  
         $this->call(OrdersTableSeeder::class);
 
 
