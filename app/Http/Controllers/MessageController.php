@@ -161,6 +161,11 @@ class MessageController extends Controller
      */
     public function searchByUserId(Request $request, Message $message, $user)
     {
+        $message->load([
+            sender,
+            receiver
+        ]);
+        
         return $message->where('sender_id', $user)
             ->orWhere('receiver_id', $user)->get();
     }
@@ -177,6 +182,11 @@ class MessageController extends Controller
      */
     public function searchBySenderReceiverId(Request $request, Message $message, $sender, $receiver)
     {
+        $message->load([
+            sender,
+            receiver
+        ]);
+        
         return $message->where('sender_id', $sender)
             ->where('receiver_id', $receiver)->get();
     }
