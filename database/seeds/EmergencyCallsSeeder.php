@@ -16,21 +16,20 @@ class EmergencyCallsSeeder extends Seeder
 			[
 				'user_id' => 1,   
 		        'init_time' => Carbon::now(),
-		        'status' => 0
+		        'status' => 0,
 		    ],
 
 		   	[
 				'user_id' => 2,   
 		        'init_time' => Carbon::now(),
-		        'status' => 1
+		        'status' => 1,
 		   	],
 
 		   	[
 				'user_id' => 3,   
 		        'init_time' => Carbon::now(),
-		        'status' => 1
+		        'status' => 1,
 		   	],
-
 
     	]);
     }
