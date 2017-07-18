@@ -150,4 +150,17 @@ class MessageController extends Controller
                 '%'.$text.'%')
             ->get();
     }
+
+    /**
+     * Search the specified resource from storage by user ID.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Message  $message
+     * @param  Text  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function searchByUserId(Request $request, Message $message, $id)
+    {
+        return $message->has('user', $id)->get();
+    }
 }
