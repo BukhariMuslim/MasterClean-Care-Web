@@ -156,11 +156,28 @@ class MessageController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\Message  $message
-     * @param  Text  $id
+     * @param  Text  $user
      * @return \Illuminate\Http\Response
      */
-    public function searchByUserId(Request $request, Message $message, $id)
+    public function searchByUserId(Request $request, Message $message, $user)
     {
-        return $message->has('user', $id)->get();
+        return $message->where('sender_id', $user)
+            ->orWhere('receiver_id', $user)->get();
+    }
+    
+    
+    /**
+     * Search the specified resource from storage by sender & receiver ID.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Message  $message
+     * @param  Text  $sender
+     * @param  Text  $receiver
+     * @return \Illuminate\Http\Response
+     */
+    public function searchBySenderReceiverId(Request $request, Message $message, $sender, $receiver)
+    {
+        return $message->where('sender_id', $sender)
+            ->where('receiver_id', $receiver)->get();
     }
 }
