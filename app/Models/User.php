@@ -49,7 +49,7 @@ class User extends Authenticatable
      */
     public function province()
     {
-        return $this->belongsTo('App\Models\Places', 'province');
+        return $this->belongsTo(Places::class, 'province');
     }
 
     /**
@@ -57,7 +57,7 @@ class User extends Authenticatable
      */
     public function city()
     {
-        return $this->belongsTo('App\Models\Places', 'city');
+        return $this->belongsTo(Places::class, 'city');
     }
 
     /**
@@ -65,7 +65,7 @@ class User extends Authenticatable
      */
     public function user_wallet()
     {
-        return $this->hasMany('App\Models\UserWallet');
+        return $this->hasMany(UserWallet::class);
     }
 
     /**
@@ -73,7 +73,7 @@ class User extends Authenticatable
      */
     public function user_language()
     {
-        return $this->hasMany('App\Models\UserLanguage');
+        return $this->hasMany(UserLanguage::class);
     }
 
     /**
@@ -81,7 +81,7 @@ class User extends Authenticatable
      */
     public function language()
     {
-        return $this->hasManyThrough('App\Models\Language', 'App\Models\UserLanguage');
+        return $this->hasManyThrough(Language::class, UserLanguage::class);
     }
 
     /**
@@ -89,7 +89,7 @@ class User extends Authenticatable
      */
     public function user_job()
     {
-        return $this->hasMany('App\Models\UserJob');
+        return $this->hasMany(UserJob::class);
     }
 
     /**
@@ -193,7 +193,7 @@ class User extends Authenticatable
      */
     public function offer()
     {
-        return $this->hasMany('App\Offer');
+        return $this->hasMany(Offer::class);
     }
 
     /**
@@ -201,7 +201,7 @@ class User extends Authenticatable
      */
     public function offer_art()
     {
-        return $this->hasMany('App\OfferArt');
+        return $this->hasMany(OfferArt::class);
     }
 
     /**
@@ -217,6 +217,6 @@ class User extends Authenticatable
      */
     public function message()
     {
-        return $this->hasMany('App\Models\Message');
+        return $this->hasMany(Message::class);
     }
 }
