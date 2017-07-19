@@ -52,6 +52,14 @@ class Offer extends Model
     }
 
     /**
+     * Get the offer_art record associated with the additionalInfo.
+     */
+    public function offer_art()
+    {
+        return $this->hasMany(OfferArt::class);
+    }
+
+    /**
      * Get the contact record associated with the user.
      */
     public function contact()

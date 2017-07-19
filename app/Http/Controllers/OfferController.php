@@ -17,7 +17,14 @@ class OfferController extends Controller
      */
     public function index()
     {
-        return Offer::all();
+        return Offer::with([
+            'member',
+            'art',
+            'work_time',
+            'review_order',
+            'contact',
+            'offer_art'
+        ])->get();
     }
 
     /**
@@ -72,7 +79,14 @@ class OfferController extends Controller
      */
     public function show(Offer $offer)
     {
-        return $offer;
+        return $offer->load([
+            'member',
+            'art',
+            'work_time',
+            'review_order',
+            'contact',
+            'offer_art'
+        ]);
     }
 
     /**

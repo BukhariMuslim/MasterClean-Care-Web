@@ -78,7 +78,13 @@ class OrderController extends Controller
      */
     public function show(Order $order)
     {
-        return $order;
+        return $order->load([
+            'member',
+            'art',
+            'work_time',
+            'review_order',
+            'contact'
+        ]);
     }
 
     /**
