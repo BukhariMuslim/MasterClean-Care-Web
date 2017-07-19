@@ -13,19 +13,24 @@ class OrderTaskListTableSeeder extends Seeder
     {
         DB::table('order_task_lists')->insert([
         	[
-	        	'order_id'=>1,
-	            'task'=>'aaaa bbbb cccc',
-	            'status'=>1,
+	        	'order_id' => 1,
+	            'task' => 'Mencuci',
+	            'status' => 1,
+	        ],
+			[
+	        	'order_id' => 1,
+	            'task' => 'Mengepel',
+	            'status' => 1,
 	        ],
 	        [
-	        	'order_id'=>2,
-	            'task'=>' bbbb cccc',
-	            'status'=>1,
+	        	'order_id' => 2,
+	            'task' => 'Menjaga Anak',
+	            'status' => 1,
 	        ],
 	        [
-	        	'order_id'=>3,
-	            'task'=>'cccc',
-	            'status'=>1,
+	        	'order_id' => 3,
+	            'task' => 'Mengepel',
+	            'status' => 1,
 	        ],
        ]);
     }

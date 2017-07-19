@@ -27,9 +27,9 @@ class DatabaseSeeder extends Seeder
 //yang aku create
         $this->call(MessageTableSeeder::class);
         $this->call(EmergencyCallsSeeder::class);
-        $this->call(ReviewOrdersTableSeeder::class);
-        $this->call(OrderTaskListTableSeeder::class);  
         $this->call(OrdersTableSeeder::class);
+        $this->call(OrderTaskListTableSeeder::class);  
+        $this->call(ReviewOrdersTableSeeder::class);
         $this->call(UserDocumentsTableSeeder::class);
         $this->call(CommentsTableSeeder::class);
 
