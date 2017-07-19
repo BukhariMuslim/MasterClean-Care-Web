@@ -28,14 +28,14 @@ class UserAdditionalInfo extends Model
      */
     public function user()
     {
-        return $this->belongsTo('App\Models\User');
+        return $this->belongsTo(User::class);
     }
 
     /**
-     * Get the additionalInfo record associated with the userAdditionalInfo.
+     * Get the additional_info record associated with the userAdditionalInfo.
      */
-    public function additionalInfo()
+    public function additional_info()
     {
-        return $this->belongsTo('App\Models\AdditionalInfo');
+        return $this->belongsTo(AdditionalInfo::class);
     }
 }

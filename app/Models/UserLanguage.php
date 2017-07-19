@@ -28,7 +28,7 @@ class UserLanguage extends Model
      */
     public function user()
     {
-        return $this->belongsTo('App\Models\User');
+        return $this->belongsTo(User::class);
     }
 
     /**
@@ -36,6 +36,6 @@ class UserLanguage extends Model
      */
     public function language()
     {
-        return $this->belongsTo('App\Models\Language');
+        return $this->belongsTo(Language::class);
     }
 }

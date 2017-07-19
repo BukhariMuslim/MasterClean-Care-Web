@@ -32,7 +32,7 @@ class Offer extends Model
      */
     public function member()
     {
-        return $this->belongsTo('App\Models\User', 'member_id');
+        return $this->belongsTo(User::class, 'member_id');
     }
 
     /**
@@ -40,31 +40,15 @@ class Offer extends Model
      */
     public function work_time()
     {
-        return $this->belongsTo('App\Models\WorkTime');
+        return $this->belongsTo(WorkTime::class);
     }
 
     /**
-     * Get the province record associated with the additionalInfo.
+     * Get the offer_task_list record associated with the additionalInfo.
      */
-    public function province()
+    public function offer_task_list()
     {
-        return $this->belongsTo('App\Models\Place', 'province');
-    }
-
-    /**
-     * Get the city record associated with the additionalInfo.
-     */
-    public function city()
-    {
-        return $this->belongsTo('App\Models\Place', 'city');
-    }
-
-    /**
-     * Get the offerTaskList record associated with the additionalInfo.
-     */
-    public function offerTaskList()
-    {
-        return $this->hasMany('App\Models\OfferTaskList');
+        return $this->hasMany(OfferTaskList::class);
     }
 
     /**

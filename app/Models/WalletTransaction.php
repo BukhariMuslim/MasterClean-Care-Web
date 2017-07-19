@@ -31,7 +31,7 @@ class WalletTransaction extends Model
      */
     public function user()
     {
-        return $this->belongsTo('App\Models\User');
+        return $this->belongsTo(User::class);
     }
 
     /**
@@ -39,6 +39,6 @@ class WalletTransaction extends Model
      */
     public function wallet()
     {
-        return $this->belongsTo('App\Models\Wallet');
+        return $this->belongsTo(Wallet::class);
     }
 }

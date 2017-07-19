@@ -29,7 +29,7 @@ class Comment extends Model
      */
     public function user()
     {
-        return $this->belongsTo('App\Models\User');
+        return $this->belongsTo(User::class);
     }
 
     /**
@@ -37,6 +37,6 @@ class Comment extends Model
      */
     public function article()
     {
-        return $this->belongsTo('App\Models\Article');
+        return $this->belongsTo(Article::class);
     }
 }

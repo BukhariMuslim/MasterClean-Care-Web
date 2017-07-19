@@ -16,7 +16,10 @@ class MessageController extends Controller
      */
     public function index()
     {
-        return Message::all();
+        return Message::with([
+            'sender',
+            'receiver'
+        ])->get();
     }
 
     /**
@@ -63,7 +66,10 @@ class MessageController extends Controller
      */
     public function show(Message $message)
     {
-        return $message;
+        return $message->load([
+            'sender',
+            'receiver'
+        ]);
     }
 
     /**
@@ -161,13 +167,13 @@ class MessageController extends Controller
      */
     public function searchByUserId(Request $request, Message $message, $user)
     {
-        $message->load([
-            sender,
-            receiver
-        ]);
-        
-        return $message->where('sender_id', $user)
-            ->orWhere('receiver_id', $user)->get();
+       return $message
+            ->where('sender_id', $user)
+            ->orWhere('receiver_id', $user)->get()
+            ->load([
+                'sender',
+                'receiver'
+            ]);
     }
     
     
@@ -183,8 +189,8 @@ class MessageController extends Controller
     public function searchBySenderReceiverId(Request $request, Message $message, $sender, $receiver)
     {
         $message->load([
-            sender,
-            receiver
+            'sender',
+            'receiver'
         ]);
         
         return $message->where('sender_id', $sender)

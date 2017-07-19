@@ -29,7 +29,7 @@ class OfferArt extends Model
      */
     public function offer()
     {
-        return $this->belongsTo('App\Models\Offer');
+        return $this->belongsTo(Offer::class);
     }
 
     /**
@@ -37,6 +37,6 @@ class OfferArt extends Model
      */
     public function art()
     {
-        return $this->belongsTo('App\Models\User', 'art_id');
+        return $this->belongsTo(User::class, 'art_id');
     }
 }

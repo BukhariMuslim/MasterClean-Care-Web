@@ -33,7 +33,7 @@ class Order extends Model
      */
     public function member()
     {
-        return $this->belongsTo('App\Models\User', 'member_id');
+        return $this->belongsTo(User::class, 'member_id');
     }
 
     /**
@@ -41,7 +41,7 @@ class Order extends Model
      */
     public function art()
     {
-        return $this->belongsTo('App\Models\User', 'art_id');
+        return $this->belongsTo(User::class, 'art_id');
     }
 
     /**
@@ -49,15 +49,15 @@ class Order extends Model
      */
     public function work_time()
     {
-        return $this->belongsTo('App\Models\WorkTime');
+        return $this->belongsTo(WorkTime::class);
     }
 
     /**
-     * Get the reviewOrder record associated with the additionalInfo.
+     * Get the review_order record associated with the additionalInfo.
      */
-    public function reviewOrder()
+    public function review_order()
     {
-        return $this->hasMany('App\Models\ReviewOrder');
+        return $this->hasMany(ReviewOrder::class);
     }
 
     /**

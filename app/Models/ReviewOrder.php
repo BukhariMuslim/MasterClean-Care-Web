@@ -29,14 +29,14 @@ class ReviewOrder extends Model
      */
     public function order()
     {
-        return $this->belongsTo('App\Models\Order');
+        return $this->belongsTo(Order::class);
     }
 
     /**
-     * Get the orderTaskList record associated with the additionalInfo.
+     * Get the order_task_list record associated with the additionalInfo.
      */
-    public function orderTaskList()
+    public function order_task_list()
     {
-        return $this->hasMany('App\Models\OrderTaskList');
+        return $this->hasMany(OrderTaskList::class);
     }
 }

@@ -23,11 +23,11 @@ class WorkTime extends Model
     protected $hidden = [ ];
 
     /**
-     * Get the userWorkTime record associated with the workTime.
+     * Get the user_work_time record associated with the workTime.
      */
-    public function userWorkTime()
+    public function user_work_time()
     {
-        return $this->hasMany('App\Models\UserWorkTime');
+        return $this->hasMany(UserWorkTime::class);
     }
 
     /**
@@ -35,7 +35,7 @@ class WorkTime extends Model
      */
     public function order()
     {
-        return $this->hasMany('App\Models\Order');
+        return $this->hasMany(Order::class);
     }
 
     /**

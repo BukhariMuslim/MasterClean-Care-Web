@@ -23,10 +23,10 @@ class AdditionalInfo extends Model
     protected $hidden = [ ];
 
     /**
-     * Get the userAdditionalInfo record associated with the additionalInfo.
+     * Get the user_additional_info record associated with the additionalInfo.
      */
-    public function userAdditionalInfo()
+    public function user_additional_info()
     {
-        return $this->hasMany('App\Models\UserAdditionalInfo');
+        return $this->hasMany(UserAdditionalInfo::class);
     }
 }

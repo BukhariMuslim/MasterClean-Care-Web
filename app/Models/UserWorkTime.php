@@ -29,7 +29,7 @@ class UserWorkTime extends Model
      */
     public function user()
     {
-        return $this->belongsTo('App\Models\User');
+        return $this->belongsTo(User::class);
     }
 
     /**
@@ -37,6 +37,6 @@ class UserWorkTime extends Model
      */
     public function workTime()
     {
-        return $this->belongsTo('App\Models\WorkTime');
+        return $this->belongsTo(WorkTime::class);
     }
 }

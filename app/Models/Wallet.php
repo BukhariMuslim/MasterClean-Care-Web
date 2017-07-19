@@ -28,14 +28,14 @@ class Wallet extends Model
      */
     public function userWallet()
     {
-        return $this->hasMany('App\Models\UserWallet');
+        return $this->hasMany(UserWallet::class);
     }
 
     /**
-     * Get the walletTransaction record associated with the wallet.
+     * Get the wallet_transaction record associated with the wallet.
      */
-    public function walletTransaction()
+    public function wallet_transaction()
     {
-        return $this->hasMany('App\Models\WalletTransaction');
+        return $this->hasMany(WalletTransaction::class);
     }
 }

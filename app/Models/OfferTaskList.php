@@ -29,6 +29,6 @@ class OfferTaskList extends Model
      */
     public function offer()
     {
-        return $this->belongsTo('App\Models\Offer');
+        return $this->belongsTo(Offer::class);
     }
 }

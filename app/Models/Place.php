@@ -24,10 +24,26 @@ class Place extends Model
     protected $hidden = [ ];
 
     /**
-     * Get the user record associated with the places.
+     * Get the user_contact record associated with the places.
      */
-    public function user()
+    public function user_contact()
     {
-        return $this->hasMany('App\Models\User');
+        return $this->hasMany(UserContact::class);
+    }
+
+    /**
+     * Get the offer_contact record associated with the places.
+     */
+    public function offer_contact()
+    {
+        return $this->hasMany(OrderContact::class);
+    }
+
+    /**
+     * Get the order_contact record associated with the places.
+     */
+    public function order_contact()
+    {
+        return $this->hasMany(OrderContact::class);
     }
 }
