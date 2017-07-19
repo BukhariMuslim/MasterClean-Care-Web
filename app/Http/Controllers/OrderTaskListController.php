@@ -123,7 +123,7 @@ class OrderTaskListController extends Controller
     {
         $OrderTaskList->delete();
 
-        return response()->json([ 'message' => 'Deleted', 
+        return response()->json([ 'message' => 'Deleted Success', 
                                   'status' => 200]);
     }
 

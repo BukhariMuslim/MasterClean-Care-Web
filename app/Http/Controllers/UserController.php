@@ -63,6 +63,7 @@ class UserController extends Controller
             'user_job',
             'user_wallet',
             'user_work_time',
+            'contact'
         ]);
 
         if ($user->order_rate->first()) {
@@ -123,7 +124,7 @@ class UserController extends Controller
             $user = User::create($data);
             
             // Save Contact
-            $user->contact()->create($data['contact']);
+            $user->contact()->createMany($data['contact']);
 
             if ($user->user_type == 1) {
                 // Initial Wallet
@@ -154,7 +155,15 @@ class UserController extends Controller
 
             DB::commit();
 
-            return response()->json([ 'user' => $user, 'status' => 201]);
+            return response()->json([ 'user' => $user->load([
+                'user_additional_info',
+                'user_document',
+                'user_language',
+                'user_job',
+                'user_wallet',
+                'user_work_time',
+                'contact'
+            ]), 'status' => 201]);
         }
         catch(Exception $e) {
             DB::rollBack();
@@ -347,7 +356,15 @@ class UserController extends Controller
 
         $user->save();
 
-        return response()->json(['user' => $user, 'status' => 200]);
+        return response()->json(['user' => $user->load([
+                'user_additional_info',
+                'user_document',
+                'user_language',
+                'user_job',
+                'user_wallet',
+                'user_work_time',
+                'contact'
+            ]), 'status' => 200]);
     }
 
     /**
@@ -360,7 +377,7 @@ class UserController extends Controller
     {
         $user->delete();
 
-        return response()->json([ 'message' => 'Deleted', 
+        return response()->json([ 'message' => 'Deleted Success', 
                                   'status' => 200]);
     }
 
@@ -432,6 +449,7 @@ class UserController extends Controller
             'user_job',
             'user_wallet',
             'user_work_time',
+            'contact'
         ]);
     }
 }

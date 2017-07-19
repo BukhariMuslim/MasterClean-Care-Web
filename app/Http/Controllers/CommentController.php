@@ -123,7 +123,7 @@ class CommentController extends Controller
     {
         $comment->delete();
 
-        return response()->json([ 'message' => 'Deleted', 
+        return response()->json([ 'message' => 'Deleted Success', 
                                   'status' => 200]);
     }
 

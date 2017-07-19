@@ -117,7 +117,7 @@ class JobController extends Controller
     {
         $job->delete();
 
-        return response()->json([ 'message' => 'Deleted', 
+        return response()->json([ 'message' => 'Deleted Success', 
                                   'status' => 200]);
     }
 

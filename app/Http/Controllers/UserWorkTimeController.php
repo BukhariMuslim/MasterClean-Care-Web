@@ -123,7 +123,7 @@ class UserWorkTimeController extends Controller
     {
         $userWorkTime->delete();
 
-        return response()->json([ 'message' => 'Deleted', 
+        return response()->json([ 'message' => 'Deleted Success', 
                                   'status' => 200]);
     }
 }

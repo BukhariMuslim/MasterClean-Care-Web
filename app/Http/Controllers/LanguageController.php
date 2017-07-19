@@ -116,7 +116,7 @@ class LanguageController extends Controller
     {
         $language->delete();
 
-        return response()->json([ 'message' => 'Deleted', 
+        return response()->json([ 'message' => 'Deleted Success', 
                                   'status' => 200]);
     }
 
