@@ -387,7 +387,6 @@ class UserController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\User  $user
-     * @param  Parameter  $param
      * @return \Illuminate\Http\Response
      */
     public function search(Request $request, User $user)
@@ -414,6 +413,12 @@ class UserController extends Controller
             }
             else if ($key == "user_work_time") {
                 $user = $user->has("user_work_time", $input);
+            }
+            else if ($key == "gender"
+                || $key == "religion"
+                || $key == "born_date"
+            ) {
+                $user = $user->where($key, $input);
             }
             else {
                 $user = $user->where($key, Operators::LIKE, "%".$input."%");
