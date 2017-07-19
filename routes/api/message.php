@@ -20,6 +20,10 @@ Route::group(['prefix' => 'message', 'middleware' => ['api']], function () {
     Route::delete('/{message_id}', 'MessageController@destroy')->where('message_id', '[0-9]+');
     
     Route::get('/get_all/{user}', 'MessageController@searchByUserId');
+
+    Route::get('/get_sender/{sender}', 'MessageController@searchBySenderId');
+
+    Route::get('/get_receiver/{receiver}', 'MessageController@searchByReceiverId');
     
     Route::get('/get/{sender}/{receiver}', 'MessageController@searchBySenderReceiverId');
     

@@ -176,7 +176,44 @@ class MessageController extends Controller
             ]);
     }
     
-    
+    /**
+     * Search the specified resource from storage by sender ID.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Message  $message
+     * @param  Text  $sender
+     * @return \Illuminate\Http\Response
+     */
+    public function searchBySenderId(Request $request, Message $message, $sender)
+    {
+        return $message
+            ->where('sender_id', $sender)
+            ->get()
+            ->load([
+                'sender',
+                'receiver'
+            ]);
+    }
+
+    /**
+     * Search the specified resource from storage by receiver ID.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Message  $message
+     * @param  Text  $receiver
+     * @return \Illuminate\Http\Response
+     */
+    public function searchByReceiverId(Request $request, Message $message, $receiver)
+    {
+        return $message
+            ->where('receiver_id', $receiver)
+            ->get()
+            ->load([
+                'sender',
+                'receiver'
+            ]);
+    }
+
     /**
      * Search the specified resource from storage by sender & receiver ID.
      *
@@ -188,12 +225,13 @@ class MessageController extends Controller
      */
     public function searchBySenderReceiverId(Request $request, Message $message, $sender, $receiver)
     {
-        $message->load([
-            'sender',
-            'receiver'
-        ]);
-        
-        return $message->where('sender_id', $sender)
-            ->where('receiver_id', $receiver)->get();
+        return $message
+            ->where('sender_id', $sender)
+            ->where('receiver_id', $receiver)
+            ->get()
+            ->load([
+                'sender',
+                'receiver'
+            ]);
     }
 }

@@ -142,6 +142,7 @@ class EmergencyCallController extends Controller
             ->where($param,
                 Operators::LIKE,
                 '%'.$text.'%')
-            ->get();
+            ->get()
+            ->load('user');
     }
 }

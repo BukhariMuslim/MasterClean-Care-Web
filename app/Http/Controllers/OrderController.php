@@ -17,7 +17,13 @@ class OrderController extends Controller
      */
     public function index()
     {
-        return Order::all();
+        return Order::with([
+            'member',
+            'art',
+            'work_time',
+            'review_order',
+            'contact'
+        ])->get();
     }
 
     /**
