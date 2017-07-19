@@ -387,7 +387,6 @@ class UserController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\User  $user
-     * @param  Parameter  $param
      * @return \Illuminate\Http\Response
      */
     public function search(Request $request, User $user)
