@@ -3,9 +3,11 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Helper\Traits\UserTrait;
 
 class UserDocument extends Model
 {
+    use UserTrait;
     /**
      * The attributes that are mass assignable.
      *
@@ -29,8 +31,4 @@ class UserDocument extends Model
     /**
      * Get the user record associated with the userDocument.
      */
-    public function user()
-    {
-        return $this->belongsTo(User::class);
-    }
 }
