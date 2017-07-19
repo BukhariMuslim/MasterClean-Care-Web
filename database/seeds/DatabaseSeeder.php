@@ -24,14 +24,22 @@ class DatabaseSeeder extends Seeder
         $this->call(UserJobTableSeeder::class);
         $this->call(UserLanguageTableSeeder::class);
         $this->call(UserWorkTimeTableSeeder::class);
-        //yang aku create
+
         $this->call(MessageTableSeeder::class);
         $this->call(EmergencyCallsSeeder::class);
         $this->call(OrdersTableSeeder::class);
         $this->call(OrderTaskListTableSeeder::class);  
         $this->call(ReviewOrdersTableSeeder::class);
         $this->call(UserDocumentsTableSeeder::class);
-        // Create Article Table Seed First Before generate CommentsTableSeet
-        // $this->call(CommentsTableSeeder::class);
+        $this->call(ArticlesTableSeeder::class);
+        $this->call(CommentsTableSeeder::class);
+        $this->call(OffersTableSeeder::class);
+        $this->call(OfferContactsTableSeeder::class);
+        $this->call(OfferArtsTableSeeder::class);
+        $this->call(PasswordResetsTableSeeder::class);
+        $this->call(WalletTransactionsTableSeeder::class);
+        $this->call(OrderContactsTableSeeder::class);
+        
+        
     }
 }
