@@ -403,32 +403,21 @@ class UserController extends Controller
         //         )
         //     );
         // }
-        
         $inputs = $request->all();
-        $query = array();
-
+        
         foreach($inputs as $key => $input) {
             if ($key == "user_job") {
-                $user->has("user_job", $input);
+                $user = $user->has("user_job", $input);
             }
             else if ($key == "user_language") {
-                $user->has("user_language", $input);
+                $user = $user->has("user_language", $input);
             }
             else if ($key == "user_work_time") {
-                $user->has("user_work_time", $input);
+                $user = $user->has("user_work_time", $input);
             }
             else {
-                array_push($query, 
-                    array($key,
-                        Operators::LIKE,
-                        "%".$input."%"
-                    )
-                );
+                $user = $user->where($key, Operators::LIKE, "%".$input."%");
             }
-        }
-
-        if (count($query)) {
-            $user->where($query);
         }
 
         return $user->get()->load([

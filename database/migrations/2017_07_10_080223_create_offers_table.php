@@ -19,10 +19,6 @@ class CreateOffersTable extends Migration
             $table->integer('work_time_id')->unsigned();
             $table->dateTime('start_date');
             $table->dateTime('end_date');
-            $table->integer('province')->unsigned();
-            $table->integer('city')->unsigned();
-            $table->string('address');
-            $table->string('location')->nullable();
             $table->string('remark')->nullable();
             $table->integer('status');
             $table->timestamps();
@@ -31,10 +27,6 @@ class CreateOffersTable extends Migration
                   ->references('id')->on('users');
             $table->foreign('work_time_id')
                   ->references('id')->on('work_times');
-            $table->foreign('province')
-                  ->references('id')->on('places');
-            $table->foreign('city')
-                  ->references('id')->on('places');
         });
     }
 
