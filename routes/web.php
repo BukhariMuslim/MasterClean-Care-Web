@@ -14,7 +14,7 @@
 // ->middleware('auth')
 Route::get('/login', function () {
     return view('index');
-})->name('login');
+})->name('login')->middleware('guest');
 
 Route::get('{reactRoutes}', function () {
     return view('index');

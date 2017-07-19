@@ -32,4 +32,12 @@ class ExampleTest extends TestCase
     	$this->assertEquals(200, $response->getStatusCode());
     }
 
+
+    public function testUserCantAccessLoginPage()
+    {
+        $this->actingAs(User::first());
+        $response = $this->get('login');
+        $response->assertStatus(302);
+    }
+
 }
