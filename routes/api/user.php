@@ -28,4 +28,6 @@ Route::group(['prefix' => 'user', 'middleware' => ['api']], function () {
     Route::get('/search', 'UserController@search');
     
     Route::get('/search/{param}/{text}', 'UserController@searchByParam');
+
+    Route::get('/wallet_transaction_list/{user}', 'WalletTransactionController@getUserTransaction');
 });

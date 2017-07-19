@@ -21,7 +21,6 @@ class OfferController extends Controller
             'member',
             'art',
             'work_time',
-            'review_order',
             'contact',
             'offer_art'
         ])->get();
@@ -56,6 +55,8 @@ class OfferController extends Controller
             
             $offer = Offer::create($data);
 
+            $offer->contact()->createMany($data['contact']);
+
             $offer->orderTaskList()->createMany($data['orderTaskList']);
 
             DB::commit();
@@ -83,7 +84,6 @@ class OfferController extends Controller
             'member',
             'art',
             'work_time',
-            'review_order',
             'contact',
             'offer_art'
         ]);
@@ -150,8 +150,15 @@ class OfferController extends Controller
 
             $offer->save();
 
-            $offer->orderTaskList()->delete();
-            $offer->orderTaskList()->createMany($data['orderTaskList']);
+            if (array_key_exists('contact', $data)) {
+                $offer->contact()->delete();
+                $offer->contact()->createMany($data['contact']);
+            }
+            
+            if (array_key_exists('orderTaskList', $data)) {
+                $offer->orderTaskList()->delete();
+                $offer->orderTaskList()->createMany($data['orderTaskList']);
+            }
 
             DB::commit();
 
@@ -195,6 +202,28 @@ class OfferController extends Controller
             ->where($param,
                 Operators::LIKE,
                 '%'.$text.'%')
+            ->get();
+    }
+
+    /**
+     * Search the specified resource from storage by member.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Order  $order
+     * @param  Parameter  $member
+     * @return \Illuminate\Http\Response
+     */
+    public function getByMember(Request $request, Order $order, $member)
+    {
+        return $order
+            ->where('member_id', $member)
+            ->load([
+                'member',
+                'art',
+                'work_time',
+                'contact',
+                'offer_art',
+            ])
             ->get();
     }
 }

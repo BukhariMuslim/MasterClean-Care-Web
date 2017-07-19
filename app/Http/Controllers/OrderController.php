@@ -55,6 +55,8 @@ class OrderController extends Controller
             
             $order = Order::create($data);
 
+            $order->contact()->createMany($data['contact']);
+
             $order->orderTaskList()->createMany($data['orderTaskList']);
 
             DB::commit();
@@ -149,8 +151,15 @@ class OrderController extends Controller
                 $requests->status = $data['status'];
             }
 
-            $order->orderTaskList()->delete();
-            $order->orderTaskList()->createMany($data['orderTaskList']);
+            if (array_key_exists('contact', $data)) {
+                $order->contact()->delete();
+                $order->contact()->createMany($data['contact']);
+            }
+
+            if (array_key_exists('orderTaskList', $data)) {
+                $order->orderTaskList()->delete();
+                $order->orderTaskList()->createMany($data['orderTaskList']);
+            }
 
             $order->save();
 
@@ -196,6 +205,50 @@ class OrderController extends Controller
             ->where($param,
                 Operators::LIKE,
                 '%'.$text.'%')
+            ->get();
+    }
+
+    /**
+     * Search the specified resource from storage by member.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Order  $order
+     * @param  Parameter  $member
+     * @return \Illuminate\Http\Response
+     */
+    public function getByMember(Request $request, Order $order, $member)
+    {
+        return $order
+            ->where('member_id', $member)
+            ->load([
+                'member',
+                'art',
+                'work_time',
+                'review_order',
+                'contact'
+            ])
+            ->get();
+    }
+
+    /**
+     * Search the specified resource from storage by ART.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Order  $order
+     * @param  Parameter  $art
+     * @return \Illuminate\Http\Response
+     */
+    public function getByArt(Request $request, Order $order, $art)
+    {
+        return $order
+            ->where('art_id', $art)
+            ->load([
+                'member',
+                'art',
+                'work_time',
+                'review_order',
+                'contact'
+            ])
             ->get();
     }
 }

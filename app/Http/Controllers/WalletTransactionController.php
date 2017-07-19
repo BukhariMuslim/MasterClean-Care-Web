@@ -96,17 +96,14 @@ class WalletTransactionController extends Controller
             if (array_key_exists('user_id', $data)) {
                 $walletTransaction->user_id = $data['user_id'];
             }
-            if (array_key_exists('wallet_id', $data)) {
-                $walletTransaction->wallet_id = $data['wallet_id'];
+            if (array_key_exists('amount', $data)) {
+                $walletTransaction->amount = $data['amount'];
             }
             if (array_key_exists('trc_type', $data)) {
                 $walletTransaction->trc_type = $data['trc_type'];
             }
             if (array_key_exists('trc_time', $data)) {
                 $walletTransaction->trc_time = $data['trc_time'];
-            }
-            if (array_key_exists('wallet_code', $data)) {
-                $walletTransaction->wallet_code = $data['wallet_code'];
             }
 
             $walletTransaction->save();
@@ -132,5 +129,20 @@ class WalletTransactionController extends Controller
 
         return response()->json([ 'message' => 'Deleted Success', 
                                   'status' => 200]);
+    }
+
+    /**
+     * Search the specified resource from storage by user.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Order  $order
+     * @param  Parameter  $user
+     * @return \Illuminate\Http\Response
+     */
+    public function getUserTransaction(Request $request, Order $order, $user)
+    {
+        return $order
+            ->where('user_id', $user)
+            ->get();
     }
 }

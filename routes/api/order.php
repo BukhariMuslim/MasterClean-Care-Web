@@ -34,11 +34,15 @@ Route::group(['prefix' => 'order', 'middleware' => ['api']], function () {
 
     Route::post('/', 'OrderController@store');
 
-    Route::get('/{order_task_list_id}', 'OrderController@show')->where('order_task_list_id', '[0-9]+');
-    
-    Route::patch('/{order_task_list_id}', 'OrderController@update')->where('order_task_list_id', '[0-9]+');
+    Route::get('/{order_id}', 'OrderController@show')->where('order_id', '[0-9]+');
 
-    Route::delete('/{order_task_list_id}', 'OrderController@destroy')->where('order_task_list_id', '[0-9]+');
+    Route::get('/member/{member}', 'OrderController@getByMember')->where('member', '[0-9]+');
+
+    Route::get('/art/{art}', 'OrderController@getByArt')->where('art', '[0-9]+');
+    
+    Route::patch('/{order_id}', 'OrderController@update')->where('order_id', '[0-9]+');
+
+    Route::delete('/{order_id}', 'OrderController@destroy')->where('order_id', '[0-9]+');
 
     Route::get('/search/{param}/{text}', 'OrderController@searchByParam');
 
