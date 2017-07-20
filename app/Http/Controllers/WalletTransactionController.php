@@ -135,13 +135,13 @@ class WalletTransactionController extends Controller
      * Search the specified resource from storage by user.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Order  $order
+     * @param  \App\Models\WalletTransaction  $walletTransaction
      * @param  Parameter  $user
      * @return \Illuminate\Http\Response
      */
-    public function getUserTransaction(Request $request, Order $order, $user)
+    public function getUserTransaction(Request $request, WalletTransaction $walletTransaction, $user)
     {
-        return $order
+        return $walletTransaction
             ->where('user_id', $user)
             ->get();
     }
