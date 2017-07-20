@@ -126,23 +126,14 @@ class OrderController extends Controller
             if (array_key_exists('work_time_id', $data)) {
                 $requests->work_time_id = $data['work_time_id'];
             }
+            if (array_key_exists('cost', $data)) {
+                $requests->cost = $data['cost'];
+            }
             if (array_key_exists('start_date', $data)) {
                 $requests->start_date = $data['start_date'];
             }
             if (array_key_exists('end_date', $data)) {
                 $requests->end_date = $data['end_date'];
-            }
-            if (array_key_exists('province', $data)) {
-                $requests->province = $data['province'];
-            }
-            if (array_key_exists('city', $data)) {
-                $requests->city = $data['city'];
-            }
-            if (array_key_exists('address', $data)) {
-                $requests->address = $data['address'];
-            }
-            if (array_key_exists('location', $data)) {
-                $requests->location = $data['location'];
             }
             if (array_key_exists('remark', $data)) {
                 $requests->remark = $data['remark'];
