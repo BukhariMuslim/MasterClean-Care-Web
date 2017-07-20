@@ -86,7 +86,7 @@ class OrderController extends Controller
             'work_time',
             'review_order',
             'contact'
-        ]);
+        ])->get();
     }
 
     /**
@@ -211,14 +211,14 @@ class OrderController extends Controller
     {
         return $order
             ->where('member_id', $member)
+            ->get()
             ->load([
                 'member',
                 'art',
                 'work_time',
                 'review_order',
                 'contact'
-            ])
-            ->get();
+            ]);
     }
 
     /**
@@ -233,13 +233,13 @@ class OrderController extends Controller
     {
         return $order
             ->where('art_id', $art)
+            ->get()
             ->load([
                 'member',
                 'art',
                 'work_time',
                 'review_order',
                 'contact'
-            ])
-            ->get();
+            ]);
     }
 }
