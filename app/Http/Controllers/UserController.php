@@ -93,9 +93,8 @@ class UserController extends Controller
      */
     public function getCurrent()
     {
-        $user = Auth::user();
-
-        if ($user) {
+        if (Auth::guard('api')->check()) {
+            $user = Auth::guard('api')->user();
             $user->load([
                 'user_additional_info',
                 'user_document',
