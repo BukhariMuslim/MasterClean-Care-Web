@@ -123,23 +123,14 @@ class OfferController extends Controller
             if (array_key_exists('work_time_id', $data)) {
                 $offer->work_time_id = $data['work_time_id'];
             }
+            if (array_key_exists('cost', $data)) {
+                $offer->cost = $data['cost'];
+            }
             if (array_key_exists('start_date', $data)) {
                 $offer->start_date = $data['start_date'];
             }
             if (array_key_exists('end_date', $data)) {
                 $offer->end_date = $data['end_date'];
-            }
-            if (array_key_exists('province', $data)) {
-                $offer->province = $data['province'];
-            }
-            if (array_key_exists('city', $data)) {
-                $offer->city = $data['city'];
-            }
-            if (array_key_exists('address', $data)) {
-                $offer->address = $data['address'];
-            }
-            if (array_key_exists('location', $data)) {
-                $offer->location = $data['location'];
             }
             if (array_key_exists('remark', $data)) {
                 $offer->remark = $data['remark'];

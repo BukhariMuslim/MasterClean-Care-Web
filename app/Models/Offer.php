@@ -14,6 +14,7 @@ class Offer extends Model
     protected $fillable = [
         'member_id',
         'work_time_id',
+        'cost',
         'start_date',
         'end_date',
         'remark',

@@ -17,6 +17,7 @@ class CreateOffersTable extends Migration
             $table->increments('id');
             $table->integer('member_id')->unsigned();
             $table->integer('work_time_id')->unsigned();
+            $table->decimal('cost', 18, 2);
             $table->dateTime('start_date');
             $table->dateTime('end_date');
             $table->string('remark')->nullable();
