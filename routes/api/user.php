@@ -15,6 +15,8 @@ Route::post('/logout', 'UserController@logout')->middleware('api');
 Route::group(['prefix' => 'user', 'middleware' => ['api']], function () {
     Route::get('/', 'UserController@index');
 
+    Route::get('/me', 'UserController@getCurrent');
+
     Route::post('/', 'UserController@store');
 
     Route::get('/{user_id}', 'UserController@show')->where('user_id', '[0-9]+');

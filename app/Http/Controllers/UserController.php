@@ -87,6 +87,41 @@ class UserController extends Controller
     }
 
     /**
+     * Get the current user logged in.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function getCurrent()
+    {
+        $user = Auth::user();
+
+        if ($user) {
+            $user->load([
+                'user_additional_info',
+                'user_document',
+                'user_language',
+                'user_job',
+                'user_wallet',
+                'user_work_time',
+                'contact'
+            ]);
+
+            if ($user->order_rate->first()) {
+                $user->rate = $user->order_rate->avg('rate');
+            }
+            else {
+                $user->rate = 0;
+            }
+            
+            return $user;
+        }
+        else {
+            return response()->json([ 'message' => 'Unauthorized', 
+                                      'status' => 403 ]);
+        }
+    }
+
+    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
