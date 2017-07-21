@@ -168,12 +168,16 @@ class RegisterArt extends Component {
                 gender: this.state.gender,
                 born_place: this.state.born_place,
                 born_date: this.state.born_date,
-                phone: this.state.phone,
-                province: this.state.province,
-                city: this.state.city,
-                address: this.state.address,
+                contact: [
+                    {
+                        phone: this.state.phone,
+                        province: this.state.province,
+                        city: this.state.city,
+                        address: this.state.address,
+                        location: this.state.location,
+                    }
+                ],
                 religion: this.state.religion,
-                location: this.state.location,
                 race: this.state.race,
                 user_type: this.state.user_type,
                 status: this.state.status,
