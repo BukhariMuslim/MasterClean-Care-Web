@@ -15,17 +15,15 @@ class WalletTransactionsTableSeeder extends Seeder
         DB::table('wallet_transactions')->insert([
             [
                 'user_id'=>2,
-                'wallet_id'=>1,
+                'amount'=>100000,
                 'trc_type'=>1,
                 'trc_time'=> Carbon::create('2017', '07', '19', '10', '15', '0'),
-                'wallet_code'=>'stingwalletcode',
             ],
             [
                 'user_id'=>3,
-                'wallet_id'=>2,
+                'amount'=>5000000,
                 'trc_type'=>1,
                 'trc_time'=> Carbon::create('2017', '07', '19', '11', '15', '0'),
-                'wallet_code'=>'stingwalletcode1',
             ],
         ]);
     }
