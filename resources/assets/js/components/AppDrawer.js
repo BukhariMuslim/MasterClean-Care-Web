@@ -29,7 +29,7 @@ class AppDrawer extends Component {
                 {
                     id: 1,
                     label: 'Artikel',
-                    link: '\article',
+                    link: '/article',
                     iconLabel: 'receipt',
                 },
             ],
@@ -49,9 +49,9 @@ class AppDrawer extends Component {
             return (
                 <MenuItem primaryText={ obj.label }
                     key={ obj.id }
+                    containerElement={<Link to={obj.link} />}
                     onClick={() => {
                         this.handleClose()
-                        this.onAddTodoItemClick(obj.link)
                     }}
                     rightIcon={<FontIcon className="material-icons">{ obj.iconLabel }</FontIcon>}
                     />
