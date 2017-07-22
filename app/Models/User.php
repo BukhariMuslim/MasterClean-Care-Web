@@ -169,11 +169,19 @@ class User extends Authenticatable
     }
 
     /**
+     * Get the order_count record associated with the user.
+     */
+    public function order_count()
+    {
+        return $this->hasManyThrough(ReviewOrder::class, Order::class, 'member_id');
+    }
+
+    /**
      * Get the order_rate record associated with the user.
      */
     public function order_rate()
     {
-        return $this->hasManyThrough(ReviewOrder::class, Order::class, 'member_id');
+        return $this->hasManyThrough(ReviewOrder::class, Order::class, 'art_id');
     }
 
     /**
