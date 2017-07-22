@@ -24,6 +24,7 @@ class CreateUsersTable extends Migration
             $table->integer('religion');
             $table->string('race')->nullable();
             $table->tinyInteger('user_type');
+            $table->string('description', 500)->nullable();
             $table->string('profile_img_name')->nullable();
             $table->string('profile_img_path')->nullable();
             $table->tinyInteger('status');

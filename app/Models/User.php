@@ -25,6 +25,7 @@ class User extends Authenticatable
         'religion',
         'race',
         'user_type',
+        'description',
         'profile_img_name',
         'profile_img_path',
         'status',

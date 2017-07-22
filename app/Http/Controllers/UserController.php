@@ -327,6 +327,9 @@ class UserController extends Controller
             if (array_key_exists('user_type', $data)) {
                 $user->user_type = $data['user_type'];
             }
+            if (array_key_exists('description', $data)) {
+                $user->description = $data['description'];
+            }
             if (array_key_exists('profile_img_name', $data)) {
                 $user->profile_img_name = $data['profile_img_name'];
             }
@@ -453,37 +456,44 @@ class UserController extends Controller
         //         )
         //     );
         // }
-        $inputs = $request->all();
-        
-        foreach($inputs as $key => $input) {
-            if ($key == "user_job") {
-                $user = $user->has("user_job", $input);
-            }
-            else if ($key == "user_language") {
-                $user = $user->has("user_language", $input);
-            }
-            else if ($key == "user_work_time") {
-                $user = $user->has("user_work_time", $input);
-            }
-            else if ($key == "gender"
-                || $key == "religion"
-                || $key == "born_date"
-            ) {
-                $user = $user->where($key, $input);
-            }
-            else {
-                $user = $user->where($key, Operators::LIKE, "%".$input."%");
-            }
-        }
 
-        return $user->get()->load([
-            'user_additional_info',
-            'user_document',
-            'user_language',
-            'user_job',
-            'user_wallet',
-            'user_work_time',
-            'contact'
-        ]);
+        try {
+            $inputs = $request->all();
+            
+            foreach($inputs as $key => $input) {
+                if ($key == "user_job") {
+                    $user = $user->has("user_job", $input);
+                }
+                else if ($key == "user_language") {
+                    $user = $user->has("user_language", $input);
+                }
+                else if ($key == "user_work_time") {
+                    $user = $user->has("user_work_time", $input);
+                }
+                else if ($key == "gender"
+                    || $key == "religion"
+                    || $key == "born_date"
+                ) {
+                    $user = $user->where($key, $input);
+                }
+                else {
+                    $user = $user->where($key, Operators::LIKE, "%".$input."%");
+                }
+            }
+
+            return $user->get()->load([
+                'user_additional_info',
+                'user_document',
+                'user_language',
+                'user_job',
+                'user_wallet',
+                'user_work_time',
+                'contact'
+            ]);
+        }
+        catch (Exception $e) {
+            return response()->json([ 'message' => $e->getMessage(), 
+                                      'status' => 400 ]);
+        }
     }
 }
