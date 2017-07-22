@@ -33,6 +33,7 @@ class UserController extends Controller
             'user_job',
             'user_wallet',
             'user_work_time',
+            'contact',
             'order_rate'
         ])->get();
 
@@ -63,6 +64,7 @@ class UserController extends Controller
             'user_job',
             'user_wallet',
             'user_work_time',
+            'order_rate',
             'contact'
         ]);
 
@@ -481,15 +483,27 @@ class UserController extends Controller
                 }
             }
 
-            return $user->get()->load([
+            $user->get()->load([
                 'user_additional_info',
                 'user_document',
                 'user_language',
                 'user_job',
                 'user_wallet',
                 'user_work_time',
+                'order_rate',
                 'contact'
             ]);
+
+            $user->map(function ($u) {
+                if ($u->order_rate->first()) {
+                    $u->rate = $u->order_rate->avg('rate');
+                }
+                else {
+                    $u->rate = 0;
+                }
+            });
+
+            return $user;
         }
         catch (Exception $e) {
             return response()->json([ 'message' => $e->getMessage(), 
