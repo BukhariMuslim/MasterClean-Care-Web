@@ -10,8 +10,8 @@ use App\Models\UserWorkTime;
 use App\Models\UserDocument;
 use App\Models\UserAdditionalInfo;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Collection;
+use Hash;
 use Exception;
 use DB;
 use App\Helper\Operators;
@@ -37,15 +37,6 @@ class UserController extends Controller
             'order_rate'
         ])->get();
 
-        $users->map(function ($user) {
-            if ($user->order_rate->first()) {
-                $user->rate = $user->order_rate->avg('rate');
-            }
-            else {
-                $user->rate = 0;
-            }
-        });
-
         return $users;
     }
 
@@ -64,16 +55,8 @@ class UserController extends Controller
             'user_job',
             'user_wallet',
             'user_work_time',
-            'order_rate',
             'contact'
         ]);
-
-        if ($user->order_rate->first()) {
-            $user->rate = $user->order_rate->avg('rate');
-        }
-        else {
-            $user->rate = 0;
-        }
         
         return $user;
     }
@@ -482,28 +465,16 @@ class UserController extends Controller
                     $user = $user->where($key, Operators::LIKE, "%".$input."%");
                 }
             }
-
-            $user->get()->load([
+            
+            return $user->get()->load([
                 'user_additional_info',
                 'user_document',
                 'user_language',
                 'user_job',
                 'user_wallet',
                 'user_work_time',
-                'order_rate',
                 'contact'
             ]);
-
-            $user->map(function ($u) {
-                if ($u->order_rate->first()) {
-                    $u->rate = $u->order_rate->avg('rate');
-                }
-                else {
-                    $u->rate = 0;
-                }
-            });
-
-            return $user;
         }
         catch (Exception $e) {
             return response()->json([ 'message' => $e->getMessage(), 

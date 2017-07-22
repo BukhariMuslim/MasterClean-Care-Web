@@ -32,6 +32,13 @@ class User extends Authenticatable
     ];
 
     /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $appends = ['rate'];
+
+    /**
      * The attributes that should be hidden for arrays.
      *
      * @var array
@@ -214,5 +221,13 @@ class User extends Authenticatable
     public function message()
     {
         return $this->hasMany(Message::class);
+    }
+
+    /**
+     * Get the order rate associated with the user.
+     */
+    public function getRateAttribute()
+    {
+        return $this->order_rate()->avg('rate');
     }
 }
