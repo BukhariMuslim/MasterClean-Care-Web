@@ -5,13 +5,12 @@ import { simpleAuthentication } from '../containers/LoginContainer'
 import NotificationContainer from '../containers/NotificationContainer'
 import AppDrawerContainer from '../containers/AppDrawerContainer'
 import LoadingSpinContainer from '../containers/LoadingSpinContainer'
-import DefaultMenuCollection from '../modules/DefaultMenuCollection'
+import AdminMenuCollection from '../modules/AdminMenuCollection'
 
-
-const App = (props) => {
+const Admin = (props) => {
     return (
         <div>
-            <AppDrawerContainer MenuCollection={ DefaultMenuCollection } />
+            <AppDrawerContainer MenuCollection={ AdminMenuCollection } />
             <NotificationContainer />
             <LoadingSpinContainer />
             <div className="container" style={{ paddingTop: "75px" }}>
@@ -21,4 +20,4 @@ const App = (props) => {
     )
 }
 
-export default App
+export default Admin

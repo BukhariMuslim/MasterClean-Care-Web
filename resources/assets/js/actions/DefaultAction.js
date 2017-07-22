@@ -13,6 +13,10 @@ export const UPDATE_SNACK = 'UPDATE_SNACK'
 export const RESET_SNACK = 'RESET_SNACK'
 export const UPDATE_LOADING_SPIN = 'UPDATE_LOADING_SPIN'
 export const RESET_LOADING_SPIN = 'RESET_LOADING_SPIN'
+export const ADD_ARTICLE = 'ADD_ARTICLE'
+export const EDIT_ARTICLE = 'EDIT_ARTICLE'
+export const UPDATE_ARTICLE = 'UPDATE_ARTICLE'
+export const REMOVE_ARTICLE = 'REMOVE_ARTICLE'
 
 /*
  *  Action Creators
@@ -66,4 +70,20 @@ export function updateLoadingSpin(data) {
 
 export function resetLoadingSpin() {
     return { type: RESET_LOADING_SPIN }
+}
+
+export function addArticle(data) {
+    return { type: ADD_ARTICLE, data: data }
+}
+
+export function editArticle(index) {
+    return { type: edit_ARTICLE, data: index }
+}
+
+export function updateArticle(data) {
+    return { type: UPDATE_ARTICLE, data: data }
+}
+
+export function removeArticle(index) {
+    return { type: REMOVE_ARTICLE, data: index }
 }

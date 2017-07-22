@@ -25,14 +25,6 @@ class AppDrawer extends Component {
         super(props)
         this.state = {
             open: false,
-            menuCollection: [
-                {
-                    id: 1,
-                    label: 'Artikel',
-                    link: '/article',
-                    iconLabel: 'receipt',
-                },
-            ],
         }
     }
 
@@ -82,14 +74,19 @@ class AppDrawer extends Component {
                         :
                             <MenuItem primaryText="Login" 
                                 containerElement={<Link to="/login" />}
-                                rightIcon={<FontIcon className="material-icons">receipt</FontIcon>}
+                                rightIcon={<FontIcon className="material-icons">lock</FontIcon>}
                                 />
                     }
                     <Divider />
                     {/* containerElement={<Link to="/article" />}                      */}
-                    { this.menuList(this.state.menuCollection) }
+                    { this.menuList(this.props.MenuCollection) }
                     <Divider />
-                    <LogoutContainer />
+                    {
+                        isLoggedIn ?
+                            <LogoutContainer />
+                        :
+                            null
+                    }
                 </Drawer>
             </div>
         )

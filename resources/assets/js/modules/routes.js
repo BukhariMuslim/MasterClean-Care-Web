@@ -8,6 +8,8 @@ import RegisterArtContainer from '../containers/RegisterArtContainer'
 import UserProfileContainer from '../containers/UserProfileContainer'
 import Article from '../components/Article'
 import DetailArticle from '../components/DetailArticle'
+import Admin from '../components/Admin'
+import ArticleContainer from '../containers/admin/ArticleContainer'
 
 const routes = (store) => {
     const requireAuth = (store) => {
@@ -31,10 +33,16 @@ const routes = (store) => {
             <Route path="/register_member" component={ RegisterMemberContainer }/>
             <Route path="/register_art" component={ RegisterArtContainer }/>
             <Route path="/user" component={ UserProfileContainer } onEnter={ requireAuth(store) } />
+            <Route path="/Admin" >
+                <Admin>
+                    <Route path="/article" component={ Article }/>                    
+                    <Route path="/detail_article" component={ DetailArticle }/>
+                </Admin>
+            </Route>
             <Route path="/" >
                 <App>
                     <Route path="/article" component={ Article }/>                    
-                    <Route path="/detail_article" component={ DetailArticle }/>
+                    <Route path="/article/new" component={ ArticleContainer }/>
                 </App>
             </Route>
         </Switch>

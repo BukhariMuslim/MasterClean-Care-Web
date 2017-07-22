@@ -17,7 +17,7 @@ class CreateArticlesTable extends Migration
             $table->increments('id');
             $table->integer('user_id')->unsigned();
             $table->string('title');
-            $table->string('tag');
+            $table->string('tag')->nullable();
             $table->dateTime('published_date');
             $table->string('content', 2000);
             $table->timestamps();
