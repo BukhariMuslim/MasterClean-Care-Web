@@ -33,12 +33,6 @@ const routes = (store) => {
             <Route path="/register_member" component={ RegisterMemberContainer }/>
             <Route path="/register_art" component={ RegisterArtContainer }/>
             <Route path="/user" component={ UserProfileContainer } onEnter={ requireAuth(store) } />
-            <Route path="/Admin" >
-                <Admin>
-                    <Route path="/article" component={ Article }/>                    
-                    <Route path="/detail_article" component={ DetailArticle }/>
-                </Admin>
-            </Route>
             <Route path="/" >
                 <App>
                     <Route path="/article" component={ Article }/>                    

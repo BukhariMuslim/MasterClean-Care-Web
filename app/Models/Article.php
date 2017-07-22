@@ -29,8 +29,12 @@ class Article extends Model
     /**
      * Get the user record associated with the additionalInfo.
      */
-    public function user()
+    public function userId()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function userIdList(){
+        return User::where('status', 1)->orderBy('created_at')->get();
     }
 }

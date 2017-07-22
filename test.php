@@ -1,7 +1,7 @@
 <?php
 
 
-use App\Models\User;
+use App\Models\Article;
 
 
-$user = User::find(2);
+$articles = Article::find(1);
