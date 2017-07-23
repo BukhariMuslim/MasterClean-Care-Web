@@ -11,6 +11,10 @@
 |
 */
 
+Route::group(['prefix' => 'admin'], function () {
+    Voyager::routes();
+});
+
 // ->middleware('auth')
 Route::get('/login', function () {
     return view('index');
@@ -19,3 +23,5 @@ Route::get('/login', function () {
 Route::get('{reactRoutes}', function () {
     return view('index');
 })->where('reactRoutes', '^((?!api).)*$');
+
+
