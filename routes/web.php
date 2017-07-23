@@ -23,3 +23,8 @@ Route::group(['prefix' => 'admin'], function () {
 Route::get('{reactRoutes}', function () {
     return view('index');
 })->where('reactRoutes', '^((?!api).)*$');
+
+
+Route::group(['prefix' => 'admin'], function () {
+    Voyager::routes();
+});
