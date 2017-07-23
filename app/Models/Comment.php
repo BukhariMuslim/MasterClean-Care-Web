@@ -25,18 +25,34 @@ class Comment extends Model
     protected $hidden = [ ];
 
     /**
-     * Get the user record associated with the additionalInfo.
+     * Get the userId record associated with the additionalInfo.
      */
-    public function user()
+    public function userId()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     /**
-     * Get the article record associated with the additionalInfo.
+     * Get the userId List record associated with the additionalInfo.
      */
-    public function article()
+    public function userIdList()
     {
-        return $this->belongsTo(Article::class);
+        return User::where('status', 1)->orderBy('created_at')->get();
+    }
+
+    /**
+     * Get the articleId record associated with the additionalInfo.
+     */
+    public function articleId()
+    {
+        return $this->belongsTo(Article::class, 'article_id');
+    }
+
+    /**
+     * Get the articleId List record associated with the additionalInfo.
+     */
+    public function articleIdList()
+    {
+        return Article::all()->orderBy('created_at')->get();
     }
 }

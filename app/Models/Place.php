@@ -24,26 +24,18 @@ class Place extends Model
     protected $hidden = [ ];
 
     /**
-     * Get the user_contact record associated with the places.
+     * Get the parent record associated with the places.
      */
-    public function user_contact()
+    public function parent()
     {
-        return $this->hasMany(UserContact::class);
+        return $this->belongsTo(Place::class, 'parent');
     }
 
     /**
-     * Get the offer_contact record associated with the places.
+     * Get the parent record associated with the places.
      */
-    public function offer_contact()
+    public function parentList()
     {
-        return $this->hasMany(OrderContact::class);
-    }
-
-    /**
-     * Get the order_contact record associated with the places.
-     */
-    public function order_contact()
-    {
-        return $this->hasMany(OrderContact::class);
+        return Place::all();
     }
 }

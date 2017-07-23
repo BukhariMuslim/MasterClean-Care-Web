@@ -16,8 +16,12 @@ class CreatePlacesTable extends Migration
         Schema::create('places', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->integer('parent');
+            $table->integer('parent')->unsigned()->nullable()->default(0);
             $table->timestamps();
+
+            $table->foreign('parent')
+                  ->references('id')->on('places')
+                  ->onDelete('setNull');
         });
     }
 
