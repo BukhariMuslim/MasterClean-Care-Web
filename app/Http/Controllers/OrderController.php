@@ -86,7 +86,7 @@ class OrderController extends Controller
             'work_time',
             'review_order',
             'contact'
-        ])->get();
+        ]);
     }
 
     /**
