@@ -18,6 +18,7 @@ use App\Models\OfferTaskList;
 use App\Models\User;
 use App\Models\Wallet;
 use App\Models\WorkTime;
+use App\Models\WalletTransaction;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use \Iterator;
@@ -61,6 +62,7 @@ class RouteServiceProvider extends ServiceProvider
         Route::model('art_id', User::class);
         Route::model('wallet_id', Wallet::class);
         Route::model('work_time_id', WorkTime::class);
+        Route::model('wallet_transaction_id', WalletTransaction::class);
     }
 
     /**

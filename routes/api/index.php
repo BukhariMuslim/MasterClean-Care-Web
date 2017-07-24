@@ -13,3 +13,4 @@ require_once(base_path('routes/api/order.php'));
 require_once(base_path('routes/api/offer.php'));
 require_once(base_path('routes/api/wallet.php'));
 require_once(base_path('routes/api/work_time.php'));
+require_once(base_path('routes/api/wallet_transaction.php'));
