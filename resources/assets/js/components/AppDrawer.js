@@ -28,9 +28,9 @@ class AppDrawer extends Component {
         }
     }
 
-    onAddTodoItemClick(link) {
-        this.props.history.push(link)    
-    }
+    // onAddTodoItemClick(link) {
+    //     this.props.history.push(link)    
+    // }
 
     handleToggle() { this.setState({open: !this.state.open}) }
 
@@ -49,6 +49,12 @@ class AppDrawer extends Component {
                     />
             )
         })
+    }
+
+    componentWillMount() {
+        if (!this.props.user) {
+            this.props.getUserLogin();
+        }
     }
 
     render() {

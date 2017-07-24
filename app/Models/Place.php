@@ -13,7 +13,6 @@ class Place extends Model
      */
     protected $fillable = [
         'name',
-        'parent',
     ];
 
     /**
@@ -28,7 +27,7 @@ class Place extends Model
      */
     public function parent()
     {
-        return $this->belongsTo(Place::class, 'parent');
+        return $this->belongsTo(self::class, 'parent');
     }
 
     /**

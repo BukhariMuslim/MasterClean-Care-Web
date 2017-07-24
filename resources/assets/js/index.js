@@ -3,7 +3,7 @@ import { render } from 'react-dom'
 import { Provider } from 'react-redux'
 import { createStore } from 'redux'
 import { BrowserRouter as Router } from 'react-router-dom'
-import routes from './modules/routes'
+import RoutesElement from './modules/routes'
 import history from './modules/history'
 import configureStore from './stores/configureStore'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
@@ -17,7 +17,7 @@ render(
     <MuiThemeProvider>
         <Provider store={ store }>
             <Router history={ history } >
-                { routes(store) }
+                <RoutesElement />
             </Router>
         </Provider>
     </MuiThemeProvider>,

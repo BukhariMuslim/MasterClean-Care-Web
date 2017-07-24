@@ -14,20 +14,18 @@ class PlacesTableSeeder extends Seeder
         DB::table('places')->insert([
             [
                 'name' => 'NAD',
-                'parent' => 0,
             ],
             [
                 'name' => 'Sumatera Utara',
-                'parent' => 0,
             ],
             [
                 'name' => 'Sumatera Barat',
-                'parent' => 0,
             ],
             [
                 'name' => 'Riau',
-                'parent' => 0,
             ],
+        ]);
+        DB::table('places')->insert([
             [
                 'name' => 'Banda Aceh',
                 'parent' => 1,

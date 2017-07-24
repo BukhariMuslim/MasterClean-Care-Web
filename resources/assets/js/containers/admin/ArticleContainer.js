@@ -6,6 +6,7 @@ import {
     withRouter,
 } from 'react-router-dom'
 import axios from 'axios'
+import App from '../../components/App'
 
 const mapStateToProps = (state) => {
     return {
@@ -60,11 +61,13 @@ const ArticleContainer = withRouter(connect(
     onUpdateSnack,
     onPost
 }) => (
-    <Article 
-        onPost={ (self, data) => onPost(self, data, history) } 
-        onUpdateSnack={ onUpdateSnack }
-        article={ article }
-        />
+    <App>
+        <Article
+            onPost={ (self, data) => onPost(self, data, history) } 
+            onUpdateSnack={ onUpdateSnack }
+            article={ article }
+            />
+    </App>
 )))
 
 export default ArticleContainer

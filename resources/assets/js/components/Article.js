@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import { Card, CardActions, CardHeader, CardText } from 'material-ui/Card'
 import FlatButton from 'material-ui/FlatButton'
+import App from './App'
 
 class Article extends Component {
     constructor(props){
@@ -33,7 +34,7 @@ class Article extends Component {
         return collection.map((obj, idx) => {
             return (
                 <div className="row" key={ obj.id }>
-                    <Card>
+                    <Card className="col s12">
                         <CardHeader title={ obj.title } />
                         <CardText>
                             { obj.content }
@@ -54,9 +55,9 @@ class Article extends Component {
         const { article } = this.state;
 
         return (
-            <div>
+            <App>
                 { this.artilceList(article) }
-            </div>
+            </App>
         )
     }
 }
