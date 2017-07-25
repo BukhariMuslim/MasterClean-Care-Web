@@ -16,12 +16,15 @@ class CreateOfferTaskListsTable extends Migration
         Schema::create('offer_task_lists', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('offer_id')->unsigned();
-            $table->string('task');
+            $table->integer('task_list_id')->unsigned();
             $table->integer('status');
             $table->timestamps();
 
             $table->foreign('offer_id')
                   ->references('id')->on('offers')
+                  ->onDelete('cascade');
+            $table->foreign('task_list_id')
+                  ->references('id')->on('task_lits')
                   ->onDelete('cascade');
         });
     }

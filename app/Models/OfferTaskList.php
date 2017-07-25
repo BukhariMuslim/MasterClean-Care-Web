@@ -13,7 +13,7 @@ class OfferTaskList extends Model
      */
     protected $fillable = [
         'offer_id',
-        'task',
+        'task_list_id',
         'status',
     ];
 

@@ -32,31 +32,55 @@ class Order extends Model
     /**
      * Get the member record associated with the additionalInfo.
      */
-    public function member()
+    public function memberId()
     {
         return $this->belongsTo(User::class, 'member_id');
     }
 
     /**
+     * Get the member record associated with the additionalInfo.
+     */
+    public function memberIdList()
+    {
+        return User::where('status', 1)->where('role_id', 2)->get();
+    }
+
+    /**
      * Get the art record associated with the additionalInfo.
      */
-    public function art()
+    public function artId()
     {
         return $this->belongsTo(User::class, 'art_id');
     }
 
     /**
+     * Get the member record associated with the additionalInfo.
+     */
+    public function artIdList()
+    {
+        return User::where('status', 1)->where('role_id', 3)->get();
+    }
+
+    /**
      * Get the work_time record associated with the additionalInfo.
      */
-    public function work_time()
+    public function workTimeId()
     {
         return $this->belongsTo(WorkTime::class);
     }
 
     /**
+     * Get the work_time record associated with the additionalInfo.
+     */
+    public function workTimeIdList()
+    {
+        return WorkTime::all();
+    }
+
+    /**
      * Get the review_order record associated with the additionalInfo.
      */
-    public function review_order()
+    public function reviewOrder()
     {
         return $this->hasMany(ReviewOrder::class);
     }

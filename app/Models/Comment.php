@@ -3,9 +3,12 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Helper\Traits\UserTrait;
 
 class Comment extends Model
 {
+    use UserTrait;
+
     /**
      * The attributes that are mass assignable.
      *
@@ -23,22 +26,6 @@ class Comment extends Model
      * @var array
      */
     protected $hidden = [ ];
-
-    /**
-     * Get the userId record associated with the additionalInfo.
-     */
-    public function userId()
-    {
-        return $this->belongsTo(User::class, 'user_id');
-    }
-
-    /**
-     * Get the userId List record associated with the additionalInfo.
-     */
-    public function userIdList()
-    {
-        return User::where('status', 1)->orderBy('created_at')->get();
-    }
 
     /**
      * Get the articleId record associated with the additionalInfo.

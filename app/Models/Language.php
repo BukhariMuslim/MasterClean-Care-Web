@@ -23,9 +23,9 @@ class Language extends Model
     protected $hidden = [ ];
     
     /**
-     * Get the user_language record associated with the language.
+     * Get the userLanguage record associated with the language.
      */
-    public function user_language()
+    public function userLanguage()
     {
         return $this->hasMany(UserLanguage::class);
     }

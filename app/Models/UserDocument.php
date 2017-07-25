@@ -8,6 +8,7 @@ use App\Helper\Traits\UserTrait;
 class UserDocument extends Model
 {
     use UserTrait;
+    
     /**
      * The attributes that are mass assignable.
      *

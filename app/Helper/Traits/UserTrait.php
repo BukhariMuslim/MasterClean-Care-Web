@@ -7,7 +7,11 @@ use App\Models\User;
 
 trait UserTrait {
 
-    public function user(){
-        return $this->belongsTo(User::class);
+    public function userId(){
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function userIdList(){
+        return User::where('status', 1)->orderBy('name')->get();
     }
 }
