@@ -12,7 +12,7 @@ import {
     updateLoadingSpin,
     resetLoadingSpin,
 } from '../actions/DefaultAction'
-import axios from 'axios'
+import ApiService from '../modules/ApiService'
 
 const mapStateToProps = (state) => {
     return {
@@ -32,32 +32,43 @@ const mapDispatchToProps = (dispatch) => {
             dispatch(updateLoadingSpin({
                 show: true,
             }))
-            
-            axios.post('/api/check_login', {
-                email: data.email,
-                password: data.password
-            })
-            .then(function (response) {
-                dispatch(resetLoadingSpin())
-                let data = response.data
-                if (data.status === 200) {
-                    dispatch(loginAuth(data.user))
-                    history.push('/')
-                }
-                else {
+
+            ApiService.onPost(
+                '/api/check_login',
+                {
+                    email: data.email, 
+                    password: data.password,
+                },
+                function(response) {
+                    dispatch(resetLoadingSpin())
+                    let data = response.data
+                    if (data.status === 200) {
+                        dispatch(loginAuth(data.user))
+                        history.push('/')
+                    }
+                    else {
+                        dispatch(updateSnack({
+                            open: true,
+                            message: data.message
+                        }))
+                    }
+                },
+                function (error) {
+                    dispatch(resetLoadingSpin())
                     dispatch(updateSnack({
-                        open: true,
-                        message: data.message
+                        open: open,
+                        message: error
                     }))
                 }
-            })
-            .catch(function (error) {
-                dispatch(resetLoadingSpin())
-                dispatch(updateSnack({
-                    open: open,
-                    message: error
-                }))
-            })
+            )
+            // axios.post('/api/check_login', {
+            //     email: data.email,
+            //     password: data.password
+            // })
+            // .then(function (response) {
+                
+            // })
+            // .catch()
         }
     }
 }

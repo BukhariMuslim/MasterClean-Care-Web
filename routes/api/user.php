@@ -8,18 +8,20 @@ use Illuminate\Http\Request;
 |--------------------------------------------------------------------------
 */
 
-Route::post('/check_login', 'UserController@login')->middleware('api');
+Route::post('/test_login', 'Auth\LoginController@authenticated');
 
-Route::post('/logout', 'UserController@logout')->middleware('api');
+Route::post('/check_login', 'UserController@login')->middleware('web');
 
-Route::group(['prefix' => 'user', 'middleware' => ['api']], function () {
+Route::post('/logout', 'UserController@logout')->middleware('web');
+
+Route::group(['prefix' => 'user', 'middleware' => ['auth:api', 'web']], function () {
     Route::get('/', 'UserController@index');
 
     Route::post('/', 'UserController@store');
     
-    Route::get('/me_web', 'UserController@getCurrentUser');
-    
-    Route::get('/me', 'UserController@getCurrent');
+    Route::get('/me', function(\Illuminate\Http\Request $request) {
+        return $request->user();
+    });
 
     Route::get('/{user_id}', 'UserController@show')->where('user_id', '[0-9]+');
 

@@ -11,6 +11,19 @@
 |
 */
 
+
+Route::get('/testing', function(\Illuminate\Http\Request $request){
+    
+    $credential = [
+        "email" =>  "mrabc@mail.com",
+        "password" => "mrabc"
+    ];
+    $a = Auth::attempt($credential);
+
+    dd($request->user());
+    // dd(Auth::user());
+})->middleware('web');
+
 // ->middleware('auth')
 Route::get('/login', function () {
     return view('index');

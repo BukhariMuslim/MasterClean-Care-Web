@@ -74,69 +74,31 @@ class UserController extends Controller
     /**
      * Get the current user logged in.
      *
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function getCurrent()
+    public function getCurrent(Request $request)
     {
-        if (Auth::guard('api')->check()) {
-            $user = Auth::guard('api')->user();
-            $user->load([
-                'user_additional_info',
-                'user_document',
-                'user_language',
-                'user_job',
-                'user_wallet',
-                'user_work_time',
-                'contact'
-            ]);
+        dd($request->user());
+        $user = $request->user();
+        $user->load([
+            'user_additional_info',
+            'user_document',
+            'user_language',
+            'user_job',
+            'user_wallet',
+            'user_work_time',
+            'contact'
+        ]);
 
-            if ($user->order_rate->first()) {
-                $user->rate = $user->order_rate->avg('rate');
-            }
-            else {
-                $user->rate = 0;
-            }
-            
-            return $user;
+        if ($user->order_rate->first()) {
+            $user->rate = $user->order_rate->avg('rate');
         }
         else {
-            return response()->json([ 'message' => 'Unauthorized', 
-                                      'status' => 403 ]);
+            $user->rate = 0;
         }
-    }
-
-    /**
-     * Get the current user logged in.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function getCurrentUser()
-    {
-        if (Auth::check()) {
-            $user = Auth::user();
-            $user->load([
-                'user_additional_info',
-                'user_document',
-                'user_language',
-                'user_job',
-                'user_wallet',
-                'user_work_time',
-                'contact'
-            ]);
-
-            if ($user->order_rate->first()) {
-                $user->rate = $user->order_rate->avg('rate');
-            }
-            else {
-                $user->rate = 0;
-            }
-            
-            return $user;
-        }
-        else {
-            return response()->json([ 'message' => 'Unauthorized', 
-                                      'status' => 403 ]);
-        }
+        
+        return $user;
     }
 
     /**

@@ -8,7 +8,7 @@ import {
     updateLoadingSpin,
     resetLoadingSpin,
 } from '../actions/DefaultAction'
-import axios from 'axios'
+import ApiService from '../modules/ApiService'
 
 const mapStateToProps = (state) => {
     return {
@@ -24,8 +24,8 @@ const mapDispatchToProps = (dispatch) => {
                 show: true,
             }))
             
-            axios.get('/api/user/me_web')
-            .then(function (response) {
+            // /api/user/me
+            ApiService.get('/api/user/me', function (response) {
                 dispatch(resetLoadingSpin())
                 let data = response.data
                 if (data.status === 200) {
@@ -37,14 +37,36 @@ const mapDispatchToProps = (dispatch) => {
                         message: data.message
                     }))
                 }
-            })
-            .catch(function (error) {
+            },
+            function (error) {
                 dispatch(resetLoadingSpin())
                 dispatch(updateSnack({
                     open: open,
                     message: error
                 }))
             })
+
+            // axios.get('/oauth/personal-access-tokens')
+            // .then(function (response) {
+            //     dispatch(resetLoadingSpin())
+            //     let data = response.data
+            //     if (data.status === 200) {
+            //         dispatch(loginAuth(data.user))
+            //     }
+            //     else {
+            //         dispatch(updateSnack({
+            //             open: true,
+            //             message: data.message
+            //         }))
+            //     }
+            // })
+            // .catch(function (error) {
+            //     dispatch(resetLoadingSpin())
+            //     dispatch(updateSnack({
+            //         open: open,
+            //         message: error
+            //     }))
+            // })
         }
     }
 }
