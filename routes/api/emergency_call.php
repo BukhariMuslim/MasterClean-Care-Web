@@ -19,7 +19,7 @@ Route::group(['prefix' => 'emergency_call', 'middleware' => ['api']], function (
 
     Route::delete('/{emergency_call_id}', 'EmergencyCallController@destroy')->where('emergency_call_id', '[0-9]+');
 
-    Route::get('/search/{param}/{operator}/{text}', 'EmergencyCallController@searchByParam');
+    Route::get('/get/{userId}/{status}', 'EmergencyCallController@searchByUserStatus');
     
     Route::get('/search/{param}/{text}', 'EmergencyCallController@searchByParam');
 

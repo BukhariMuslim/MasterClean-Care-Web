@@ -16,7 +16,7 @@ class EmergencyCallController extends Controller
      */
     public function index()
     {
-        return EmergencyCall::all();
+        return EmergencyCall::with(['userId']);
     }
 
     /**
@@ -46,7 +46,9 @@ class EmergencyCallController extends Controller
 
             $emergencyCall = EmergencyCall::create($data);
 
-            return response()->json([ 'data' => $emergencyCall, 
+            return response()->json([ 'data' => $emergencyCall->load([
+                                                    'userId'
+                                                ]), 
                                       'status' => 201]);
         }
         catch(Exception $e) {
@@ -63,7 +65,9 @@ class EmergencyCallController extends Controller
      */
     public function show(EmergencyCall $emergencyCall)
     {
-        return $emergencyCall;
+        return $emergencyCall->load([
+            'userId'
+        ]);
     }
 
     /**
@@ -104,7 +108,9 @@ class EmergencyCallController extends Controller
 
             $emergencyCall->save();
 
-            return response()->json([ 'data' => $emergencyCall, 
+            return response()->json([ 'data' => $emergencyCall->load([
+                                                    'userId'
+                                                ]), 
                                       'status' => 200]);
         }
         catch(Exception $e) {
@@ -144,5 +150,25 @@ class EmergencyCallController extends Controller
                 '%'.$text.'%')
             ->get()
             ->load('user');
+    }
+
+    /**
+     * Search the specified resource from storage by user ID & status.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\EmergencyCall  $emergencyCall
+     * @param  Text  $callerId
+     * @param  Text  $status
+     * @return \Illuminate\Http\Response
+     */
+    public function searchByUserStatus(Request $request, EmergencyCall $emergencyCall, $callerId, $status)
+    {
+        return $emergencyCall
+            ->where('user_id', $callerId)
+            ->where('status', $status)
+            ->get()
+            ->load([
+                'userId',
+            ]);
     }
 }
