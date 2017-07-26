@@ -22,7 +22,7 @@ class OrderContactsTableSeeder extends Seeder
             [
                 'order_id'=>2,
                 'phone'=>'081234567890',
-                'city'=>9,
+                'city'=>8,
                 'address'=>'Jl. Jalan-Jalan order',
                 'location'=>'',
             ],    
