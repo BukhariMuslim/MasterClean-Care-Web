@@ -21,7 +21,7 @@ class Logout extends Component {
     handleClose(confirmation) {
         this.setState({openModal: false});
         if (confirmation) {
-            this.props.onClick(this)
+            this.props.onClick()
         }
     }
 

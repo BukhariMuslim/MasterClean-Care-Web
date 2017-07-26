@@ -30,15 +30,13 @@ const mapDispatchToProps = (dispatch) => {
             function (response) {
                 dispatch(resetLoadingSpin())
                 let data = response
-                console.log(data)
                 if (data.status === 200) {
-                    dispatch(loginAuth(data.user))
-                }
-                else {
-                    dispatch(updateSnack({
-                        open: true,
-                        message: data.message
-                    }))
+                    if (data.data) {
+                        data = data.data
+                    }
+                    if (data.status != 403) {
+                        dispatch(loginAuth(data))
+                    }
                 }
             },
             function (error) {

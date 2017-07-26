@@ -13,9 +13,10 @@ import {
     resetLoadingSpin,
     updateSnack,
 } from '../actions/DefaultAction'
-import axios from 'axios'
+import ApiService from '../modules/ApiService'
 
 const mapStateToProps = (state) => {
+    console.log()
     return {
         user: state.UserLoginReducer
     }
@@ -23,33 +24,38 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        onLogout: (history, self) => {
+        onLogout: (history, parent) => {
             dispatch(updateLoadingSpin({
                 show: true,
             }))
             
-            axios.post('/api/logout')
-            .then(function (response) {
-                dispatch(resetLoadingSpin())
-                let data = response.data
-                if (data.status === 200) {
-                    dispatch(logoutUser())
-                    self.forceUpdate()
-                }
-                else {
-                    dispatch(updateSnack({
-                        open: true,
-                        message: data.message
-                    }))
-                }
-            })
-            .catch(function (error) {
-                dispatch(resetLoadingSpin())
-                dispatch(updateSnack({
-                    open: true,
-                    message: error
-                }))
-            })
+            ApiService.onLogout()
+            dispatch(logoutUser())
+            dispatch(resetLoadingSpin())
+            console.log('logout')
+            parent.setState({open:false})
+            // axios.post('/api/logout')
+            // .then(function (response) {
+            //     dispatch(resetLoadingSpin())
+            //     let data = response.data
+            //     if (data.status === 200) {
+            //         dispatch(logoutUser())
+            //         self.forceUpdate()
+            //     }
+            //     else {
+            //         dispatch(updateSnack({
+            //             open: true,
+            //             message: data.message
+            //         }))
+            //     }
+            // })
+            // .catch(function (error) {
+            //     dispatch(resetLoadingSpin())
+            //     dispatch(updateSnack({
+            //         open: true,
+            //         message: error
+            //     }))
+            // })
         }
     }
 }
@@ -57,8 +63,8 @@ const mapDispatchToProps = (dispatch) => {
 const LogoutContainer = withRouter(connect(
     mapStateToProps,
     mapDispatchToProps
-)(({ history, onLogout, user }) => (
-    <Logout onClick={(self) => onLogout(history, self)} />
+)(({ history, onLogout, user, parent }) => (
+    <Logout onClick={() => onLogout(history, parent)} />
 )))
 
 export default LogoutContainer

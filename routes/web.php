@@ -27,7 +27,7 @@ Route::get('/testing', function(\Illuminate\Http\Request $request){
 // ->middleware('auth')
 Route::get('/login', function () {
     return view('index');
-})->name('login')->middleware('guest');
+})->name('login')->middleware(['guest', 'api']);
 
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();

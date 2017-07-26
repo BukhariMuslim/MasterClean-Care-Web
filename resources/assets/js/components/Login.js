@@ -55,6 +55,10 @@ class Login extends Component {
         this.setState({ [name]: value })
     }
 
+    componentDidMount() {
+        this.props.getUserLogin()
+    }
+
     render () {
         return (
             <div>

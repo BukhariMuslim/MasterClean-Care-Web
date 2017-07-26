@@ -33,18 +33,14 @@ const mapDispatchToProps = (dispatch) => {
                 show: true,
             }))
 
-            ApiService.onPost(
-                '/api/check_login',
+            ApiService.onLogin(
                 {
                     email: data.email, 
                     password: data.password,
                 },
-                function(response) {
+                function(data) {
                     dispatch(resetLoadingSpin())
-                    let data = response
-                    console.log(response)
-                    if (data.status === 200) {
-                        // dispatch(loginAuth(data.user))
+                    if (data.access_token) {
                         history.push('/')
                     }
                     else {
@@ -70,6 +66,35 @@ const mapDispatchToProps = (dispatch) => {
                 
             // })
             // .catch()
+        },
+        getUserLogin: (history) => {
+            dispatch(updateLoadingSpin({
+                show: true,
+            }))
+            
+            // /api/user/me
+            ApiService.onGet('/api/user/me', 
+            '',
+            function (response) {
+                dispatch(resetLoadingSpin())
+                let data = response
+                if (data.status === 200) {
+                    if (data.data) {
+                        data = data.data
+                    }
+                    if (data.status != 403) {
+                        dispatch(loginAuth(data))
+                        history.push('/')
+                    }
+                }
+            },
+            function (error) {
+                dispatch(resetLoadingSpin())
+                dispatch(updateSnack({
+                    open: open,
+                    message: error
+                }))
+            })
         }
     }
 }
@@ -77,11 +102,12 @@ const mapDispatchToProps = (dispatch) => {
 const LoginContainer = withRouter(connect(
     mapStateToProps,
     mapDispatchToProps
-)(({ history, onUpdateSnack, onLogin, status }) => (
+)(({ history, onUpdateSnack, onLogin, status, getUserLogin }) => (
     <div className="container">
         <Login onLogin={ (data) => onLogin(data, history) }
-            onUpdateSnack={onUpdateSnack}
-            status={ status } />
+            onUpdateSnack={ onUpdateSnack }
+            status={ status } 
+            getUserLogin={ () => getUserLogin(history) } />
     </div>
 )))
 

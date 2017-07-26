@@ -53,7 +53,7 @@ class AppDrawer extends Component {
 
     componentWillMount() {
         if (!this.props.user) {
-            this.props.getUserLogin();
+            this.props.getUserLogin()
         }
     }
 
@@ -89,7 +89,7 @@ class AppDrawer extends Component {
                     <Divider />
                     {
                         isLoggedIn ?
-                            <LogoutContainer />
+                            <LogoutContainer parent={ this } onTouchTap={() => this.handleToggle() } />
                         :
                             null
                     }

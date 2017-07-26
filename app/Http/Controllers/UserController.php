@@ -287,6 +287,8 @@ class UserController extends Controller
                 $user->status = $data['status'];
             }
 
+            $user->save();
+            
             if (array_key_exists('contact', $data)) {
                 // Save Contact
                 $user->contact()->delete();
@@ -330,8 +332,6 @@ class UserController extends Controller
             }
 
             DB::commit();
-
-            $user->save();
 
             return response()->json(['user' => $user->load([
                 'user_additional_info',

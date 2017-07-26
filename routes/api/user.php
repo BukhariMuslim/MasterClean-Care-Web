@@ -10,11 +10,11 @@ use Illuminate\Http\Request;
 
 Route::post('/test_login', 'Auth\LoginController@authenticated');
 
-Route::post('/check_login', 'Auth\LoginController@authenticate');
+Route::post('/check_login', 'Auth\LoginController@doLogin');
 
 Route::post('/logout', 'UserController@logout')->middleware('web');
 
-Route::group(['prefix' => 'user', 'middleware' => ['api']], function () {
+Route::group(['prefix' => 'user'], function () {
     Route::get('/', 'UserController@index');
 
     Route::post('/', 'UserController@store');

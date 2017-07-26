@@ -1,4 +1,4 @@
-    import request from './request'
+import request from './request'
 
 const onGet = (url, id = '', onSuccess = {}, onFail = {}) => {
     if (id) {
@@ -43,12 +43,38 @@ const onPatch = (url, id, data, onSuccess = {}, onFail = {}) => {
     }, onSuccess, onFail)
 }
 
+const onLogin = (data, onSuccess, onFail) => {
+    return onPost(
+        '/api/check_login',
+        {
+            email: data.email,
+            password: data.password,
+        },
+        function(response) {
+            if(response.data.access_token) {
+                const data = response.data
+                let curDate = new Date()
+                curDate.setDate(curDate.getDate(), data.expiree_in)
+                document.cookie = 'laravel_token=' + data.access_token +"; expires=; path=/"
+            }
+            return onSuccess(response.data)
+        },
+        onFail
+    )
+}
+
+const onLogout = () => {
+    document.cookie = 'laravel_token=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+}
+
 const ApiService = {
     onGet, 
     onPost, 
     onPut, 
     onPatch, 
     onDelete,
+    onLogin,
+    onLogout,
 }
 
 export default ApiService

@@ -1,5 +1,11 @@
 import axios from 'axios'
 
+const getCookie = (name) => {
+    function escape(s) { return s.replace(/([.*+?\^${}()|\[\]\/\\])/g, '\\$1'); };
+    var match = document.cookie.match(RegExp('(?:^|;\\s*)' + escape(name) + '=([^;]*)'));
+    return match ? match[1] : null;
+}
+
 let token = document.head.querySelector('meta[name="_csrf"]')
 
 const client = axios.create()
@@ -9,6 +15,7 @@ const request = function(options, onSuccess, onFail) {
   client.defaults.headers.common['Accept'] = 'application/json'
   client.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest'
   client.defaults.headers.common['X-CSRF-Token'] = token.content
+  client.defaults.headers.common['Authorization'] = 'Bearer ' + getCookie('laravel_token')
 
   const onDefaultSuccess = (response) => {
     if (onSuccess) {

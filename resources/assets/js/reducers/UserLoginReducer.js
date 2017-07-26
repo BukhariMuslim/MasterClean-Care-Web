@@ -6,7 +6,7 @@ const UserLoginReducer = (state = '', action) => {
             const user = action.data;
             return Object.assign({}, state, { user })
         case LOGOUT:
-            return Object.assign({}, state, null)
+            return ''
         default:
             return state
     }

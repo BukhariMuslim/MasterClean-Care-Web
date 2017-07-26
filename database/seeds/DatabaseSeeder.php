@@ -42,7 +42,5 @@ class DatabaseSeeder extends Seeder
         $this->call(WalletTransactionsTableSeeder::class);
         $this->call(MessageTableSeeder::class);
         $this->call(EmergencyCallsSeeder::class);
-        
-        
     }
 }
