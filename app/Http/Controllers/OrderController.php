@@ -18,11 +18,12 @@ class OrderController extends Controller
     public function index()
     {
         return Order::with([
-            'member',
-            'art',
-            'work_time',
-            'review_order',
-            'contact'
+            'memberId',
+            'artId',
+            'workTimeId',
+            'reviewOrder',
+            'contact',
+            'orderTaskList'
         ])->get();
     }
 
@@ -61,7 +62,14 @@ class OrderController extends Controller
 
             DB::commit();
 
-            return response()->json([ 'data' => $order, 
+            return response()->json([ 'data' => $order->load([
+                                                'memberId',
+                                                'artId',
+                                                'workTimeId',
+                                                'reviewOrder',
+                                                'contact',
+                                                'orderTaskList'
+                                            ]), 
                                       'status' => 201]);
         }
         catch(Exception $e) {
@@ -81,11 +89,12 @@ class OrderController extends Controller
     public function show(Order $order)
     {
         return $order->load([
-            'member',
-            'art',
-            'work_time',
-            'review_order',
-            'contact'
+            'memberId',
+            'artId',
+            'workTimeId',
+            'reviewOrder',
+            'contact',
+            'orderTaskList'
         ]);
     }
 
@@ -156,7 +165,14 @@ class OrderController extends Controller
 
             DB::commit();
 
-            return response()->json([ 'data' => $order, 
+            return response()->json([ 'data' => $order->load([
+                                            'memberId',
+                                            'artId',
+                                            'workTimeId',
+                                            'reviewOrder',
+                                            'contact',
+                                            'orderTaskList'
+                                        ]), 
                                       'status' => 200]);
         }
         catch(Exception $e) {
@@ -213,10 +229,10 @@ class OrderController extends Controller
             ->where('member_id', $member)
             ->get()
             ->load([
-                'member',
-                'art',
-                'work_time',
-                'review_order',
+                'memberId',
+                'artId',
+                'workTimeId',
+                'reviewOrder',
                 'contact'
             ]);
     }
@@ -235,11 +251,12 @@ class OrderController extends Controller
             ->where('art_id', $art)
             ->get()
             ->load([
-                'member',
-                'art',
-                'work_time',
-                'review_order',
-                'contact'
+                'memberId',
+                'artId',
+                'workTimeId',
+                'reviewOrder',
+                'contact',
+                'orderTaskList'
             ]);
     }
 }

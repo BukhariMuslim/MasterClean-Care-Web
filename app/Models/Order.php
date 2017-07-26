@@ -92,4 +92,12 @@ class Order extends Model
     {
         return $this->hasOne(OrderContact::class);
     }
+
+    /**
+     * Get the orderTaskList record associated with the additionalInfo.
+     */
+    public function orderTaskList()
+    {
+        return $this->hasMany(OrderTaskList::class);
+    }
 }
