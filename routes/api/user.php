@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 
 Route::post('/test_login', 'Auth\LoginController@authenticated');
 
-Route::post('/check_login', 'UserController@login')->middleware('web');
+Route::post('/check_login', 'Auth\LoginController@authenticate');
 
 Route::post('/logout', 'UserController@logout')->middleware('web');
 

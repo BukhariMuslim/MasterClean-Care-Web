@@ -7338,9 +7338,10 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
                 password: data.password
             }, function (response) {
                 dispatch((0, _DefaultAction.resetLoadingSpin)());
-                var data = response.data;
+                var data = response;
+                console.log(response);
                 if (data.status === 200) {
-                    dispatch((0, _DefaultAction.loginAuth)(data.user));
+                    // dispatch(loginAuth(data.user))
                     history.push('/');
                 } else {
                     dispatch((0, _DefaultAction.updateSnack)({
@@ -14085,9 +14086,10 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
             }));
 
             // /api/user/me
-            _ApiService2.default.get('/api/user/me', function (response) {
+            _ApiService2.default.onGet('/api/user/me', '', function (response) {
                 dispatch((0, _DefaultAction.resetLoadingSpin)());
-                var data = response.data;
+                var data = response;
+                console.log(data);
                 if (data.status === 200) {
                     dispatch((0, _DefaultAction.loginAuth)(data.user));
                 } else {
@@ -27033,35 +27035,46 @@ var _axios2 = _interopRequireDefault(_axios);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var client = _axios2.default.create();
-
 var token = document.head.querySelector('meta[name="_csrf"]');
 
-var request = function request(options, onSuccess, onFail) {
-  client.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
-  client.defaults.headers.common['X-CSRF-TOKEN'] = token.content;
+var client = _axios2.default.create();
 
-  var onDefaultSuccess = onSuccess ? onSuccess : function (response) {
-    console.debug('Request Successful!', response);
-    return response.data;
+var request = function request(options, onSuccess, onFail) {
+  client.defaults.baseURL = window.location.origin;
+  client.defaults.headers.common['Accept'] = 'application/json';
+  client.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+  client.defaults.headers.common['X-CSRF-Token'] = token.content;
+
+  var onDefaultSuccess = function onDefaultSuccess(response) {
+    if (onSuccess) {
+      onSuccess(response);
+    } else {
+      console.log('Request Successful!', response);
+      return response.data;
+    }
   };
 
-  var onDefaultError = onFail ? onFail : function (error) {
-    console.error('Request Failed:', error.config);
-
-    if (error.response) {
-      // Request was made but server responded with something
-      // other than 2xx
-      console.error('Status:', error.response.status);
-      console.error('Data:', error.response.data);
-      console.error('Headers:', error.response.headers);
+  var onDefaultError = function onDefaultError(error) {
+    if (onFail) {
+      console.log(error);
+      onFail(error);
     } else {
-      // Something else happened while setting up the request
-      // triggered the error
-      console.error('Error Message:', error.message);
-    }
+      console.log('Request Failed:', error.config);
 
-    return Promise.reject(error.response || error.message);
+      if (error.response) {
+        // Request was made but server responded with something
+        // other than 2xx
+        console.log('Status:', error.response.status);
+        console.log('Data:', error.response.data);
+        console.log('Headers:', error.response.headers);
+      } else {
+        // Something else happened while setting up the request
+        // triggered the error
+        console.log('Error Message:', error.message);
+      }
+
+      return Promise.reject(error.response || error.message);
+    }
   };
 
   return client(options).then(onDefaultSuccess).catch(onDefaultError);

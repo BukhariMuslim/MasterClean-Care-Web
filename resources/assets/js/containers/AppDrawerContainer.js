@@ -25,9 +25,12 @@ const mapDispatchToProps = (dispatch) => {
             }))
             
             // /api/user/me
-            ApiService.get('/api/user/me', function (response) {
+            ApiService.onGet('/api/user/me', 
+            '',
+            function (response) {
                 dispatch(resetLoadingSpin())
-                let data = response.data
+                let data = response
+                console.log(data)
                 if (data.status === 200) {
                     dispatch(loginAuth(data.user))
                 }

@@ -1,45 +1,56 @@
 import axios from 'axios'
 
+let token = document.head.querySelector('meta[name="_csrf"]')
+
 const client = axios.create()
 
-let token = document.head.querySelector('meta[name="_csrf"]');
-
 const request = function(options, onSuccess, onFail) {
-  client.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
-  client.defaults.headers.common['X-CSRF-TOKEN'] = token.content; 
+  client.defaults.baseURL = window.location.origin
+  client.defaults.headers.common['Accept'] = 'application/json'
+  client.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest'
+  client.defaults.headers.common['X-CSRF-Token'] = token.content
 
-  const onDefaultSuccess = onSuccess ? onSuccess
-    : function (response) {
-      console.debug('Request Successful!', response);
-      return response.data;
+  const onDefaultSuccess = (response) => {
+    if (onSuccess) {
+      onSuccess(response)
     }
-
-  const onDefaultError = onFail ? onFail
-    : function(error) {
-    console.error('Request Failed:', error.config);
-
-    if (error.response) {
-      // Request was made but server responded with something
-      // other than 2xx
-      console.error('Status:',  error.response.status);
-      console.error('Data:',    error.response.data);
-      console.error('Headers:', error.response.headers);
-
-    } else {
-      // Something else happened while setting up the request
-      // triggered the error
-      console.error('Error Message:', error.message);
+    else {
+      console.log('Request Successful!', response)
+      return response.data
     }
+  }
 
-    return Promise.reject(error.response || error.message);
+  const onDefaultError = (error) => {
+    if (onFail) {
+      console.log(error)
+      onFail(error)
+    }
+    else {
+      console.log('Request Failed:', error.config)
+
+      if (error.response) {
+        // Request was made but server responded with something
+        // other than 2xx
+        console.log('Status:',  error.response.status)
+        console.log('Data:',    error.response.data)
+        console.log('Headers:', error.response.headers)
+
+      } else {
+        // Something else happened while setting up the request
+        // triggered the error
+        console.log('Error Message:', error.message)
+      }
+
+      return Promise.reject(error.response || error.message)
+    }
   }
 
   return client(options)
             .then(onDefaultSuccess)
-            .catch(onDefaultError);
+            .catch(onDefaultError)
 }
 
-export default request;
+export default request
 
 // export default class ApiService {
 //     constructor () {

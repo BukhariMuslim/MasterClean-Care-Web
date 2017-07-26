@@ -46,7 +46,7 @@ class LoginController extends Controller
      * @param  mixed  $user
      * @return mixed
      */
-    protected function authenticated(Request $request)
+    protected function authenticate(Request $request)
     {
         $email = $request->input('email');
         $password = $request->input('password');
