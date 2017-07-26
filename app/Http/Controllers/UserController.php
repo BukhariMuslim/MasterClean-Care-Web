@@ -16,6 +16,7 @@ use Exception;
 use DB;
 use App\Helper\Operators;
 use Auth;
+use Route;
 
 class UserController extends Controller
 {
@@ -79,7 +80,6 @@ class UserController extends Controller
      */
     public function getCurrent(Request $request)
     {
-        dd($request->user());
         $user = $request->user();
         $user->load([
             'user_additional_info',
@@ -185,30 +185,6 @@ class UserController extends Controller
             
             return response()->json([ 'message' => $e->getMessage(), 
                                       'status' => 400 ]);
-        }
-    }
-
-    /**
-     * Login user for authentication.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function login(Request $request)
-    {
-        $data = $request->all();
-        
-        $email = $data['email'];
-        $password = $data['password'];
-        if (Auth::attempt([ 'email' => $email, 'password' => $password])) {
-            return response()->json([
-                'user' => Auth::User(), 
-                'status' => 200]);
-        }
-        else {
-            return response()->json([
-                'message' => 'Your email and password combination not correct.', 
-                'status' => 400]);
         }
     }
 
