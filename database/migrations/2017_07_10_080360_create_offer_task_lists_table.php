@@ -24,7 +24,7 @@ class CreateOfferTaskListsTable extends Migration
                   ->references('id')->on('offers')
                   ->onDelete('cascade');
             $table->foreign('task_list_id')
-                  ->references('id')->on('task_list')
+                  ->references('id')->on('task_lists')
                   ->onDelete('cascade');
         });
     }
