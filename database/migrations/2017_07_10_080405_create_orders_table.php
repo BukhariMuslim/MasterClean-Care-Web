@@ -22,7 +22,7 @@ class CreateOrdersTable extends Migration
             $table->dateTime('start_date');
             $table->dateTime('end_date');
             $table->string('remark', 200)->nullable();
-            $table->integer('status');
+            $table->tinyInteger('status')->comment('0: pending, 1: selesai, 2: batal/tolak ');
             $table->timestamps();
 
             $table->foreign('member_id')

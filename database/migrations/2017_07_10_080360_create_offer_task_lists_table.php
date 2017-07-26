@@ -17,7 +17,7 @@ class CreateOfferTaskListsTable extends Migration
             $table->increments('id');
             $table->integer('offer_id')->unsigned();
             $table->integer('task_list_id')->unsigned();
-            $table->integer('status');
+            $table->tinyInteger('status')->comment('0: pending, 1: selesai, 2: batal/tolak ');
             $table->timestamps();
 
             $table->foreign('offer_id')

@@ -10,8 +10,6 @@ class User extends Authenticatable
 {
     use HasApiTokens, Notifiable;
 
-    protected $primaryKey = 'id';
-
     /**
      * The attributes that are mass assignable.
      *
@@ -54,7 +52,7 @@ class User extends Authenticatable
      */
     public function contact()
     {
-        return $this->hasMany(UserContact::class);
+        return $this->hasOne(UserContact::class);
     }
 
     /**
@@ -62,7 +60,7 @@ class User extends Authenticatable
      */
     public function user_wallet()
     {
-        return $this->hasMany(UserWallet::class);
+        return $this->hasOne(UserWallet::class);
     }
 
     /**

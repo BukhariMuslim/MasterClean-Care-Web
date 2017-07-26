@@ -14,7 +14,7 @@ Route::post('/check_login', 'UserController@login')->middleware('web');
 
 Route::post('/logout', 'UserController@logout')->middleware('web');
 
-Route::group(['prefix' => 'user', 'middleware' => ['auth:api', 'web']], function () {
+Route::group(['prefix' => 'user', 'middleware' => ['api']], function () {
     Route::get('/', 'UserController@index');
 
     Route::post('/', 'UserController@store');

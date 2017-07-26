@@ -14,7 +14,6 @@ class OfferContact extends Model
     protected $fillable = [
         'offer_id',
         'phone',
-        'province',
         'city',
         'address',
         'location',
@@ -33,14 +32,6 @@ class OfferContact extends Model
     public function offer()
     {
         return $this->belongsTo(Offer::class);
-    }
-
-    /**
-     * Get the province record associated with the offer.
-     */
-    public function province()
-    {
-        return $this->belongsTo(Places::class, 'province');
     }
 
     /**

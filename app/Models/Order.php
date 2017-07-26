@@ -82,7 +82,7 @@ class Order extends Model
      */
     public function reviewOrder()
     {
-        return $this->hasMany(ReviewOrder::class);
+        return $this->hasOne(ReviewOrder::class);
     }
 
     /**
@@ -90,6 +90,6 @@ class Order extends Model
      */
     public function contact()
     {
-        return $this->hasMany(OrderContact::class);
+        return $this->hasOne(OrderContact::class);
     }
 }

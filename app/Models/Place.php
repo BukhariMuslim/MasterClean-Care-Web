@@ -21,20 +21,4 @@ class Place extends Model
      * @var array
      */
     protected $hidden = [ ];
-
-    /**
-     * Get the parent record associated with the places.
-     */
-    public function parent()
-    {
-        return $this->belongsTo(self::class, 'parent');
-    }
-
-    /**
-     * Get the parent record associated with the places.
-     */
-    public function parentList()
-    {
-        return Place::all();
-    }
 }

@@ -17,7 +17,7 @@ class CreateOrderTaskListsTable extends Migration
             $table->increments('id');
             $table->integer('order_id')->unsigned();
             $table->integer('task_list_id')->unsigned();
-            $table->integer('status');
+            $table->tinyInteger('status')->comment('0: pending, 1: selesai');
             $table->timestamps();
 
             $table->foreign('order_id')

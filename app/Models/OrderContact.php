@@ -14,7 +14,6 @@ class OrderContact extends Model
     protected $fillable = [
         'order_id',
         'phone',
-        'province',
         'city',
         'address',
         'location',
@@ -33,14 +32,6 @@ class OrderContact extends Model
     public function order()
     {
         return $this->belongsTo(Order::class);
-    }
-
-    /**
-     * Get the province record associated with the order.
-     */
-    public function province()
-    {
-        return $this->belongsTo(Places::class, 'province');
     }
 
     /**

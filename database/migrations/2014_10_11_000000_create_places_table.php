@@ -16,14 +16,7 @@ class CreatePlacesTable extends Migration
         Schema::create('places', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->integer('parent')->unsigned()->nullable()->default(NULL);
             $table->timestamps();
-
-            $table->foreign('parent')
-                  ->references('id')
-                  ->on('places')
-                  ->onUpdate('cascade')
-                  ->onDelete('set null');
         });
     }
 

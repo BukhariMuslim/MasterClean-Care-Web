@@ -27,7 +27,7 @@ class CreateUsersTable extends Migration
             $table->string('description', 500)->nullable();
             $table->string('profile_img_name')->nullable();
             $table->string('profile_img_path')->nullable();
-            $table->tinyInteger('status');
+            $table->tinyInteger('status')->comment('0: inactive, 1: active ');
             $table->rememberToken();
             $table->timestamps();
         });

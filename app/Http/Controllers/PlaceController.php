@@ -96,9 +96,6 @@ class PlaceController extends Controller
             if (array_key_exists('name', $data)) {
                 $place->name = $data['name'];
             }
-            if (array_key_exists('parent', $data)) {
-                $place->parent = $data['parent'];
-            }
 
             $place->save();
 

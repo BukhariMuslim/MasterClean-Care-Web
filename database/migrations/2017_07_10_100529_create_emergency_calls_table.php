@@ -17,7 +17,7 @@ class CreateEmergencyCallsTable extends Migration
             $table->increments('id');
             $table->integer('user_id')->unsigned();
             $table->dateTime('init_time');
-            $table->integer('status');
+            $table->tinyInteger('status')->comment('0: inactive, 1: active');
             $table->timestamps();
 
             $table->foreign('user_id')

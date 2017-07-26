@@ -14,7 +14,6 @@ class UserContact extends Model
     protected $fillable = [
         'user_id',
         'phone',
-        'province',
         'city',
         'address',
         'location',
@@ -33,14 +32,6 @@ class UserContact extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
-    }
-
-    /**
-     * Get the province record associated with the user.
-     */
-    public function province()
-    {
-        return $this->belongsTo(Places::class, 'province');
     }
 
     /**

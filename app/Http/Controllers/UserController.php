@@ -139,7 +139,7 @@ class UserController extends Controller
             $user = User::create($data);
             
             // Save Contact
-            $user->contact()->createMany($data['contact']);
+            $user->contact()->create($data['contact']);
 
             if ($user->user_type == 1) {
                 // Initial Wallet
@@ -284,21 +284,6 @@ class UserController extends Controller
             if (array_key_exists('born_date', $data)) {
                 $user->born_date = $data['born_date'];
             }
-            // if (array_key_exists('phone', $data)) {
-            //     $user->phone = $data['phone'];
-            // }
-            // if (array_key_exists('province', $data)) {
-            //     $user->city = $data['province'];
-            // }
-            // if (array_key_exists('city', $data)) {
-            //     $user->city = $data['city'];
-            // }
-            // if (array_key_exists('address', $data)) {
-            //     $user->address = $data['address'];
-            // }
-            // if (array_key_exists('location', $data)) {
-            //     $user->location = $data['location'];
-            // }
             if (array_key_exists('religion', $data)) {
                 $user->religion = $data['religion'];
             }

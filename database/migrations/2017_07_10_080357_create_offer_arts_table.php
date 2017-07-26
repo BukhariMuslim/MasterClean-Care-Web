@@ -17,7 +17,7 @@ class CreateOfferArtsTable extends Migration
             $table->increments('id');
             $table->integer('offer_id')->unsigned();
             $table->integer('art_id')->unsigned();
-            $table->integer('status');
+            $table->tinyInteger('status')->comment('0: pending, 1: success, 2: batal ');
             $table->timestamps();
 
             $table->foreign('offer_id')

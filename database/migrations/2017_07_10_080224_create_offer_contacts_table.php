@@ -17,7 +17,6 @@ class CreateOfferContactsTable extends Migration
             $table->increments('id');
             $table->integer('offer_id')->unsigned();
             $table->string('phone');
-            $table->integer('province')->unsigned();
             $table->integer('city')->unsigned();
             $table->string('address')->nullable();
             $table->string('location')->nullable();
@@ -26,8 +25,6 @@ class CreateOfferContactsTable extends Migration
             $table->foreign('offer_id')
                   ->references('id')->on('offers')
                   ->onDelete('cascade');
-            $table->foreign('province')
-                  ->references('id')->on('places');
             $table->foreign('city')
                   ->references('id')->on('places');
         });

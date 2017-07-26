@@ -81,6 +81,6 @@ class Offer extends Model
      */
     public function contact()
     {
-        return $this->hasMany(OfferContact::class);
+        return $this->hasOne(OfferContact::class);
     }
 }

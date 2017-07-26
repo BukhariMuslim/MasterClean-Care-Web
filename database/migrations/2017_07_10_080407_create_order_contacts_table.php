@@ -17,7 +17,6 @@ class CreateOrderContactsTable extends Migration
             $table->increments('id');
             $table->integer('order_id')->unsigned();
             $table->string('phone');
-            $table->integer('province')->unsigned();
             $table->integer('city')->unsigned();
             $table->string('address')->nullable();
             $table->string('location')->nullable();
@@ -26,8 +25,6 @@ class CreateOrderContactsTable extends Migration
             $table->foreign('order_id')
                   ->references('id')->on('orders')
                   ->onDelete('cascade');
-            $table->foreign('province')
-                  ->references('id')->on('places');
             $table->foreign('city')
                   ->references('id')->on('places');
         });
