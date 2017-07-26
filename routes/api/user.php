@@ -19,9 +19,7 @@ Route::group(['prefix' => 'user', 'middleware' => ['api']], function () {
 
     Route::post('/', 'UserController@store');
     
-    Route::get('/me', function(\Illuminate\Http\Request $request) {
-        return $request->user();
-    });
+    Route::get('/me', 'UserController@getCurrent');
 
     Route::get('/{user_id}', 'UserController@show')->where('user_id', '[0-9]+');
 
