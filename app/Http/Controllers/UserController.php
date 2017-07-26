@@ -330,17 +330,10 @@ class UserController extends Controller
             }
 
             DB::commit();
-        }
-        catch (Exception $e) {
-            DB::rollBack();
 
-            return response()->json([ 'message' => $e->getMessage(), 
-                                      'status' => 400 ]);
-        }
+            $user->save();
 
-        $user->save();
-
-        return response()->json(['user' => $user->load([
+            return response()->json(['user' => $user->load([
                 'user_additional_info',
                 'user_document',
                 'user_language',
@@ -349,6 +342,13 @@ class UserController extends Controller
                 'user_work_time',
                 'contact'
             ]), 'status' => 200]);
+        }
+        catch (Exception $e) {
+            DB::rollBack();
+
+            return response()->json([ 'message' => $e->getMessage(), 
+                                      'status' => 400 ]);
+        }
     }
 
     /**
