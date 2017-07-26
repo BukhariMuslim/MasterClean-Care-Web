@@ -18,11 +18,12 @@ class OfferController extends Controller
     public function index()
     {
         return Offer::with([
-            'member',
-            'art',
-            'work_time',
+            'memberId',
+            'artId',
+            'workTimeId',
             'contact',
-            'offer_art'
+            'offer_art',
+            'offerTaskList',
         ])->get();
     }
 
@@ -61,7 +62,14 @@ class OfferController extends Controller
 
             DB::commit();
 
-            return response()->json([ 'data' => $offer, 
+            return response()->json([ 'data' => $offer->load([
+                                                'memberId',
+                                                'artId',
+                                                'workTimeId',
+                                                'contact',
+                                                'offer_art',
+                                                'offerTaskList',
+                                            ]), 
                                       'status' => 201]);
         }
         catch(Exception $e) {
@@ -81,11 +89,12 @@ class OfferController extends Controller
     public function show(Offer $offer)
     {
         return $offer->load([
-            'member',
-            'art',
-            'work_time',
+            'memberId',
+            'artId',
+            'workTimeId',
             'contact',
-            'offer_art'
+            'offer_art',
+            'offerTaskList',
         ]);
     }
 
@@ -153,7 +162,14 @@ class OfferController extends Controller
 
             DB::commit();
 
-            return response()->json([ 'data' => $offer, 
+            return response()->json([ 'data' => $offer->load([
+                                                    'memberId',
+                                                    'artId',
+                                                    'workTimeId',
+                                                    'contact',
+                                                    'offer_art',
+                                                    'offerTaskList',
+                                                ]), 
                                       'status' => 200]);
         }
         catch(Exception $e) {
@@ -209,11 +225,12 @@ class OfferController extends Controller
         return $order
             ->where('member_id', $member)
             ->load([
-                'member',
-                'art',
-                'work_time',
+                'memberId',
+                'artId',
+                'workTimeId',
                 'contact',
                 'offer_art',
+                'offerTaskList',
             ])
             ->get();
     }

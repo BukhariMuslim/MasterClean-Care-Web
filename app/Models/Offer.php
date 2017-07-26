@@ -61,9 +61,9 @@ class Offer extends Model
     }
 
     /**
-     * Get the offer_task_list record associated with the additionalInfo.
+     * Get the offerTaskList record associated with the additionalInfo.
      */
-    public function offer_task_list()
+    public function offerTaskList()
     {
         return $this->hasMany(OfferTaskList::class);
     }
