@@ -21,7 +21,8 @@ class MessageTableSeeder extends Seeder
             
                 'message' => 'Lorem Ipsum is simply dummy text',
 
-                'status' => 1
+                'status' => 1,
+                'created_at' => Carbon::create('2017', '07', '19', '09', '0', '0')
             ],
             [
                 'sender_id' => 2,
@@ -32,7 +33,8 @@ class MessageTableSeeder extends Seeder
                 
                 'message' => 'Lorem Ipsum is simply dummy text',
 
-                'status' => 0              
+                'status' => 0,
+                'created_at' => Carbon::create('2017', '07', '19', '09', '0', '0')
             ],
         ]);
     }

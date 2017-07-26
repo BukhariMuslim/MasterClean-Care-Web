@@ -35,7 +35,7 @@ class DatabaseSeeder extends Seeder
         $this->call(OfferContactsTableSeeder::class);
         $this->call(OfferArtsTableSeeder::class);
         $this->call(ReviewOrdersTableSeeder::class);
-        
+
         $this->call(ArticlesTableSeeder::class);
         $this->call(CommentsTableSeeder::class);
         $this->call(PasswordResetsTableSeeder::class);
