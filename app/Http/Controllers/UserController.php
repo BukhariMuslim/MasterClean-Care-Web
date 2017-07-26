@@ -80,7 +80,7 @@ class UserController extends Controller
      */
     public function getCurrent(Request $request)
     {
-        if (Auth::guard('api')->ceck()) {
+        if (Auth::guard('api')->check()) {
             $user = Auth::guard('api')->user();
             $user->load([
                 'user_additional_info',
