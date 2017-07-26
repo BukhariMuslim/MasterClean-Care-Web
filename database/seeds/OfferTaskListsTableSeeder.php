@@ -14,22 +14,22 @@ class OfferTaskListsTableSeeder extends Seeder
         DB::table('offer_task_lists')->insert([
         	[
 	        	'offer_id' => 1,
-	            'task' => 'Mencuci',
+				'task_list_id' => 1,
 	            'status' => 1,
 	        ],
 			[
 	        	'offer_id' => 1,
-	            'task' => 'Mengepel',
+	            'task_list_id' => 2,
 	            'status' => 1,
 	        ],
 	        [
 	        	'offer_id' => 2,
-	            'task' => 'Menjaga Anak',
+	            'task_list_id' => 10,
 	            'status' => 1,
 	        ],
 	        [
 	        	'offer_id' => 3,
-	            'task' => 'Mengepel',
+	            'task' => 1,
 	            'status' => 1,
 	        ],
        ]);
