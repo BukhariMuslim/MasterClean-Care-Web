@@ -16,7 +16,10 @@ class TaskListController extends Controller
      */
     public function index()
     {
-        return TaskList::all();
+        $taskList = TaskList::with(
+            'jobId'
+        )->get();
+        return $taskList;
     }
 
     /**
@@ -63,6 +66,9 @@ class TaskListController extends Controller
      */
     public function show(TaskList $taskList)
     {
+        $taskList->load([
+            'jobId'
+        ]);
         return $taskList;
     }
 
