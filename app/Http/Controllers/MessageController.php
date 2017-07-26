@@ -17,8 +17,8 @@ class MessageController extends Controller
     public function index()
     {
         return Message::with([
-            'sender',
-            'receiver'
+            'senderId',
+            'receiverId'
         ])->get();
     }
 
@@ -67,8 +67,8 @@ class MessageController extends Controller
     public function show(Message $message)
     {
         return $message->load([
-            'sender',
-            'receiver'
+            'senderId',
+            'receiverId'
         ]);
     }
 
@@ -115,6 +115,11 @@ class MessageController extends Controller
             }
 
             $message->save();
+
+            $message->load([
+                'senderId',
+                'receiverId'
+            ]);
 
             return response()->json([ 'data' => $message, 
                                       'status' => 200]);
@@ -171,8 +176,8 @@ class MessageController extends Controller
             ->where('sender_id', $user)
             ->orWhere('receiver_id', $user)->get()
             ->load([
-                'sender',
-                'receiver'
+                'senderId',
+                'receiverId'
             ]);
     }
     
@@ -190,8 +195,8 @@ class MessageController extends Controller
             ->where('sender_id', $sender)
             ->get()
             ->load([
-                'sender',
-                'receiver'
+                'senderId',
+                'receiverId'
             ]);
     }
 
@@ -209,8 +214,8 @@ class MessageController extends Controller
             ->where('receiver_id', $receiver)
             ->get()
             ->load([
-                'sender',
-                'receiver'
+                'senderId',
+                'receiverId'
             ]);
     }
 
@@ -230,8 +235,8 @@ class MessageController extends Controller
             ->where('receiver_id', $receiver)
             ->get()
             ->load([
-                'sender',
-                'receiver'
+                'senderId',
+                'receiverId'
             ]);
     }
 }
