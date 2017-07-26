@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jul 24, 2017 at 12:12 PM
--- Server version: 10.1.22-MariaDB
--- PHP Version: 7.1.4
+-- Generation Time: Jul 25, 2017 at 08:14 PM
+-- Server version: 10.1.25-MariaDB
+-- PHP Version: 7.1.7
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -26,7 +26,7 @@ SET time_zone = "+00:00";
 -- Dumping data for table `data_rows`
 --
 
-INSERT INTO `data_rows` (`id`, `data_type_id`, `field`, `type`, `display_name`, `required`, `browse`, `read`, `edit`, `add`, `delete`, `details`, `order`) VALUES
+REPLACE INTO `data_rows` (`id`, `data_type_id`, `field`, `type`, `display_name`, `required`, `browse`, `read`, `edit`, `add`, `delete`, `details`, `order`) VALUES
 (1, 1, 'id', 'number', 'ID', 1, 0, 0, 0, 0, 0, '', 1),
 (2, 1, 'author_id', 'text', 'Author', 1, 0, 1, 1, 0, 1, '', 2),
 (3, 1, 'category_id', 'text', 'Category', 1, 0, 1, 1, 1, 0, '', 3),
@@ -84,7 +84,7 @@ INSERT INTO `data_rows` (`id`, `data_type_id`, `field`, `type`, `display_name`, 
 (55, 7, 'created_at', 'timestamp', 'Created At', 0, 1, 1, 0, 0, 1, NULL, 3),
 (56, 7, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, NULL, 4),
 (57, 8, 'id', 'checkbox', 'Id', 1, 0, 0, 0, 0, 0, NULL, 1),
-(58, 8, 'user_id', 'select_multiple', 'User', 1, 1, 1, 1, 1, 1, '{\"relationship\":{\"key\":\"id\",\"label\":\"name\",\"page_slug\":\"admin/users\"}}', 2),
+(58, 8, 'user_id', 'select_dropdown', 'User', 1, 1, 1, 1, 1, 1, '{\"relationship\":{\"key\":\"id\",\"label\":\"name\",\"page_slug\":\"admin/users\"}}', 2),
 (59, 8, 'title', 'text', 'Title', 1, 1, 1, 1, 1, 1, NULL, 3),
 (60, 8, 'tag', 'text', 'Tag', 0, 1, 1, 1, 1, 1, NULL, 4),
 (61, 8, 'published_date', 'date', 'Published Date', 1, 1, 1, 1, 1, 1, NULL, 5),
@@ -111,7 +111,7 @@ INSERT INTO `data_rows` (`id`, `data_type_id`, `field`, `type`, `display_name`, 
 (82, 12, 'created_at', 'timestamp', 'Created At', 0, 1, 1, 0, 0, 1, NULL, 4),
 (83, 12, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, NULL, 5),
 (84, 13, 'id', 'checkbox', 'Id', 1, 0, 0, 0, 0, 0, NULL, 0),
-(85, 13, 'order_id', 'select_dropdown', 'Order', 1, 1, 1, 0, 0, 1, '{\"relationship\":{\"key\":\"id\",\"page_slug\":\"admin/orders\"}}', 2),
+(85, 13, 'order_id', 'select_dropdown', 'Order', 1, 0, 1, 0, 0, 1, '{\"relationship\":{\"key\":\"id\"}}', 2),
 (86, 13, 'rate', 'radio_btn', 'Rate', 1, 1, 1, 0, 0, 1, NULL, 3),
 (87, 13, 'remark', 'text_area', 'Remark', 1, 1, 1, 0, 0, 1, NULL, 4),
 (88, 13, 'created_at', 'timestamp', 'Created At', 0, 1, 1, 0, 0, 1, NULL, 5),
@@ -129,7 +129,7 @@ INSERT INTO `data_rows` (`id`, `data_type_id`, `field`, `type`, `display_name`, 
 (100, 14, 'id', 'checkbox', 'Id', 1, 0, 0, 0, 0, 0, NULL, 1),
 (101, 14, 'user_id', 'select_dropdown', 'User', 1, 1, 1, 1, 1, 1, '{\"relationship\":{\"key\":\"id\",\"label\":\"name\",\"page_slug\":\"admin/users\"}}', 2),
 (102, 14, 'amount', 'number', 'Amount', 1, 1, 1, 1, 1, 1, NULL, 3),
-(103, 14, 'trc_type', 'select_dropdown', 'Transaction Type', 1, 1, 1, 1, 1, 1, NULL, 4),
+(103, 14, 'trc_type', 'select_dropdown', 'Transaction Type', 1, 1, 1, 1, 1, 1, '{\"default\":\"0\",\"options\":{\"0\":\"Debet\",\"1\":\"Credit\"}}', 4),
 (104, 14, 'trc_time', 'timestamp', 'Transaction Time', 1, 1, 1, 1, 1, 1, NULL, 5),
 (105, 14, 'created_at', 'timestamp', 'Created At', 0, 1, 1, 0, 0, 1, NULL, 6),
 (106, 14, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, NULL, 7),
@@ -147,7 +147,7 @@ INSERT INTO `data_rows` (`id`, `data_type_id`, `field`, `type`, `display_name`, 
 -- Dumping data for table `data_types`
 --
 
-INSERT INTO `data_types` (`id`, `name`, `slug`, `display_name_singular`, `display_name_plural`, `icon`, `model_name`, `controller`, `description`, `generate_permissions`, `server_side`, `created_at`, `updated_at`) VALUES
+REPLACE INTO `data_types` (`id`, `name`, `slug`, `display_name_singular`, `display_name_plural`, `icon`, `model_name`, `controller`, `description`, `generate_permissions`, `server_side`, `created_at`, `updated_at`) VALUES
 (1, 'posts', 'posts', 'Post', 'Posts', 'voyager-news', 'TCG\\Voyager\\Models\\Post', '', '', 1, 0, '2017-07-23 20:31:00', '2017-07-23 20:31:00'),
 (2, 'pages', 'pages', 'Page', 'Pages', 'voyager-file-text', 'TCG\\Voyager\\Models\\Page', '', '', 1, 0, '2017-07-23 20:31:01', '2017-07-23 20:31:01'),
 (3, 'users', 'users', 'User', 'Users', 'voyager-person', 'TCG\\Voyager\\Models\\User', NULL, NULL, 1, 0, '2017-07-23 20:31:01', '2017-07-23 20:49:26'),
@@ -169,14 +169,14 @@ INSERT INTO `data_types` (`id`, `name`, `slug`, `display_name_singular`, `displa
 -- Dumping data for table `menus`
 --
 
-INSERT INTO `menus` (`id`, `name`, `created_at`, `updated_at`) VALUES
+REPLACE INTO `menus` (`id`, `name`, `created_at`, `updated_at`) VALUES
 (1, 'admin', '2017-07-23 20:31:04', '2017-07-23 20:31:04');
 
 --
 -- Dumping data for table `menu_items`
 --
 
-INSERT INTO `menu_items` (`id`, `menu_id`, `title`, `url`, `target`, `icon_class`, `color`, `parent_id`, `order`, `created_at`, `updated_at`, `route`, `parameters`) VALUES
+REPLACE INTO `menu_items` (`id`, `menu_id`, `title`, `url`, `target`, `icon_class`, `color`, `parent_id`, `order`, `created_at`, `updated_at`, `route`, `parameters`) VALUES
 (1, 1, 'Dashboard', '/admin', '_self', 'voyager-boat', NULL, NULL, 1, '2017-07-23 20:31:04', '2017-07-23 20:31:04', NULL, NULL),
 (2, 1, 'Media', '/admin/media', '_self', 'voyager-images', NULL, 12, 2, '2017-07-23 20:31:04', '2017-07-23 20:57:54', NULL, NULL),
 (3, 1, 'Posts', '/admin/posts', '_self', 'voyager-news', NULL, 12, 3, '2017-07-23 20:31:04', '2017-07-23 20:57:54', NULL, NULL),
@@ -200,14 +200,14 @@ INSERT INTO `menu_items` (`id`, `menu_id`, `title`, `url`, `target`, `icon_class
 (21, 1, 'Wallets', 'admin/wallets', '_self', 'voyager-wallet', '#000000', 13, 5, '2017-07-23 21:05:42', '2017-07-23 21:05:48', NULL, ''),
 (22, 1, 'Work Times', 'admin/work-times', '_self', 'voyager-alarm-clock', '#000000', 13, 6, '2017-07-23 21:06:16', '2017-07-23 21:06:21', NULL, ''),
 (23, 1, 'Management', '', '_self', 'voyager-helm', '#000000', NULL, 2, '2017-07-23 21:09:37', '2017-07-23 21:09:44', NULL, ''),
-(24, 1, 'Review Orders', 'admin/review-order', '_self', 'voyager-check', '#000000', 23, 3, '2017-07-23 21:11:06', '2017-07-23 21:11:13', NULL, ''),
+(24, 1, 'Review Orders', 'admin/review-orders', '_self', 'voyager-check', '#000000', 23, 3, '2017-07-23 21:11:06', '2017-07-25 04:30:18', NULL, ''),
 (25, 1, 'Wallet Transactions', 'admin/wallet-transactions', '_self', 'voyager-dollar', '#000000', 23, 4, '2017-07-23 21:12:12', '2017-07-23 21:12:27', NULL, '');
 
 --
 -- Dumping data for table `permissions`
 --
 
-INSERT INTO `permissions` (`id`, `key`, `table_name`, `created_at`, `updated_at`, `permission_group_id`) VALUES
+REPLACE INTO `permissions` (`id`, `key`, `table_name`, `created_at`, `updated_at`, `permission_group_id`) VALUES
 (1, 'browse_admin', NULL, '2017-07-23 20:31:05', '2017-07-23 20:31:05', NULL),
 (2, 'browse_database', NULL, '2017-07-23 20:31:05', '2017-07-23 20:31:05', NULL),
 (3, 'browse_media', NULL, '2017-07-23 20:31:05', '2017-07-23 20:31:05', NULL),
@@ -297,7 +297,7 @@ INSERT INTO `permissions` (`id`, `key`, `table_name`, `created_at`, `updated_at`
 -- Dumping data for table `permission_role`
 --
 
-INSERT INTO `permission_role` (`permission_id`, `role_id`) VALUES
+REPLACE INTO `permission_role` (`permission_id`, `role_id`) VALUES
 (1, 1),
 (2, 1),
 (3, 1),
@@ -344,6 +344,8 @@ INSERT INTO `permission_role` (`permission_id`, `role_id`) VALUES
 (44, 1),
 (45, 1),
 (46, 1),
+(47, 1),
+(48, 1),
 (49, 1),
 (50, 1),
 (51, 1),
@@ -362,10 +364,13 @@ INSERT INTO `permission_role` (`permission_id`, `role_id`) VALUES
 (64, 1),
 (65, 1),
 (66, 1),
+(67, 1),
+(68, 1),
 (69, 1),
 (70, 1),
 (71, 1),
 (72, 1),
+(73, 1),
 (74, 1),
 (75, 1),
 (76, 1),
@@ -382,7 +387,7 @@ INSERT INTO `permission_role` (`permission_id`, `role_id`) VALUES
 -- Dumping data for table `roles`
 --
 
-INSERT INTO `roles` (`id`, `name`, `display_name`, `created_at`, `updated_at`) VALUES
+REPLACE INTO `roles` (`id`, `name`, `display_name`, `created_at`, `updated_at`) VALUES
 (1, 'admin', 'Administrator', '2017-07-23 20:27:35', '2017-07-23 20:27:35'),
 (2, 'user', 'Normal User', '2017-07-23 20:31:05', '2017-07-23 20:31:05');
 
@@ -390,8 +395,11 @@ INSERT INTO `roles` (`id`, `name`, `display_name`, `created_at`, `updated_at`) V
 -- Dumping data for table `settings`
 --
 
-INSERT INTO `settings` (`id`, `key`, `display_name`, `value`, `details`, `type`, `order`) VALUES
-(2, 'google_analytics_client_id', 'Google Analytics Client ID', 'AIzaSyDSrKwSmZci9mhs0cMoLdT1Uhc7Qk7Pk0c', NULL, 'text', 0);
+REPLACE INTO `settings` (`id`, `key`, `display_name`, `value`, `details`, `type`, `order`) VALUES
+(2, 'google_analytics_client_id', 'Google Analytics Client ID', 'AIzaSyDSrKwSmZci9mhs0cMoLdT1Uhc7Qk7Pk0c', NULL, 'text', 0),
+(3, 'admin_title', 'Admin Title', 'MCC', NULL, 'text', 1),
+(4, 'admin_description', 'Admin Description', 'Master Clean & Clear', NULL, 'text', 2),
+(5, 'title', 'Title', 'Master Clean & Care', NULL, 'text', 3);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

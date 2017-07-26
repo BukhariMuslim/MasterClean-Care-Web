@@ -31,17 +31,33 @@ class Offer extends Model
     /**
      * Get the member record associated with the additionalInfo.
      */
-    public function member()
+    public function memberId()
     {
         return $this->belongsTo(User::class, 'member_id');
     }
 
     /**
+     * Get the member record associated with the additionalInfo.
+     */
+    public function memberIdList()
+    {
+        return User::where('status', 1)->where('role_id', 2)->get();
+    }
+
+    /**
      * Get the work_time record associated with the additionalInfo.
      */
-    public function work_time()
+    public function workTimeId()
     {
         return $this->belongsTo(WorkTime::class);
+    }
+
+    /**
+     * Get the work_time record associated with the additionalInfo.
+     */
+    public function workTimeIdList()
+    {
+        return WorkTime::all();
     }
 
     /**

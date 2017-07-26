@@ -3,10 +3,12 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Auth;
+use App\Helper\Traits\UserTrait;
 
 class Article extends Model
 {
+    use UserTrait;
+    
     /**
      * The attributes that are mass assignable.
      *
@@ -26,16 +28,4 @@ class Article extends Model
      * @var array
      */
     protected $hidden = [ ];
-
-    /**
-     * Get the user record associated with the additionalInfo.
-     */
-    public function userId()
-    {
-        return $this->belongsTo(User::class, 'user_id');
-    }
-
-    public function userIdList(){
-        return User::where('status', 1)->orderBy('created_at')->get();
-    }
 }

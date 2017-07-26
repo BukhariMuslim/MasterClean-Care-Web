@@ -16,12 +16,16 @@ class CreateOrderTaskListsTable extends Migration
         Schema::create('order_task_lists', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('order_id')->unsigned();
+            $table->integer('task_list_id')->unsigned();
             $table->string('task');
             $table->integer('status');
             $table->timestamps();
 
             $table->foreign('order_id')
                   ->references('id')->on('orders')
+                  ->onDelete('cascade');
+            $table->foreign('task_list_id')
+                  ->references('id')->on('task_list')
                   ->onDelete('cascade');
         });
     }

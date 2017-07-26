@@ -25,7 +25,7 @@ class AdditionalInfo extends Model
     /**
      * Get the user_additional_info record associated with the additionalInfo.
      */
-    public function user_additional_info()
+    public function userAdditionalInfo()
     {
         return $this->hasMany(UserAdditionalInfo::class);
     }

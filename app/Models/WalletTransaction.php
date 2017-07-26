@@ -3,9 +3,12 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Helper\Traits\UserTrait;
 
 class WalletTransaction extends Model
 {
+    use UserTrait;
+    
     /**
      * The attributes that are mass assignable.
      *
@@ -24,14 +27,6 @@ class WalletTransaction extends Model
      * @var array
      */
     protected $hidden = [ ];
-
-    /**
-     * Get the user record associated with the walletTransaction.
-     */
-    public function user()
-    {
-        return $this->belongsTo(User::class);
-    }
 
     /**
      * Get the wallet record associated with the walletTransaction.

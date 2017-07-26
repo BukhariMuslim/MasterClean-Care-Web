@@ -29,7 +29,7 @@ class Message extends Model
     /**
      * Get the sender record associated with the additionalInfo.
      */
-    public function sender()
+    public function senderId()
     {
         return $this->belongsTo(User::class, 'sender_id');
     }
@@ -37,7 +37,7 @@ class Message extends Model
     /**
      * Get the receiver record associated with the additionalInfo.
      */
-    public function receiver()
+    public function receiverId()
     {
         return $this->belongsTo(User::class, 'receiver_id');
     }

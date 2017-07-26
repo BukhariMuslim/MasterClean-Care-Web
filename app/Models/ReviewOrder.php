@@ -27,9 +27,17 @@ class ReviewOrder extends Model
     /**
      * Get the order record associated with the additionalInfo.
      */
-    public function order()
+    public function orderId()
     {
         return $this->belongsTo(Order::class);
+    }
+
+    /**
+     * Get the order List record associated with the additionalInfo.
+     */
+    public function orderIdList()
+    {
+        return Order::all();
     }
 
     /**
