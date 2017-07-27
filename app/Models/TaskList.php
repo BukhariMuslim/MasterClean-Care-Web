@@ -29,7 +29,7 @@ class TaskList extends Model
      */
     public function jobId()
     {
-        return $this->belongsTo(Job::class);
+        return $this->belongsTo(Job::class, 'job_id');
     }
 
     /**
