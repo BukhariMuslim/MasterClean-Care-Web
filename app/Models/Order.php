@@ -32,7 +32,7 @@ class Order extends Model
     /**
      * Get the member record associated with the additionalInfo.
      */
-    public function memberId()
+    public function member()
     {
         return $this->belongsTo(User::class, 'member_id');
     }
@@ -40,7 +40,7 @@ class Order extends Model
     /**
      * Get the member record associated with the additionalInfo.
      */
-    public function memberIdList()
+    public function memberList()
     {
         return User::where('status', 1)->where('role_id', 2)->get();
     }
@@ -48,7 +48,7 @@ class Order extends Model
     /**
      * Get the art record associated with the additionalInfo.
      */
-    public function artId()
+    public function art()
     {
         return $this->belongsTo(User::class, 'art_id');
     }
@@ -56,7 +56,7 @@ class Order extends Model
     /**
      * Get the member record associated with the additionalInfo.
      */
-    public function artIdList()
+    public function artList()
     {
         return User::where('status', 1)->where('role_id', 3)->get();
     }
@@ -64,7 +64,7 @@ class Order extends Model
     /**
      * Get the work_time record associated with the additionalInfo.
      */
-    public function workTimeId()
+    public function workTime()
     {
         return $this->belongsTo(WorkTime::class);
     }
@@ -72,7 +72,7 @@ class Order extends Model
     /**
      * Get the work_time record associated with the additionalInfo.
      */
-    public function workTimeIdList()
+    public function workTimeList()
     {
         return WorkTime::all();
     }

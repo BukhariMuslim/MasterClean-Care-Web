@@ -18,9 +18,9 @@ class OrderController extends Controller
     public function index()
     {
         return Order::with([
-            'memberId',
-            'artId',
-            'workTimeId',
+            'member',
+            'art',
+            'workTime',
             'reviewOrder',
             'contact',
             'orderTaskList'
@@ -82,9 +82,9 @@ class OrderController extends Controller
     public function show(Order $order)
     {
         return $order->load([
-            'memberId',
-            'artId',
-            'workTimeId',
+            'member',
+            'art',
+            'workTime',
             'reviewOrder',
             'contact',
             'orderTaskList'
@@ -215,9 +215,9 @@ class OrderController extends Controller
             ->where('member_id', $member)
             ->get()
             ->load([
-                'memberId',
-                'artId',
-                'workTimeId',
+                'member',
+                'art',
+                'workTime',
                 'reviewOrder',
                 'contact'
             ]);
@@ -237,9 +237,9 @@ class OrderController extends Controller
             ->where('art_id', $art)
             ->get()
             ->load([
-                'memberId',
-                'artId',
-                'workTimeId',
+                'member',
+                'art',
+                'workTime',
                 'reviewOrder',
                 'contact',
                 'orderTaskList'
