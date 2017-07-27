@@ -56,20 +56,13 @@ class OrderController extends Controller
             
             $order = Order::create($data);
 
-            $order->contact()->createMany($data['contact']);
+            $order->contact()->create($data['contact']);
 
             $order->orderTaskList()->createMany($data['orderTaskList']);
 
             DB::commit();
 
-            return response()->json([ 'data' => $order->load([
-                                                'memberId',
-                                                'artId',
-                                                'workTimeId',
-                                                'reviewOrder',
-                                                'contact',
-                                                'orderTaskList'
-                                            ]), 
+            return response()->json([ 'data' => $order, 
                                       'status' => 201]);
         }
         catch(Exception $e) {
@@ -153,7 +146,7 @@ class OrderController extends Controller
 
             if (array_key_exists('contact', $data)) {
                 $order->contact()->delete();
-                $order->contact()->createMany($data['contact']);
+                $order->contact()->create($data['contact']);
             }
 
             if (array_key_exists('orderTaskList', $data)) {
@@ -165,14 +158,7 @@ class OrderController extends Controller
 
             DB::commit();
 
-            return response()->json([ 'data' => $order->load([
-                                            'memberId',
-                                            'artId',
-                                            'workTimeId',
-                                            'reviewOrder',
-                                            'contact',
-                                            'orderTaskList'
-                                        ]), 
+            return response()->json([ 'data' => $order, 
                                       'status' => 200]);
         }
         catch(Exception $e) {
