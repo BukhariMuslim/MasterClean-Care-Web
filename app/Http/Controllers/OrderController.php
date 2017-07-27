@@ -219,7 +219,8 @@ class OrderController extends Controller
                 'art',
                 'workTime',
                 'reviewOrder',
-                'contact'
+                'contact',
+                'orderTaskList'
             ]);
     }
 
