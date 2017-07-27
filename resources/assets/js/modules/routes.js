@@ -7,10 +7,8 @@ import LoginContainer from '../containers/LoginContainer'
 import RegisterMemberContainer from '../containers/RegisterMemberContainer'
 import RegisterArtContainer from '../containers/RegisterArtContainer'
 import UserProfileContainer from '../containers/UserProfileContainer'
-import Article from '../components/Article'
-import DetailArticle from '../components/DetailArticle'
-import Admin from '../components/Admin'
-import ArticleContainer from '../containers/admin/ArticleContainer'
+import ArticlePage from '../components/ArticlePage'
+import ArtPage from '../components/ArtPage'
 import NotFound from '../components/NotFound'
 import Home from '../components/Home'
 
@@ -52,9 +50,10 @@ class routesElement extends Component {
                 <Route path="/register_member" component={ RegisterMemberContainer }/>
                 <Route path="/register_art" component={ RegisterArtContainer }/>
                 <Route path="/user" component={ UserProfileContainer } onEnter={ this.requireAuth(this.props.state) } />
-                <Route path="/article/new" component={ ArticleContainer }/>
-                <Route path="/article" component={ Article }/>
-                {/* <Route path="/*" component={ NotFound }/> */}
+                <Route path='/article/:articleId' component={ ArticlePage }/>
+                <Route path='/article' component={ ArticlePage }/>
+                <Route path='/art' component={ ArtPage }/>
+                <Route path="/*" component={ NotFound }/> 
             </Switch>
         )
     }

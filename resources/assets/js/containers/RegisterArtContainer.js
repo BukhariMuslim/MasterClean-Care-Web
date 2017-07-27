@@ -5,7 +5,7 @@ import RegisterArt from '../components/RegisterArt'
 import {
     withRouter,
 } from 'react-router-dom'
-import axios from 'axios'
+import ApiService from '../modules/ApiService'
 
 const mapStateToProps = (state) => {
     return {
@@ -22,158 +22,168 @@ const mapDispatchToProps = (dispatch, ownProps) => {
             }))
         },
         onRegister: (self, data, history) => {
-            axios.post('/api/user', {
-                data
-            })
-            .then(function (response) {
-                let data = response.data
+            ApiService.onPost(
+                '/api/user',
+                { data },
+                function (response) {
+                    let data = response.data
 
-                if (data.status != 201) {
+                    if (data.status != 201) {
+                        dispatch(updateSnack({
+                            open: true,
+                            message: data.message
+                        }))
+                    }
+                    else {
+                        self.resetForm()
+                        dispatch(updateSnack({
+                            open: true,
+                            message: 'Mendaftar berhasil! Silahkan login.'
+                        }))
+                    }
+                },
+                function (error) {
                     dispatch(updateSnack({
-                        open: true,
-                        message: data.message
+                        open: open,
+                        message: error
                     }))
-                }
-                else {
-                    self.resetForm()
-                    dispatch(updateSnack({
-                        open: true,
-                        message: 'Mendaftar berhasil! Silahkan tunggu konfirmasi.'
-                    }))
-                }
-            })
-            .catch(function (error) {
-                dispatch(updateSnack({
-                    open: true,
-                    message: error
-                }))
-            })
+                },
+            )
         },
-        getPlace: (self, type, lvl = 0) => 
+        getPlace: (self, type) =>
         {
             let dataPlace = [];
-            axios.get('/api/place/search/parent/equal/' + lvl)
-            .then(function (response) {
-                let data = response.data
-                if (data.status !== 200) {
+            ApiService.onGet(
+                '/api/place',
+                function (response) {
+                    let data = response
+                    if (data.status !== 200) {
+                        dispatch(updateSnack({
+                            open: true,
+                            message: data.message
+                        }))
+                    }
+                    else {
+                        dataPlace = data.data
+                    }
+                    self.setState({ [type]: dataPlace })
+                },
+                function (error) {
                     dispatch(updateSnack({
-                        open: true,
-                        message: data.message
+                        open: open,
+                        message: error
                     }))
+                    self.setState({ [type]: dataPlace })
                 }
-                else {
-                    dataPlace = data.data
-                }
-                self.setState({ [type]: dataPlace })
-            })
-            .catch(function (error) {
-                console.log(error)
-                dispatch(updateSnack({
-                    open: true,
-                    message: error
-                }))
-                self.setState({ [type]: dataPlace })
-            })
+            )
         },
         getLanguage: (self, type) => 
         {
             let dataLanguage = [];
-            axios.get('/api/language/')
-            .then(function (response) {
-                let data = response
-                if (data.status !== 200) {
+            ApiService.onGet(
+                '/api/language/',
+                function (response) {
+                    let data = response
+                    if (data.status !== 200) {
+                        dispatch(updateSnack({
+                            open: true,
+                            message: data.message
+                        }))
+                    }
+                    else {
+                        dataLanguage = data.data
+                    }
+                    self.setState({ [type]: dataLanguage })
+                },
+                function (error) {
                     dispatch(updateSnack({
                         open: true,
-                        message: data.message
+                        message: error
                     }))
+                    self.setState({ [type]: dataLanguage })
                 }
-                else {
-                    dataLanguage = data.data
-                }
-                self.setState({ [type]: dataLanguage })
-            })
-            .catch(function (error) {
-                dispatch(updateSnack({
-                    open: true,
-                    message: error
-                }))
-                self.setState({ [type]: dataLanguage })
-            })
+            )
         },
         getJob: (self, type) => 
         {
             let dataJob = [];
-            axios.get('/api/job/')
-            .then(function (response) {
-                let data = response
-                if (data.status !== 200) {
+            ApiService.onGet(
+                '/api/job/',
+                function (response) {
+                    let data = response
+                    if (data.status !== 200) {
+                        dispatch(updateSnack({
+                            open: true,
+                            message: data.message
+                        }))
+                    }
+                    else {
+                        dataJob = data.data
+                    }
+                    self.setState({ [type]: dataJob })
+                },
+                function (error) {
                     dispatch(updateSnack({
                         open: true,
-                        message: data.message
+                        message: error
                     }))
+                    self.setState({ [type]: dataJob })
                 }
-                else {
-                    dataJob = data.data
-                }
-                self.setState({ [type]: dataJob })
-            })
-            .catch(function (error) {
-                dispatch(updateSnack({
-                    open: true,
-                    message: error
-                }))
-                self.setState({ [type]: dataLanguage })
-            })
+            )
         },
         getWorkTime: (self, type) => 
         {
             let dataWorkTime = [];
-            axios.get('/api/work_time/')
-            .then(function (response) {
-                let data = response
-                if (data.status !== 200) {
+            ApiService.onGet(
+                '/api/work_time/',
+                function (response) {
+                    let data = response
+                    if (data.status !== 200) {
+                        dispatch(updateSnack({
+                            open: true,
+                            message: data.message
+                        }))
+                    }
+                    else {
+                        dataWorkTime = data.data
+                    }
+                    self.setState({ [type]: dataWorkTime })
+                },
+                function (error) {
                     dispatch(updateSnack({
                         open: true,
-                        message: data.message
+                        message: error
                     }))
+                    self.setState({ [type]: dataWorkTime })
                 }
-                else {
-                    dataWorkTime = data.data
-                }
-                self.setState({ [type]: dataWorkTime })
-            })
-            .catch(function (error) {
-                dispatch(updateSnack({
-                    open: true,
-                    message: error
-                }))
-                self.setState({ [type]: dataLanguage })
-            })
+            )
         },
         getAdditionalInfo: (self, type) => 
         {
             let dataAdditionalInfo = [];
-            axios.get('/api/additional_info/')
-            .then(function (response) {
-                let data = response
-                if (data.status !== 200) {
+            ApiService.onGet(
+                '/api/additional_info/',
+                function (response) {
+                    let data = response
+                    if (data.status !== 200) {
+                        dispatch(updateSnack({
+                            open: true,
+                            message: data.message
+                        }))
+                    }
+                    else {
+                        dataAdditionalInfo = data.data
+                    }
+                    self.setState({ [type]: dataAdditionalInfo })
+                },
+                function (error) {
                     dispatch(updateSnack({
                         open: true,
-                        message: data.message
+                        message: error
                     }))
+                    self.setState({ [type]: dataAdditionalInfo })
                 }
-                else {
-                    dataAdditionalInfo = data.data
-                }
-                self.setState({ [type]: dataAdditionalInfo })
-            })
-            .catch(function (error) {
-                dispatch(updateSnack({
-                    open: true,
-                    message: error
-                }))
-                self.setState({ [type]: dataAdditionalInfo })
-            })
+            )
         },
     }
 }

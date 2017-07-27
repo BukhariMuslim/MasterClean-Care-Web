@@ -95,8 +95,8 @@ class OrderTaskListController extends Controller
             if (array_key_exists('order_id', $data)) {
                 $OrderTaskList->order_id = $data['order_id'];
             }
-            if (array_key_exists('task', $data)) {
-                $OrderTaskList->task = $data['task'];
+            if (array_key_exists('task_list_id', $data)) {
+                $OrderTaskList->task_list_id = $data['task_list_id'];
             }
             if (array_key_exists('status', $data)) {
                 $requestedArt->status = $data['status'];

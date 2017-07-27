@@ -28,4 +28,12 @@ class Article extends Model
      * @var array
      */
     protected $hidden = [ ];
+
+    /**
+     * Get the comment record associated with the additionalInfo.
+     */
+    public function comment()
+    {
+        return $this->hasMany(Comment::class);
+    }
 }

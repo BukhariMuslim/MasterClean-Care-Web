@@ -9,6 +9,8 @@ class Comment extends Model
 {
     use UserTrait;
 
+    protected $with = ['userId'];
+
     /**
      * The attributes that are mass assignable.
      *

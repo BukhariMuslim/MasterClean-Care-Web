@@ -13,6 +13,7 @@ export const UPDATE_SNACK = 'UPDATE_SNACK'
 export const RESET_SNACK = 'RESET_SNACK'
 export const UPDATE_LOADING_SPIN = 'UPDATE_LOADING_SPIN'
 export const RESET_LOADING_SPIN = 'RESET_LOADING_SPIN'
+export const FILL_ARTICLE = 'FILL_ARTICLE'
 export const ADD_ARTICLE = 'ADD_ARTICLE'
 export const EDIT_ARTICLE = 'EDIT_ARTICLE'
 export const UPDATE_ARTICLE = 'UPDATE_ARTICLE'
@@ -70,6 +71,10 @@ export function updateLoadingSpin(data) {
 
 export function resetLoadingSpin() {
     return { type: RESET_LOADING_SPIN }
+}
+
+export function fillArticle(data) {
+    return { type: FILL_ARTICLE, data: data }
 }
 
 export function addArticle(data) {

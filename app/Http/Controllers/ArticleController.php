@@ -16,7 +16,10 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        return Article::all();
+        return Article::with([
+            'userId',
+            'comment',
+        ])->get();
     }
 
     /**
@@ -46,7 +49,10 @@ class ArticleController extends Controller
 
             $article = Article::create($data);
 
-            return response()->json([ 'data' => $article, 
+            return response()->json([ 'data' => $article->load([
+                                                    'userId',
+                                                    'comment',
+                                                ]), 
                                       'status' => 201]);
         }
         catch(Exception $e) {
@@ -63,7 +69,10 @@ class ArticleController extends Controller
      */
     public function show(Article $article)
     {
-        return $article;
+        return $article->load([
+            'userId',
+            'comment',
+        ]);
     }
 
     /**
@@ -110,7 +119,10 @@ class ArticleController extends Controller
 
             $article->save();
 
-            return response()->json([ 'data' => $article, 
+            return response()->json([ 'data' => $article->load([
+                                                    'userId',
+                                                    'comment',
+                                                ]), 
                                       'status' => 200]);
         }
         catch(Exception $e) {
@@ -148,6 +160,10 @@ class ArticleController extends Controller
             ->where($param,
                 Operators::LIKE,
                 '%'.$text.'%')
-            ->get();
+            ->get()
+            ->load([
+                'userId',
+                'comment',
+            ]);
     }
 }

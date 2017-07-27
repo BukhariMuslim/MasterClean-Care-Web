@@ -34,7 +34,6 @@ class RegisterMember extends Component {
             born_place: '',
             born_date: null,
             phone: '',
-            province: '',
             city: '',
             address: '',
             location: '',
@@ -42,7 +41,6 @@ class RegisterMember extends Component {
             race: '',
             user_type: 1,
             status: 1,
-            provinceItem: [],
             cityItem: [],
         }
         this.baseState = this.state
@@ -50,7 +48,7 @@ class RegisterMember extends Component {
     }
 
     loadInitialData() {
-        this.props.getPlace(this, 'provinceItem', 0)
+        this.props.getPlace(this, 'cityItem')
     }
 
     componentWillMount() {
@@ -93,15 +91,12 @@ class RegisterMember extends Component {
                 gender: this.state.gender,
                 born_place: this.state.born_place,
                 born_date: this.state.born_date,
-                contact: [
-                    {
-                        phone: this.state.phone,
-                        province: this.state.province,
-                        city: this.state.city,
-                        address: this.state.address,
-                        location: this.state.location,
-                    }
-                ],
+                contact: {
+                    phone: this.state.phone,
+                    city: this.state.city,
+                    address: this.state.address,
+                    location: this.state.location,
+                },
                 religion: this.state.religion,
                 race: this.state.race,
                 user_type: this.state.user_type,
@@ -128,11 +123,12 @@ class RegisterMember extends Component {
     onSelectFieldChangeHandler(name) {
         const form = this
         return function(event, index, value) {
-            if (name == 'province') {
-                form.props.getPlace(form, 'cityItem', value)
-            }
             form.setState({ [name]: value })
         }
+    }
+
+    onError(errors) {
+        this.props.onUpdateSnack(true, "Telah terjadi " + errors.length + " kesalahan. Mohon periksa kembali form ini." )
     }
 
     render() {
@@ -158,7 +154,8 @@ class RegisterMember extends Component {
                     <Paper className="col s12 m8 xl6" zDepth={1} style={{ margin: '10px auto', padding: '10px' }}>
                         <ValidatorForm
                             ref="form"
-                            onSubmit={(e) => this.registerHandler(e)}>
+                            onSubmit={(e) => this.registerHandler(e)}
+                            onError={ errors => this.onError(errors) }>
                             <div className="row">
                                 <div className="col s12">
                                     <h4 className="center-align">Mendaftar Sebagai Member</h4>
@@ -274,19 +271,6 @@ class RegisterMember extends Component {
                                 </div>
                                 <div className="col s12">
                                     <SelectValidator
-                                        floatingLabelText="Provinsi"
-                                        value={this.state.province}
-                                        name="province"
-                                        fullWidth={true}
-                                        onChange={this.onSelectFieldChangeHandler('province')}
-                                        validators={['required']}
-                                        errorMessages={['Provinsi dibutuhkan']}
-                                        >
-                                        { this.menuItems(this.state.provinceItem, this.state.province) }
-                                    </SelectValidator>
-                                </div>
-                                <div className="col s12">
-                                    <SelectValidator
                                         floatingLabelText="Kota"
                                         value={this.state.city}
                                         name="city"
@@ -295,7 +279,7 @@ class RegisterMember extends Component {
                                         validators={['required']}
                                         errorMessages={['Kota dibutuhkan']}
                                         >
-                                        { this.menuItems(this.state.cityItem, this.state.city) }
+                                         { this.menuItems(this.state.cityItem, this.state.city) } 
                                     </SelectValidator>
                                 </div>
                                 <div className="col s12">
@@ -325,7 +309,7 @@ class RegisterMember extends Component {
                                         validators={['required']}
                                         errorMessages={['Agama dibutuhkan']}
                                         >
-                                        <MenuItem value={1} primaryText="Islam" />
+                                    <MenuItem value={1} primaryText="Islam" />
                                         <MenuItem value={2} primaryText="Kristen Protestan" />
                                         <MenuItem value={3} primaryText="Kristen Katolik" />
                                         <MenuItem value={4} primaryText="Hindu" />

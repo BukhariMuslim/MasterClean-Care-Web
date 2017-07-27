@@ -58,14 +58,6 @@ const mapDispatchToProps = (dispatch) => {
                     }))
                 }
             )
-            // axios.post('/api/check_login', {
-            //     email: data.email,
-            //     password: data.password
-            // })
-            // .then(function (response) {
-                
-            // })
-            // .catch()
         },
         getUserLogin: (history) => {
             dispatch(updateLoadingSpin({

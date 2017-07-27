@@ -32,30 +32,7 @@ const mapDispatchToProps = (dispatch) => {
             ApiService.onLogout()
             dispatch(logoutUser())
             dispatch(resetLoadingSpin())
-            console.log('logout')
             parent.setState({open:false})
-            // axios.post('/api/logout')
-            // .then(function (response) {
-            //     dispatch(resetLoadingSpin())
-            //     let data = response.data
-            //     if (data.status === 200) {
-            //         dispatch(logoutUser())
-            //         self.forceUpdate()
-            //     }
-            //     else {
-            //         dispatch(updateSnack({
-            //             open: true,
-            //             message: data.message
-            //         }))
-            //     }
-            // })
-            // .catch(function (error) {
-            //     dispatch(resetLoadingSpin())
-            //     dispatch(updateSnack({
-            //         open: true,
-            //         message: error
-            //     }))
-            // })
         }
     }
 }

@@ -8,6 +8,7 @@ const mcc = combineReducers({
     UserLoginReducer,
     NotificationReducer,
     LoadingSpinReducer,
+    ArticleReducer,
 })
 
 export default mcc

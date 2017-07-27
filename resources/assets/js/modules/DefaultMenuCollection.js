@@ -11,6 +11,12 @@ const DefaultMenuCollection = [
         link: '/article',
         iconLabel: 'receipt',
     },
+    {
+        id: 3,
+        label: 'ART',
+        link: '/art',
+        iconLabel: 'face',
+    },
 ]
 
 export default DefaultMenuCollection

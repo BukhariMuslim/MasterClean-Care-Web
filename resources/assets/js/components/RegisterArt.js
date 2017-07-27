@@ -15,6 +15,7 @@ import FloatingActionButton from 'material-ui/FloatingActionButton'
 import ContentClear from 'material-ui/svg-icons/content/clear'
 import NotificationContainer from '../containers/NotificationContainer'
 import LoadingSpinContainer from '../containers/LoadingSpinContainer'
+import { red300 } from 'material-ui/styles/colors'
 
 const style = {
     margin: 12,
@@ -35,7 +36,6 @@ class RegisterArt extends Component {
             born_place: '',
             born_date: null,
             phone: '',
-            province: '',
             city: '',
             address: '',
             location: '',
@@ -52,15 +52,18 @@ class RegisterArt extends Component {
             jobItem: [],
             workTimeItem: [],
             additionalInfoItem: [],
-            provinceItem: [],
             cityItem: [],
+            userLanguageErrorText: '',
+            userJobErrorText: '',
+            userWorkTimeErrorText: '',
+            userDocumentErrorText: '',
         }
         this.baseState = this.state
         this.onChangeHandler = this.onChangeHandler.bind(this);
     }
 
     loadInitialData() {
-        this.props.getPlace(this, 'provinceItem', 0)
+        this.props.getPlace(this, 'cityItem')
 
         this.props.getLanguage(this, 'languageItem')
 
@@ -92,6 +95,27 @@ class RegisterArt extends Component {
                 primaryText = { obj.name }
             />
         ));
+    }
+
+    errorText(type) {
+        const text = this.state[type];
+        if (text) {
+            const style = {
+                right: 0,
+                fontSize: '12px',
+                color: red300,
+                position: 'absolute',
+                marginTop: '-25px',
+            };
+            
+            return (
+                <div style={style}>
+                    {text}
+                </div>
+            );
+        }
+
+        return null
     }
 
     checkItems(type, collection, isNeedTextBox) {
@@ -126,7 +150,7 @@ class RegisterArt extends Component {
                             value = { obj.id }
                             name = { name }
                             label = { obj.language || obj.job || obj.work_time || obj.info }
-                            onCheck = { this.onCheckHandler(type, isNeedTextBox) }
+                            onCheck = { this.onCheckHandler(type, name, isNeedTextBox) }
                         />
                     </div>
                     {
@@ -159,6 +183,22 @@ class RegisterArt extends Component {
     registerHandler(e) {
         e.preventDefault()
         
+        if (!this.state.userLanguage) {
+            this.setState({
+                userLanguageErrorText: "Pilih minimal 1 Bahasa yang dikuasai."
+            })
+        }
+        if (!this.state.userJob) {
+            this.setState({
+                userJobErrorText: "Pilih minimal 1 Profesi."
+            })
+        }
+        if (!this.state.userWorkTime) {
+            this.setState({
+                userWorkTimeErrorText: "Pilih minimal 1 Waktu Kerja."
+            })
+        }
+
         this.props.onRegister(
             this,
             {
@@ -168,20 +208,17 @@ class RegisterArt extends Component {
                 gender: this.state.gender,
                 born_place: this.state.born_place,
                 born_date: this.state.born_date,
-                contact: [
-                    {
-                        phone: this.state.phone,
-                        province: this.state.province,
-                        city: this.state.city,
-                        address: this.state.address,
-                        location: this.state.location,
-                    }
-                ],
+                contact: {
+                    phone: this.state.phone,
+                    city: this.state.city,
+                    address: this.state.address,
+                    location: this.state.location,
+                },
                 religion: this.state.religion,
                 race: this.state.race,
                 user_type: this.state.user_type,
                 status: this.state.status,
-                userWallet: [{ amt: 0 }],
+                userWallet: { amt: 0 },
                 userLanguage: this.state.userLanguage,
                 userJob: this.state.userJob,
                 userWorkTime: this.state.userWorkTime,
@@ -221,24 +258,22 @@ class RegisterArt extends Component {
     onSelectFieldChangeHandler(name) {
         const form = this
         return function(event, index, value) {
-            if (name == 'province') {
-                form.props.getPlace(form, 'cityItem', value)
-            }
             form.setState({ [name]: value })
         }
     }
 
-    onCheckHandler(name, isNeedTextBox) {
+    onCheckHandler(type, name, isNeedTextBox) {
         const form = this
         return function(event, checked) {
             const target = event.target
             const value = target.value
-            let old = form.state[name]
-            const idx = old.findIndex(x => x.work_time_id === value)
+            let old = form.state[type]
+            const idx = old.findIndex(x => x[name] === value)
+            
             if (!isNeedTextBox) {
                 if (checked && idx === -1) {
                     old.push({
-                        [target.name]: value
+                        [name]: value
                     })
                 }
                 else if (idx > -1) {
@@ -256,7 +291,7 @@ class RegisterArt extends Component {
                     old.splice(idx, 1)
                 }
             }
-            form.setState({ [name]: old })
+            form.setState({ [type]: old })
         }
     }
 
@@ -404,19 +439,6 @@ class RegisterArt extends Component {
                                 </div>
                                 <div className="col s12">
                                     <SelectValidator
-                                        floatingLabelText="Provinsi"
-                                        value={this.state.province}
-                                        name="province"
-                                        fullWidth={true}
-                                        onChange={this.onSelectFieldChangeHandler('province')}
-                                        validators={['required']}
-                                        errorMessages={['Provinsi dibutuhkan']}
-                                        >
-                                        { this.menuItems(this.state.provinceItem, this.state.province) }
-                                    </SelectValidator>
-                                </div>
-                                <div className="col s12">
-                                    <SelectValidator
                                         floatingLabelText="Kota"
                                         value={this.state.city}
                                         name="city"
@@ -425,7 +447,7 @@ class RegisterArt extends Component {
                                         validators={['required']}
                                         errorMessages={['Kota dibutuhkan']}
                                         >
-                                        { this.menuItems(this.state.cityItem, this.state.city) }
+                                         { this.menuItems(this.state.cityItem, this.state.city) } 
                                     </SelectValidator>
                                 </div>
                                 <div className="col s12">
@@ -483,18 +505,21 @@ class RegisterArt extends Component {
                                     <fieldset>
                                         <legend>Bahasa yang dikuasai</legend>
                                         { this.checkItems('userLanguage', this.state.languageItem) }
+                                        { this.errorText('userLanguageErrorText')}
                                     </fieldset>
                                 </div>
                                 <div className="col s12">
                                     <fieldset>
                                         <legend>Profesi</legend>
                                         { this.checkItems('userJob', this.state.jobItem) }
+                                        { this.errorText('userJobErrorText')}
                                     </fieldset>
                                 </div>
                                 <div className="col s12">
                                     <fieldset>
                                         <legend>Waktu Kerja</legend>
                                         { this.checkItems('userWorkTime', this.state.workTimeItem, true) }
+                                        { this.errorText('userWorkTimeErrorText')}
                                     </fieldset>
                                 </div>
                                 <div className="col s12">

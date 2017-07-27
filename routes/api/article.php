@@ -24,11 +24,11 @@ Route::group(['prefix' => 'article', 'middleware' => ['api']], function () {
 
     Route::post('/', 'ArticleController@store');
 
-    Route::get('/{comment_id}', 'ArticleController@show')->where('comment_id', '[0-9]+');
+    Route::get('/{article_id}', 'ArticleController@show')->where('article_id', '[0-9]+');
     
-    Route::patch('/{comment_id}', 'ArticleController@update')->where('comment_id', '[0-9]+');
+    Route::patch('/{article_id}', 'ArticleController@update')->where('article_id', '[0-9]+');
 
-    Route::delete('/{comment_id}', 'ArticleController@destroy')->where('comment_id', '[0-9]+');
+    Route::delete('/{article_id}', 'ArticleController@destroy')->where('article_id', '[0-9]+');
 
     Route::get('/search/{param}/{text}', 'ArticleController@searchByParam');
 

@@ -1,9 +1,9 @@
 import { 
-    FILL_ARTICLE,
-    ADD_ARTICLE, 
-    EDIT_ARTICLE, 
-    UPDATE_ARTICLE, 
-    REMOVE_ARTICLE,
+    FILL_ART,
+    ADD_ART, 
+    EDIT_ART, 
+    UPDATE_ART, 
+    REMOVE_ART,
 } from '../actions/DefaultAction'
 
 const getInitial = () => {
@@ -19,17 +19,17 @@ const getInitial = () => {
 
 const ArticleReducer = (state = [], action) => {
     switch (action.type) {
-        case FILL_ARTICLE:
+        case FILL_ART:
             return Object.assign([], state, action.data)
-        case ADD_ARTICLE:
+        case ADD_ART:
             let date = action.data.published_date
-            let article = []
+            let art = []
 
             if (Object.keys(date).length !== 0 || date.constructor !== Object) {
                 date = new Date(date)
             }
 
-            article = [ 
+            art = [ 
                 ...state,
                 {
                     id: action.id,
@@ -41,16 +41,16 @@ const ArticleReducer = (state = [], action) => {
                 }
             ]
 
-            return Object.assign([], state, article)
-        case UPDATE_ARTICLE:
+            return Object.assign([], state, art)
+        case UPDATE_ART:
             date = action.data.published_date
-            article = []
+            art = []
             if (Object.keys(date).length !== 0 || date.constructor !== Object) {
                 date = new Date(date)
             }
 
             idx = state.map((e) => e.id).indexOf(action.data.id)
-            article = [ 
+            art = [ 
                 ...state.slice(0, idx),
                 {
                     id: action.id,
@@ -62,9 +62,9 @@ const ArticleReducer = (state = [], action) => {
                 },
                 ...state.slice(idx + 1)
             ]
-            return Object.assign([], state, article)
-        case EDIT_ARTICLE:
-            article = state.map(t => {
+            return Object.assign([], state, art)
+        case EDIT_ART:
+            art = state.map(t => {
                 if (state.id !== action.data) {
                     return state
                 }
@@ -74,9 +74,9 @@ const ArticleReducer = (state = [], action) => {
                 })
             })
 
-            return article
-        case REMOVE_ARTICLE:
-            article = state.map(t => {
+            return art
+        case REMOVE_ART:
+            art = state.map(t => {
                 let idx = state.map((e) => e.id).indexOf(action.data)
                 if (idx > -1) {
                     return [ 
@@ -87,7 +87,7 @@ const ArticleReducer = (state = [], action) => {
                 return state
             })
             
-            return article
+            return art
         default:
             return state
     }

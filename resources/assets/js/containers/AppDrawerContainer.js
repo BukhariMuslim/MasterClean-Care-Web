@@ -46,28 +46,6 @@ const mapDispatchToProps = (dispatch) => {
                     message: error
                 }))
             })
-
-            // axios.get('/oauth/personal-access-tokens')
-            // .then(function (response) {
-            //     dispatch(resetLoadingSpin())
-            //     let data = response.data
-            //     if (data.status === 200) {
-            //         dispatch(loginAuth(data.user))
-            //     }
-            //     else {
-            //         dispatch(updateSnack({
-            //             open: true,
-            //             message: data.message
-            //         }))
-            //     }
-            // })
-            // .catch(function (error) {
-            //     dispatch(resetLoadingSpin())
-            //     dispatch(updateSnack({
-            //         open: open,
-            //         message: error
-            //     }))
-            // })
         }
     }
 }
