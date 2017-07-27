@@ -15,7 +15,7 @@ import FloatingActionButton from 'material-ui/FloatingActionButton'
 import ContentClear from 'material-ui/svg-icons/content/clear'
 import NotificationContainer from '../containers/NotificationContainer'
 import LoadingSpinContainer from '../containers/LoadingSpinContainer'
-import { red300 } from 'material-ui/styles/colors'
+import { red500 } from 'material-ui/styles/colors'
 
 const style = {
     margin: 12,
@@ -101,11 +101,8 @@ class RegisterArt extends Component {
         const text = this.state[type];
         if (text) {
             const style = {
-                right: 0,
                 fontSize: '12px',
-                color: red300,
-                position: 'absolute',
-                marginTop: '-25px',
+                color: red500,
             };
             
             return (
@@ -182,50 +179,55 @@ class RegisterArt extends Component {
 
     registerHandler(e) {
         e.preventDefault()
-        
-        if (!this.state.userLanguage) {
+        let isValid = true
+        if (this.state.userLanguage.length <= 0) {
+            isValid = false
             this.setState({
-                userLanguageErrorText: "Pilih minimal 1 Bahasa yang dikuasai."
+                userLanguageErrorText: "Pilih minimal 1 Bahasa yang dikuasai.",
             })
         }
-        if (!this.state.userJob) {
+        if (this.state.userJob.length <= 0) {
+            isValid = false
             this.setState({
-                userJobErrorText: "Pilih minimal 1 Profesi."
+                userJobErrorText: "Pilih minimal 1 Profesi.",
             })
         }
-        if (!this.state.userWorkTime) {
+        if (this.state.userWorkTime.length <= 0) {
+            isValid = false
             this.setState({
-                userWorkTimeErrorText: "Pilih minimal 1 Waktu Kerja."
+                userWorkTimeErrorText: "Pilih minimal 1 Waktu Kerja.",
             })
         }
 
-        this.props.onRegister(
-            this,
-            {
-                name: this.state.name,
-                email: this.state.email,
-                password: this.state.password,
-                gender: this.state.gender,
-                born_place: this.state.born_place,
-                born_date: this.state.born_date,
-                contact: {
-                    phone: this.state.phone,
-                    city: this.state.city,
-                    address: this.state.address,
-                    location: this.state.location,
-                },
-                religion: this.state.religion,
-                race: this.state.race,
-                user_type: this.state.user_type,
-                status: this.state.status,
-                userWallet: { amt: 0 },
-                userLanguage: this.state.userLanguage,
-                userJob: this.state.userJob,
-                userWorkTime: this.state.userWorkTime,
-                userAdditionalInfo: this.state.userAdditionalInfo,
-                userDocument: this.state.userDocument,
-            }
-        )
+        if (isValid) {
+            this.props.onRegister(
+                this,
+                {
+                    name: this.state.name,
+                    email: this.state.email,
+                    password: this.state.password,
+                    gender: this.state.gender,
+                    born_place: this.state.born_place,
+                    born_date: this.state.born_date,
+                    contact: {
+                        phone: this.state.phone,
+                        city: this.state.city,
+                        address: this.state.address,
+                        location: this.state.location,
+                    },
+                    religion: this.state.religion,
+                    race: this.state.race,
+                    user_type: this.state.user_type,
+                    status: this.state.status,
+                    user_wallet: { amt: 0 },
+                    user_language: this.state.userLanguage,
+                    user_job: this.state.userJob,
+                    user_work_time: this.state.userWorkTime,
+                    user_additional_info: this.state.userAdditionalInfo,
+                    user_document: this.state.userDocument,
+                }
+            )
+        }
     }
 
     onChangeHandler(e) {
@@ -272,6 +274,11 @@ class RegisterArt extends Component {
             
             if (!isNeedTextBox) {
                 if (checked && idx === -1) {
+                    if (form.state[type + 'ErrorText']) {
+                        form.setState({
+                            [type + 'ErrorText']: ''
+                        })
+                    }
                     old.push({
                         [name]: value
                     })
@@ -282,6 +289,11 @@ class RegisterArt extends Component {
             }
             else {
                 if (checked && idx === -1) {
+                    if (form.state[type + 'ErrorText']) {
+                        form.setState({
+                            [type + 'ErrorText']: ''
+                        })
+                    }
                     old.push({
                         work_time_id: target.value,
                         cost: 0,
@@ -519,7 +531,9 @@ class RegisterArt extends Component {
                                     <fieldset>
                                         <legend>Waktu Kerja</legend>
                                         { this.checkItems('userWorkTime', this.state.workTimeItem, true) }
+                                        <br/>
                                         { this.errorText('userWorkTimeErrorText')}
+                                        <div></div>
                                     </fieldset>
                                 </div>
                                 <div className="col s12">

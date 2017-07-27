@@ -49,7 +49,6 @@ class ArticleDetail extends Component {
 
     render() {
         const { article } = this.state;
-        console.log(article)
         return (
             <div>
                 <div className="row">
@@ -87,6 +86,7 @@ class ArticleDetail extends Component {
 
 ArticleDetail.propTypes = {
     id: PropTypes.string.isRequired,
+    getArticle: PropTypes.func.isRequired,
 }
 
 export default ArticleDetail

@@ -18,9 +18,8 @@ class OfferController extends Controller
     public function index()
     {
         return Offer::with([
-            'memberId',
-            'artId',
-            'workTimeId',
+            'member',
+            'workTime',
             'contact',
             'offer_art',
             'offerTaskList',
@@ -63,9 +62,8 @@ class OfferController extends Controller
             DB::commit();
 
             return response()->json([ 'data' => $offer->load([
-                                                'memberId',
-                                                'artId',
-                                                'workTimeId',
+                                                'member',
+                                                'workTime',
                                                 'contact',
                                                 'offer_art',
                                                 'offerTaskList',
@@ -89,9 +87,8 @@ class OfferController extends Controller
     public function show(Offer $offer)
     {
         return $offer->load([
-            'memberId',
-            'artId',
-            'workTimeId',
+            'member',
+            'workTime',
             'contact',
             'offer_art',
             'offerTaskList',
@@ -163,9 +160,8 @@ class OfferController extends Controller
             DB::commit();
 
             return response()->json([ 'data' => $offer->load([
-                                                    'memberId',
-                                                    'artId',
-                                                    'workTimeId',
+                                                    'member',
+                                                    'workTime',
                                                     'contact',
                                                     'offer_art',
                                                     'offerTaskList',
@@ -225,9 +221,8 @@ class OfferController extends Controller
         return $order
             ->where('member_id', $member)
             ->load([
-                'memberId',
-                'artId',
-                'workTimeId',
+                'member',
+                'workTime',
                 'contact',
                 'offer_art',
                 'offerTaskList',

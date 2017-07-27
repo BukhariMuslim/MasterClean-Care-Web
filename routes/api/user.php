@@ -19,6 +19,8 @@ Route::group(['prefix' => 'user'], function () {
 
     Route::post('/', 'UserController@store');
     
+    Route::get('/art', 'UserController@getArt');
+
     Route::get('/me', 'UserController@getCurrent');
 
     Route::get('/{user_id}', 'UserController@show')->where('user_id', '[0-9]+');

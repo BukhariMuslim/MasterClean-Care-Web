@@ -52,6 +52,7 @@ class routesElement extends Component {
                 <Route path="/user" component={ UserProfileContainer } onEnter={ this.requireAuth(this.props.state) } />
                 <Route path='/article/:articleId' component={ ArticlePage }/>
                 <Route path='/article' component={ ArticlePage }/>
+                <Route path='/art/:artId' component={ ArtPage }/>
                 <Route path='/art' component={ ArtPage }/>
                 <Route path="/*" component={ NotFound }/> 
             </Switch>

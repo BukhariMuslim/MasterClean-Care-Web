@@ -13,6 +13,11 @@ export const UPDATE_SNACK = 'UPDATE_SNACK'
 export const RESET_SNACK = 'RESET_SNACK'
 export const UPDATE_LOADING_SPIN = 'UPDATE_LOADING_SPIN'
 export const RESET_LOADING_SPIN = 'RESET_LOADING_SPIN'
+export const FILL_ART = 'FILL_ART'
+export const ADD_ART = 'ADD_ART'
+export const EDIT_ART = 'EDIT_ART'
+export const UPDATE_ART = 'UPDATE_ART'
+export const REMOVE_ART = 'REMOVE_ART'
 export const FILL_ARTICLE = 'FILL_ARTICLE'
 export const ADD_ARTICLE = 'ADD_ARTICLE'
 export const EDIT_ARTICLE = 'EDIT_ARTICLE'
@@ -91,4 +96,24 @@ export function updateArticle(data) {
 
 export function removeArticle(index) {
     return { type: REMOVE_ARTICLE, data: index }
+}
+
+export function fillArt(data) {
+    return { type: FILL_ART, data: data }
+}
+
+export function addArt(data) {
+    return { type: ADD_ART, data: data }
+}
+
+export function editArt(index) {
+    return { type: edit_ART, data: index }
+}
+
+export function updateArt(data) {
+    return { type: UPDATE_ART, data: data }
+}
+
+export function removeArt(index) {
+    return { type: REMOVE_ART, data: index }
 }

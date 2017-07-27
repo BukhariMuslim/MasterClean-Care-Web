@@ -10,7 +10,7 @@ import ApiService from '../modules/ApiService'
 
 const mapStateToProps = (state) => {
     return {
-        article: state.ArtReducer
+        art: state.ArtReducer
     }
 }
 
@@ -24,7 +24,7 @@ const mapDispatchToProps = (dispatch) => {
         },
         getArt: () => {
             ApiService.onGet(
-                '/api/article', 
+                '/api/user/art', 
                 '',
                 function (response) {
                     let data = response

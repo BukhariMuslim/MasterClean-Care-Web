@@ -17,7 +17,7 @@ const getInitial = () => {
     }
 }
 
-const ArticleReducer = (state = [], action) => {
+const ArtReducer = (state = [], action) => {
     switch (action.type) {
         case FILL_ART:
             return Object.assign([], state, action.data)
@@ -93,4 +93,4 @@ const ArticleReducer = (state = [], action) => {
     }
 }
 
-export default ArticleReducer
+export default ArtReducer

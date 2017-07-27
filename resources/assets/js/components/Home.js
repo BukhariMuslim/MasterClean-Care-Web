@@ -5,6 +5,7 @@ import Paper from 'material-ui/Paper'
 import Divider from 'material-ui/Divider'
 import App from './App'
 import ArticleContainer from '../containers/ArticleContainer'
+import ArtContainer from '../containers/ArtContainer'
 import FlatButton from 'material-ui/FlatButton'
 
 class Home extends Component {
@@ -24,7 +25,21 @@ class Home extends Component {
                                 label="Lihat Semua" 
                                 containerElement={ <Link to={ "/art" } /> }
                                 />
+                            <div className="clearfix"></div>
                         </h5>
+                        <Divider></Divider>
+                        <ArtContainer maxItem={ 10 } sortBy="crated_at" />
+                        <h5>
+                            ART Terunggul
+                            <FlatButton 
+                                className="right"
+                                label="Lihat Semua" 
+                                containerElement={ <Link to={ "/art" } /> }
+                                />
+                            <div className="clearfix"></div>
+                        </h5>
+                        <Divider></Divider>
+                        <ArtContainer maxItem={ 10 } sortBy="rate" />
                         <Divider></Divider>
                         <h5>
                             Artikel Terbaru
@@ -33,9 +48,10 @@ class Home extends Component {
                                 label="Lihat Semua" 
                                 containerElement={ <Link to={ "/article" } /> }
                                 />
+                            <div className="clearfix"></div>
                         </h5>
                         <Divider></Divider>
-                        <ArticleContainer maxItem={2} />
+                        <ArticleContainer maxItem={ 2 } />
                     </Paper>
                 </div>
             </App>

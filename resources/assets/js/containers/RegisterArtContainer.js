@@ -1,6 +1,10 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { filterTodo, updateSnack } from '../actions/DefaultAction'
+import { 
+    updateSnack,
+    updateLoadingSpin,
+    resetLoadingSpin,
+} from '../actions/DefaultAction'
 import RegisterArt from '../components/RegisterArt'
 import {
     withRouter,
@@ -22,10 +26,14 @@ const mapDispatchToProps = (dispatch, ownProps) => {
             }))
         },
         onRegister: (self, data, history) => {
+            dispatch(updateLoadingSpin({
+                show: true,
+            }))
             ApiService.onPost(
                 '/api/user',
                 { data },
                 function (response) {
+                    dispatch(resetLoadingSpin())
                     let data = response.data
 
                     if (data.status != 201) {
@@ -43,6 +51,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
                     }
                 },
                 function (error) {
+                    dispatch(resetLoadingSpin())
                     dispatch(updateSnack({
                         open: open,
                         message: error
@@ -55,6 +64,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
             let dataPlace = [];
             ApiService.onGet(
                 '/api/place',
+                '',
                 function (response) {
                     let data = response
                     if (data.status !== 200) {
@@ -82,6 +92,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
             let dataLanguage = [];
             ApiService.onGet(
                 '/api/language/',
+                '',
                 function (response) {
                     let data = response
                     if (data.status !== 200) {
@@ -109,6 +120,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
             let dataJob = [];
             ApiService.onGet(
                 '/api/job/',
+                '',
                 function (response) {
                     let data = response
                     if (data.status !== 200) {
@@ -136,6 +148,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
             let dataWorkTime = [];
             ApiService.onGet(
                 '/api/work_time/',
+                '',
                 function (response) {
                     let data = response
                     if (data.status !== 200) {
@@ -163,6 +176,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
             let dataAdditionalInfo = [];
             ApiService.onGet(
                 '/api/additional_info/',
+                '',
                 function (response) {
                     let data = response
                     if (data.status !== 200) {

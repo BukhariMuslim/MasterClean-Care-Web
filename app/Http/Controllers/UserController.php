@@ -155,7 +155,7 @@ class UserController extends Controller
             else if ($user->user_type == 2)
             {
                 // Save Wallet
-                $user->user_wallet()->createMany($data['user_wallet']);
+                $user->user_wallet()->create($data['user_wallet']);
 
                 // Save Language
                 $user->user_language()->createMany($data['user_language']);
@@ -164,7 +164,9 @@ class UserController extends Controller
                 $user->user_job()->createMany($data['user_job']);
 
                 // Save Document
-                $user->user_document()->createMany($data['user_document']);
+                if (array_key_exists('user_document', $data)) {
+                    $user->user_document()->createMany($data['user_document']);
+                }
 
                 // Save AdditionalInfo
                 $user->user_additional_info()->createMany($data['user_additional_info']);
@@ -442,5 +444,28 @@ class UserController extends Controller
             return response()->json([ 'message' => $e->getMessage(), 
                                       'status' => 400 ]);
         }
+    }
+
+    /**
+     * Display a listing of the ART resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function getArt()
+    {
+        $users = User::where('user_type', 2)
+            ->get()
+            ->load([
+                'user_additional_info',
+                'user_document',
+                'user_language',
+                'user_job',
+                'user_wallet',
+                'user_work_time',
+                'contact',
+                'order_rate'
+            ]);
+
+        return $users;
     }
 }

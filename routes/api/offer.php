@@ -34,11 +34,11 @@ Route::group(['prefix' => 'offer', 'middleware' => ['api']], function () {
 
     Route::post('/', 'OfferController@store');
 
-    Route::get('/{art_id}', 'OfferController@show')->where('art_id', '[0-9]+');
+    Route::get('/{offer_id}', 'OfferController@show')->where('offer_id', '[0-9]+');
     
-    Route::patch('/{art_id}', 'OfferController@update')->where('art_id', '[0-9]+');
+    Route::patch('/{offer_id}', 'OfferController@update')->where('offer_id', '[0-9]+');
 
-    Route::delete('/{art_id}', 'OfferController@destroy')->where('art_id', '[0-9]+');
+    Route::delete('/{offer_id}', 'OfferController@destroy')->where('offer_id', '[0-9]+');
 
     Route::get('/search/{param}/{text}', 'OfferController@searchByParam');
 
