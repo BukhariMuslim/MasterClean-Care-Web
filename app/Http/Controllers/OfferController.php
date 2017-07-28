@@ -57,7 +57,7 @@ class OfferController extends Controller
 
             $offer->contact()->create($data['contact']);
 
-            $offer->orderTaskList()->createMany($data['orderTaskList']);
+            $offer->offerTaskList()->createMany($data['offerTaskList']);
 
             DB::commit();
 
@@ -152,9 +152,9 @@ class OfferController extends Controller
                 $offer->contact()->create($data['contact']);
             }
             
-            if (array_key_exists('orderTaskList', $data)) {
-                $offer->orderTaskList()->delete();
-                $offer->orderTaskList()->createMany($data['orderTaskList']);
+            if (array_key_exists('offerTaskList', $data)) {
+                $offer->offerTaskList()->delete();
+                $offer->offerTaskList()->createMany($data['offerTaskList']);
             }
 
             DB::commit();
