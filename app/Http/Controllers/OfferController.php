@@ -55,7 +55,7 @@ class OfferController extends Controller
             
             $offer = Offer::create($data);
 
-            $offer->contact()->createMany($data['contact']);
+            $offer->contact()->create($data['contact']);
 
             $offer->orderTaskList()->createMany($data['orderTaskList']);
 
@@ -149,7 +149,7 @@ class OfferController extends Controller
 
             if (array_key_exists('contact', $data)) {
                 $offer->contact()->delete();
-                $offer->contact()->createMany($data['contact']);
+                $offer->contact()->create($data['contact']);
             }
             
             if (array_key_exists('orderTaskList', $data)) {
