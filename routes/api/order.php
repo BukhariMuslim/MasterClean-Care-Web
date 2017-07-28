@@ -20,7 +20,7 @@ Route::group(['prefix' => 'order', 'middleware' => ['api']], function () {
 
     Route::delete('/{order_id}/order_task_list/{order_task_list_id}', 'OrderTaskListController@destroy')->where('order_id', '[0-9]+')->where('order_task_list_id', '[0-9]+');
 
-    Route::get('/{order_id}/review_order', 'ReviewOrderController@index')->where('order_id', '[0-9]+');
+    Route::get('/{order_id}/review_order', 'ReviewOrderController@getByOrder')->where('order_id', '[0-9]+');
 
     Route::post('/{order_id}/review_order', 'ReviewOrderController@store')->where('order_id', '[0-9]+');
 

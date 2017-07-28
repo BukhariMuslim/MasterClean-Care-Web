@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\ReviewOrder;
 use Illuminate\Http\Request;
 use App\Helper\Operators;
+use App\Models\Order;
 use Exception;
 
 class ReviewOrderController extends Controller
@@ -143,5 +144,17 @@ class ReviewOrderController extends Controller
                 Operators::LIKE,
                 '%'.$text.'%')
             ->get();
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Models\ReviewOrder  $reviewOrder
+     * @param  \App\Models\Order  $order
+     * @return \Illuminate\Http\Response
+     */
+    public function getByOrder(ReviewOrder $reviewOrder, Order $order)
+    {
+        return $reviewOrder->where('order_id', $order->id)->get();
     }
 }
