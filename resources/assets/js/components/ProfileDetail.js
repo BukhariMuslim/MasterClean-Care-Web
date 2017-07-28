@@ -21,7 +21,7 @@ const fieldStyle = {
 
 const DateTimeFormat = global.Intl.DateTimeFormat
 
-class ArtDetail extends Component {
+class ProfileDetail extends Component {
   constructor(props) {
     super(props)
 
@@ -585,9 +585,9 @@ class ArtDetail extends Component {
   }
 }
 
-ArtDetail.propTypes = {
+ProfileDetail.propTypes = {
   id: PropTypes.string.isRequired,
   getArt: PropTypes.func.isRequired,
 }
 
-export default ArtDetail
+export default ProfileDetail

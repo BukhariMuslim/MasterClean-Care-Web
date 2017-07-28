@@ -16,7 +16,6 @@ import {
 import ApiService from '../modules/ApiService'
 
 const mapStateToProps = (state) => {
-    console.log()
     return {
         user: state.UserLoginReducer
     }
@@ -33,6 +32,7 @@ const mapDispatchToProps = (dispatch) => {
             dispatch(logoutUser())
             dispatch(resetLoadingSpin())
             parent.setState({open:false})
+            history.push('/')
         }
     }
 }

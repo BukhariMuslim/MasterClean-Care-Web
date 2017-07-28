@@ -7,15 +7,15 @@ const DefaultMenuCollection = [
     },
     {
         id: 2,
-        label: 'Artikel',
-        link: '/article',
-        iconLabel: 'receipt',
-    },
-    {
-        id: 3,
         label: 'ART',
         link: '/art',
         iconLabel: 'face',
+    },
+    {
+        id: 3,
+        label: 'Artikel',
+        link: '/article',
+        iconLabel: 'receipt',
     },
 ]
 

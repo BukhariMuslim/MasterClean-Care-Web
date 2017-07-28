@@ -40,7 +40,8 @@ const mapDispatchToProps = (dispatch) => {
                 },
                 function(data) {
                     dispatch(resetLoadingSpin())
-                    if (data.access_token) {
+                    if (data) {
+                        dispatch(loginAuth(data.user))
                         history.push('/')
                     }
                     else {

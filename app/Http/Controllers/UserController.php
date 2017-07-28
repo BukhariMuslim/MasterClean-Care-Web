@@ -35,7 +35,6 @@ class UserController extends Controller
             'user_wallet',
             'user_work_time',
             'contact',
-            'order_rate'
         ])->get();
 
         return $users;
@@ -89,14 +88,8 @@ class UserController extends Controller
                 'user_job',
                 'user_wallet',
                 'user_work_time',
-                'contact'
+                'contact',
             ]);
-            if ($user->order_rate->first()) {
-                $user->rate = $user->order_rate->avg('rate');
-            }
-            else {
-                $user->rate = 0;
-            }
             
             return $user;
         }
@@ -453,9 +446,7 @@ class UserController extends Controller
      */
     public function getArt()
     {
-        $users = User::where('user_type', 2)
-            ->get()
-            ->load([
+        $users = User::with([
                 'user_additional_info',
                 'user_document',
                 'user_language',
@@ -463,8 +454,9 @@ class UserController extends Controller
                 'user_wallet',
                 'user_work_time',
                 'contact',
-                'order_rate'
-            ]);
+            ])
+            ->where('user_type', 2)
+            ->paginate(10);
 
         return $users;
     }

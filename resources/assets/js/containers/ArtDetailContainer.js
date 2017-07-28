@@ -37,7 +37,8 @@ const mapDispatchToProps = (dispatch) => {
                     }
                     else {
                         art = data.data
-                        self.setState({ art })
+                        const oldArt = self.state.art
+                        self.setState({ art: Object.assign({}, oldArt, art) })
                     }
                 },
                 function (error) {
@@ -52,7 +53,6 @@ const mapDispatchToProps = (dispatch) => {
         getPlace: (self, type) =>
         {
             let dataPlace = []
-            let art = self.state.art
             ApiService.onGet(
                 '/api/place',
                 '',
@@ -67,21 +67,20 @@ const mapDispatchToProps = (dispatch) => {
                     else {
                         dataPlace = data.data
                     }
-                    self.setState({ art: Object.assign({}, art, { [type]: dataPlace }) })
+                    self.setState({ [type]: dataPlace })
                 },
                 function (error) {
                     dispatch(updateSnack({
                         open: open,
                         message: error
                     }))
-                    self.setState({ art: Object.assign({}, art, { [type]: dataPlace }) })
+                    self.setState({ [type]: dataPlace })
                 }
             )
         },
         getLanguage: (self, type) => 
         {
             let dataLanguage = []
-            let art = self.state.art
             ApiService.onGet(
                 '/api/language/',
                 '',
@@ -96,21 +95,20 @@ const mapDispatchToProps = (dispatch) => {
                     else {
                         dataLanguage = data.data
                     }
-                    self.setState({ art: Object.assign({}, art, { [type]: dataLanguage }) })
+                    self.setState({ [type]: dataLanguage })
                 },
                 function (error) {
                     dispatch(updateSnack({
                         open: true,
                         message: error
                     }))
-                    self.setState({ art: Object.assign({}, art, { [type]: dataLanguage }) })
+                    self.setState({ [type]: dataLanguage })
                 }
             )
         },
         getJob: (self, type) => 
         {
             let dataJob = []
-            let art = self.state.art
             ApiService.onGet(
                 '/api/job/',
                 '',
@@ -125,21 +123,20 @@ const mapDispatchToProps = (dispatch) => {
                     else {
                         dataJob = data.data
                     }
-                    self.setState({ art: Object.assign({}, art, { [type]: dataJob }) })
+                    self.setState({ [type]: dataJob })
                 },
                 function (error) {
                     dispatch(updateSnack({
                         open: true,
                         message: error
                     }))
-                    self.setState({ art: Object.assign({}, art, { [type]: dataJob }) })
+                    self.setState({ [type]: dataJob })
                 }
             )
         },
         getWorkTime: (self, type) => 
         {
             let dataWorkTime = []
-            let art = self.state.art
             ApiService.onGet(
                 '/api/work_time/',
                 '',
@@ -154,21 +151,20 @@ const mapDispatchToProps = (dispatch) => {
                     else {
                         dataWorkTime = data.data
                     }
-                    self.setState({ art: Object.assign({}, art, { [type]: dataWorkTime }) })
+                    self.setState({ [type]: dataWorkTime })
                 },
                 function (error) {
                     dispatch(updateSnack({
                         open: true,
                         message: error
                     }))
-                    self.setState({ art: Object.assign({}, art, { [type]: dataWorkTime }) })
+                    self.setState({ [type]: dataWorkTime })
                 }
             )
         },
         getAdditionalInfo: (self, type) => 
         {
             let dataAdditionalInfo = []
-            let art = self.state.art
             ApiService.onGet(
                 '/api/additional_info/',
                 '',
@@ -183,14 +179,14 @@ const mapDispatchToProps = (dispatch) => {
                     else {
                         dataAdditionalInfo = data.data
                     }
-                    self.setState({ art: Object.assign({}, art, { [type]: dataAdditionalInfo }) })
+                    self.setState({ [type]: dataAdditionalInfo })
                 },
                 function (error) {
                     dispatch(updateSnack({
                         open: true,
                         message: error
                     }))
-                    self.setState({ art: Object.assign({}, art, { [type]: dataAdditionalInfo }) })
+                    self.setState({ [type]: dataAdditionalInfo })
                 }
             )
         },
