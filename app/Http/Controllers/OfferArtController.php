@@ -155,6 +155,6 @@ class OfferArtController extends Controller
      */
     public function getByOffer(OfferArt $offerArt, Offer $offer)
     {
-        return $offerArt->where('offer_id', $offer->id)->get();
+        return $offerArt->where('offer_id', $offer->id)->get()->load(['art']);
     }
 }
