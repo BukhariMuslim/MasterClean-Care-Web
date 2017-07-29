@@ -212,21 +212,21 @@ class OfferController extends Controller
      * Search the specified resource from storage by member.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Order  $order
+     * @param  \App\Models\Offer  $offer
      * @param  Parameter  $member
      * @return \Illuminate\Http\Response
      */
-    public function getByMember(Request $request, Order $order, $member)
+    public function getByMember(Request $request, Offer $offer, $member)
     {
-        return $order
+        return $offer
             ->where('member_id', $member)
+            ->get()
             ->load([
                 'member',
                 'workTime',
                 'contact',
                 'offer_art',
                 'offerTaskList',
-            ])
-            ->get();
+            ]);
     }
 }

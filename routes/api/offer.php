@@ -35,7 +35,9 @@ Route::group(['prefix' => 'offer', 'middleware' => ['api']], function () {
     Route::post('/', 'OfferController@store');
 
     Route::get('/{offer_id}', 'OfferController@show')->where('offer_id', '[0-9]+');
-    
+
+    Route::get('/member/{member}', 'OfferController@getByMember')->where('member', '[0-9]+');
+
     Route::patch('/{offer_id}', 'OfferController@update')->where('offer_id', '[0-9]+');
 
     Route::delete('/{offer_id}', 'OfferController@destroy')->where('offer_id', '[0-9]+');
