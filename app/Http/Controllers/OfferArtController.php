@@ -157,4 +157,16 @@ class OfferArtController extends Controller
     {
         return $offerArt->where('offer_id', $offer->id)->get()->load(['art']);
     }
+    
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Models\OfferArt  $offerArt
+     * @param  \App\Models\User  $user
+     * @return \Illuminate\Http\Response
+     */
+    public function getByArt(OfferArt $offerArt, User $user)
+    {
+        return $offerArt->where('art_id', $user->id)->get()->load(['offer', 'art']);
+    }
 }
