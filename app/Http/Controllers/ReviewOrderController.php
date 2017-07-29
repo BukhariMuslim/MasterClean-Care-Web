@@ -155,6 +155,6 @@ class ReviewOrderController extends Controller
      */
     public function getByOrder(ReviewOrder $reviewOrder, Order $order)
     {
-        return $reviewOrder->where('order_id', $order->id)->get();
+        return $reviewOrder->where('order_id', $order->id)->first();
     }
 }
