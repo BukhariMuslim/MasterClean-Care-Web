@@ -5,16 +5,16 @@ import { Card, CardActions, CardHeader, CardTitle, CardText } from 'material-ui/
 import FlatButton from 'material-ui/FlatButton'
 import App from './App'
 
-class Article extends Component {
+class Offer extends Component {
     constructor(props){
         super(props)
     }
 
     componentDidMount() {
-        this.props.getArticle()
+        this.props.getOffer()
     }
 
-    articleList(collection) {
+    offerList(collection) {
         return collection.map((obj, idx) => {
             if (idx < this.props.maxItem || !this.props.maxItem) {
                 return (
@@ -32,7 +32,7 @@ class Article extends Component {
                             <CardActions className="right-align">
                                 <FlatButton 
                                     label="Selengkapnya..." 
-                                    containerElement={ <Link to={ "/article/" + obj.id } /> }
+                                    containerElement={ <Link to={ "/offer/" + obj.id } /> }
                                     />
                             </CardActions>
                         </Card>
@@ -43,12 +43,12 @@ class Article extends Component {
     }
 
     render() {
-        const { article } = this.props;
+        const { offer } = this.props;
         return (
             <div>
                 {
-                    article.length >0 ?
-                    this.articleList(article)
+                    offer.length >0 ?
+                    this.offerList(offer)
                     :
                     <small>Tidak ada artikel ditemukan</small>
                 }
@@ -57,9 +57,9 @@ class Article extends Component {
     }
 }
 
-Article.propTypes = {
-    article: PropTypes.array.isRequired,
-    getArticle: PropTypes.func.isRequired,
+Offer.propTypes = {
+    offer: PropTypes.array.isRequired,
+    getOffer: PropTypes.func.isRequired,
 }
 
-export default Article
+export default Offer

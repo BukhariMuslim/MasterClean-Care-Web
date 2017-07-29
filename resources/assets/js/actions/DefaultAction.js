@@ -23,6 +23,11 @@ export const ADD_ARTICLE = 'ADD_ARTICLE'
 export const EDIT_ARTICLE = 'EDIT_ARTICLE'
 export const UPDATE_ARTICLE = 'UPDATE_ARTICLE'
 export const REMOVE_ARTICLE = 'REMOVE_ARTICLE'
+export const FILL_OFFER = 'FILL_OFFER'
+export const ADD_OFFER = 'ADD_OFFER'
+export const EDIT_OFFER = 'EDIT_OFFER'
+export const UPDATE_OFFER = 'UPDATE_OFFER'
+export const REMOVE_OFFER = 'REMOVE_OFFER'
 
 /*
  *  Action Creators
@@ -87,7 +92,7 @@ export function addArticle(data) {
 }
 
 export function editArticle(index) {
-    return { type: edit_ARTICLE, data: index }
+    return { type: EDIT_ARTICLE, data: index }
 }
 
 export function updateArticle(data) {
@@ -107,7 +112,7 @@ export function addArt(data) {
 }
 
 export function editArt(index) {
-    return { type: edit_ART, data: index }
+    return { type: EDIT_ART, data: index }
 }
 
 export function updateArt(data) {
@@ -116,4 +121,24 @@ export function updateArt(data) {
 
 export function removeArt(index) {
     return { type: REMOVE_ART, data: index }
+}
+
+export function fillOffer(data) {
+    return { type: FILL_OFFER, data: data }
+}
+
+export function addOffer(data) {
+    return { type: ADD_OFFER, data: data }
+}
+
+export function editOffer(index) {
+    return { type: EDIT_OFFER, data: index }
+}
+
+export function updateOffer(data) {
+    return { type: UPDATE_OFFER, data: data }
+}
+
+export function removeOffer(index) {
+    return { type: REMOVE_OFFER, data: index }
 }

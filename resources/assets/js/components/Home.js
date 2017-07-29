@@ -7,6 +7,7 @@ import App from './App'
 import ArticleContainer from '../containers/ArticleContainer'
 import ArtContainer from '../containers/ArtContainer'
 import FlatButton from 'material-ui/FlatButton'
+import Breadcrumbs from '../modules/Breadcrumbs'
 
 class Home extends Component {
   constructor(props) {
@@ -17,11 +18,16 @@ class Home extends Component {
     return (
       <App>
         <div className="row">
+          <nav className="cyan breadcrumbsNav">
+            <div className="nav-wrapper">
+              <Breadcrumbs pathname={this.props.location.pathname} />
+            </div>
+          </nav>
           <Paper className="col s12" zDepth={1} style={{ padding: '10px', marginTop: '10px' }}>
             <div className="col s12">
               <h5 style={{ marginTop: 35 }}>
                 ART Pendatang Baru
-                              <FlatButton
+                <FlatButton
                   className="right"
                   label="Lihat Semua"
                   primary={true}
@@ -34,12 +40,12 @@ class Home extends Component {
             </div>
             <div className="col s12">
               <h5 style={{ marginTop: 35 }}>
-                ART Terunggul
-                              <FlatButton
+                Pekerjaan Tersedia
+                <FlatButton
                   className="right"
                   label="Lihat Semua"
                   primary={true}
-                  containerElement={<Link to={"/art"} />}
+                  containerElement={<Link to={"/offer"} />}
                 />
                 <div className="clearfix"></div>
               </h5>
@@ -49,7 +55,7 @@ class Home extends Component {
             <div className="col s12 m8">
               <h5 style={{ marginTop: 35 }}>
                 Artikel Terbaru
-                              <FlatButton
+                <FlatButton
                   className="right"
                   label="Lihat Semua"
                   primary={true}
@@ -62,8 +68,8 @@ class Home extends Component {
             </div>
             <div className="col s12 m4">
               <h5 style={{ marginTop: 35 }}>
-                ART Lainnya
-                              <FlatButton
+                ART Terunggul
+                <FlatButton
                   className="right"
                   label="Lihat Semua"
                   primary={true}
@@ -72,7 +78,7 @@ class Home extends Component {
                 <div className="clearfix"></div>
               </h5>
               <Divider></Divider>
-              <ArtContainer isFeatured={true} maxItem={10} sortBy="status" />
+              <ArtContainer isFeatured={true} maxItem={10} sortBy="rate" />
             </div>
           </Paper>
         </div>

@@ -1,3 +1,13 @@
+#root > div {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+main {
+    flex: 1 0 auto;
+}
+
 .full-width {
     width: 100%;
 }
@@ -43,4 +53,18 @@ input[type=text]:not(.browser-default):focus:not([readonly]) {
 
 fieldset {
     border-color: rgba(0, 0, 0, 0.3);
+}
+
+.breadcrumbsNav {
+    height: 32px;
+    line-height: 32px;
+}
+
+.breadcrumb > a {
+    transition: color 0.5s ease;
+    color: #e1f5fe;
+}
+
+.breadcrumb > a:hover {
+    color: rgba(255, 255, 255, 0.5);
 }

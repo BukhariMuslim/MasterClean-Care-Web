@@ -2,11 +2,11 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import Paper from 'material-ui/Paper'
 import App from './App'
-import ArticleContainer from '../containers/ArticleContainer'
-import ArticleDetailContainer from '../containers/ArticleDetailContainer'
+import OfferContainer from '../containers/OfferContainer'
+import OfferDetailContainer from '../containers/OfferDetailContainer'
 import Breadcrumbs from '../modules/Breadcrumbs'
 
-class ArticlePage extends Component {
+class OfferPage extends Component {
   constructor(props) {
     super(props)
   }
@@ -21,16 +21,16 @@ class ArticlePage extends Component {
             </div>
           </nav>
           {
-            this.props.match.params.articleId
+            this.props.match.params.offerId
               ?
               <Paper className="col s12" zDepth={1} style={{ padding: 10, marginTop: 10 }} >
-                <ArticleDetailContainer id={this.props.match.params.articleId} />
+                <OfferDetailContainer id={this.props.match.params.offerId} />
               </Paper>
               :
               <Paper className="col s12" zDepth={1} style={{ padding: 10, marginTop: 10 }}>
                 <div>
                   <h5>Artikel</h5>
-                  <ArticleContainer />
+                  <OfferContainer />
                 </div>
               </Paper>
           }
@@ -40,4 +40,4 @@ class ArticlePage extends Component {
   }
 }
 
-export default ArticlePage
+export default OfferPage

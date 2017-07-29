@@ -8,6 +8,7 @@ import ArtContainer from '../containers/ArtContainer'
 import ArtDetailContainer from '../containers/ArtDetailContainer'
 import FontIcon from 'material-ui/FontIcon'
 import IconButton from 'material-ui/IconButton'
+import Breadcrumbs from '../modules/Breadcrumbs'
 
 class ArtPage extends Component {
   constructor(props) {
@@ -33,14 +34,19 @@ class ArtPage extends Component {
     return (
       <App>
         <div className="row">
+          <nav className="cyan breadcrumbsNav">
+            <div className="nav-wrapper">
+              <Breadcrumbs pathname={this.props.location.pathname} />
+            </div>
+          </nav>
           {
             this.props.match.params.artId
               ?
-              <div>
+              <Paper className="col s12" zDepth={1} style={{ padding: 10, marginTop: 10 }}>
                 <ArtDetailContainer id={this.props.match.params.artId} />
-              </div>
+              </Paper>
               :
-              <Paper className="col s12" zDepth={1} style={{ padding: "10px" }}>
+              <Paper className="col s12" zDepth={1} style={{ padding: 10, marginTop: 10 }}>
                 <Card expanded={this.state.expanded} onExpandChange={this.handleExpandChange} className="col s12" zDepth={0} >
                   <CardTitle>
                     <h5 style={{ marginTop: 35 }}>

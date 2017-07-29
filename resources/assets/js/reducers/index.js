@@ -3,6 +3,7 @@ import UserLoginReducer from './UserLoginReducer'
 import NotificationReducer from './NotificationReducer'
 import LoadingSpinReducer from './LoadingSpinReducer'
 import ArtReducer from './ArtReducer'
+import OfferReducer from './OfferReducer'
 import ArticleReducer from './ArticleReducer'
 
 const mcc = combineReducers({
@@ -10,6 +11,7 @@ const mcc = combineReducers({
     NotificationReducer,
     LoadingSpinReducer,
     ArtReducer,
+    OfferReducer,
     ArticleReducer,
 })
 

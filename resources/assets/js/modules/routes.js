@@ -9,6 +9,7 @@ import RegisterArtContainer from '../containers/RegisterArtContainer'
 import UserProfileContainer from '../containers/UserProfileContainer'
 import ArticlePage from '../components/ArticlePage'
 import ArtPage from '../components/ArtPage'
+import OfferPage from '../components/OfferPage'
 import NotFound from '../components/NotFound'
 import Home from '../components/Home'
 
@@ -45,7 +46,7 @@ class routesElement extends Component {
     render() {
         return (
             <Switch>
-                <Route exact path="/" component={ Home }/>
+                <Route exact path="/" component={ Home } />
                 <Route path="/login" component={ LoginContainer }/>
                 <Route path="/register_member" component={ RegisterMemberContainer }/>
                 <Route path="/register_art" component={ RegisterArtContainer }/>
@@ -54,6 +55,8 @@ class routesElement extends Component {
                 <Route path='/article' component={ ArticlePage }/>
                 <Route path='/art/:artId' component={ ArtPage }/>
                 <Route path='/art' component={ ArtPage }/>
+                <Route path='/offer/:offerId' component={ OfferPage }/>
+                <Route path='/offer' component={ OfferPage }/>
                 <Route path="/*" component={ NotFound }/> 
             </Switch>
         )

@@ -13,6 +13,12 @@ const DefaultMenuCollection = [
     },
     {
         id: 3,
+        label: 'Offer',
+        link: '/offer',
+        iconLabel: 'business_center',
+    },
+    {
+        id: 4,
         label: 'Artikel',
         link: '/article',
         iconLabel: 'receipt',

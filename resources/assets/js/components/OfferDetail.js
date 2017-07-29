@@ -5,17 +5,17 @@ import { Card, CardActions, CardHeader, CardTitle, CardText } from 'material-ui/
 import FlatButton from 'material-ui/FlatButton'
 import App from './App'
 
-class ArticleDetail extends Component {
+class OfferDetail extends Component {
   constructor(props) {
     super(props)
 
     this.state = {
-      article: {}
+      offer: {}
     }
   }
 
   componentDidMount() {
-    this.props.getArticle(this.props.id, this)
+    this.props.getOffer(this.props.id, this)
   }
 
   comments(comments) {
@@ -48,24 +48,24 @@ class ArticleDetail extends Component {
   }
 
   render() {
-    const { article } = this.state;
+    const { offer } = this.state;
     return (
       <div>
         {
-          article ?
+          offer ?
             <div>
               <Card className="col s12" zDepth={0} >
-                <CardTitle title={article.title} />
+                <CardTitle title={offer.title} />
                 <CardText>
-                  {article.content}
+                  {offer.content}
                 </CardText>
               </Card>
               <Card className="col s12" style={{ marginTop: '10px', paddingBottom: '10px' }}>
                 <CardTitle title="Komentar" />
                 <CardText>
                   {
-                    article.comment ?
-                      this.comments(article.comment)
+                    offer.comment ?
+                      this.comments(offer.comment)
                       :
                       'Tidak ada komentar.'
                   }
@@ -82,9 +82,9 @@ class ArticleDetail extends Component {
   }
 }
 
-ArticleDetail.propTypes = {
+OfferDetail.propTypes = {
   id: PropTypes.string.isRequired,
-  getArticle: PropTypes.func.isRequired,
+  getOffer: PropTypes.func.isRequired,
 }
 
-export default ArticleDetail
+export default OfferDetail
