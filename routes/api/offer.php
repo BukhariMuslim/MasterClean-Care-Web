@@ -37,6 +37,8 @@ Route::group(['prefix' => 'offer', 'middleware' => ['api']], function () {
     Route::get('/{offer_id}', 'OfferController@show')->where('offer_id', '[0-9]+');
 
     Route::get('/member/{member}', 'OfferController@getByMember')->where('member', '[0-9]+');
+    
+    Route::get('/art/{user_id}', 'OfferArtController@getByArt')->where('user_id', '[0-9]+');
 
     Route::patch('/{offer_id}', 'OfferController@update')->where('offer_id', '[0-9]+');
 
