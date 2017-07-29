@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\OfferArt;
 use Illuminate\Http\Request;
 use App\Helper\Operators;
+use App\Models\Offer;
 use Exception;
 
 class OfferArtController extends Controller
@@ -143,5 +144,17 @@ class OfferArtController extends Controller
                 Operators::LIKE,
                 '%'.$text.'%')
             ->get();
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Models\OfferArt  $offerArt
+     * @param  \App\Models\Offer  $offer
+     * @return \Illuminate\Http\Response
+     */
+    public function getByOffer(OfferArt $offerArt, Offer $offer)
+    {
+        return $offerArt->where('offer_id', $offer->id)->get();
     }
 }

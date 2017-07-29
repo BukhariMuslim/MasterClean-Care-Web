@@ -10,7 +10,7 @@ use Illuminate\Http\Offer;
 
 Route::group(['prefix' => 'offer', 'middleware' => ['api']], function () {
 
-    Route::get('/{offer_id}/offer_art', 'OfferArtController@index')->where('offer_id', '[0-9]+');
+    Route::get('/{offer_id}/offer_art', 'OfferArtController@getByOffer')->where('offer_id', '[0-9]+');
 
     Route::post('/{offer_id}/offer_art', 'OfferArtController@store')->where('offer_id', '[0-9]+');
 
