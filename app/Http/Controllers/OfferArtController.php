@@ -6,6 +6,7 @@ use App\Models\OfferArt;
 use Illuminate\Http\Request;
 use App\Helper\Operators;
 use App\Models\Offer;
+use App\Models\User;
 use Exception;
 
 class OfferArtController extends Controller
@@ -54,6 +55,19 @@ class OfferArtController extends Controller
             return response()->json([ 'message' => $e->getMessage(), 
                                       'status' => 400 ]);
         }
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Models\OfferArt  $offerArt
+     * @param  \App\Models\Offer  $offer
+     * @param  \App\Models\User  $user
+     * @return \Illuminate\Http\Response
+     */
+    public function showByOfferArt(OfferArt $offerArt, Offer $offer, User $user)
+    {
+        return $offerArt->where('offer_id', $offer->id)->where('art_id', $user->id)->get()->load(['offer', 'art']);;
     }
 
     /**

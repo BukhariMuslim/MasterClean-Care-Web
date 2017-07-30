@@ -229,4 +229,26 @@ class OfferController extends Controller
                 'offerTaskList',
             ]);
     }
+
+    /**
+     * Search the specified resource from storage by member.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Offer  $offer
+     * @param  Parameter  $status
+     * @return \Illuminate\Http\Response
+     */
+    public function getByStatus(Request $request, Offer $offer, $status)
+    {
+        return $offer
+            ->where('status', $status)
+            ->get()
+            ->load([
+                'member',
+                'workTime',
+                'contact',
+                'offer_art',
+                'offerTaskList',
+            ]);
+    }
 }
