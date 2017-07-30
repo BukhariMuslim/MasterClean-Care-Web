@@ -110,8 +110,11 @@ class MessageController extends Controller
             if (array_key_exists('message', $data)) {
                 $message->message = $data['message'];
             }
-            if (array_key_exists('status', $data)) {
-                $message->status = $data['status'];
+            if (array_key_exists('status_member', $data)) {
+                $message->status_member = $data['status_member'];
+            }
+            if (array_key_exists('status_art', $data)) {
+                $message->status_art = $data['status_art'];
             }
 
             $message->save();

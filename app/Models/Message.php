@@ -16,7 +16,8 @@ class Message extends Model
         'receiver_id',
         'subject',
         'message',
-        'status',
+        'status_member',
+        'status_art',
     ];
 
     /**
