@@ -140,8 +140,11 @@ class OrderController extends Controller
             if (array_key_exists('remark', $data)) {
                 $requests->remark = $data['remark'];
             }
-            if (array_key_exists('status', $data)) {
-                $requests->status = $data['status'];
+            if (array_key_exists('status_member', $data)) {
+                $requests->status_member = $data['status_member'];
+            }
+            if (array_key_exists('status_art', $data)) {
+                $requests->status_art = $data['status_art'];
             }
 
             if (array_key_exists('contact', $data)) {
