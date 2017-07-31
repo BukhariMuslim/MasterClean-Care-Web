@@ -26,6 +26,8 @@ const styles = {
   },
 };
 
+const defaultImg = '/img/profile.png'
+
 class Art extends Component {
   constructor(props) {
     super(props)
@@ -44,6 +46,7 @@ class Art extends Component {
       })
     }
 
+
     return collection.map((obj, idx) => {
       if (idx < this.props.maxItem || !this.props.maxItem) {
         const calculateAge = (birthday) => {
@@ -52,6 +55,13 @@ class Art extends Component {
           let ageDate = new Date(ageDifMs)
           return Math.abs(ageDate.getUTCFullYear() - 1970)
         }
+
+        const imageError = (image) => {
+          image.onerror = ""
+          image.src = "/images/noimage.gif"
+          return true
+        }
+
         let age = calculateAge(obj.born_date)
         return (
           <GridTile
@@ -63,7 +73,7 @@ class Art extends Component {
             cols={ this.props.isFeatured && idx == 0 ? 2 : 1 }
             rows={ this.props.isFeatured && idx == 0 ? 2 : 1 }
           >
-            <img src={obj.avatar || '/img/profile.png'} />
+            <img src={ obj.avatar || defaultImg } onError="imageError(this)" />
           </GridTile>
         )
       }

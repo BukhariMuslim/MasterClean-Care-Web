@@ -128,14 +128,32 @@ class OfferArtController extends Controller
         }
     }
 
+    // /**
+    //  * Remove the specified resource from storage.
+    //  *
+    //  * @param  \App\Models\OfferArt  $offerArt
+    //  * @return \Illuminate\Http\Response
+    //  */
+    // public function destroy(OfferArt $offerArt)
+    // {
+    //     $offerArt->delete();
+
+    //     return response()->json([ 'message' => 'Deleted Success', 
+    //                               'status' => 200]);
+    // }
+
     /**
-     * Remove the specified resource from storage.
+     * Display the specified resource.
      *
      * @param  \App\Models\OfferArt  $offerArt
+     * @param  \App\Models\Offer  $offer
+     * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function destroy(OfferArt $offerArt)
+    public function destroy(OfferArt $offerArt, Offer $offer, User $user)
     {
+        $offerArt = $offerArt->where('offer_id', $offer->id)->where('art_id', $user->id);
+
         $offerArt->delete();
 
         return response()->json([ 'message' => 'Deleted Success', 
@@ -181,6 +199,32 @@ class OfferArtController extends Controller
      */
     public function getByArt(OfferArt $offerArt, User $user)
     {
-        return $offerArt->where('art_id', $user->id)->get()->load(['offer', 'art']);
+        return Offer::whereHas('offer_art', function($query) use ($user) {
+            $query->where('art_id', $user->id);
+        })->with([
+            'member',
+            'contact',
+            'offer_art',
+            'offerTaskList',
+        ])->get();
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Models\OfferArt  $offerArt
+     * @param  Param  $status
+     * @return \Illuminate\Http\Response
+     */
+    public function getByStatus(OfferArt $offerArt, $status)
+    {
+        return Offer::whereHas('offer_art', function($query) use ($status) {
+            $query->where('status', $status);
+        })->with([
+            'member',
+            'contact',
+            'offer_art',
+            'offerTaskList',
+        ])->get();
     }
 }

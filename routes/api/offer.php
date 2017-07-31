@@ -16,9 +16,9 @@ Route::group(['prefix' => 'offer', 'middleware' => ['api']], function () {
 
     Route::get('/{offer_id}/offer_art/{user_id}', 'OfferArtController@showByOfferArt')->where('offer_id', '[0-9]+')->where('user_id', '[0-9]+');
     
-    Route::patch('/{offer_id}/offer_art/{art_id}', 'OfferArtController@update')->where('offer_id', '[0-9]+')->where('art_id', '[0-9]+');
+    Route::patch('/{offer_id}/offer_art/{user_id}', 'OfferArtController@update')->where('offer_id', '[0-9]+')->where('user_id', '[0-9]+');
 
-    Route::delete('/{offer_id}/offer_art/{art_id}', 'OfferArtController@destroy')->where('offer_id', '[0-9]+')->where('art_id', '[0-9]+');
+    Route::delete('/{offer_id}/offer_art/{user_id}', 'OfferArtController@destroy')->where('offer_id', '[0-9]+')->where('user_id', '[0-9]+');
 
     Route::get('/{offer_id}/offer_task_list', 'OfferTaskListController@index')->where('offer_id', '[0-9]+');
 
@@ -41,6 +41,8 @@ Route::group(['prefix' => 'offer', 'middleware' => ['api']], function () {
     Route::get('/status/{status}', 'OfferController@getByStatus')->where('status', '[0-9]+');
     
     Route::get('/art/{user_id}', 'OfferArtController@getByArt')->where('user_id', '[0-9]+');
+
+    Route::get('/offer_art/status/{status}', 'OfferArtController@getByStatus')->where('status', '[0-9]+');
 
     Route::patch('/{offer_id}', 'OfferController@update')->where('offer_id', '[0-9]+');
 
