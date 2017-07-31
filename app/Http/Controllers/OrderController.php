@@ -258,6 +258,31 @@ class OrderController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\Order  $order
+     * @param  Parameter  $art
+     * @param  Parameter  $status
+     * @return \Illuminate\Http\Response
+     */
+    public function getByArt2(Request $request, Order $order, $art, $status)
+    {
+        return $order
+            ->where('art_id', $art)
+            ->where('status', $status)
+            ->get()
+            ->load([
+                'member',
+                'art',
+                'workTime',
+                'reviewOrder',
+                'contact',
+                'orderTaskList'
+            ]);
+    }
+
+    /**
+     * Search the specified resource from storage by ART.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Order  $order
      * @param  Parameter  $status
      * @return \Illuminate\Http\Response
      */

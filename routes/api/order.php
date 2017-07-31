@@ -40,6 +40,8 @@ Route::group(['prefix' => 'order', 'middleware' => ['api']], function () {
 
     Route::get('/art/{art}', 'OrderController@getByArt')->where('art', '[0-9]+');
 
+    Route::get('/art/{art}/status/{status}', 'OrderController@getByArt2')->where('art', '[0-9]+')->where('status', '[0-9]+');
+
     Route::get('/status/{status}', 'OrderController@getByStatus')->where('status', '[0-9]+');
 
     Route::get('/status_member/{status}', 'OrderController@getByMemberStatus')->where('status', '[0-9]+');
