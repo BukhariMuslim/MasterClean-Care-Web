@@ -120,34 +120,34 @@ class OrderController extends Controller
                 $data = $data['data'];
             }
             if (array_key_exists('member_id', $data)) {
-                $requests->member_id = $data['member_id'];
+                $order->member_id = $data['member_id'];
             }
             if (array_key_exists('art_id', $data)) {
-                $requests->art_id = $data['art_id'];
+                $order->art_id = $data['art_id'];
             }
             if (array_key_exists('work_time_id', $data)) {
-                $requests->work_time_id = $data['work_time_id'];
+                $order->work_time_id = $data['work_time_id'];
             }
             if (array_key_exists('cost', $data)) {
-                $requests->cost = $data['cost'];
+                $order->cost = $data['cost'];
             }
             if (array_key_exists('start_date', $data)) {
-                $requests->start_date = $data['start_date'];
+                $order->start_date = $data['start_date'];
             }
             if (array_key_exists('end_date', $data)) {
-                $requests->end_date = $data['end_date'];
+                $order->end_date = $data['end_date'];
             }
             if (array_key_exists('remark', $data)) {
-                $requests->remark = $data['remark'];
+                $order->remark = $data['remark'];
             }
             if (array_key_exists('status', $data)) {
-                $requests->status = $data['status'];
+                $order->status = $data['status'];
             }
             if (array_key_exists('status_member', $data)) {
-                $requests->status_member = $data['status_member'];
+                $order->status_member = $data['status_member'];
             }
             if (array_key_exists('status_art', $data)) {
-                $requests->status_art = $data['status_art'];
+                $order->status_art = $data['status_art'];
             }
 
             if (array_key_exists('contact', $data)) {
