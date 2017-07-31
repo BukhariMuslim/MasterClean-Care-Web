@@ -19,6 +19,7 @@ class Order extends Model
         'start_date',
         'end_date',
         'remark',
+        'status',
         'status_member',
         'status_art',
     ];

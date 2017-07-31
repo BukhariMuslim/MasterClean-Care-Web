@@ -22,7 +22,9 @@ class OrdersTableSeeder extends Seeder
 				'end_date' => Carbon::create('2017', '07', '19', '12', '0', '0'),
 				'cost' => 250000,
 				'remark' => '',
-				'status' => 1
+				'status' => 1,
+				'status_member' => 1,
+				'status_art' => 1
 			],
 			[
 				'member_id' => 5,
@@ -32,7 +34,9 @@ class OrdersTableSeeder extends Seeder
 				'end_date' => Carbon::create('2017', '07', '21', '0', '0', '0'),
 				'cost' => 560000,
 				'remark' => '',
-				'status' => 1
+				'status' => 1,
+				'status_member' => 1,
+				'status_art' => 0
 			],
 			[
 				'member_id' => 6,
@@ -42,7 +46,9 @@ class OrdersTableSeeder extends Seeder
 				'end_date' => Carbon::create('2017', '07', '20', '14', '0', '0'),
 				'cost' => 225000,
 				'remark' => '',
-				'status' => 1
+				'status' => 1,
+				'status_member' => 0,
+				'status_art' => 1
 			],
     	]);
     }

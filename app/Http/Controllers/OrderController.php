@@ -140,6 +140,9 @@ class OrderController extends Controller
             if (array_key_exists('remark', $data)) {
                 $requests->remark = $data['remark'];
             }
+            if (array_key_exists('status', $data)) {
+                $requests->status = $data['status'];
+            }
             if (array_key_exists('status_member', $data)) {
                 $requests->status_member = $data['status_member'];
             }
@@ -239,6 +242,75 @@ class OrderController extends Controller
     {
         return $order
             ->where('art_id', $art)
+            ->get()
+            ->load([
+                'member',
+                'art',
+                'workTime',
+                'reviewOrder',
+                'contact',
+                'orderTaskList'
+            ]);
+    }
+
+    /**
+     * Search the specified resource from storage by ART.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Order  $order
+     * @param  Parameter  $status
+     * @return \Illuminate\Http\Response
+     */
+    public function getByStatus(Request $request, Order $order, $status)
+    {
+        return $order
+            ->where('status', $status)
+            ->get()
+            ->load([
+                'member',
+                'art',
+                'workTime',
+                'reviewOrder',
+                'contact',
+                'orderTaskList'
+            ]);
+    }
+
+    /**
+     * Search the specified resource from storage by ART.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Order  $order
+     * @param  Parameter  $status
+     * @return \Illuminate\Http\Response
+     */
+    public function getByMemberStatus(Request $request, Order $order, $status)
+    {
+        return $order
+            ->where('status_member', $status)
+            ->get()
+            ->load([
+                'member',
+                'art',
+                'workTime',
+                'reviewOrder',
+                'contact',
+                'orderTaskList'
+            ]);
+    }
+    
+    /**
+     * Search the specified resource from storage by ART.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Order  $order
+     * @param  Parameter  $status
+     * @return \Illuminate\Http\Response
+     */
+    public function getByArtStatus(Request $request, Order $order, $status)
+    {
+        return $order
+            ->where('status_art', $status)
             ->get()
             ->load([
                 'member',
