@@ -29,4 +29,20 @@ class Job extends Model
     {
         return $this->hasMany(UserJob::class);
     }
+    
+    /**
+     * Get the order record associated with the job.
+     */
+    public function order()
+    {
+        return $this->hasMany(Order::class);
+    }
+    
+    /**
+     * Get the offer record associated with the job.
+     */
+    public function offer()
+    {
+        return $this->hasMany(Offer::class);
+    }
 }

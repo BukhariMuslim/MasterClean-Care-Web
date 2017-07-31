@@ -18,6 +18,7 @@ class CreateOrdersTable extends Migration
             $table->integer('member_id')->unsigned();
             $table->integer('art_id')->unsigned();
             $table->integer('work_time_id')->unsigned();
+            $table->integer('job_id')->unsigned();
             $table->decimal('cost', 18, 2);
             $table->dateTime('start_date');
             $table->dateTime('end_date');
@@ -33,6 +34,8 @@ class CreateOrdersTable extends Migration
                   ->references('id')->on('users');
             $table->foreign('work_time_id')
                   ->references('id')->on('work_times');
+            $table->foreign('job_id')
+                  ->references('id')->on('jobs');
         });
     }
 

@@ -17,6 +17,7 @@ class CreateOffersTable extends Migration
             $table->increments('id');
             $table->integer('member_id')->unsigned();
             $table->integer('work_time_id')->unsigned();
+            $table->integer('job_id')->unsigned();
             $table->decimal('cost', 18, 2);
             $table->dateTime('start_date');
             $table->dateTime('end_date');
@@ -28,6 +29,8 @@ class CreateOffersTable extends Migration
                   ->references('id')->on('users');
             $table->foreign('work_time_id')
                   ->references('id')->on('work_times');
+            $table->foreign('jov_id')
+                  ->references('id')->on('jobs');
         });
     }
 

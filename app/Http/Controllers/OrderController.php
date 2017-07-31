@@ -23,7 +23,8 @@ class OrderController extends Controller
             'workTime',
             'reviewOrder',
             'contact',
-            'orderTaskList'
+            'orderTaskList',
+            'job',
         ])->get();
     }
 
@@ -87,7 +88,8 @@ class OrderController extends Controller
             'workTime',
             'reviewOrder',
             'contact',
-            'orderTaskList'
+            'orderTaskList',
+            'job',
         ]);
     }
 
@@ -127,6 +129,9 @@ class OrderController extends Controller
             }
             if (array_key_exists('work_time_id', $data)) {
                 $order->work_time_id = $data['work_time_id'];
+            }
+            if (array_key_exists('job_id', $data)) {
+                $order->job_id = $data['job_id'];
             }
             if (array_key_exists('cost', $data)) {
                 $order->cost = $data['cost'];
@@ -226,7 +231,8 @@ class OrderController extends Controller
                 'workTime',
                 'reviewOrder',
                 'contact',
-                'orderTaskList'
+                'orderTaskList',
+                'job',
             ]);
     }
 
@@ -249,7 +255,8 @@ class OrderController extends Controller
                 'workTime',
                 'reviewOrder',
                 'contact',
-                'orderTaskList'
+                'orderTaskList',
+                'job',
             ]);
     }
 
@@ -274,7 +281,8 @@ class OrderController extends Controller
                 'workTime',
                 'reviewOrder',
                 'contact',
-                'orderTaskList'
+                'orderTaskList',
+                'job',
             ]);
     }
 
@@ -297,7 +305,8 @@ class OrderController extends Controller
                 'workTime',
                 'reviewOrder',
                 'contact',
-                'orderTaskList'
+                'orderTaskList',
+                'job',
             ]);
     }
 
@@ -320,7 +329,8 @@ class OrderController extends Controller
                 'workTime',
                 'reviewOrder',
                 'contact',
-                'orderTaskList'
+                'orderTaskList',
+                'job',
             ]);
     }
     
@@ -343,7 +353,8 @@ class OrderController extends Controller
                 'workTime',
                 'reviewOrder',
                 'contact',
-                'orderTaskList'
+                'orderTaskList',
+                'job',
             ]);
     }
 }

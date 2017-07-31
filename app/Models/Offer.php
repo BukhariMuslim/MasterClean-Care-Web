@@ -51,6 +51,14 @@ class Offer extends Model
     {
         return $this->belongsTo(WorkTime::class);
     }
+    
+    /**
+     * Get the job record associated with the additionalInfo.
+     */
+    public function job()
+    {
+        return $this->belongsTo(Job::class);
+    }
 
     /**
      * Get the work_time record associated with the additionalInfo.

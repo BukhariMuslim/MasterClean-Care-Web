@@ -23,6 +23,7 @@ class OfferController extends Controller
             'contact',
             'offer_art',
             'offerTaskList',
+            'job',
         ])->get();
     }
 
@@ -92,6 +93,7 @@ class OfferController extends Controller
             'contact',
             'offer_art',
             'offerTaskList',
+            'job',
         ]);
     }
 
@@ -128,6 +130,9 @@ class OfferController extends Controller
             }
             if (array_key_exists('work_time_id', $data)) {
                 $offer->work_time_id = $data['work_time_id'];
+            }
+            if (array_key_exists('job_id', $data)) {
+                $offer->job_id = $data['job_id'];
             }
             if (array_key_exists('cost', $data)) {
                 $offer->cost = $data['cost'];
@@ -227,6 +232,7 @@ class OfferController extends Controller
                 'contact',
                 'offer_art',
                 'offerTaskList',
+                'job',
             ]);
     }
 
@@ -249,6 +255,7 @@ class OfferController extends Controller
                 'contact',
                 'offer_art',
                 'offerTaskList',
+                'job',
             ]);
     }
 }
