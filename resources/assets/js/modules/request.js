@@ -6,7 +6,7 @@ const getCookie = (name) => {
     return match ? match[1] : null;
 }
 
-let token = document.head.querySelector('meta[name="_csrf"]')
+let token = document.head.querySelector('meta[name="csrf-token"]')
 
 const client = axios.create()
 

@@ -11,6 +11,8 @@ use App\Models\UserDocument;
 use App\Models\UserAdditionalInfo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
+use Illuminate\Http\UploadedFile;
+use Image;
 use Hash;
 use Exception;
 use DB;
@@ -108,7 +110,7 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
-
+        dd($data);
         // Insert User
         try {
             if (array_key_exists('data', $data)) {
@@ -182,6 +184,34 @@ class UserController extends Controller
         }
         catch(Exception $e) {
             DB::rollBack();
+            
+            return response()->json([ 'message' => $e->getMessage(), 
+                                      'status' => 400 ]);
+        }
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function image(Request $request)
+    {
+        $data = $request->all();
+        // Insert Image
+        try {
+            if (array_key_exists('data', $data)) {
+                $data = $data['data'];
+                dd(Image::make($data));
+                $path = $request->avatar->store('images', 's3');
+                return response()->json([ 'path' => $path, 
+                                        'status' => 201]);
+            }
+            return response()->json([ 'message' => 'Image File not found', 
+                                      'status' => 400 ]);
+        }
+        catch(Exception $e) {
             
             return response()->json([ 'message' => $e->getMessage(), 
                                       'status' => 400 ]);

@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import FontIcon from 'material-ui/FontIcon'
+import FlatButton from 'material-ui/FlatButton'
 import DefaultMenuCollection from '../modules/DefaultMenuCollection'
 
 class FooterComponent extends Component {
@@ -17,7 +18,12 @@ class FooterComponent extends Component {
     return collection.map((obj, idx) => {
       return (
         <li className="grey-text text-lighten-3" to="#!" key={obj.id} >
-          <Link to={obj.link} ><FontIcon className="material-icons">{obj.iconLabel}</FontIcon>{obj.label}</Link>
+           <FlatButton
+            label={obj.label}
+            secondary={true}
+            containerElement={<Link to={obj.link} />}
+            icon={<FontIcon className="material-icons">{obj.iconLabel}</FontIcon>}
+          />
         </li>
       )
     })

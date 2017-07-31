@@ -552,6 +552,7 @@ class RegisterArt extends Component {
                                 </div>
                                 <div className="input-field col s12 m6">
                                     <RaisedButton 
+                                        primary={true}
                                         label="Daftar" 
                                         fullWidth={true} 
                                         type="submit"/>

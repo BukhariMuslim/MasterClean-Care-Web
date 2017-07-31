@@ -18,6 +18,8 @@ Route::group(['prefix' => 'user'], function () {
     Route::get('/', 'UserController@index');
 
     Route::post('/', 'UserController@store');
+
+    Route::post('/image', 'UserController@image');
     
     Route::get('/art', 'UserController@getArt');
 

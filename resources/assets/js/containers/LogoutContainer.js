@@ -33,6 +33,10 @@ const mapDispatchToProps = (dispatch) => {
             dispatch(resetLoadingSpin())
             parent.setState({open:false})
             history.push('/')
+            dispatch(updateSnack({
+                open: true,
+                message: 'Logout Success'
+            }))
         }
     }
 }

@@ -280,7 +280,6 @@ class ArtDetail extends Component {
   }
 
   menuItems(collection, values) {
-    console.log(values)
     if (collection && collection.length > 0) {
       return collection.map((obj, idx) => (
         <MenuItem

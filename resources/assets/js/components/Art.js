@@ -73,7 +73,7 @@ class Art extends Component {
             cols={ this.props.isFeatured && idx == 0 ? 2 : 1 }
             rows={ this.props.isFeatured && idx == 0 ? 2 : 1 }
           >
-            <img src={ obj.avatar || defaultImg } onError="imageError(this)" />
+            <img src={ obj.avatar || defaultImg } />
           </GridTile>
         )
       }

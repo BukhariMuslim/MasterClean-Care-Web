@@ -7,6 +7,8 @@ const Breadcrumbs = breadcrumbConfig({
     '/article/:articleId': '{{articleId}}',
     '/art': 'ART',
     '/art/:artId': '{{artId}}',
+    '/offer': 'Penawaran',
+    '/offer/:offerId': '{{offerId}}',
   },
   containerProps: {
     className: 'col s12',

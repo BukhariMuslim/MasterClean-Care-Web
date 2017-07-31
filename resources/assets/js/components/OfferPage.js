@@ -29,7 +29,7 @@ class OfferPage extends Component {
               :
               <Paper className="col s12" zDepth={1} style={{ padding: 10, marginTop: 10 }}>
                 <div>
-                  <h5>Artikel</h5>
+                  <h5>Penawaran</h5>
                   <OfferContainer />
                 </div>
               </Paper>
