@@ -8,7 +8,6 @@ use Illuminate\Http\Request;
 |--------------------------------------------------------------------------
 */
 
-<<<<<<< HEAD
 Route::post('/authenticate', 'Auth\LoginController@authenticate')->middleware(['api','web']);
 
 Route::post('/check_login', 'Auth\LoginController@doLogin');
@@ -16,31 +15,15 @@ Route::post('/check_login', 'Auth\LoginController@doLogin');
 Route::post('/logout', 'Auth\LoginController@doLogout')->middleware(['api','web']);
 
 Route::post('/image', 'ImageController@store');
-=======
-Route::post('/test_login', 'Auth\LoginController@authenticated');
-
-Route::post('/check_login', 'Auth\LoginController@doLogin');
-
-Route::post('/logout', 'UserController@logout')->middleware('web');
->>>>>>> feb77da944dd16fd280d56db55d90d3fa702ad23
 
 Route::group(['prefix' => 'user'], function () {
     Route::get('/', 'UserController@index');
 
     Route::post('/', 'UserController@store');
-<<<<<<< HEAD
     
     Route::get('/art', 'UserController@getArt');
 
     Route::get('/me', 'UserController@getCurrent')->middleware(['web','auth']);
-=======
-
-    Route::post('/image', 'UserController@image');
-    
-    Route::get('/art', 'UserController@getArt');
-
-    Route::get('/me', 'UserController@getCurrent');
->>>>>>> feb77da944dd16fd280d56db55d90d3fa702ad23
 
     Route::get('/{user_id}', 'UserController@show')->where('user_id', '[0-9]+');
 

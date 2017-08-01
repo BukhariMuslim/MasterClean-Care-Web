@@ -41,11 +41,7 @@ const mapDispatchToProps = (dispatch) => {
                 function (error) {
                     dispatch(updateSnack({
                         open: true,
-<<<<<<< HEAD
                         message: error.name + ": " + error.message
-=======
-                        message: error
->>>>>>> feb77da944dd16fd280d56db55d90d3fa702ad23
                     }))
                 }
             )

@@ -21,11 +21,7 @@ const mapDispatchToProps = (dispatch) => {
     return {
         onUpdateSnack: (open, message) => {
             dispatch(updateSnack({
-<<<<<<< HEAD
                 open: true,
-=======
-                open: open,
->>>>>>> feb77da944dd16fd280d56db55d90d3fa702ad23
                 message: message
             }))
         },
@@ -48,13 +44,8 @@ const mapDispatchToProps = (dispatch) => {
             })
             .catch(function (error) {
                 dispatch(updateSnack({
-<<<<<<< HEAD
                     open: true,
                     message: error.name + ": " + error.message
-=======
-                    open: open,
-                    message: error
->>>>>>> feb77da944dd16fd280d56db55d90d3fa702ad23
                 }))
             });
             

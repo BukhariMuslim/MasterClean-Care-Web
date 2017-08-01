@@ -33,11 +33,8 @@ Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
 });
 
-<<<<<<< HEAD
 Route::get('image/{ratio}/{filename}', 'ImageController@renderImage');
 
-=======
->>>>>>> feb77da944dd16fd280d56db55d90d3fa702ad23
 Route::get('{reactRoutes}', function () {
     return view('index');
 })->where('reactRoutes', '^((?!api).)*$');

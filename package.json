@@ -27,10 +27,6 @@
     "material-ui": "^0.18.3",
     "node-sass": "^4.5.3",
     "react": "^15.5.4",
-<<<<<<< HEAD
-=======
-    "react-breadcrumbs": "^1.6.6",
->>>>>>> feb77da944dd16fd280d56db55d90d3fa702ad23
     "react-dom": "^15.5.4",
     "react-material-ui-form-validator": "^0.5.0",
     "react-redux": "^5.0.5",
@@ -48,11 +44,7 @@
     "webpack": "^2.6.1"
   },
   "devDependencies": {
-<<<<<<< HEAD
     "axios": "^0.16.2",
-=======
-    "axios": "^0.15.3",
->>>>>>> feb77da944dd16fd280d56db55d90d3fa702ad23
     "babel-loader": "^7.0.0",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
@@ -76,9 +68,6 @@
     "webpack-bundle-analyzer": "^2.8.2",
     "webpack-dev-server": "^2.4.5",
     "webpack-manifest-plugin": "^1.1.0"
-<<<<<<< HEAD
-  }
-=======
   },
   "description": "## Application Installation",
   "main": "server.bundle.js",
@@ -87,5 +76,4 @@
   },
   "author": "",
   "license": "ISC"
->>>>>>> feb77da944dd16fd280d56db55d90d3fa702ad23
 }

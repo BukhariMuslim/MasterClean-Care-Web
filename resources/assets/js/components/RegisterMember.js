@@ -138,38 +138,17 @@ class RegisterMember extends Component {
   _handleImageChange(e) {
     e.preventDefault();
 
-<<<<<<< HEAD
     let avatar = e.target.files[0];
     e.target.value = ''
 
     this.props.onUploadImage(this, avatar)
-=======
-    let reader = new FileReader();
-    let avatar = e.target.files[0];
-    e.target.value = ''
-
-    reader.onloadend = () => {
-      this.setState({
-        avatarFile: avatar,
-        avatarUrl: reader.result,
-      })
-      this.props.onUploadImage(this, reader.result)
-    }
-
-    reader.readAsDataURL(avatar)
-
->>>>>>> feb77da944dd16fd280d56db55d90d3fa702ad23
   }
 
   _handleClearImage(e) {
     e.preventDefault();
 
     this.setState({
-<<<<<<< HEAD
       avatar: [],
-=======
-      avatarFile: [],
->>>>>>> feb77da944dd16fd280d56db55d90d3fa702ad23
       avatarUrl: '',
     });
   }

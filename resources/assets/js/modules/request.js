@@ -6,7 +6,6 @@ const getCookie = (name) => {
     return match ? match[1] : null;
 }
 
-<<<<<<< HEAD
 const client = axios.create()
 
 const request = function(options, onSuccess, onFail) {
@@ -15,18 +14,6 @@ const request = function(options, onSuccess, onFail) {
   // window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest'
   // window.axios.defaults.headers.common['X-CSRF-TOKEN'] = document.querySelector('meta[name="csrf-token"]').getAttribute('content')
   // client.defaults.headers.common['Authorization'] = 'Bearer ' + getCookie('laravel_token')
-=======
-let token = document.head.querySelector('meta[name="csrf-token"]')
-
-const client = axios.create()
-
-const request = function(options, onSuccess, onFail) {
-  client.defaults.baseURL = window.location.origin
-  client.defaults.headers.common['Accept'] = 'application/json'
-  client.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest'
-  client.defaults.headers.common['X-CSRF-Token'] = token.content
-  client.defaults.headers.common['Authorization'] = 'Bearer ' + getCookie('laravel_token')
->>>>>>> feb77da944dd16fd280d56db55d90d3fa702ad23
 
   const onDefaultSuccess = (response) => {
     if (onSuccess) {
@@ -63,11 +50,7 @@ const request = function(options, onSuccess, onFail) {
     }
   }
 
-<<<<<<< HEAD
   return window.axios(options)
-=======
-  return client(options)
->>>>>>> feb77da944dd16fd280d56db55d90d3fa702ad23
             .then(onDefaultSuccess)
             .catch(onDefaultError)
 }

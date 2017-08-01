@@ -44,11 +44,7 @@ const mapDispatchToProps = (dispatch) => {
                 function (error) {
                     dispatch(updateSnack({
                         open: true,
-<<<<<<< HEAD
                         message: error.name + ": " + error.message
-=======
-                        message: error
->>>>>>> feb77da944dd16fd280d56db55d90d3fa702ad23
                     }))
                     this.setState(art)                    
                 }
@@ -75,13 +71,8 @@ const mapDispatchToProps = (dispatch) => {
                 },
                 function (error) {
                     dispatch(updateSnack({
-<<<<<<< HEAD
                         open: true,
                         message: error.name + ": " + error.message
-=======
-                        open: open,
-                        message: error
->>>>>>> feb77da944dd16fd280d56db55d90d3fa702ad23
                     }))
                     self.setState({ [type]: dataPlace })
                 }
@@ -109,11 +100,7 @@ const mapDispatchToProps = (dispatch) => {
                 function (error) {
                     dispatch(updateSnack({
                         open: true,
-<<<<<<< HEAD
                         message: error.name + ": " + error.message
-=======
-                        message: error
->>>>>>> feb77da944dd16fd280d56db55d90d3fa702ad23
                     }))
                     self.setState({ [type]: dataLanguage })
                 }
@@ -141,11 +128,7 @@ const mapDispatchToProps = (dispatch) => {
                 function (error) {
                     dispatch(updateSnack({
                         open: true,
-<<<<<<< HEAD
                         message: error.name + ": " + error.message
-=======
-                        message: error
->>>>>>> feb77da944dd16fd280d56db55d90d3fa702ad23
                     }))
                     self.setState({ [type]: dataJob })
                 }
@@ -173,11 +156,7 @@ const mapDispatchToProps = (dispatch) => {
                 function (error) {
                     dispatch(updateSnack({
                         open: true,
-<<<<<<< HEAD
                         message: error.name + ": " + error.message
-=======
-                        message: error
->>>>>>> feb77da944dd16fd280d56db55d90d3fa702ad23
                     }))
                     self.setState({ [type]: dataWorkTime })
                 }
@@ -205,11 +184,7 @@ const mapDispatchToProps = (dispatch) => {
                 function (error) {
                     dispatch(updateSnack({
                         open: true,
-<<<<<<< HEAD
                         message: error.name + ": " + error.message
-=======
-                        message: error
->>>>>>> feb77da944dd16fd280d56db55d90d3fa702ad23
                     }))
                     self.setState({ [type]: dataAdditionalInfo })
                 }
