@@ -29,7 +29,10 @@ const mapDispatchToProps = (dispatch) => {
             '',
             function (response) {
                 dispatch(resetLoadingSpin())
+<<<<<<< HEAD
                 console.log(response)
+=======
+>>>>>>> feb77da944dd16fd280d56db55d90d3fa702ad23
                 let data = response
                 if (data.status === 200) {
                     if (data.data) {
@@ -43,8 +46,13 @@ const mapDispatchToProps = (dispatch) => {
             function (error) {
                 dispatch(resetLoadingSpin())
                 dispatch(updateSnack({
+<<<<<<< HEAD
                     open: true,
                     message: error.name + ": " + error.message.name + ": " + error.message
+=======
+                    open: open,
+                    message: error
+>>>>>>> feb77da944dd16fd280d56db55d90d3fa702ad23
                 }))
             })
         }

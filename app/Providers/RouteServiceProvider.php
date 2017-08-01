@@ -44,7 +44,10 @@ class RouteServiceProvider extends ServiceProvider
     public function boot()
     {
         //
+<<<<<<< HEAD
 
+=======
+>>>>>>> feb77da944dd16fd280d56db55d90d3fa702ad23
         parent::boot();
 
         Route::model('info_id', AdditionalInfo::class);

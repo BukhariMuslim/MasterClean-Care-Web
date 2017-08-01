@@ -81,7 +81,10 @@ class Login extends Component {
           <div className="col m3 xl4 hide-on-small-only"></div>
           <Paper className="col s12 m6 xl4" zDepth={1} style={{ margin: "10px auto", padding: "10px" }}>
             <form onSubmit={(e) => this.loginHandler(e)}>
+<<<<<<< HEAD
               <input type="hidden" name="_token" value={document.querySelector('meta[name="csrf-token"]').getAttribute('content')} />
+=======
+>>>>>>> feb77da944dd16fd280d56db55d90d3fa702ad23
               <div className="row">
                 <div className="col s12">
                   <h4 className="center-align">Login</h4>

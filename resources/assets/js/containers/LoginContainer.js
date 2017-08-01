@@ -24,7 +24,11 @@ const mapDispatchToProps = (dispatch) => {
   return {
     onUpdateSnack: (open, message) => {
       dispatch(updateSnack({
+<<<<<<< HEAD
         open: true,
+=======
+        open: open,
+>>>>>>> feb77da944dd16fd280d56db55d90d3fa702ad23
         message: message
       }))
     },
@@ -53,10 +57,17 @@ const mapDispatchToProps = (dispatch) => {
         },
         function (error) {
           dispatch(resetLoadingSpin())
+<<<<<<< HEAD
           // dispatch(updateSnack({
           //   open: true,
           //   message: error.name + ": " + error.message
           // }))
+=======
+          dispatch(updateSnack({
+            open: open,
+            message: error
+          }))
+>>>>>>> feb77da944dd16fd280d56db55d90d3fa702ad23
         }
       )
     },
@@ -83,10 +94,17 @@ const mapDispatchToProps = (dispatch) => {
         },
         function (error) {
           dispatch(resetLoadingSpin())
+<<<<<<< HEAD
           // dispatch(updateSnack({
           //   open: true,
           //   message: error.name + ": " + error.message.name + ": " + error.message
           // }))
+=======
+          dispatch(updateSnack({
+            open: open,
+            message: error
+          }))
+>>>>>>> feb77da944dd16fd280d56db55d90d3fa702ad23
         })
     }
   }

@@ -17,7 +17,11 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     onUpdateSnack: (open, message) => {
       dispatch(updateSnack({
+<<<<<<< HEAD
         open: true,
+=======
+        open: open,
+>>>>>>> feb77da944dd16fd280d56db55d90d3fa702ad23
         message: message
       }))
     },
@@ -45,17 +49,28 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         function (error) {
           dispatch(updateSnack({
             open: true,
+<<<<<<< HEAD
             message: error.name + ": " + error.message
+=======
+            message: error
+>>>>>>> feb77da944dd16fd280d56db55d90d3fa702ad23
           }))
         }
       )
     },
     onUploadImage: (self, data, history) => {
+<<<<<<< HEAD
       let formData = new FormData()
       formData.append('image', data)
       ApiService.onPost(
         '/api/image',
         formData,
+=======
+      console.log(data)
+      ApiService.onPost(
+        '/api/user/image',
+        { data },
+>>>>>>> feb77da944dd16fd280d56db55d90d3fa702ad23
         function (response) {
           let responseData = response.data
           
@@ -64,15 +79,26 @@ const mapDispatchToProps = (dispatch, ownProps) => {
               open: true,
               message: responseData.message
             }))
+<<<<<<< HEAD
             self.setState({
               avatar: '',
+=======
+            console.log('fail')
+            self.setState({
+              avatar: '',
+              avatarFile: '',
+>>>>>>> feb77da944dd16fd280d56db55d90d3fa702ad23
               avatarUrl: '',
             })
           }
           else {
             self.setState({
+<<<<<<< HEAD
               avatar: responseData.image,
               avatarUrl: responseData.links.medium,
+=======
+              avatar: responseData.path,
+>>>>>>> feb77da944dd16fd280d56db55d90d3fa702ad23
             })
             dispatch(updateSnack({
               open: true,
@@ -83,11 +109,19 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         function (error) {
           self.setState({
             avatar: '',
+<<<<<<< HEAD
+=======
+            avatarFile: '',
+>>>>>>> feb77da944dd16fd280d56db55d90d3fa702ad23
             avatarUrl: '',
           })
           dispatch(updateSnack({
             open: true,
+<<<<<<< HEAD
             message: error.name + ": " + error.message
+=======
+            message: error
+>>>>>>> feb77da944dd16fd280d56db55d90d3fa702ad23
           }))
         }
       )
@@ -112,8 +146,13 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         },
         function (error) {
           dispatch(updateSnack({
+<<<<<<< HEAD
             open: true,
             message: error.name + ": " + error.message
+=======
+            open: open,
+            message: error
+>>>>>>> feb77da944dd16fd280d56db55d90d3fa702ad23
           }))
           self.setState({ [type]: dataPlace })
         }

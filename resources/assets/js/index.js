@@ -8,7 +8,10 @@ import history from './modules/history'
 import configureStore from './stores/configureStore'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import injectTapEventPlugin from 'react-tap-event-plugin'
+<<<<<<< HEAD
 import SetUp from './bootstrap'
+=======
+>>>>>>> feb77da944dd16fd280d56db55d90d3fa702ad23
 
 injectTapEventPlugin()
 
