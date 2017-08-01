@@ -81,10 +81,6 @@ class UserController extends Controller
      */
     public function getCurrent(Request $request)
     {
-<<<<<<< HEAD
-        dd(Auth::guest());
-=======
->>>>>>> feb77da944dd16fd280d56db55d90d3fa702ad23
         if (Auth::guard('api')->check()) {
             $user = Auth::guard('api')->user();
             $user->load([
@@ -114,11 +110,6 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
-<<<<<<< HEAD
-
-=======
-        dd($data);
->>>>>>> feb77da944dd16fd280d56db55d90d3fa702ad23
         // Insert User
         try {
             if (array_key_exists('data', $data)) {

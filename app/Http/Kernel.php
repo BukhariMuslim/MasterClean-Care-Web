@@ -34,11 +34,7 @@ class Kernel extends HttpKernel
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
             \App\Http\Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
-<<<<<<< HEAD
             \Laravel\Passport\Http\Middleware\CreateFreshApiToken::class,
-=======
-            'create_fresh_api_token:api',
->>>>>>> feb77da944dd16fd280d56db55d90d3fa702ad23
         ],
 
         'api' => [
@@ -61,9 +57,5 @@ class Kernel extends HttpKernel
         'can' => \Illuminate\Auth\Middleware\Authorize::class,
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
-<<<<<<< HEAD
-=======
-        'create_fresh_api_token' => \Laravel\Passport\Http\Middleware\CreateFreshApiToken::class,
->>>>>>> feb77da944dd16fd280d56db55d90d3fa702ad23
     ];
 }

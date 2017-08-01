@@ -71,13 +71,8 @@ return [
             'driver' => 'sqlsrv',
             'host' => env('DB_HOST', 'localhost'),
             'port' => env('DB_PORT', '1433'),
-<<<<<<< HEAD
             'database' => env('DB_DATABASE', 'mcc'),
             'username' => env('DB_USERNAME', 'root'),
-=======
-            'database' => env('DB_DATABASE', 'forge'),
-            'username' => env('DB_USERNAME', 'forge'),
->>>>>>> feb77da944dd16fd280d56db55d90d3fa702ad23
             'password' => env('DB_PASSWORD', ''),
             'charset' => 'utf8',
             'prefix' => '',

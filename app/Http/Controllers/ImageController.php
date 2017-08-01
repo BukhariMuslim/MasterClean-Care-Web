@@ -13,14 +13,9 @@ class ImageController extends Controller
     {
         $filename = str_random(20);
         $path = $request->image->storeAs('original', "{$filename}.jpg", 'public');
-<<<<<<< HEAD
         
         $data = [
             'status'    => 201,
-=======
-        $data = [
-            'status'    => 'OK',
->>>>>>> feb77da944dd16fd280d56db55d90d3fa702ad23
             'image'     => "{$filename}.jpg",
             'links'     => [
                 'small'  => url('image/small', "{$filename}.jpg"),
@@ -32,10 +27,6 @@ class ImageController extends Controller
         // Send to Queue Delete
         return response()->json($data, 201);
     }
-<<<<<<< HEAD
-
-=======
->>>>>>> feb77da944dd16fd280d56db55d90d3fa702ad23
     public function renderImage($ratio, $filename, Request $request)
     {
         $drive = Storage::disk('public');
@@ -84,10 +75,6 @@ class ImageController extends Controller
             // abort(404);
         }
     }
-<<<<<<< HEAD
-
-=======
->>>>>>> feb77da944dd16fd280d56db55d90d3fa702ad23
     protected function buildResponse($content)
     {
         // define mime type
