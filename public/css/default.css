@@ -1,0 +1,79 @@
+#root > div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  min-height: 100vh;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+main {
+  -webkit-box-flex: 1;
+      -ms-flex: 1 0 auto;
+          flex: 1 0 auto;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.line-through,
+.line-through * {
+  text-decoration: line-through;
+}
+
+.all-transition {
+  transition: .5s;
+}
+
+input[type=number]:not(.browser-default):focus:not([readonly]),
+input[type=password]:not(.browser-default):focus:not([readonly]),
+input[type=text]:not(.browser-default):focus:not([readonly]) {
+  border-bottom: initial;
+  box-shadow: initial;
+}
+
+.loading {
+  z-index: 9999999999;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.loading .loadingSpin {
+  height: 100vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+fieldset {
+  border-color: rgba(0, 0, 0, 0.3);
+}
+
+.breadcrumbsNav {
+  height: 32px;
+  line-height: 32px;
+}
+
+.breadcrumb > a {
+  transition: color 0.5s ease;
+  color: #e1f5fe;
+}
+
+.breadcrumb > a:hover {
+  color: rgba(255, 255, 255, 0.5);
+}
