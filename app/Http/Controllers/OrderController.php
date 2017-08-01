@@ -357,4 +357,29 @@ class OrderController extends Controller
                 'job',
             ]);
     }
+
+    /**
+     * Search the specified resource from storage by ART.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Order  $order
+     * @param  Parameter  $art
+     * @return \Illuminate\Http\Response
+     */
+    public function getReview(Request $request, Order $order, $art)
+    {
+        return $order
+            ->whereHas('reviewOrder')
+            ->where('art_id', $art)
+            ->get()
+            ->load([
+                'member',
+                'art',
+                'workTime',
+                'reviewOrder',
+                'contact',
+                'orderTaskList',
+                'job',
+            ]);
+    }
 }
