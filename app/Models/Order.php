@@ -15,6 +15,7 @@ class Order extends Model
         'member_id',
         'art_id',
         'work_time_id',
+        'job_id',
         'cost',
         'start_date',
         'end_date',
