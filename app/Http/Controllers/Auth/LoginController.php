@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Helpers\AbstractTransformer;
 use App\Models\User;
 use Auth;
 use Hash;
@@ -76,9 +77,10 @@ class LoginController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  mixed  $user
+     * @param  mixed  $mode
      * @return mixed
      */
-    protected function doLogin(Request $request)
+    protected function doLogin(Request $request, $mode = 0)
     {
         $email = $request->input('email');
         $password = $request->input('password');
@@ -87,6 +89,16 @@ class LoginController extends Controller
 
         if ($user) {
             if(Hash::check($password, $user->password)) {
+                if ($user->status == 0) {
+                    return response()->json([ 'message' => '',
+                                                'status' => 403 ]);    
+                }
+
+                if ($user->role_id != $mode && $mode != 0) {
+                    return response()->json([ 'message' => 'Akun Anda tidak memiliki hak untuk login',
+                                                'status' => 403 ]);    
+                }
+
                 $request->request->add([
                     'username' => $email,
                     'password' => $password,
@@ -103,17 +115,23 @@ class LoginController extends Controller
 
                 try {
                     $token = Route::dispatch($tokenRequest)->getContent();
-                    
+
+                    $user->load([
+                        'user_additional_info',
+                        'user_document',
+                        'user_language',
+                        'user_job',
+                        'user_wallet',
+                        'user_work_time',
+                        'contact'
+                    ]);
+
+                    if ($user->avatar != '') {
+                        $user->avatar = AbstractTransformer::generateUserPictureLinks($user->avatar);
+                    }
+
                     return response()->json([
-                        'user' => $user->load([
-                            'user_additional_info',
-                            'user_document',
-                            'user_language',
-                            'user_job',
-                            'user_wallet',
-                            'user_work_time',
-                            'contact'
-                        ]),
+                        'user' => $user,
                         'token' => json_decode($token, true),
                         'status' => 200
                     ]);
@@ -124,12 +142,12 @@ class LoginController extends Controller
                 }
             }
             else {
-                return response()->json([ 'message' => 'Combination Email and Password not match', 
+                return response()->json([ 'message' => 'Kombinasi Email dan Password tidak cocok', 
                                         'status' => 403 ]);
             }
         }
         else {
-            return response()->json([ 'message' => 'Combination Email and Password not match', 
+            return response()->json([ 'message' => 'Kombinasi Email dan Password tidak cocok', 
                                       'status' => 403 ]);
         }
     }

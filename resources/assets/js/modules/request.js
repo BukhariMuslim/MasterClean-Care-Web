@@ -10,10 +10,10 @@ const client = axios.create()
 
 const request = function(options, onSuccess, onFail) {
   window.axios.defaults.baseURL = window.location.origin
-  // client.defaults.headers.common['Accept'] = 'application/json'
-  // window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest'
-  // window.axios.defaults.headers.common['X-CSRF-TOKEN'] = document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-  // client.defaults.headers.common['Authorization'] = 'Bearer ' + getCookie('laravel_token')
+  window.axios.defaults.headers.common['Accept'] = 'application/json'
+  window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest'
+  window.axios.defaults.headers.common['X-CSRF-TOKEN'] = document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+  window.axios.defaults.headers.common['Authorization'] = 'Bearer ' + getCookie('laravel_token')
 
   const onDefaultSuccess = (response) => {
     if (onSuccess) {

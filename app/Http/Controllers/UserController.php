@@ -12,6 +12,7 @@ use App\Models\UserAdditionalInfo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use Illuminate\Http\UploadedFile;
+use App\Helpers\AbstractTransformer;
 use Image;
 use Hash;
 use Exception;
@@ -90,8 +91,13 @@ class UserController extends Controller
                 'user_job',
                 'user_wallet',
                 'user_work_time',
+                'emergency_call',
                 'contact',
             ]);
+
+            if ($user->avatar != '') {
+                $user->avatar = AbstractTransformer::generateUserPictureLinks($user->avatar);
+            }
             
             return $user;
         }

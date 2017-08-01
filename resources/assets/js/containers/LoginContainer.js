@@ -41,6 +41,7 @@ const mapDispatchToProps = (dispatch) => {
         function (data) {
           dispatch(resetLoadingSpin())
           if (data.user) {
+            console.log(data.user)
             dispatch(loginAuth(data.user))
             history.push('/')
           }

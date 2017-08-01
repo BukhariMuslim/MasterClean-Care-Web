@@ -5,17 +5,17 @@ use Themsaid\Transformers\AbstractTransformer as BaseAbstractTransformer;
 
 class AbstractTransformer extends BaseAbstractTransformer
 {
-    protected function getProduction()
+    public function getProduction()
     {
         return env('APP_ENV') == 'production';
     }
 
-    protected function renderArrayImage()
+    public function renderArrayImage()
     {
         return [];
     }
 
-    protected function generateUserPictureLinks($filename)
+    public function generateUserPictureLinks($filename)
     {
         $secure = $this->getProduction();
         if ($filename) {
@@ -38,7 +38,7 @@ class AbstractTransformer extends BaseAbstractTransformer
      *
      * @return [type] [description]
      */
-    protected function formatRupiah($nominal = 0, $sign = 'Rp. ', $end = ',-', $presisi = 0)
+    public function formatRupiah($nominal = 0, $sign = 'Rp. ', $end = ',-', $presisi = 0)
     {
         return $sign.number_format($nominal, $presisi, ',', '.');
     }

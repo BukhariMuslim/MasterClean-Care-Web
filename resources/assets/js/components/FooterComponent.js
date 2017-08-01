@@ -21,6 +21,7 @@ class FooterComponent extends Component {
            <FlatButton
             label={obj.label}
             secondary={true}
+            style={{ color: '#fff'}}
             containerElement={<Link to={obj.link} />}
             icon={<FontIcon className="material-icons">{obj.iconLabel}</FontIcon>}
           />
@@ -39,7 +40,7 @@ class FooterComponent extends Component {
               <p className="grey-text text-lighten-4">Master Clean &amp; Care adalah Online Clean and Care Service yang menawarkan jasa pekerja rumah tangga, babysitter, nanny, dan perawat lansia.</p>
             </div>
             <div className="col l4 offset-l2 s12">
-              <h5 className="white-text">Links</h5>
+              <h5 className="white-text">Navigasi</h5>
               <ul>
                 { this.menuList(DefaultMenuCollection) }
               </ul>

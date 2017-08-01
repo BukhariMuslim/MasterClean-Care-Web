@@ -84,7 +84,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
           self.setState({
             avatar: '',
             message: error.name + ": " + error.message
-          }))
+          })
         }
       )
     },

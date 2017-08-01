@@ -45,19 +45,19 @@ const onPatch = (url, id, data, onSuccess = {}, onFail = {}) => {
 
 const onLogin = (data, onSuccess, onFail) => {
   return onPost(
-    '/api/authenticate', //check_login
+    '/api/check_login', //check_login
     {
       email: data.email,
       password: data.password,
     },
     function (response) {
-      console.log(response)
-      // if(response.data.token) {
-      //     const token = response.data.token
-      //     let curDate = new Date()
-      //     curDate.setDate(curDate.getDate(), token.expiree_in)
-      //     document.cookie = 'laravel_token=' + token.access_token +"; expires=; path=/"
-      // }
+      // console.log(response)
+      if(response.data.token) {
+          const token = response.data.token
+          let curDate = new Date()
+          curDate.setDate(curDate.getDate(), token.expiree_in)
+          document.cookie = 'laravel_token=' + token.access_token +"; expires=; path=/"
+      }
       return onSuccess(response.data)
     },
     onFail

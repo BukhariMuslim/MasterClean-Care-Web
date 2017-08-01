@@ -41,10 +41,10 @@ const mapDispatchToProps = (dispatch) => {
             },
             function (error) {
                 dispatch(resetLoadingSpin())
-                dispatch(updateSnack({
-                    open: true,
-                    message: error.name + ": " + error.message.name + ": " + error.message
-                }))
+                // dispatch(updateSnack({
+                //     open: true,
+                //     message: error.name + ": " + error.message.name + ": " + error.message
+                // }))
             })
         }
     }

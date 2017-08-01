@@ -8,11 +8,11 @@ use Illuminate\Http\Request;
 |--------------------------------------------------------------------------
 */
 
-Route::post('/authenticate', 'Auth\LoginController@authenticate')->middleware(['api','web']);
+// Route::post('/authenticate', 'Auth\LoginController@authenticate');
 
 Route::post('/check_login', 'Auth\LoginController@doLogin');
 
-Route::post('/logout', 'Auth\LoginController@doLogout')->middleware(['api','web']);
+// Route::post('/logout', 'Auth\LoginController@doLogout');
 
 Route::post('/image', 'ImageController@store');
 
@@ -23,13 +23,13 @@ Route::group(['prefix' => 'user'], function () {
     
     Route::get('/art', 'UserController@getArt');
 
-    Route::get('/me', 'UserController@getCurrent')->middleware(['web','auth']);
+    Route::get('/me', 'UserController@getCurrent')->middleware(['auth']);
 
     Route::get('/{user_id}', 'UserController@show')->where('user_id', '[0-9]+');
 
-    Route::patch('/{user_id}', 'UserController@update')->where('user_id', '[0-9]+');
+    Route::patch('/{user_id}', 'UserController@update')->where('user_id', '[0-9]+')->middleware(['auth']);
 
-    Route::delete('/{user_id}', 'UserController@destroy')->where('user_id', '[0-9]+');
+    Route::delete('/{user_id}', 'UserController@destroy')->where('user_id', '[0-9]+')->middleware(['auth']);
 
     // ->middleware('auth');
 

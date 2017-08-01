@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "458c302efd346ac471c1f9c91ee1a38b",
+    "content-hash": "df3e1bf1efdb32718ec5069da2977e5d",
     "packages": [
         {
             "name": "arrilot/laravel-widgets",
@@ -3714,7 +3714,7 @@
             ],
             "authors": [
                 {
-                    "name": "Padraic Brady",
+                    "name": "Pádraic Brady",
                     "email": "padraic.brady@gmail.com",
                     "homepage": "http://blog.astrumfutura.com"
                 },
