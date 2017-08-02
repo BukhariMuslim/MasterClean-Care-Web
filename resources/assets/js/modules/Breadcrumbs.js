@@ -1,13 +1,15 @@
 import breadcrumbConfig from 'auto-breadcrumb'
 
 const Breadcrumbs = breadcrumbConfig({
-  dynamicRoutesMap: {
-    '/': 'Home',
+  staticRoutesMap: {
+    '/': 'Beranda',
     '/article': 'Artikel',
-    '/article/:articleId': '{{articleId}}',
     '/art': 'ART',
-    '/art/:artId': '{{artId}}',
     '/offer': 'Penawaran',
+  },
+  dynamicRoutesMap: {
+    '/article/:articleId': '{{articleId}}',
+    '/art/:artId': '{{artId}}',
     '/offer/:offerId': '{{offerId}}',
   },
   containerProps: {

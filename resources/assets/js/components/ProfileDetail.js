@@ -280,7 +280,6 @@ class ProfileDetail extends Component {
   }
 
   menuItems(collection, values) {
-    console.log(values)
     if (collection && collection.length > 0) {
       return collection.map((obj, idx) => (
         <MenuItem
@@ -352,7 +351,6 @@ class ProfileDetail extends Component {
       return Math.abs(ageDate.getUTCFullYear() - 1970)
     }
     let age = calculateAge(this.state.art.born_date)
-    console.log(this.state.art)
     return (
       <div>
         <div className="row">

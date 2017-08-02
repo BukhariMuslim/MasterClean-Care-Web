@@ -58,7 +58,6 @@ class AppDrawer extends Component {
 
     render() {
         const isLoggedIn = this.props.user ? true : false
-        console.log(this.props.user)
         return (
             <div>
                 {/*iconElementLeft={<IconButton><ActionHome onClick={() => this.onAddTodoItemClick(this.props.history, this.state.actHome)}/></IconButton>}*/}

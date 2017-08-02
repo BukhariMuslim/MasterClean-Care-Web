@@ -79,10 +79,10 @@ class LoginController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  mixed  $user
-     * @param  mixed  $mode
+     * @param  mixed  $role_id
      * @return mixed
      */
-    protected function doLogin(Request $request, $mode = 0)
+    protected function doLogin(Request $request, $role_id = 0)
     {
         $email = $request->input('email');
         $password = $request->input('password');
@@ -96,7 +96,7 @@ class LoginController extends Controller
                                                 'status' => 403 ]);    
                 }
 
-                if ($user->role_id != $mode && $mode != 0) {
+                if ($user->role_id != $role_id && $role_id != 0) {
                     return response()->json([ 'message' => 'Akun Anda tidak memiliki hak untuk login',
                                                 'status' => 403 ]);    
                 }

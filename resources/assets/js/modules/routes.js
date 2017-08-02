@@ -6,7 +6,6 @@ import { simpleAuthentication } from '../containers/LoginContainer'
 import LoginContainer from '../containers/LoginContainer'
 import RegisterMemberContainer from '../containers/RegisterMemberContainer'
 import RegisterArtContainer from '../containers/RegisterArtContainer'
-import UserProfileContainer from '../containers/UserProfileContainer'
 import ArticlePage from '../components/ArticlePage'
 import ArtPage from '../components/ArtPage'
 import OfferPage from '../components/OfferPage'
@@ -50,7 +49,7 @@ class routesElement extends Component {
                 <Route path="/login" component={ LoginContainer }/>
                 <Route path="/register_member" component={ RegisterMemberContainer }/>
                 <Route path="/register_art" component={ RegisterArtContainer }/>
-                <Route path="/user" component={ UserProfileContainer } onEnter={ this.requireAuth(this.props.state) } />
+                {/* <Route path="/user" component={ UserProfileContainer } onEnter={ this.requireAuth(this.props.state) } /> */}
                 <Route path='/article/:articleId' component={ ArticlePage }/>
                 <Route path='/article' component={ ArticlePage }/>
                 <Route path='/art/:artId' component={ ArtPage }/>

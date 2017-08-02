@@ -21,7 +21,7 @@ class CreateOffersTable extends Migration
             $table->decimal('cost', 18, 2);
             $table->dateTime('start_date');
             $table->dateTime('end_date');
-            $table->string('remark')->nullable();
+            $table->string('remark')->nullable()->default('');
             $table->tinyInteger('status')->comment('0: pending, 1: diterima, 2: tolak/batal ');
             $table->timestamps();
 

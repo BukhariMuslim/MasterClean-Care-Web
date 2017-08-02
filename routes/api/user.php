@@ -12,6 +12,10 @@ use Illuminate\Http\Request;
 
 Route::post('/check_login', 'Auth\LoginController@doLogin');
 
+Route::post('/check_login_member', 'Auth\LoginController@doLogin')->where('role_id', '2');
+
+Route::post('/check_login_art', 'Auth\LoginController@doLogin')->where('role_id', '3');
+
 // Route::post('/logout', 'Auth\LoginController@doLogout');
 
 Route::post('/image', 'ImageController@store');
@@ -22,6 +26,8 @@ Route::group(['prefix' => 'user'], function () {
     Route::post('/', 'UserController@store');
     
     Route::get('/art', 'UserController@getArt');
+    
+    Route::get('/art/{art}', 'UserController@getArtById')->where('art', '[0-9]+');
 
     Route::get('/me', 'UserController@getCurrent')->middleware(['auth:api']);
 

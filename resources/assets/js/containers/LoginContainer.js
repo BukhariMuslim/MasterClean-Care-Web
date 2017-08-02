@@ -41,9 +41,12 @@ const mapDispatchToProps = (dispatch) => {
         function (data) {
           dispatch(resetLoadingSpin())
           if (data.user) {
-            console.log(data.user)
             dispatch(loginAuth(data.user))
             history.push('/')
+            dispatch(updateSnack({
+              open: true,
+              message: 'Selamat datang ' + data.user.name +''
+            }))
           }
           else {
             dispatch(updateSnack({
@@ -88,8 +91,9 @@ const mapDispatchToProps = (dispatch) => {
           //   open: true,
           //   message: error.name + ": " + error.message.name + ": " + error.message
           // }))
-        })
-    }
+        }
+      )
+    },
   }
 }
 

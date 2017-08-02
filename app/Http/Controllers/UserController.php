@@ -278,6 +278,9 @@ class UserController extends Controller
             if (array_key_exists('name', $data)) {
                 $user->name = $data['name'];
             }
+            if (array_key_exists('role_id', $data)) {
+                $user->role_id = $data['role_id'];
+            }
             if (array_key_exists('email', $data)) {
                 $email = $data['email'];
                 
@@ -289,6 +292,9 @@ class UserController extends Controller
                     ]);
                 }
                 $user->email = $email;
+            }
+            if (array_key_exists('avatar', $data)) {
+                $user->avatar = $data['avatar'];
             }
             if (array_key_exists('password', $data)) {
                 $data['password'] = Hash::make($data['password']);
@@ -313,12 +319,6 @@ class UserController extends Controller
             }
             if (array_key_exists('description', $data)) {
                 $user->description = $data['description'];
-            }
-            if (array_key_exists('profile_img_name', $data)) {
-                $user->profile_img_name = $data['profile_img_name'];
-            }
-            if (array_key_exists('profile_img_path', $data)) {
-                $user->profile_img_path = $data['profile_img_path'];
             }
             if (array_key_exists('status', $data)) {
                 $user->status = $data['status'];
@@ -499,6 +499,30 @@ class UserController extends Controller
             ])
             ->where('user_type', 2)
             ->paginate(10);
+
+        return $users;
+    }
+
+    /**
+     * Display a listing of the ART resource.
+     *
+     * @param  Parameter  $art
+     * @return \Illuminate\Http\Response
+     */
+    public function getArtById($art)
+    {
+        $users = User::with([
+                'user_additional_info',
+                'user_document',
+                'user_language',
+                'user_job',
+                'user_wallet',
+                'user_work_time',
+                'contact',
+            ])
+            ->where('id', $art)
+            ->where('user_type', 2)
+            ->first();
 
         return $users;
     }

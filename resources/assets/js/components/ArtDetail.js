@@ -12,11 +12,20 @@ import SelectField from 'material-ui/SelectField'
 import DatePicker from 'material-ui/DatePicker'
 import TextField from 'material-ui/TextField'
 import MenuItem from 'material-ui/MenuItem'
-import App from './App'
+import StarComponent from './StarComponent'
 
 const fieldStyle = {
   paddingLeft: 10,
   paddingRight: 10,
+}
+
+const disabledStyle = {
+  color: '#555',
+}
+
+const disabledInputStyle = {
+  color: '#555',
+  textAlign: 'right',
 }
 
 const DateTimeFormat = global.Intl.DateTimeFormat
@@ -108,8 +117,6 @@ class ArtDetail extends Component {
 
   componentDidMount() {
     this.props.getArt(this.props.id, this)
-
-    this.loadInitialData()
   }
 
   onCheckHandler(type, name, isNeedTextBox) {
@@ -211,6 +218,7 @@ class ArtDetail extends Component {
           <div key={obj.id} className="col s12 valign-wrapper">
             <div className={"col" + (isNeedTextBox ? " s6" : " s12")}>
               <Checkbox
+                labelStyle={disabledStyle}
                 checked={checked}
                 value={obj.id}
                 disabled={!this.state.isEdit}
@@ -224,11 +232,11 @@ class ArtDetail extends Component {
                 <div className="col s6">
                   <TextValidator
                     hintText={'Gaji ' + obj.work_time}
+                    inputStyle={disabledInputStyle}
                     fullWidth={true}
                     name="user_work_time"
                     disabled={!costEnabled || !this.state.isEdit}
                     underlineShow={this.state.isEdit}
-                    inputStyle={{ textAlign: 'right' }}
                     value={costEnabled ? values[curIdx].cost : ''}
                     onChange={(e) => this.onChangeTextHandler(e, curIdx)}
                     validators={[isNeedTextBox ? ('required', 'isNumber') : '']}
@@ -354,12 +362,12 @@ class ArtDetail extends Component {
     return (
       <div>
         {
-          this.state.art ?
+          this.state.art && this.state.art.name ?
             <ValidatorForm
               ref="form"
               onSubmit={(e) => this.postHandler(e)}
               onError={errors => this.onError(errors)}>
-              <Card className="col s12" zDepth={0} >
+              <Card zDepth={0} >
                 <CardText>
                   <CardMedia
                     className="col s12 m3"
@@ -379,8 +387,12 @@ class ArtDetail extends Component {
                                                 </div> */}
                         <Paper zDepth={0}>
                           <div className="col s12">
+                            <StarComponent rate={this.state.art.rate} isShowRate={true} />
+                          </div>
+                          <div className="col s12">
                             <TextValidator
                               floatingLabelText="Nama"
+                              inputStyle={disabledStyle}
                               hintText="Nama"
                               name="name"
                               fullWidth={true}
@@ -390,12 +402,14 @@ class ArtDetail extends Component {
                               onChange={this.onChangeHandler}
                               autoComplete={false}
                               validators={['required']}
+                              style={{ fontSize: 32 }}
                               errorMessages={['Nama dibutuhkan']}
                             />
                           </div>
                           <div className="col s12">
                             <SelectValidator
                               floatingLabelText="Gender"
+                              labelStyle={disabledStyle}
                               hintText="Gender"
                               value={this.state.art.gender}
                               fullWidth={true}
@@ -413,6 +427,7 @@ class ArtDetail extends Component {
                           <div className="col s6" >
                             <TextValidator
                               floatingLabelText="Tempat Lahir"
+                              inputStyle={disabledStyle}
                               hintText="Tempat Lahir"
                               underlineShow={this.state.isEdit}
                               disabled={!this.state.isEdit}
@@ -428,6 +443,7 @@ class ArtDetail extends Component {
                           <div className="col s6" >
                             <DateValidator
                               hintText="Tanggal Lahir"
+                              inputStyle={disabledStyle}
                               floatingLabelText="Tanggal Lahir"
                               underlineShow={this.state.isEdit}
                               disabled={!this.state.isEdit}
@@ -448,6 +464,7 @@ class ArtDetail extends Component {
                           <div className="col s12">
                             <SelectValidator
                               floatingLabelText="Kota"
+                              labelStyle={disabledStyle}
                               hintText="Kota"
                               underlineShow={this.state.isEdit}
                               disabled={!this.state.isEdit}
@@ -464,6 +481,7 @@ class ArtDetail extends Component {
                           <div className="col s12">
                             <TextValidator
                               hintText="Alamat"
+                              textareaStyle={disabledStyle}
                               floatingLabelText="Alamat"
                               underlineShow={this.state.isEdit}
                               disabled={!this.state.isEdit}
@@ -483,6 +501,7 @@ class ArtDetail extends Component {
                           <div className="col s12">
                             <SelectValidator
                               floatingLabelText="Agama"
+                              labelStyle={disabledStyle}
                               value={this.state.art.religion}
                               underlineShow={this.state.isEdit}
                               disabled={!this.state.isEdit}
@@ -504,6 +523,7 @@ class ArtDetail extends Component {
                           <div className="col s12">
                             <TextField
                               hintText="Suku"
+                              inputStyle={disabledStyle}
                               floatingLabelText="Suku"
                               underlineShow={this.state.isEdit}
                               disabled={!this.state.isEdit}
@@ -548,6 +568,7 @@ class ArtDetail extends Component {
                                                     </div>
                           <div className="input-field col s12 m6">
                             <RaisedButton
+                              className={this.state.isEdit ? '' : ' hide'}
                               label="Simpan"
                               fullWidth={true}
                               type="submit" />

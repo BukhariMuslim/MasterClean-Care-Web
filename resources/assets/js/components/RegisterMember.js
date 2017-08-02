@@ -26,6 +26,7 @@ class RegisterMember extends Component {
     super(props)
     this.state = {
       isValid: true,
+      role_id: 2,
       email: '',
       password: '',
       re_password: '',
@@ -42,7 +43,6 @@ class RegisterMember extends Component {
       avatar: '',
       avatarUrl: '',
       avatarFile: null,
-      user_type: 1,
       status: 1,
       cityItem: [],
     }
@@ -64,7 +64,7 @@ class RegisterMember extends Component {
   }
 
   componentDidMount() {
-    this.loadInitialData()
+    this.props.getUserLogin(this)
   }
 
   menuItems(collection, values) {
@@ -88,13 +88,14 @@ class RegisterMember extends Component {
     this.props.onRegister(
       this,
       {
+        role_id: this.state.role_id,
         name: this.state.name,
         email: this.state.email,
+        avatar: this.state.avatar,
         password: this.state.password,
         gender: this.state.gender,
         born_place: this.state.born_place,
         born_date: this.state.born_date,
-        avatar: this.state.avatar,
         contact: {
           phone: this.state.phone,
           city: this.state.city,
@@ -103,7 +104,6 @@ class RegisterMember extends Component {
         },
         religion: this.state.religion,
         race: this.state.race,
-        user_type: this.state.user_type,
         status: this.state.status,
       }
     )
@@ -296,8 +296,8 @@ class RegisterMember extends Component {
                     name="phone"
                     onChange={this.onChangeHandler}
                     autoComplete={false}
-                    validators={['required']}
-                    errorMessages={['No. Telepon dibutuhkan']}
+                    validators={['required', 'matchRegexp:^[0-9]*$']}
+                    errorMessages={['No. Telepon dibutuhkan', 'Input harus angka']}
                   />
                 </div>
                 <div className="col s12">
@@ -360,9 +360,9 @@ class RegisterMember extends Component {
                     autoComplete={false}
                   />
                 </div>
-                <div className="col s12">
+                <div className="col s12" >
                   <RaisedButton
-                    containerElement='label' // <-- Just add me!
+                    containerElement='label'
                     label='Tambah Foto Profile'>
                       <input type="file" 
                         style={{ display: 'none' }} 

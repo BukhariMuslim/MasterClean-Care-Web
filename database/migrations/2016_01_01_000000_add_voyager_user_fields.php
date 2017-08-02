@@ -11,9 +11,11 @@ class AddVoyagerUserFields extends Migration
     {
         Schema::table('users', function ($table) {
             if (!Schema::hasColumn('users', 'avatar')) {
-                $table->string('avatar')->nullable()->after('email');
+                $table->string('avatar')->nullable()->default('')->after('email');
             }
-            $table->integer('role_id')->nullable()->after('id');
+            if (!Schema::hasColumn('users', 'role_id')) {
+                $table->integer('role_id')->nullable()->default('')->after('id');
+            }
         });
     }
 

@@ -14,7 +14,7 @@ class AddPermissionGroupIdToPermissionsTable extends Migration
     public function up()
     {
         Schema::table('permissions', function (Blueprint $table) {
-            $table->integer('permission_group_id')->unsigned()->nullable()->default(null);
+            $table->integer('permission_group_id')->unsigned()->nullable()->default('')->default(null);
         });
     }
 

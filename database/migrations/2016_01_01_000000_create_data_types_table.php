@@ -19,9 +19,9 @@ class CreateDataTypesTable extends Migration
             $table->string('slug')->unique();
             $table->string('display_name_singular');
             $table->string('display_name_plural');
-            $table->string('icon')->nullable();
-            $table->string('model_name')->nullable();
-            $table->string('description')->nullable();
+            $table->string('icon')->nullable()->default('');
+            $table->string('model_name')->nullable()->default('');
+            $table->string('description')->nullable()->default('');
             $table->boolean('generate_permissions')->default(false);
             $table->timestamps();
         });
@@ -39,7 +39,7 @@ class CreateDataTypesTable extends Migration
             $table->boolean('edit')->default(true);
             $table->boolean('add')->default(true);
             $table->boolean('delete')->default(true);
-            $table->text('details')->nullable();
+            $table->text('details')->nullable()->default('');
 
             $table->foreign('data_type_id')->references('id')->on('data_types')
                 ->onUpdate('cascade')->onDelete('cascade');

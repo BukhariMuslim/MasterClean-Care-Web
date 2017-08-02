@@ -33,9 +33,13 @@ class StarComponent extends Component {
   }
 
   render() {
+    const rate = this.props.rate ? Number.parseFloat(this.props.rate).toString() : '0';
     return (
-      <span title={this.props.rate ? Number.parseFloat(this.props.rate).toString() : '0'}>
-        {this.starComponent(this.props.rate)}
+      <span title={rate}>
+        {this.starComponent(this.props.rate)} 
+        <span className={this.props.isShowRate ? 'material-icons' : 'hide'} style={{ fontFamily: 'Roboto, sans-serif'}}>
+          { rate }
+        </span>
       </span>
     )
   }
