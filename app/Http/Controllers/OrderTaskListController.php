@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Order;
 use App\Models\OrderTaskList;
 use Illuminate\Http\Request;
 use App\Helpers\Operators;
@@ -44,9 +45,9 @@ class OrderTaskListController extends Controller
                 $data = $data['data'];
             }
 
-            $OrderTaskList = OrderTaskList::create($data);
+            $orderTaskList = OrderTaskList::create($data);
 
-            return response()->json([ 'data' => $OrderTaskList, 
+            return response()->json([ 'data' => $orderTaskList, 
                                       'status' => 201]);
         }
         catch(Exception $e) {
@@ -58,21 +59,22 @@ class OrderTaskListController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\OrderTaskList  $OrderTaskList
+     * @param  \App\Models\OrderTaskList  $orderTaskList
+     * @param  \App\Models\Order  $Order
      * @return \Illuminate\Http\Response
      */
-    public function show(OrderTaskList $OrderTaskList)
+    public function show(Order $order, OrderTaskList $orderTaskList)
     {
-        return $OrderTaskList;
+        return $orderTaskList->where('order_id', $order->id)->get()->load('taskList');
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\OrderTaskList  $OrderTaskList
+     * @param  \App\Models\OrderTaskList  $orderTaskList
      * @return \Illuminate\Http\Response
      */
-    public function edit(OrderTaskList $OrderTaskList)
+    public function edit(OrderTaskList $orderTaskList)
     {
         //
     }
@@ -81,30 +83,33 @@ class OrderTaskListController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\OrderTaskList  $OrderTaskList
+     * @param  \App\Models\Order  $Order
+     * @param  \App\Models\OrderTaskList  $orderTaskList
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, OrderTaskList $OrderTaskList)
+    public function update(Request $request, Order $order, OrderTaskList $orderTaskList)
     {
         $data = $request->all();
 
+        $orderTaskList->where('order_id', $order->id);
+        
         try {
             if (array_key_exists('data', $data)) {
                 $data = $data['data'];
             }
             if (array_key_exists('order_id', $data)) {
-                $OrderTaskList->order_id = $data['order_id'];
+                $orderTaskList->order_id = $data['order_id'];
             }
             if (array_key_exists('task_list_id', $data)) {
-                $OrderTaskList->task_list_id = $data['task_list_id'];
+                $orderTaskList->task_list_id = $data['task_list_id'];
             }
             if (array_key_exists('status', $data)) {
-                $requestedArt->status = $data['status'];
+                $orderTaskList->status = $data['status'];
             }
 
-            $OrderTaskList->save();
+            $orderTaskList->save();
 
-            return response()->json([ 'data' => $OrderTaskList, 
+            return response()->json([ 'data' => $orderTaskList, 
                                       'status' => 200]);
         }
         catch(Exception $e) {
@@ -116,12 +121,13 @@ class OrderTaskListController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\OrderTaskList  $OrderTaskList
+     * @param  \App\Models\Order  $Order
+     * @param  \App\Models\OrderTaskList  $orderTaskList
      * @return \Illuminate\Http\Response
      */
-    public function destroy(OrderTaskList $OrderTaskList)
+    public function destroy(Order $order, OrderTaskList $orderTaskList)
     {
-        $OrderTaskList->delete();
+        $orderTaskList->where('order_id', $order->id)->delete();
 
         return response()->json([ 'message' => 'Deleted Success', 
                                   'status' => 200]);
@@ -131,14 +137,14 @@ class OrderTaskListController extends Controller
      * Search the specified resource from storage by parameter.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\OrderTaskList  $OrderTaskList
+     * @param  \App\Models\OrderTaskList  $orderTaskList
      * @param  Parameter  $param
      * @param  Text  $text
      * @return \Illuminate\Http\Response
      */
-    public function searchByParam(Request $request, OrderTaskList $OrderTaskList, $param = 'info', $text)
+    public function searchByParam(Request $request, OrderTaskList $orderTaskList, $param = 'info', $text)
     {
-        return $OrderTaskList
+        return $orderTaskList
             ->where($param,
                 Operators::LIKE,
                 '%'.$text.'%')

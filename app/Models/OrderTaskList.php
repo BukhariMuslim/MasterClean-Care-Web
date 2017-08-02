@@ -31,4 +31,12 @@ class OrderTaskList extends Model
     {
         return $this->belongsTo(Order::class);
     }
+
+    /**
+     * Get the taskList record associated with the additionalInfo.
+     */
+    public function taskList()
+    {
+        return $this->belongsTo(TaskList::class);
+    }
 }
