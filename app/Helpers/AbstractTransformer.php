@@ -1,21 +1,22 @@
 <?php
 
 namespace App\Helpers;
+
 use Themsaid\Transformers\AbstractTransformer as BaseAbstractTransformer;
 
 class AbstractTransformer extends BaseAbstractTransformer
 {
-    public function getProduction()
+    protected function getProduction()
     {
         return env('APP_ENV') == 'production';
     }
 
-    public function renderArrayImage()
+    protected function renderArrayImage()
     {
         return [];
     }
 
-    public function generateUserPictureLinks($filename)
+    protected function generateUserPictureLinks($filename)
     {
         $secure = $this->getProduction();
         if ($filename) {
@@ -38,7 +39,7 @@ class AbstractTransformer extends BaseAbstractTransformer
      *
      * @return [type] [description]
      */
-    public function formatRupiah($nominal = 0, $sign = 'Rp. ', $end = ',-', $presisi = 0)
+    protected function formatRupiah($nominal = 0, $sign = 'Rp. ', $end = ',-', $presisi = 0)
     {
         return $sign.number_format($nominal, $presisi, ',', '.');
     }

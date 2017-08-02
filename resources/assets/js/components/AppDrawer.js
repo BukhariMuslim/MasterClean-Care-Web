@@ -13,7 +13,6 @@ import Divider from 'material-ui/Divider'
 import ActionHome from 'material-ui/svg-icons/action/home'
 import FontIcon from 'material-ui/FontIcon'
 import Drawer from 'material-ui/Drawer'
-import Avatar from 'material-ui/Avatar'
 import { simpleAuthentication } from '../containers/LoginContainer'
 import Header from './Header'
 
@@ -77,7 +76,7 @@ class AppDrawer extends Component {
                 >
                     {
                         isLoggedIn ?
-                            <Header username={ this.props.user.name } avatarImg={ (this.props.user.avatar ? this.props.user.avatar.small : avatar) || LockImg } bgImg={ BgImg } />
+                            <Header username={ this.props.user.name } avatarImg={ (this.props.user.avatar ? '/image/small/'+this.props.user.avatar : '') || LockImg } bgImg={ BgImg } />
                         :
                             <MenuItem primaryText="Login" 
                                 containerElement={<Link to="/login" />}

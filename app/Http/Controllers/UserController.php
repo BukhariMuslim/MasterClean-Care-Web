@@ -12,17 +12,19 @@ use App\Models\UserAdditionalInfo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use Illuminate\Http\UploadedFile;
-use App\Helpers\AbstractTransformer;
+use App\Helpers\Traits\ImageTrait;
 use Image;
 use Hash;
 use Exception;
 use DB;
-use App\Helper\Operators;
+use App\Helpers\Operators;
 use Auth;
 use Route;
 
 class UserController extends Controller
 {
+    use ImageTrait;
+
     /**
      * Display a listing of the resource.
      *
@@ -95,9 +97,9 @@ class UserController extends Controller
                 'contact',
             ]);
 
-            if ($user->avatar != '') {
-                $user->avatar = AbstractTransformer::generateUserPictureLinks($user->avatar);
-            }
+            // if ($user->avatar) {
+            //     $user->avatar = $this->generateUserPictureLinks($user->avatar);
+            // }
             
             return $user;
         }
@@ -139,6 +141,11 @@ class UserController extends Controller
             // Hash Password
             $data['password'] = Hash::make($data['password']);
 
+            //Set Default Img
+            if ($data['avatar'] == '') {
+                $data['avatar'] = 'default.png';
+            }
+            
             DB::beginTransaction();
             
             $user = User::create($data);

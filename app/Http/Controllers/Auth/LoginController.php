@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Helpers\AbstractTransformer;
+use App\Helpers\Traits\ImageTrait;
 use App\Models\User;
 use Auth;
 use Hash;
@@ -14,6 +14,8 @@ use Exception;
 
 class LoginController extends Controller
 {
+    use ImageTrait;
+
     /*
     |--------------------------------------------------------------------------
     | Login Controller
@@ -125,10 +127,10 @@ class LoginController extends Controller
                         'user_work_time',
                         'contact'
                     ]);
-
-                    if ($user->avatar != '') {
-                        $user->avatar = AbstractTransformer::generateUserPictureLinks($user->avatar);
-                    }
+                    
+                    // if ($user->avatar) {
+                    //     $user->avatar = $this->generateUserPictureLinks($user->avatar);
+                    // }
 
                     return response()->json([
                         'user' => $user,

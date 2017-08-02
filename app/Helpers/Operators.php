@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Helper;
+namespace App\Helpers;
 
 abstract class Operators extends BasicEnum {
     const BETWEEN = 'between';

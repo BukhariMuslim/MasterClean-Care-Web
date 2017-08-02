@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Helper\Traits\UserTrait;
+use App\Helpers\Traits\UserTrait;
 
 class EmergencyCall extends Model
 {

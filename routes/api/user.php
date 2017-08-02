@@ -23,7 +23,7 @@ Route::group(['prefix' => 'user'], function () {
     
     Route::get('/art', 'UserController@getArt');
 
-    Route::get('/me', 'UserController@getCurrent')->middleware(['auth']);
+    Route::get('/me', 'UserController@getCurrent')->middleware(['auth:api']);
 
     Route::get('/{user_id}', 'UserController@show')->where('user_id', '[0-9]+');
 

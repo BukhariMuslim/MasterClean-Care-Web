@@ -51,12 +51,11 @@ const onLogin = (data, onSuccess, onFail) => {
       password: data.password,
     },
     function (response) {
-      // console.log(response)
       if(response.data.token) {
           const token = response.data.token
           let curDate = new Date()
-          curDate.setDate(curDate.getDate(), token.expiree_in)
-          document.cookie = 'laravel_token=' + token.access_token +"; expires=; path=/"
+          curDate.setDate(curDate.getDate(), token.expires_in)
+          document.cookie = 'laravel_token=' + token.access_token +"; expires=" + curDate +"; path=/"
       }
       return onSuccess(response.data)
     },

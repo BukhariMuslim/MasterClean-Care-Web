@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\UserAdditionalInfo;
 use Illuminate\Http\Request;
-use App\Helper\Operators;
+use App\Helpers\Operators;
 use Exception;
 
 class UserAdditionalInfoController extends Controller

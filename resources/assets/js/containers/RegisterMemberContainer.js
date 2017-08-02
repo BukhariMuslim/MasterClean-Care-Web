@@ -22,6 +22,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       }))
     },
     onRegister: (self, data, history) => {
+      console.log(data)
       ApiService.onPost(
         '/api/user',
         { data },
