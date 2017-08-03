@@ -98,6 +98,24 @@ class OfferController extends Controller
     }
 
     /**
+     * Display the specified resource.
+     *
+     * @param  \App\Models\Offer  $offer
+     * @return \Illuminate\Http\Response
+     */
+    public function showFull(Offer $offer)
+    {
+        return $offer->load([
+            'member',
+            'workTime',
+            'contact',
+            'offer_art.art',
+            'offerTaskList',
+            'job',
+        ]);
+    }
+
+    /**
      * Show the form for editing the specified resource.
      *
      * @param  \App\Models\Offer  $offer

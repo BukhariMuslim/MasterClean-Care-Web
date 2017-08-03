@@ -36,6 +36,8 @@ Route::group(['prefix' => 'offer', 'middleware' => ['api']], function () {
 
     Route::get('/{offer_id}', 'OfferController@show')->where('offer_id', '[0-9]+');
 
+    Route::get('/full/{offer_id}', 'OfferController@showFull')->where('offer_id', '[0-9]+');
+
     Route::get('/member/{member}', 'OfferController@getByMember')->where('member', '[0-9]+');
 
     Route::get('/status/{status}', 'OfferController@getByStatus')->where('status', '[0-9]+');

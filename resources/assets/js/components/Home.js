@@ -6,6 +6,7 @@ import Divider from 'material-ui/Divider'
 import App from './App'
 import ArticleContainer from '../containers/ArticleContainer'
 import ArtContainer from '../containers/ArtContainer'
+import OfferContainer from '../containers/OfferContainer'
 import FlatButton from 'material-ui/FlatButton'
 import Breadcrumbs from '../modules/Breadcrumbs'
 
@@ -50,7 +51,7 @@ class Home extends Component {
                 <div className="clearfix"></div>
               </h5>
               <Divider></Divider>
-              <ArtContainer maxItem={10} sortBy="rate" />
+              <OfferContainer maxItem={10} />
             </div>
             <div className="col s12 m8">
               <h5 style={{ marginTop: 35 }}>
@@ -64,7 +65,7 @@ class Home extends Component {
                 <div className="clearfix"></div>
               </h5>
               <Divider></Divider>
-              <ArticleContainer maxItem={2} />
+              <ArticleContainer maxItem={10} />
             </div>
             <div className="col s12 m4">
               <h5 style={{ marginTop: 35 }}>

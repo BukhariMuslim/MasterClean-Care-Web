@@ -29,6 +29,7 @@
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
     "react-material-ui-form-validator": "^0.5.0",
+    "react-number-format": "^2.0.3",
     "react-redux": "^5.0.5",
     "react-redux-form": "^1.12.1",
     "react-router": "^4.1.1",

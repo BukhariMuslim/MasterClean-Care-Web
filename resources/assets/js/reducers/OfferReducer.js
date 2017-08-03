@@ -1,9 +1,9 @@
 import { 
-    FILL_ARTICLE,
-    ADD_ARTICLE, 
-    EDIT_ARTICLE, 
-    UPDATE_ARTICLE, 
-    REMOVE_ARTICLE,
+    FILL_OFFER,
+    ADD_OFFER, 
+    EDIT_OFFER, 
+    UPDATE_OFFER, 
+    REMOVE_OFFER,
 } from '../actions/DefaultAction'
 
 const getInitial = () => {
@@ -17,11 +17,11 @@ const getInitial = () => {
     }
 }
 
-const ArticleReducer = (state = [], action) => {
+const OfferReducer = (state = [], action) => {
     switch (action.type) {
-        case FILL_ARTICLE:
+        case FILL_OFFER:
             return Object.assign([], state, action.data)
-        case ADD_ARTICLE:
+        case ADD_OFFER:
             let date = action.data.published_date
             let article = []
 
@@ -42,7 +42,7 @@ const ArticleReducer = (state = [], action) => {
             ]
 
             return Object.assign([], state, article)
-        case UPDATE_ARTICLE:
+        case UPDATE_OFFER:
             date = action.data.published_date
             article = []
             if (Object.keys(date).length !== 0 || date.constructor !== Object) {
@@ -63,7 +63,7 @@ const ArticleReducer = (state = [], action) => {
                 ...state.slice(idx + 1)
             ]
             return Object.assign([], state, article)
-        case EDIT_ARTICLE:
+        case EDIT_OFFER:
             article = state.map(t => {
                 if (state.id !== action.data) {
                     return state
@@ -75,7 +75,7 @@ const ArticleReducer = (state = [], action) => {
             })
 
             return article
-        case REMOVE_ARTICLE:
+        case REMOVE_OFFER:
             article = state.map(t => {
                 let idx = state.map((e) => e.id).indexOf(action.data)
                 if (idx > -1) {
@@ -93,4 +93,4 @@ const ArticleReducer = (state = [], action) => {
     }
 }
 
-export default ArticleReducer
+export default OfferReducer

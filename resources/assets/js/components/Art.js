@@ -56,24 +56,18 @@ class Art extends Component {
           return Math.abs(ageDate.getUTCFullYear() - 1970)
         }
 
-        const imageError = (image) => {
-          image.onerror = ""
-          image.src = "/images/noimage.gif"
-          return true
-        }
-
         let age = calculateAge(obj.born_date)
         return (
           <GridTile
             key={idx}
             title={<span>{obj.name}</span>}
-            subtitle={ <div><div><small>({age} thn)</small></div><div><StarComponent rate={obj.rate} /></div></div> }
+            subtitle={<div><div><small>({age} thn)</small></div><div><StarComponent rate={obj.rate} /></div></div>}
             titleStyle={styles.titleStyle}
             containerElement={<Link to={"/art/" + obj.id} />}
-            cols={ this.props.isFeatured && idx == 0 ? 2 : 1 }
-            rows={ this.props.isFeatured && idx == 0 ? 2 : 1 }
+            cols={this.props.isFeatured && idx == 0 ? 2 : 1}
+            rows={this.props.isFeatured && idx == 0 ? 2 : 1}
           >
-            <img src={ obj.avatar || defaultImg } />
+            <img src={obj.avatar || defaultImg} />
           </GridTile>
         )
       }
@@ -81,17 +75,17 @@ class Art extends Component {
   }
 
   render() {
-    const { art } = this.props;
+    const { art } = this.props
     return (
       <div style={styles.root}>
         {
           art.length > 0 ?
-            <GridList 
-              style={ this.props.maxItem && !this.props.isFeatured ? styles.gridList : styles.gridListVertical } 
-              cols={ this.props.maxItem ? this.props.isFeatured ? 2 : 2.2 : 5}
+            <GridList
+              style={this.props.maxItem && !this.props.isFeatured ? styles.gridList : styles.gridListVertical}
+              cols={this.props.maxItem ? this.props.isFeatured ? 2 : 2.2 : 5}
               cellHeight={200}
               padding={1}
-              >
+            >
               {this.artList(art)}
             </GridList>
             :
