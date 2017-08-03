@@ -35,7 +35,7 @@ Route::group(['prefix' => 'user'], function () {
 
     Route::patch('/{user_id}', 'UserController@update')->where('user_id', '[0-9]+')->middleware(['auth:api']);
 
-    Route::delete('/{user_id}', 'UserController@destroy')->where('user_id', '[0-9]+')->middleware(['auth:api]);
+    Route::delete('/{user_id}', 'UserController@destroy')->where('user_id', '[0-9]+')->middleware(['auth:api']);
 
     // ->middleware('auth');
 
