@@ -33,9 +33,9 @@ Route::group(['prefix' => 'user'], function () {
 
     Route::get('/{user_id}', 'UserController@show')->where('user_id', '[0-9]+');
 
-    Route::patch('/{user_id}', 'UserController@update')->where('user_id', '[0-9]+')->middleware(['auth']);
+    Route::patch('/{user_id}', 'UserController@update')->where('user_id', '[0-9]+')->middleware(['auth:api']);
 
-    Route::delete('/{user_id}', 'UserController@destroy')->where('user_id', '[0-9]+')->middleware(['auth']);
+    Route::delete('/{user_id}', 'UserController@destroy')->where('user_id', '[0-9]+')->middleware(['auth:api]);
 
     // ->middleware('auth');
 
