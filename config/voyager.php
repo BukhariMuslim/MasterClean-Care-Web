@@ -143,17 +143,17 @@ return [
             'image' => '/images/widget-backgrounds/02.png',
         ],
         [
-            'name'  => 'Post',
+            'name'  => 'Review Order',
             'icon'  => 'voyager-news',
-            'model' => TCG\Voyager\Models\Post::class,
-            'url'   => 'admin/posts',
+            'model' => App\Models\ReviewOrder::class,
+            'url'   => 'admin/review-orders',
             'image' => '/images/widget-backgrounds/03.png',
         ],
         [
-            'name'  => 'Page',
-            'icon'  => 'voyager-file-text',
-            'model' => TCG\Voyager\Models\Page::class,
-            'url'   => 'admin/pages',
+            'name'  => 'Wallet Transaction',
+            'icon'  => 'voyager-dollar',
+            'model' => App\Models\WalletTransaction::class,
+            'url'   => 'admin/wallet-transactions',
             'image' => '/images/widget-backgrounds/04.png',
         ],
     ],
@@ -192,8 +192,8 @@ return [
 
         'widgets' => [
             'TCG\\Voyager\\Widgets\\UserDimmer',
-            'TCG\\Voyager\\Widgets\\PostDimmer',
-            'TCG\\Voyager\\Widgets\\PageDimmer',
+            // 'TCG\\Voyager\\Widgets\\PostDimmer',
+            // 'TCG\\Voyager\\Widgets\\PageDimmer',
         ],
 
     ],

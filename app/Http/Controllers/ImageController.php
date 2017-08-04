@@ -14,7 +14,7 @@ class ImageController extends Controller
     public function store(Request $request)
     {
         $filename = str_random(20);
-        $path = $request->image->storeAs('original', "{$filename}.jpg", 'public');
+        $path = $request->image->storeAs('users', "{$filename}.jpg", 'public');
         
         $data = [
             'status'    => 201,
@@ -35,7 +35,7 @@ class ImageController extends Controller
         $filename = str_random(20);
         
         try {
-            $path = $request->image->storeAs('original', "{$filename}.jpg", 'public');
+            $path = $request->image->storeAs('users', "{$filename}.jpg", 'public');
             $data = [
                 'user_id'   => $request->user_id,
                 'amount'    => $request->amt,
@@ -60,7 +60,7 @@ class ImageController extends Controller
     public function renderImage($ratio, $filename, Request $request)
     {
         $drive = Storage::disk('public');
-        $path = "original/{$filename}";
+        $path = "users/{$filename}";
         $exists = $drive->exists($path);
         try {
             if ($path) {

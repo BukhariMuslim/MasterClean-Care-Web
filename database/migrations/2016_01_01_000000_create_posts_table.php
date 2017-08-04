@@ -13,24 +13,24 @@ class CreatePostsTable extends Migration
     public function up()
     {
         // Create table for storing roles
-        Schema::create('posts', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('author_id');
-            $table->integer('category_id')->nullable()->default('');
-            $table->string('title');
-            $table->string('seo_title')->nullable()->default('');
-            $table->text('excerpt');
-            $table->text('body');
-            $table->string('image')->nullable()->default('');
-            $table->string('slug')->unique();
-            $table->text('meta_description');
-            $table->text('meta_keywords');
-            $table->enum('status', ['PUBLISHED', 'DRAFT', 'PENDING'])->default('DRAFT');
-            $table->boolean('featured')->default(0);
-            $table->timestamps();
+        // Schema::create('posts', function (Blueprint $table) {
+        //     $table->increments('id');
+        //     $table->integer('author_id');
+        //     $table->integer('category_id')->nullable()->default(null);
+        //     $table->string('title');
+        //     $table->string('seo_title')->nullable()->default('');
+        //     $table->text('excerpt');
+        //     $table->text('body');
+        //     $table->string('image')->nullable()->default('');
+        //     $table->string('slug')->unique();
+        //     $table->text('meta_description');
+        //     $table->text('meta_keywords');
+        //     $table->enum('status', ['PUBLISHED', 'DRAFT', 'PENDING'])->default('DRAFT');
+        //     $table->boolean('featured')->default(0);
+        //     $table->timestamps();
 
-            //$table->foreign('author_id')->references('id')->on('users');
-        });
+        //     //$table->foreign('author_id')->references('id')->on('users');
+        // });
     }
 
     /**
@@ -40,6 +40,6 @@ class CreatePostsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('posts');
+        // Schema::drop('posts');
     }
 }

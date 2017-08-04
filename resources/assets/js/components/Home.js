@@ -41,7 +41,7 @@ class Home extends Component {
             </div>
             <div className="col s12">
               <h5 style={{ marginTop: 35 }}>
-                Pekerjaan Tersedia
+                Penawaran Pekerjaan Tersedia
                 <FlatButton
                   className="right"
                   label="Lihat Semua"
@@ -53,7 +53,7 @@ class Home extends Component {
               <Divider></Divider>
               <OfferContainer maxItem={10} />
             </div>
-            <div className="col s12 m8">
+            {/* <div className="col s12 m8">
               <h5 style={{ marginTop: 35 }}>
                 Artikel Terbaru
                 <FlatButton
@@ -66,8 +66,8 @@ class Home extends Component {
               </h5>
               <Divider></Divider>
               <ArticleContainer maxItem={10} />
-            </div>
-            <div className="col s12 m4">
+            </div> */}
+            {/* <div className="col s12 m4">
               <h5 style={{ marginTop: 35 }}>
                 ART Terunggul
                 <FlatButton
@@ -80,7 +80,7 @@ class Home extends Component {
               </h5>
               <Divider></Divider>
               <ArtContainer isFeatured={true} maxItem={10} sortBy="rate" />
-            </div>
+            </div> */}
           </Paper>
         </div>
       </App>

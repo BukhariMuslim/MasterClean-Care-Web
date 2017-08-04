@@ -153,13 +153,13 @@ class UserController extends Controller
             // Save Contact
             $user->contact()->create($data['contact']);
 
-            if ($user->user_type == 1) {
+            if ($user->role_id == 1) {
                 // Initial Wallet
                 $user_wallet = new UserWallet;
                 $user_wallet->amt = 0; 
                 $user->user_wallet()->save($user_wallet);
             }
-            else if ($user->user_type == 2)
+            else if ($user->role_id == 2)
             {
                 // Save Wallet
                 $user->user_wallet()->create($data['user_wallet']);
@@ -313,9 +313,6 @@ class UserController extends Controller
             }
             if (array_key_exists('race', $data)) {
                 $user->race = $data['race'];
-            }
-            if (array_key_exists('user_type', $data)) {
-                $user->user_type = $data['user_type'];
             }
             if (array_key_exists('description', $data)) {
                 $user->description = $data['description'];
@@ -497,7 +494,7 @@ class UserController extends Controller
                 'user_work_time',
                 'contact',
             ])
-            ->where('user_type', 2)
+            ->where('role_id', 3)
             ->paginate(10);
 
         return $users;
@@ -521,7 +518,7 @@ class UserController extends Controller
                 'contact',
             ])
             ->where('id', $art)
-            ->where('user_type', 2)
+            ->where('role_id', 3)
             ->first();
 
         return $users;

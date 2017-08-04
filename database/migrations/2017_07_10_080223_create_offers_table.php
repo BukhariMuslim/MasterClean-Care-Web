@@ -29,7 +29,7 @@ class CreateOffersTable extends Migration
                   ->references('id')->on('users');
             $table->foreign('work_time_id')
                   ->references('id')->on('work_times');
-            $table->foreign('jov_id')
+            $table->foreign('job_id')
                   ->references('id')->on('jobs');
         });
     }

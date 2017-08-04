@@ -58,10 +58,21 @@ class SettingsTableSeeder extends Seeder
         if (!$setting->exists) {
             $setting->fill([
                 'display_name' => 'Admin Title',
-                'value'        => 'Voyager',
+                'value'        => 'MCC',
                 'details'      => '',
                 'type'         => 'text',
                 'order'        => 4,
+            ])->save();
+        }
+
+        $setting = $this->findSetting('title');
+        if (!$setting->exists) {
+            $setting->fill([
+                'display_name' => 'Title',
+                'value'        => 'Master Clean & Care',
+                'details'      => '',
+                'type'         => 'text',
+                'order'        => 5,
             ])->save();
         }
 
@@ -69,10 +80,10 @@ class SettingsTableSeeder extends Seeder
         if (!$setting->exists) {
             $setting->fill([
                 'display_name' => 'Admin Description',
-                'value'        => 'Welcome to Voyager. The Missing Admin for Laravel',
+                'value'        => 'Master Clean & Care',
                 'details'      => '',
                 'type'         => 'text',
-                'order'        => 5,
+                'order'        => 6,
             ])->save();
         }
 
@@ -83,7 +94,7 @@ class SettingsTableSeeder extends Seeder
                 'value'        => '',
                 'details'      => '',
                 'type'         => 'image',
-                'order'        => 6,
+                'order'        => 7,
             ])->save();
         }
 
@@ -94,7 +105,7 @@ class SettingsTableSeeder extends Seeder
                 'value'        => '',
                 'details'      => '',
                 'type'         => 'image',
-                'order'        => 7,
+                'order'        => 8,
             ])->save();
         }
 

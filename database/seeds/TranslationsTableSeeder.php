@@ -31,22 +31,22 @@ class TranslationsTableSeeder extends Seeder
         //
         $_fld = 'display_name_singular';
         $_tpl = ['data_types', $_fld];
-        $dtp = DataType::where($_fld, 'Post')->firstOrFail();
-        if ($dtp->exists) {
-            $this->trans('pt', $this->arr($_tpl, $dtp->id), 'Post');
-        }
-        $dtp = DataType::where($_fld, 'Page')->firstOrFail();
-        if ($dtp->exists) {
-            $this->trans('pt', $this->arr($_tpl, $dtp->id), 'Página');
-        }
+        // $dtp = DataType::where($_fld, 'Post')->firstOrFail();
+        // if ($dtp->exists) {
+        //     $this->trans('pt', $this->arr($_tpl, $dtp->id), 'Post');
+        // }
+        // $dtp = DataType::where($_fld, 'Page')->firstOrFail();
+        // if ($dtp->exists) {
+        //     $this->trans('pt', $this->arr($_tpl, $dtp->id), 'Página');
+        // }
         $dtp = DataType::where($_fld, 'User')->firstOrFail();
         if ($dtp->exists) {
             $this->trans('pt', $this->arr($_tpl, $dtp->id), 'Utilizador');
         }
-        $dtp = DataType::where($_fld, 'Category')->firstOrFail();
-        if ($dtp->exists) {
-            $this->trans('pt', $this->arr($_tpl, $dtp->id), 'Categoria');
-        }
+        // $dtp = DataType::where($_fld, 'Category')->firstOrFail();
+        // if ($dtp->exists) {
+        //     $this->trans('pt', $this->arr($_tpl, $dtp->id), 'Categoria');
+        // }
         $dtp = DataType::where($_fld, 'Menu')->firstOrFail();
         if ($dtp->exists) {
             $this->trans('pt', $this->arr($_tpl, $dtp->id), 'Menu');
@@ -60,22 +60,22 @@ class TranslationsTableSeeder extends Seeder
         //
         $_fld = 'display_name_plural';
         $_tpl = ['data_types', $_fld];
-        $dtp = DataType::where($_fld, 'Posts')->firstOrFail();
-        if ($dtp->exists) {
-            $this->trans('pt', $this->arr($_tpl, $dtp->id), 'Posts');
-        }
-        $dtp = DataType::where($_fld, 'Pages')->firstOrFail();
-        if ($dtp->exists) {
-            $this->trans('pt', $this->arr($_tpl, $dtp->id), 'Páginas');
-        }
+        // $dtp = DataType::where($_fld, 'Posts')->firstOrFail();
+        // if ($dtp->exists) {
+        //     $this->trans('pt', $this->arr($_tpl, $dtp->id), 'Posts');
+        // }
+        // $dtp = DataType::where($_fld, 'Pages')->firstOrFail();
+        // if ($dtp->exists) {
+        //     $this->trans('pt', $this->arr($_tpl, $dtp->id), 'Páginas');
+        // }
         $dtp = DataType::where($_fld, 'Users')->firstOrFail();
         if ($dtp->exists) {
             $this->trans('pt', $this->arr($_tpl, $dtp->id), 'Utilizadores');
         }
-        $dtp = DataType::where($_fld, 'Categories')->firstOrFail();
-        if ($dtp->exists) {
-            $this->trans('pt', $this->arr($_tpl, $dtp->id), 'Categorias');
-        }
+        // $dtp = DataType::where($_fld, 'Categories')->firstOrFail();
+        // if ($dtp->exists) {
+        //     $this->trans('pt', $this->arr($_tpl, $dtp->id), 'Categorias');
+        // }
         $dtp = DataType::where($_fld, 'Menus')->firstOrFail();
         if ($dtp->exists) {
             $this->trans('pt', $this->arr($_tpl, $dtp->id), 'Menus');
@@ -132,25 +132,25 @@ class TranslationsTableSeeder extends Seeder
             $this->trans('pt', $this->arr($_tpl, $_item->id), 'Media');
         }
 
-        $_item = $this->mItem('Posts');
-        if ($_item->exists) {
-            $this->trans('pt', $this->arr($_tpl, $_item->id), 'Publicações');
-        }
+        // $_item = $this->mItem('Posts');
+        // if ($_item->exists) {
+        //     $this->trans('pt', $this->arr($_tpl, $_item->id), 'Publicações');
+        // }
 
         $_item = $this->mItem('Users');
         if ($_item->exists) {
             $this->trans('pt', $this->arr($_tpl, $_item->id), 'Utilizadores');
         }
 
-        $_item = $this->mItem('Categories');
-        if ($_item->exists) {
-            $this->trans('pt', $this->arr($_tpl, $_item->id), 'Categorias');
-        }
+        // $_item = $this->mItem('Categories');
+        // if ($_item->exists) {
+        //     $this->trans('pt', $this->arr($_tpl, $_item->id), 'Categorias');
+        // }
 
-        $_item = $this->mItem('Pages');
-        if ($_item->exists) {
-            $this->trans('pt', $this->arr($_tpl, $_item->id), 'Páginas');
-        }
+        // $_item = $this->mItem('Pages');
+        // if ($_item->exists) {
+        //     $this->trans('pt', $this->arr($_tpl, $_item->id), 'Páginas');
+        // }
 
         $_item = $this->mItem('Roles');
         if ($_item->exists) {

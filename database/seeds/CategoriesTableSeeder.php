@@ -12,22 +12,22 @@ class CategoriesTableSeeder extends Seeder
      */
     public function run()
     {
-        $category = Category::firstOrNew([
-            'slug' => 'category-1',
-        ]);
-        if (!$category->exists) {
-            $category->fill([
-                'name'       => 'Category 1',
-            ])->save();
-        }
+        // $category = Category::firstOrNew([
+        //     'slug' => 'category-1',
+        // ]);
+        // if (!$category->exists) {
+        //     $category->fill([
+        //         'name'       => 'Category 1',
+        //     ])->save();
+        // }
 
-        $category = Category::firstOrNew([
-            'slug' => 'category-2',
-        ]);
-        if (!$category->exists) {
-            $category->fill([
-                'name'       => 'Category 2',
-            ])->save();
-        }
+        // $category = Category::firstOrNew([
+        //     'slug' => 'category-2',
+        // ]);
+        // if (!$category->exists) {
+        //     $category->fill([
+        //         'name'       => 'Category 2',
+        //     ])->save();
+        // }
     }
 }

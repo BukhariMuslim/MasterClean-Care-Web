@@ -55,7 +55,7 @@ class Article extends Component {
           >
             <Card>
               <CardTitle 
-                title={ <h5>{obj.title} <small>by {obj.user_id.name}</small></h5>} 
+                title={ <h5>{obj.title} <small style={{ color: '#555'}}>oleh {obj.user_id.name}</small></h5>} 
                 subtitle={<small><FormattedRelative value={obj.published_date} /></small>}/>
               <CardText>
                 {

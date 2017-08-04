@@ -26,14 +26,25 @@ class PermissionsTableSeeder extends Seeder
 
         Permission::generateFor('menus');
 
-        Permission::generateFor('pages');
-
         Permission::generateFor('roles');
 
         Permission::generateFor('users');
 
-        Permission::generateFor('posts');
+        Permission::generateFor('additional-infos');
 
-        Permission::generateFor('categories');
+        Permission::generateFor('jobs');
+
+        Permission::generateFor('languages');
+
+        Permission::generateFor('places');
+
+        Permission::generateFor('review-orders');
+
+        Permission::generateFor('wallet-transactions');
+
+        Permission::generateFor('wallets');
+
+        Permission::generateFor('work-times');
+
     }
 }

@@ -11,17 +11,17 @@ class CommentsTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('comments')->insert([
-            [
-                'article_id'=>1,
-                'user_id'=>1,
-                'comment'=>'wisuda tahun ini',
-            ],
-            [
-                'article_id'=>2,
-                'user_id'=>2,
-                'comment'=>'oktober 2017 wisuda',
-            ],    
-        ]);
+        // DB::table('comments')->insert([
+        //     [
+        //         'article_id'=>1,
+        //         'user_id'=>1,
+        //         'comment'=>'wisuda tahun ini',
+        //     ],
+        //     [
+        //         'article_id'=>2,
+        //         'user_id'=>2,
+        //         'comment'=>'oktober 2017 wisuda',
+        //     ],    
+        // ]);
     }
 }
