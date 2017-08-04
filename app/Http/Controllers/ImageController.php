@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response as IlluminateResponse;
 use Image;
 use Storage;
+use App\Models\WalletTransaction;
+use Carbon\Carbon;
 
 class ImageController extends Controller
 {
@@ -27,6 +29,34 @@ class ImageController extends Controller
         // Send to Queue Delete
         return response()->json($data, 201);
     }
+
+    public function storeTrc(Request $request)
+    {
+        $filename = str_random(20);
+        
+        try {
+            $path = $request->image->storeAs('original', "{$filename}.jpg", 'public');
+            $data = [
+                'user_id'   => $request->user_id,
+                'amount'    => $request->amt,
+                'trc_typ'   => 1,
+                'trc_time'  => Carbon::create(),
+                'trc_img'   => "{$filename}.jpg",
+                'status'    => 0,
+            ];
+
+            $walletTransaction = WalletTransaction::create($data);
+
+            // Send to Queue Delete
+            return response()->json([ 'data' => $walletTransaction, 
+                                    'status' => 201]);
+        }
+        catch(Exception $e) {
+            return response()->json([ 'message' => $e->getMessage(), 
+                                      'status' => 400 ]);
+        }
+    }
+
     public function renderImage($ratio, $filename, Request $request)
     {
         $drive = Storage::disk('public');

@@ -13,6 +13,8 @@ Route::group(['prefix' => 'wallet_transaction', 'middleware' => ['api']], functi
 
     Route::post('/', 'WalletTransactionController@store');
 
+    Route::post('/image', 'ImageController@storeTrc');
+
     Route::get('/{wallet_transaction_id}', 'WalletTransactionController@show')->where('wallet_transaction_id', '[0-9]+');
 
     Route::patch('/{wallet_transaction_id}', 'WalletTransactionController@update')->where('wallet_transaction_id', '[0-9]+');
