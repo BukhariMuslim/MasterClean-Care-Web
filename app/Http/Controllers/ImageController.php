@@ -39,7 +39,7 @@ class ImageController extends Controller
             $data = [
                 'user_id'   => $request->user_id,
                 'amount'    => $request->amt,
-                'trc_typ'   => 1,
+                'trc_typ'   => 0,
                 'trc_time'  => Carbon::create(),
                 'trc_img'   => "{$filename}.jpg",
                 'status'    => 0,
