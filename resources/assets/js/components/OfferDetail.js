@@ -38,7 +38,7 @@ class OfferDetail extends Component {
           offer.id ?
             <div>
               <Card>
-                <CardTitle title={<h6><b>{offer.member.name}</b></h6>} />
+                <CardTitle title={<h6>Penawaran dari <b>{offer.member.name}</b></h6>} />
                 <CardText>
                   Membutuhkan Pekerja <b>{offer.work_time ? offer.work_time.work_time : ''}</b>:<br/>
                   <b>{offer.job ? offer.job.job : '-'}</b><br/>
@@ -60,10 +60,10 @@ class OfferDetail extends Component {
                   Informasi Kontak:<br/>
                   {
                     offer.contact ?
-                    <ul>
-                      <li><b>{offer.contact.address}</b></li>
-                      <li><b>{offer.contact.phone}</b></li>
-                    </ul>
+                    <blockquote>
+                      <b>{offer.contact.address}</b><br/>
+                      <b>{offer.contact.phone}</b><br/>
+                    </blockquote>
                     : 
                     <b>-</b>
                   }

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import { Card, CardActions, CardHeader, CardTitle, CardText } from 'material-ui/Card'
 import { GridList, GridTile } from 'material-ui/GridList'
+import { FormattedDate, FormattedTime } from 'react-intl'
 import FlatButton from 'material-ui/FlatButton'
 import Divider from 'material-ui/Divider'
 import NumberFormat from 'react-number-format'
@@ -21,12 +22,16 @@ const styles = {
     overflowX: 'auto',
   },
   gridListVertical: {
+    marginTop: 5,
     overflowY: 'auto',
     flexWrap: 'wrap',
   },
   titleStyle: {
     color: 'rgb(255, 255, 255)',
   },
+  innerTile: {
+    border: '1px solid rgb(224, 224, 224)',
+  }
 }
 
 class Offer extends Component {
@@ -45,12 +50,42 @@ class Offer extends Component {
           <GridTile
             key={idx}
             cols={1}
+            style={styles.innerTile}
           >
             <Card>
               <CardTitle title={<h6><b>{obj.member.name}</b></h6>} />
               <CardText>
                 Membutuhkan Pekerja <b>{obj.work_time ? obj.work_time.work_time : ''}</b>:<br/>
                 <b>{obj.job ? obj.job.job : '-'}</b><br/>
+                Pada waktu: <br/>
+                {
+                  obj.work_time ? 
+                  <span>
+                    Mulai <b>
+                      <FormattedDate value={obj.start_date} />
+                      {
+                        obj.work_time_id === 1 ? 
+                        <span>
+                          &nbsp;
+                          <FormattedTime value={obj.start_date} /> 
+                        </span>
+                        : null
+                      }
+                    </b> Hingga <b>
+                      <FormattedDate value={obj.end_date} />
+                      {
+                        obj.work_time_id === 1 ? 
+                        <span>
+                          &nbsp;
+                          <FormattedTime value={obj.end_date} /> 
+                        </span>
+                        : null
+                      }
+                    </b>
+                  </span>
+                  :
+                  <b>-</b>
+                }<br/>
                 Upah yang ditawarkan:<br/>
                 <b>{obj.cost ? <NumberFormat value={obj.cost} displayType={'text'} thousandSeparator={true} prefix={'Rp. '} /> : '-'}</b><br/>
                 Untuk melakukan:<br/>
@@ -94,7 +129,6 @@ class Offer extends Component {
                 />
               </CardActions>
             </Card>
-            <Divider />
           </GridTile>
         )
       }

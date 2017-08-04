@@ -17,7 +17,7 @@ import ApiService from '../modules/ApiService'
 
 const mapStateToProps = (state) => {
     return {
-        user: state.UserLoginReducer
+        user: state.UserLoginReducer.user
     }
 }
 

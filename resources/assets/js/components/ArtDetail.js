@@ -13,6 +13,7 @@ import DatePicker from 'material-ui/DatePicker'
 import TextField from 'material-ui/TextField'
 import MenuItem from 'material-ui/MenuItem'
 import StarComponent from './StarComponent'
+import NumberFormat from 'react-number-format'
 
 const fieldStyle = {
   paddingLeft: 10,
@@ -230,18 +231,21 @@ class ArtDetail extends Component {
             {
               isNeedTextBox ?
                 <div className="col s6">
-                  <TextValidator
+                  <NumberFormat
                     hintText={'Gaji ' + obj.work_time}
                     inputStyle={disabledInputStyle}
-                    fullWidth={true}
-                    name="user_work_time"
+                    thousandSeparator={true}
+                    prefix={'Rp. '}
+                    value={costEnabled ? values[curIdx].cost : ''}
                     disabled={!costEnabled || !this.state.isEdit}
                     underlineShow={this.state.isEdit}
-                    value={costEnabled ? values[curIdx].cost : ''}
+                    fullWidth={true}
+                    name="user_work_time"
                     onChange={(e) => this.onChangeTextHandler(e, curIdx)}
-                    validators={[isNeedTextBox ? ('required', 'isNumber') : '']}
-                    errorMessages={[isNeedTextBox ? ('Gaji dibutuhkan', 'Gaji harus angka') : '']}
-                  />
+                    validators={[isNeedTextBox ? ('required') : '']}
+                    errorMessages={[isNeedTextBox ? ('Gaji dibutuhkan') : '']}
+                    customInput={TextValidator}
+                    />
                 </div>
                 :
                 null

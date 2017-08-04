@@ -6,6 +6,7 @@ const Breadcrumbs = breadcrumbConfig({
     '/article': 'Artikel',
     '/art': 'ART',
     '/offer': 'Penawaran',
+    '/profile': 'Profile',
   },
   dynamicRoutesMap: {
     '/article/:articleId': '{{articleId}}',

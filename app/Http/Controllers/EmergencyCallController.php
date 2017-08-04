@@ -163,12 +163,16 @@ class EmergencyCallController extends Controller
      */
     public function searchByUserStatus(Request $request, EmergencyCall $emergencyCall, $callerId, $status)
     {
-        return $emergencyCall
-            ->where('user_id', $callerId)
-            ->where('status', $status)
-            ->get()
-            ->load([
+        $emergencyCall = $emergencyCall
+                            ->orderBy('init_time', 'DESC')
+                            ->where('user_id', $callerId)
+                            ->where('status', $status)
+                            ->get();
+        if ($emergencyCall->first()) {
+            $emergencyCall = $emergencyCall->first()->load([
                 'userId',
             ]);
+        }
+        return $emergencyCall;
     }
 }

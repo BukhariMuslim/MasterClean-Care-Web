@@ -3,6 +3,8 @@ import { render } from 'react-dom'
 import { Provider } from 'react-redux'
 import { createStore } from 'redux'
 import { BrowserRouter as Router } from 'react-router-dom'
+import { IntlProvider, addLocaleData } from 'react-intl'
+import id from 'react-intl/locale-data/id'
 import RoutesElement from './modules/routes'
 import history from './modules/history'
 import configureStore from './stores/configureStore'
@@ -12,17 +14,21 @@ import SetUp from './bootstrap'
 
 injectTapEventPlugin()
 
+addLocaleData(id)
+
 const store = configureStore()
 
 render(
-    <MuiThemeProvider>
-        <Provider store={ store }>
-            <Router history={ history } >
-                <RoutesElement />
-            </Router>
-        </Provider>
-    </MuiThemeProvider>,
-    document.getElementById('root')
+  <MuiThemeProvider>
+    <IntlProvider locale={"id"}>
+      <Provider store={store}>
+        <Router history={history} >
+          <RoutesElement />
+        </Router>
+      </Provider>
+    </IntlProvider>
+  </MuiThemeProvider>,
+  document.getElementById('root')
 )
 
 

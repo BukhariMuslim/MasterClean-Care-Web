@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import { Card, CardActions, CardHeader, CardTitle, CardText } from 'material-ui/Card'
 import FlatButton from 'material-ui/FlatButton'
+import { FormattedRelative } from 'react-intl'
 import App from './App'
 
 class ArticleDetail extends Component {
@@ -19,24 +20,12 @@ class ArticleDetail extends Component {
   }
 
   comments(comments) {
-    const GetFormattedDate = date => {
-      let dt = new Date(date)
-      let mm = dt.getMonth() + 1;
-      let dd = dt.getDate();
-
-      return [
-        (dd > 9 ? '' : '0') + dd,
-        (mm > 9 ? '' : '0') + mm,
-        dt.getFullYear()
-      ].join('/');
-    };
-
     return comments.map((comment, id) => {
       return (
         <Card className="col s12" style={id > 0 ? { marginTop: '10px' } : {}} key={id}>
           <CardHeader
             title={comment.user_id.name}
-            subtitle={GetFormattedDate(comment.created_at)}
+            subtitle={<FormattedRelative value={comment.created_at} />}
             avatar={comment.user_id.avatar}
           />
           <CardText>

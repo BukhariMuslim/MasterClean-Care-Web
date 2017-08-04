@@ -15,6 +15,7 @@ import FloatingActionButton from 'material-ui/FloatingActionButton'
 import ContentClear from 'material-ui/svg-icons/content/clear'
 import NotificationContainer from '../containers/NotificationContainer'
 import LoadingSpinContainer from '../containers/LoadingSpinContainer'
+import NumberFormat from 'react-number-format'
 import { red500 } from 'material-ui/styles/colors'
 
 const style = {
@@ -156,16 +157,19 @@ class RegisterArt extends Component {
           {
             isNeedTextBox ?
               <div className="col s6">
-                <TextValidator
+                <NumberFormat
                   hintText={'Gaji ' + obj.work_time}
+                  thousandSeparator={true}
+                  prefix={'Rp. '}
+                  value={enabled ? values[curIdx].cost : ''}
+                  disabled={!enabled}
                   fullWidth={true}
                   name="userWorkTime"
-                  disabled={!enabled}
-                  value={enabled ? values[curIdx].cost : ''}
                   onChange={(e) => this.onChangeTextHandler(e, curIdx)}
-                  validators={[isNeedTextBox ? ('required', 'isNumber') : '']}
-                  errorMessages={[isNeedTextBox ? ('Gaji dibutuhkan', 'Gaji harus angka') : '']}
-                />
+                  validators={[isNeedTextBox ? ('required') : '']}
+                  errorMessages={[isNeedTextBox ? ('Gaji dibutuhkan') : '']}
+                  customInput={TextValidator}
+                  />
               </div>
               :
               null
@@ -475,8 +479,8 @@ class RegisterArt extends Component {
                     name="phone"
                     onChange={this.onChangeHandler}
                     autoComplete={false}
-                    validators={['required']}
-                    errorMessages={['No. Telepon dibutuhkan']}
+                    validators={['required', 'matchRegexp:^[0-9]*$']}
+                    errorMessages={['No. Telepon dibutuhkan', 'Input harus angka']}
                   />
                 </div>
                 <div className="col s12">

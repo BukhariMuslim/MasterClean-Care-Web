@@ -5,6 +5,7 @@ import { Card, CardActions, CardHeader, CardTitle, CardText } from 'material-ui/
 import { GridList, GridTile } from 'material-ui/GridList'
 import FlatButton from 'material-ui/FlatButton'
 import Divider from 'material-ui/Divider'
+import { FormattedRelative } from 'react-intl'
 import App from './App'
 
 const styles = {
@@ -53,7 +54,9 @@ class Article extends Component {
             cols={1}
           >
             <Card>
-              <CardTitle title={<h5>{obj.title}</h5>} />
+              <CardTitle 
+                title={ <h5>{obj.title} <small>by {obj.user_id.name}</small></h5>} 
+                subtitle={<small><FormattedRelative value={obj.published_date} /></small>}/>
               <CardText>
                 {
                   obj.content.length > 200 ?
@@ -81,7 +84,9 @@ class Article extends Component {
         return (
           <div key={obj.id} style={{ padding: '10px' }}>
             <Card>
-              <CardTitle title={obj.title} />
+              <CardTitle 
+                title={ <span>{obj.title} <small>by {obj.user.name}</small></span>} 
+                subtitle={<small><FormattedRelative value={obj.published_date} /></small>}/>
               <CardText>
                 {
                   obj.content.length > 200 ?

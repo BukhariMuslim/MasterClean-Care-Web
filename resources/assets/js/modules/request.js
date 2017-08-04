@@ -27,7 +27,7 @@ const request = function(options, onSuccess, onFail) {
 
   const onDefaultError = (error) => {
     if (onFail) {
-      console.log(error)
+      // console.log(error)
       onFail(error)
     }
     else {
