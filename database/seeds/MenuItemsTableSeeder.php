@@ -111,7 +111,7 @@ class MenuItemsTableSeeder extends Seeder
             $menuItem = MenuItem::firstOrNew([
                 'menu_id'    => $menu->id,
                 'title'      => 'Wallet Transactions',
-                'url'        => '/admin/wallet-trasanctions',
+                'url'        => '/admin/wallet-transactions',
             ]);
             if (!$menuItem->exists) {
                 $menuItem->fill([

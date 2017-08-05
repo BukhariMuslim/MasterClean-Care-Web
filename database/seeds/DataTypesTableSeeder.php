@@ -127,8 +127,8 @@ class DataTypesTableSeeder extends Seeder
             $dataType->fill([
                 'name'                  => 'languages',
                 'display_name_singular' => 'Language',
-                'display_name_plural'   => 'Languagess',
-                'icon'                  => '',
+                'display_name_plural'   => 'Languages',
+                'icon'                  => 'voyager-world',
                 'model_name'            => 'App\\Models\\Language',
                 'controller'            => '',
                 'generate_permissions'  => 1,
