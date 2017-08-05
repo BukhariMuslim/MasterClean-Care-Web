@@ -14,7 +14,7 @@ class OauthClientsTableSeeder extends Seeder
     {
         DB::table('oauth_clients')->insert([
             [
-                'user_id'=>'',
+                'user_id'=>null,
                 'name'=>'Laravel Personal Access Client',
                 'secret'=>'ZBTJnvr1AunlviygsBkmUmTCCEjKF84AoQjuLYEb',
                 'redirect'=>'http://localhost',
@@ -25,7 +25,7 @@ class OauthClientsTableSeeder extends Seeder
                 'updated_at'=>new Carbon(),
             ],
             [
-                'user_id'=>'',
+                'user_id'=>null,
                 'name'=>'Laravel Password Grant Client',
                 'secret'=>'5dew8TWTollA6wZ7xSrppUeMOOmlWIS435cmUqzc',
                 'redirect'=>'http://localhost',
