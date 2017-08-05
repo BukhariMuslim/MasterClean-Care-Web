@@ -11,6 +11,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        $this->call(VoyagerDatabaseSeeder::class);
+
+        $this->call(OauthClientsTableSeeder::class);
+        $this->call(OauthPersonalAccessClientTableSeeder::class);
+
         $this->call(PlacesTableSeeder::class);
         $this->call(AdditionalInfosTableSeeder::class);
         $this->call(WalletsTableSeeder::class);
@@ -36,8 +41,8 @@ class DatabaseSeeder extends Seeder
         $this->call(OfferArtsTableSeeder::class);
         $this->call(ReviewOrdersTableSeeder::class);
 
-        $this->call(ArticlesTableSeeder::class);
-        $this->call(CommentsTableSeeder::class);
+        // $this->call(ArticlesTableSeeder::class);
+        // $this->call(CommentsTableSeeder::class);
         $this->call(PasswordResetsTableSeeder::class);
         $this->call(WalletTransactionsTableSeeder::class);
         $this->call(MessageTableSeeder::class);
