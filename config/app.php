@@ -169,7 +169,7 @@ return [
         Laravel\Tinker\TinkerServiceProvider::class,
         TCG\Voyager\VoyagerServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
-        Themsaid\Transformers\TransformersServiceProvider::class,
+        //Themsaid\Transformers\TransformersServiceProvider::class,
 
         /*
          * Application Service Providers...
