@@ -66,8 +66,8 @@ class Home extends Component {
               </h5>
               <Divider></Divider>
               <ArticleContainer maxItem={10} />
-            </div> */}
-            {/* <div className="col s12 m4">
+            </div> 
+            <div className="col s12 m4">
               <h5 style={{ marginTop: 35 }}>
                 ART Terunggul
                 <FlatButton
