@@ -14,11 +14,11 @@ Route::group(['prefix' => 'order', 'middleware' => ['api']], function () {
 
     Route::post('/{order_id}/order_task_list', 'OrderTaskListController@store')->where('order_id', '[0-9]+');
 
-    Route::get('/{order_id}/order_task_list/{order_task_list_id}', 'OrderTaskListController@show')->where('order_id', '[0-9]+')->where('order_task_list_id', '[0-9]+');
+    Route::get('/order_task_list/{order_task_list_id}', 'OrderTaskListController@show')->where('order_task_list_id', '[0-9]+');
     
-    Route::patch('/{order_id}/order_task_list/{order_task_list_id}', 'OrderTaskListController@update')->where('order_id', '[0-9]+')->where('order_task_list_id', '[0-9]+');
+    Route::patch('/order_task_list/{order_task_list_id}', 'OrderTaskListController@update')->where('order_task_list_id', '[0-9]+');
 
-    Route::delete('/{order_id}/order_task_list/{order_task_list_id}', 'OrderTaskListController@destroy')->where('order_id', '[0-9]+')->where('order_task_list_id', '[0-9]+');
+    Route::delete('/order_task_list/{order_task_list_id}', 'OrderTaskListController@destroy')->where('order_task_list_id', '[0-9]+');
 
     Route::get('/{order_id}/review_order', 'ReviewOrderController@getByOrder')->where('order_id', '[0-9]+');
 

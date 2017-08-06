@@ -63,9 +63,9 @@ class OrderTaskListController extends Controller
      * @param  \App\Models\Order  $Order
      * @return \Illuminate\Http\Response
      */
-    public function show(Order $order, OrderTaskList $orderTaskList)
+    public function show(OrderTaskList $orderTaskList)
     {
-        return $orderTaskList->where('order_id', $order->id)->get()->load('taskList');
+        return $orderTaskList->load('taskList');
     }
 
     /**
@@ -93,6 +93,7 @@ class OrderTaskListController extends Controller
 
         $orderTaskList->where('order_id', $order->id);
         
+        dd($orderTaskList);
         try {
             if (array_key_exists('data', $data)) {
                 $data = $data['data'];
