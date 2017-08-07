@@ -76,7 +76,7 @@ class Art extends Component {
             title={<span>{obj.name}</span>}
             subtitle={<div><div><small>({age} thn)</small></div><div><StarComponent rate={obj.rate} /></div></div>}
             titleStyle={styles.titleStyle}
-            containerElement={<Link to={"/art/" + obj.id} />}
+            containerElement={<Link to={'/art/' + obj.id} />}
             cols={this.props.isFeatured && idx == 0 ? 2 : 1}
             rows={this.props.isFeatured && idx == 0 ? 2 : 1}
           >
@@ -108,7 +108,7 @@ class Art extends Component {
         let age = calculateAge(obj.born_date)
         return (
           <div key={idx}>
-            <Link to={"/art/" + obj.id} style={{
+            <Link to={'/art/' + obj.id} style={{
               position: 'relative',
               display: 'block',
               marginLeft: 5,

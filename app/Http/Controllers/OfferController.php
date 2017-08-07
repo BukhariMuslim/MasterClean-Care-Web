@@ -18,7 +18,7 @@ class OfferController extends Controller
     public function index()
     {
         return Offer::with([
-            'member',
+            'member.contact',
             'workTime',
             'contact',
             'offer_art',
@@ -106,7 +106,7 @@ class OfferController extends Controller
     public function showFull(Offer $offer)
     {
         return $offer->load([
-            'member',
+            'member.contact',
             'workTime',
             'contact',
             'offer_art.art',

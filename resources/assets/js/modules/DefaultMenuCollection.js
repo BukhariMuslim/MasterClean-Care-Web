@@ -4,24 +4,28 @@ const DefaultMenuCollection = [
         label: 'Beranda',
         link: '/',
         iconLabel: 'home',
+        allowUser: [0, 1, 2, 3],
     },
     {
         id: 2,
         label: 'ART',
         link: '/art',
         iconLabel: 'face',
+        allowUser: [0, 1, 2],
     },
     {
         id: 3,
         label: 'Penawaran',
         link: '/offer',
         iconLabel: 'business_center',
+        allowUser: [0, 1, 2, 3],
     },
     {
         id: 4,
-        label: 'Artikel',
-        link: '/article',
+        label: 'Order',
+        link: '/order',
         iconLabel: 'receipt',
+        allowUser: [2, 3],
     },
 ]
 

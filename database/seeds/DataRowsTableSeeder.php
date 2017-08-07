@@ -1149,7 +1149,7 @@ class DataRowsTableSeeder extends Seeder
         $dataRow = $this->dataRow($userDataType, 'status');
         if (!$dataRow->exists) {
             $dataRow->fill([
-                'type'         => 'text',
+                'type'         => 'radio_btn',
                 'display_name' => 'Status',
                 'required'     => 1,
                 'browse'       => 1,

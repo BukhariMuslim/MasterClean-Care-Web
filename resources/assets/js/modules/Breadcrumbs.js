@@ -3,15 +3,15 @@ import breadcrumbConfig from 'auto-breadcrumb'
 const Breadcrumbs = breadcrumbConfig({
   staticRoutesMap: {
     '/': 'Beranda',
-    '/article': 'Artikel',
     '/art': 'ART',
     '/offer': 'Penawaran',
+    '/order': 'Order',
     '/profile': 'Profile',
   },
   dynamicRoutesMap: {
-    '/article/:articleId': '{{articleId}}',
     '/art/:artId': '{{artId}}',
     '/offer/:offerId': '{{offerId}}',
+    '/order/:orderId': '{{orderId}}',
   },
   containerProps: {
     className: 'col s12',

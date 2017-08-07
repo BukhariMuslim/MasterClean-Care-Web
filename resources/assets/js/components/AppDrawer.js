@@ -20,82 +20,89 @@ const BgImg = '/img/bg.jpg'
 const LockImg = '/img/lock.jpg'
 
 class AppDrawer extends Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            open: false,
-        }
+  constructor(props) {
+    super(props)
+    this.state = {
+      open: false,
     }
+  }
 
-    // onAddTodoItemClick(link) {
-    //     this.props.history.push(link)    
-    // }
+  // onAddTodoItemClick(link) {
+  //     this.props.history.push(link)    
+  // }
 
-    handleToggle() { this.setState({open: !this.state.open}) }
+  handleToggle() { this.setState({ open: !this.state.open }) }
 
-    handleClose() { this.setState({open: false}) }
+  handleClose() { this.setState({ open: false }) }
 
-    menuList(collection) {
-        return collection.map((obj, idx) => {
-            return (
-                <MenuItem primaryText={ obj.label }
-                    key={ obj.id }
-                    containerElement={<Link to={obj.link} />}
-                    onClick={() => {
-                        this.handleClose()
-                    }}
-                    rightIcon={<FontIcon className="material-icons">{ obj.iconLabel }</FontIcon>}
-                    />
-            )
-        })
-    }
+  menuList(collection) {
+    return collection.map((obj, idx) => {
+      let role_id = 0
+      if (this.props.user) {
+        role_id = this.props.user.role_id
+      }
 
-    componentWillMount() {
-        if (!this.props.user) {
-            this.props.getUserLogin()
-        }
-    }
-
-    render() {
-        const isLoggedIn = this.props.user ? true : false
+      if (obj.allowUser.indexOf(role_id) != -1) {
         return (
-            <div>
-                {/*iconElementLeft={<IconButton><ActionHome onClick={() => this.onAddTodoItemClick(this.props.history, this.state.actHome)}/></IconButton>}*/}
-                <AppBar 
-                    title="Master Clean & Care"
-                    iconElementLeft={
-                        <IconButton onTouchTap={() => this.handleToggle() } ><FontIcon className="material-icons">dehaze</FontIcon></IconButton>
-                    }
-                    style={{ position: "fixed" }}
-                />
-                <Drawer 
-                    open={ this.state.open } 
-                    docked={ false } 
-                    onRequestChange={(open) => this.setState({open})}
-                >
-                    {
-                        isLoggedIn ?
-                            <Header username={ this.props.user.name } avatarImg={ (this.props.user.avatar ? '/image/small/'+this.props.user.avatar : '') || LockImg } bgImg={ BgImg } />
-                        :
-                            <MenuItem primaryText="Login" 
-                                containerElement={<Link to="/login" />}
-                                rightIcon={<FontIcon className="material-icons">lock</FontIcon>}
-                                />
-                    }
-                    <Divider />
-                    {/* containerElement={<Link to="/article" />}                      */}
-                    { this.menuList(this.props.MenuCollection) }
-                    <Divider />
-                    {
-                        isLoggedIn ?
-                            <LogoutContainer parent={ this } onTouchTap={() => this.handleToggle() } />
-                        :
-                            null
-                    }
-                </Drawer>
-            </div>
+          <MenuItem primaryText={obj.label}
+            key={obj.id}
+            containerElement={<Link to={obj.link} />}
+            onClick={() => {
+              this.handleClose()
+            }}
+            rightIcon={<FontIcon className="material-icons">{obj.iconLabel}</FontIcon>}
+          />
         )
+      }
+    })
+  }
+
+  componentWillMount() {
+    if (!this.props.user) {
+      this.props.getUserLogin()
     }
+  }
+
+  render() {
+    const isLoggedIn = this.props.user ? true : false
+    return (
+      <div>
+        {/*iconElementLeft={<IconButton><ActionHome onClick={() => this.onAddTodoItemClick(this.props.history, this.state.actHome)}/></IconButton>}*/}
+        <AppBar
+          title="Master Clean & Care"
+          iconElementLeft={
+            <IconButton onTouchTap={() => this.handleToggle()} ><FontIcon className="material-icons">dehaze</FontIcon></IconButton>
+          }
+          style={{ position: "fixed" }}
+        />
+        <Drawer
+          open={this.state.open}
+          docked={false}
+          onRequestChange={(open) => this.setState({ open })}
+        >
+          {
+            isLoggedIn ?
+              <Header username={this.props.user.name} avatarImg={(this.props.user.avatar ? '/image/small/' + this.props.user.avatar : '') || LockImg} bgImg={BgImg} />
+              :
+              <MenuItem primaryText="Login"
+                containerElement={<Link to="/login" />}
+                rightIcon={<FontIcon className="material-icons">lock</FontIcon>}
+              />
+          }
+          <Divider />
+          {/* containerElement={<Link to="/article" />}                      */}
+          {this.menuList(this.props.MenuCollection)}
+          <Divider />
+          {
+            isLoggedIn ?
+              <LogoutContainer parent={this} onTouchTap={() => this.handleToggle()} />
+              :
+              null
+          }
+        </Drawer>
+      </div>
+    )
+  }
 }
 
 export default withRouter(AppDrawer)

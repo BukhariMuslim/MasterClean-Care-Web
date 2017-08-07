@@ -51,12 +51,10 @@ class routesElement extends Component {
         <Route path="/register_member" component={RegisterMemberContainer} />
         <Route path="/register_art" component={RegisterArtContainer} />
         <Route path="/profile" component={ProfilePage} />
-        <Route path='/article/:articleId' component={ArticlePage} />
-        <Route path='/article' component={ArticlePage} />
-        <Route path='/art/:artId' component={ArtPage} />
-        <Route path='/art' component={ArtPage} />
-        <Route path='/offer/:offerId' component={OfferPage} />
-        <Route path='/offer' component={OfferPage} />
+        <Route path="/art/:artId" component={ArtPage} />
+        <Route path="/art" component={ArtPage} />
+        <Route path="/offer/:offerId" component={OfferPage} />
+        <Route path="/offer" component={OfferPage} />
         <Route path="/*" component={NotFound} />
       </Switch>
     )
