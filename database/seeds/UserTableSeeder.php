@@ -128,7 +128,7 @@ class UserTableSeeder extends Seeder
             ],
             [
                 'name' => 'Andi',
-                'role_id' => 3,
+                'role_id' => 2,
                 'email' => 'andi123@mail.com',
                 'avatar' => 'default.png',
                 'password' => Hash::make('andi123'),
@@ -142,7 +142,7 @@ class UserTableSeeder extends Seeder
             ],
             [
                 'name' => 'Budi',
-                'role_id' => 3,
+                'role_id' => 2,
                 'email' => 'budi123@mail.com',
                 'avatar' => 'default.png',
                 'password' => Hash::make('budi123'),

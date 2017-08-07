@@ -52,6 +52,126 @@ class UserWorkTimeTableSeeder extends Seeder
                 'work_time_id' => 3,
                 'cost' => 1750000,
             ],
+            [
+                'user_id' => 11,
+                'work_time_id' => 1,
+                'cost' => 50000,
+            ],
+            [
+                'user_id' => 11,
+                'work_time_id' => 2,
+                'cost' => 200000,
+            ],
+            [
+                'user_id' => 11,
+                'work_time_id' => 3,
+                'cost' => 2000000,
+            ],
+            [
+                'user_id' => 12,
+                'work_time_id' => 1,
+                'cost' => 55000,
+            ],
+            [
+                'user_id' => 12,
+                'work_time_id' => 2,
+                'cost' => 210000,
+            ],
+            [
+                'user_id' => 12,
+                'work_time_id' => 3,
+                'cost' => 2200000,
+            ],
+            [
+                'user_id' => 13,
+                'work_time_id' => 1,
+                'cost' => 40000,
+            ],
+            [
+                'user_id' => 13,
+                'work_time_id' => 2,
+                'cost' => 190000,
+            ],
+            [
+                'user_id' => 13,
+                'work_time_id' => 3,
+                'cost' => 1900000,
+            ],
+            [
+                'user_id' => 14,
+                'work_time_id' => 1,
+                'cost' => 60000,
+            ],
+            [
+                'user_id' => 14,
+                'work_time_id' => 2,
+                'cost' => 200000,
+            ],
+            [
+                'user_id' => 14,
+                'work_time_id' => 3,
+                'cost' => 3000000,
+            ],
+            [
+                'user_id' => 15,
+                'work_time_id' => 1,
+                'cost' => 80000,
+            ],
+            [
+                'user_id' => 15,
+                'work_time_id' => 2,
+                'cost' => 150000,
+            ],
+            [
+                'user_id' => 15,
+                'work_time_id' => 3,
+                'cost' => 1800000,
+            ],
+            [
+                'user_id' => 16,
+                'work_time_id' => 1,
+                'cost' => 50000,
+            ],
+            [
+                'user_id' => 16,
+                'work_time_id' => 2,
+                'cost' => 200000,
+            ],
+            [
+                'user_id' => 16,
+                'work_time_id' => 3,
+                'cost' => 2500000,
+            ],
+            [
+                'user_id' => 17,
+                'work_time_id' => 1,
+                'cost' => 70000,
+            ],
+            [
+                'user_id' => 17,
+                'work_time_id' => 2,
+                'cost' => 150000,
+            ],
+            [
+                'user_id' => 17,
+                'work_time_id' => 3,
+                'cost' => 1400000,
+            ],
+            [
+                'user_id' => 18,
+                'work_time_id' => 1,
+                'cost' => 50000,
+            ],
+            [
+                'user_id' => 18,
+                'work_time_id' => 2,
+                'cost' => 300000,
+            ],
+            [
+                'user_id' => 18,
+                'work_time_id' => 3,
+                'cost' => 5000000,
+            ]
         ]);
     }
 }
