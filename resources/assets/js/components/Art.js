@@ -46,10 +46,6 @@ class Art extends Component {
     super(props)
   }
 
-  componentDidMount() {
-    this.props.getArt()
-  }
-
   artList(collection) {
 
     if (this.props.sortBy) {
@@ -156,15 +152,15 @@ class Art extends Component {
   }
 
   render() {
-    const { art } = this.props
+    const { arts } = this.props
     return (
       <div>
         {
-          art.length > 0 ?
+          arts.length > 0 ?
             this.props.maxItem ?
               <div className="col s12" style={{ padding: 30 }}>
                 <Slider {...settings} >
-                  {this.artSlider(art)}
+                  {this.artSlider(arts)}
                 </Slider>
               </div>
               :
@@ -175,7 +171,7 @@ class Art extends Component {
                   cellHeight={200}
                   padding={1}
                 >
-                  {this.artList(art)}
+                  {this.artList(arts)}
                 </GridList>
               </div>
             :
@@ -187,8 +183,7 @@ class Art extends Component {
 }
 
 Art.propTypes = {
-  art: PropTypes.array.isRequired,
-  getArt: PropTypes.func.isRequired,
+  arts: PropTypes.array.isRequired,
 }
 
 export default Art

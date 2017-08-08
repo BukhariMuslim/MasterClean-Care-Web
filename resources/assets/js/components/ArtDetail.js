@@ -29,11 +29,11 @@ const fieldStyle = {
 }
 
 const disabledStyle = {
-  color: '#555',
+  color: '#64DD17',
 }
 
 const disabledInputStyle = {
-  color: '#555',
+  color: '#64DD17',
   textAlign: 'right',
 }
 
@@ -414,30 +414,30 @@ class ArtDetail extends Component {
                                 displayRowCheckbox={false}
                               >
                                 <TableRow>
-                                  <TableRowColumn style={{ textAlign: 'right', verticalAlign: 'top' }}>Nama</TableRowColumn>
-                                  <TableRowColumn>{this.state.art.name}</TableRowColumn>
+                                  <TableRowColumn style={{ textAlign: 'right', verticalAlign: 'top' , color: '#888' }}>Nama</TableRowColumn>
+                                  <TableRowColumn className="bold" >{this.state.art.name}</TableRowColumn>
                                 </TableRow>
                                 <TableRow>
-                                  <TableRowColumn style={{ textAlign: 'right', verticalAlign: 'top' }}>Gender</TableRowColumn>
-                                  <TableRowColumn>{this.state.art.gender == 1 ? 'Pria' : 'Wanita' }</TableRowColumn>
+                                  <TableRowColumn style={{ textAlign: 'right', verticalAlign: 'top' , color: '#888' }}>Gender</TableRowColumn>
+                                  <TableRowColumn className="bold" >{this.state.art.gender == 1 ? 'Pria' : 'Wanita' }</TableRowColumn>
                                 </TableRow>
                                 <TableRow>
-                                  <TableRowColumn style={{ textAlign: 'right', verticalAlign: 'top' }}>Tempat / Tanggal Lahir</TableRowColumn>
-                                  <TableRowColumn>
+                                  <TableRowColumn style={{ textAlign: 'right', verticalAlign: 'top' , color: '#888' }}>Tempat / Tanggal Lahir</TableRowColumn>
+                                  <TableRowColumn className="bold" >
                                     {this.state.art.born_place || ''}, <FormattedDate value={this.state.art.born_date} day="numeric" month="long" year="numeric" />
                                   </TableRowColumn>
                                 </TableRow>
                                 <TableRow>
-                                  <TableRowColumn style={{ textAlign: 'right', verticalAlign: 'top' }}>Kota</TableRowColumn>
-                                  <TableRowColumn>{this.state.art.contact ? this.state.art.contact.city.name : ''}</TableRowColumn>
+                                  <TableRowColumn style={{ textAlign: 'right', verticalAlign: 'top' , color: '#888' }}>Kota</TableRowColumn>
+                                  <TableRowColumn className="bold" >{this.state.art.contact ? this.state.art.contact.city.name : ''}</TableRowColumn>
                                 </TableRow>
                                 <TableRow>
-                                  <TableRowColumn style={{ textAlign: 'right', verticalAlign: 'top' }}>Alamat</TableRowColumn>
-                                  <TableRowColumn>{this.state.art.contact ? this.state.art.contact.address : ''}</TableRowColumn>
+                                  <TableRowColumn style={{ textAlign: 'right', verticalAlign: 'top' , color: '#888' }}>Alamat</TableRowColumn>
+                                  <TableRowColumn className="bold" >{this.state.art.contact ? this.state.art.contact.address : ''}</TableRowColumn>
                                 </TableRow>
                                 <TableRow>
-                                  <TableRowColumn style={{ textAlign: 'right', verticalAlign: 'top' }}>Agama</TableRowColumn>
-                                  <TableRowColumn>
+                                  <TableRowColumn style={{ textAlign: 'right', verticalAlign: 'top' , color: '#888' }}>Agama</TableRowColumn>
+                                  <TableRowColumn className="bold" >
                                     {
                                       this.state.art.religion == 1 ?
                                       'Islam'
@@ -457,18 +457,18 @@ class ArtDetail extends Component {
                                   </TableRowColumn>
                                 </TableRow>
                                 <TableRow>
-                                  <TableRowColumn style={{ textAlign: 'right', verticalAlign: 'top' }}>Suku</TableRowColumn>
-                                  <TableRowColumn>{this.state.art.race || '-'}</TableRowColumn>
+                                  <TableRowColumn style={{ textAlign: 'right', verticalAlign: 'top' , color: '#888' }}>Suku</TableRowColumn>
+                                  <TableRowColumn className="bold" >{this.state.art.race || '-'}</TableRowColumn>
                                 </TableRow>
                                 <TableRow>
-                                  <TableRowColumn style={{ textAlign: 'right', verticalAlign: 'top' }}>Bahasa yang Dikuasai</TableRowColumn>
-                                  <TableRowColumn>
+                                  <TableRowColumn style={{ textAlign: 'right', verticalAlign: 'top' , color: '#888' }}>Bahasa yang Dikuasai</TableRowColumn>
+                                  <TableRowColumn className="bold" >
                                     {
-                                      this.state.art.user_language ?
+                                      this.state.art.user_language && this.state.art.user_language.length > 0 ?
                                       <ul style={{ margin: 0}}>
                                         {
                                           this.state.art.user_language.map((language, idx) => (
-                                            <li key={idx} style={{ marginBottom: 5, borderLeft: '5px solid #555'}}>
+                                            <li key={idx} style={{ marginBottom: 5, borderLeft: '5px solid #64DD17'}}>
                                               &nbsp;{language.language.language}
                                               <Divider style={{ marginTop: 5}}/>
                                             </li>
@@ -481,14 +481,14 @@ class ArtDetail extends Component {
                                   </TableRowColumn>
                                 </TableRow>
                                 <TableRow>
-                                  <TableRowColumn style={{ textAlign: 'right', verticalAlign: 'top' }}>Profesi</TableRowColumn>
-                                  <TableRowColumn>
+                                  <TableRowColumn style={{ textAlign: 'right', verticalAlign: 'top' , color: '#888' }}>Profesi</TableRowColumn>
+                                  <TableRowColumn className="bold" >
                                     {
-                                      this.state.art.user_job ?
+                                      this.state.art.user_job && this.state.art.user_job.length > 0 ?
                                       <ul style={{ margin: 0}}>
                                         {
                                           this.state.art.user_job.map((job, idx) => (
-                                            <li key={idx} style={{ marginBottom: 5, borderLeft: '5px solid #555'}}>
+                                            <li key={idx} style={{ marginBottom: 5, borderLeft: '5px solid #64DD17'}}>
                                               &nbsp;{job.job.job}
                                               <Divider style={{ marginTop: 5}}/>
                                             </li>
@@ -501,10 +501,10 @@ class ArtDetail extends Component {
                                   </TableRowColumn>
                                 </TableRow>
                                 <TableRow>
-                                  <TableRowColumn style={{ textAlign: 'right', verticalAlign: 'top' }}>Waktu Kerja</TableRowColumn>
-                                  <TableRowColumn>
+                                  <TableRowColumn style={{ textAlign: 'right', verticalAlign: 'top' , color: '#888' }}>Waktu Kerja</TableRowColumn>
+                                  <TableRowColumn className="bold" >
                                     {
-                                      this.state.art.user_work_time ?
+                                      this.state.art.user_work_time && this.state.art.user_work_time.length > 0 ?
                                       <Table
                                         selectable={false}
                                       >
@@ -536,14 +536,14 @@ class ArtDetail extends Component {
                                   </TableRowColumn>
                                 </TableRow>
                                 <TableRow>
-                                  <TableRowColumn style={{ textAlign: 'right', verticalAlign: 'top' }}>Informasi Tambahan</TableRowColumn>
-                                  <TableRowColumn>
+                                  <TableRowColumn style={{ textAlign: 'right', verticalAlign: 'top' , color: '#888' }}>Informasi Tambahan</TableRowColumn>
+                                  <TableRowColumn className="bold" >
                                     {
-                                      this.state.art.user_additional_info ?
+                                      this.state.art.user_additional_info && this.state.art.user_additional_info.length > 0 ?
                                       <ul style={{ margin: 0}}>
                                         {
                                           this.state.art.user_additional_info.map((additional_info, idx) => (
-                                            <li key={idx} style={{ marginBottom: 5, borderLeft: '5px solid #555'}}>
+                                            <li key={idx} style={{ marginBottom: 5, borderLeft: '5px solid #64DD17'}}>
                                               &nbsp;{additional_info.additional_info.info}
                                               <Divider style={{ marginTop: 5}}/>
                                             </li>

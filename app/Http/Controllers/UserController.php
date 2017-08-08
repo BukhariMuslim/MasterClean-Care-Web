@@ -495,8 +495,10 @@ class UserController extends Controller
                 'contact',
             ])
             ->where('role_id', 3)
-            ->paginate(10);
+            ->paginate(50);
 
+        $users->withPath('/art');
+        
         return $users;
     }
 
