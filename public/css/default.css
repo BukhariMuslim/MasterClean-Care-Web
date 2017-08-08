@@ -82,3 +82,7 @@ fieldset {
 .slick-slider button.slick-arrow.slick-prev:before {
   color: #555;
 }
+
+.bold {
+  font-weight: 700;
+}

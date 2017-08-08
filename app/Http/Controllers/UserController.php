@@ -495,8 +495,10 @@ class UserController extends Controller
                 'contact',
             ])
             ->where('role_id', 3)
-            ->paginate(10);
+            ->paginate(50);
 
+        $users->withPath('/art');
+        
         return $users;
     }
 
@@ -509,13 +511,13 @@ class UserController extends Controller
     public function getArtById($art)
     {
         $users = User::with([
-                'user_additional_info',
+                'user_additional_info.additionalInfo',
                 'user_document',
-                'user_language',
-                'user_job',
+                'user_language.language',
+                'user_job.job',
                 'user_wallet',
-                'user_work_time',
-                'contact',
+                'user_work_time.workTime',
+                'contact.city',
             ])
             ->where('id', $art)
             ->where('role_id', 3)

@@ -32,10 +32,10 @@ class UserAdditionalInfo extends Model
     }
 
     /**
-     * Get the additional_info record associated with the userAdditionalInfo.
+     * Get the additionalInfo record associated with the userAdditionalInfo.
      */
-    public function additional_info()
+    public function additionalInfo()
     {
-        return $this->belongsTo(AdditionalInfo::class);
+        return $this->belongsTo(AdditionalInfo::class, 'info_id');
     }
 }

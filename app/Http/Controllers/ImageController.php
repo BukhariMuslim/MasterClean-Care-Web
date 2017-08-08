@@ -18,7 +18,7 @@ class ImageController extends Controller
         
         $data = [
             'status'    => 201,
-            'image'     => "{$filename}.jpg",
+            'image'     => "users/{$filename}.jpg",
             'links'     => [
                 'small'  => url('image/small', "{$filename}.jpg"),
                 'medium' => url('image/medium', "{$filename}.jpg"),
@@ -39,7 +39,7 @@ class ImageController extends Controller
             $data = [
                 'user_id'   => $request->user_id,
                 'amount'    => $request->amt,
-                'trc_type'   => 0,
+                'trc_type'  => 0,
                 'trc_time'  => Carbon::create(),
                 'trc_img'   => "{$filename}.jpg",
                 'status'    => 0,
@@ -57,10 +57,10 @@ class ImageController extends Controller
         }
     }
 
-    public function renderImage($ratio, $filename, Request $request)
+    public function renderImage($ratio, $sourcePath, $filename, Request $request)
     {
         $drive = Storage::disk('public');
-        $path = "users/{$filename}";
+        $path = "{$sourcePath}/{$filename}";
         $exists = $drive->exists($path);
         try {
             if ($path) {

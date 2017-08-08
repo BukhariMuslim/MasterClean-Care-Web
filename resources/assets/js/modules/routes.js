@@ -8,10 +8,10 @@ import RegisterMemberContainer from '../containers/RegisterMemberContainer'
 import RegisterArtContainer from '../containers/RegisterArtContainer'
 import ProfilePage from '../components/ProfilePage'
 import ArticlePage from '../components/ArticlePage'
-import ArtPage from '../components/ArtPage'
+import ArtPageContainer from '../containers/ArtPageContainer'
 import OfferPage from '../components/OfferPage'
 import NotFound from '../components/NotFound'
-import Home from '../components/Home'
+import HomeContainer from '../containers/HomeContainer'
 
 const mapStateToProps = (state) => {
   return {
@@ -46,17 +46,15 @@ class routesElement extends Component {
   render() {
     return (
       <Switch>
-        <Route exact path="/" component={Home} />
+        <Route exact path="/" component={HomeContainer} />
         <Route path="/login" component={LoginContainer} />
         <Route path="/register_member" component={RegisterMemberContainer} />
         <Route path="/register_art" component={RegisterArtContainer} />
         <Route path="/profile" component={ProfilePage} />
-        <Route path='/article/:articleId' component={ArticlePage} />
-        <Route path='/article' component={ArticlePage} />
-        <Route path='/art/:artId' component={ArtPage} />
-        <Route path='/art' component={ArtPage} />
-        <Route path='/offer/:offerId' component={OfferPage} />
-        <Route path='/offer' component={OfferPage} />
+        <Route path="/art/:artId" component={ArtPageContainer} />
+        <Route path="/art" component={ArtPageContainer} />
+        <Route path="/offer/:offerId" component={OfferPage} />
+        <Route path="/offer" component={OfferPage} />
         <Route path="/*" component={NotFound} />
       </Switch>
     )

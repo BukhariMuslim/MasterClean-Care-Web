@@ -39,6 +39,6 @@ class UserContact extends Model
      */
     public function city()
     {
-        return $this->belongsTo(Places::class, 'city');
+        return $this->belongsTo(Place::class, 'city');
     }
 }

@@ -15,6 +15,10 @@ class Home extends Component {
     super(props)
   }
 
+  componentDidMount() {
+    this.props.getArt()
+  }
+
   render() {
     return (
       <App>
@@ -37,7 +41,7 @@ class Home extends Component {
                 <div className="clearfix"></div>
               </h5>
               <Divider></Divider>
-              <ArtContainer maxItem={10} sortBy="crated_at" />
+              <ArtContainer arts={this.props.arts.data || []} maxItem={10} sortBy="crated_at" />
             </div>
             <div className="col s12">
               <h5 style={{ marginTop: 35 }}>

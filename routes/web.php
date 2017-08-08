@@ -33,7 +33,7 @@ Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
 });
 
-Route::get('image/{ratio}/{filename}', 'ImageController@renderImage');
+Route::get('image/{ratio}/{sourcePath}/{filename}', 'ImageController@renderImage');
 
 Route::get('{reactRoutes}', function () {
     return view('index');
