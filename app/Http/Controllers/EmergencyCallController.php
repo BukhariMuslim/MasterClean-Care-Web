@@ -105,6 +105,9 @@ class EmergencyCallController extends Controller
             if (array_key_exists('status', $data)) {
                 $emergencyCall->status= $data['status'];
             }
+            if (array_key_exists('close_reason', $data)) {
+                $emergencyCall->close_reason= $data['close_reason'];
+            }
 
             $emergencyCall->save();
 

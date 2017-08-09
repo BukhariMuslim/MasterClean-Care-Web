@@ -14,6 +14,7 @@ class UserContact extends Model
     protected $fillable = [
         'user_id',
         'phone',
+        'emergency_numb',
         'city',
         'address',
         'location',

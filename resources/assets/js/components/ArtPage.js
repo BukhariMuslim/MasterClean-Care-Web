@@ -2,8 +2,15 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import Paper from 'material-ui/Paper'
 import Divider from 'material-ui/Divider'
-import { Link } from 'react-router-dom'
 import { Card, CardActions, CardHeader, CardTitle, CardText } from 'material-ui/Card'
+import { ValidatorForm, TextValidator, SelectValidator, DateValidator } from 'react-material-ui-form-validator'
+import Checkbox from 'material-ui/Checkbox';
+import TextField from 'material-ui/TextField'
+import FlatButton from 'material-ui/FlatButton'
+import RaisedButton from 'material-ui/RaisedButton'
+import DatePicker from 'material-ui/DatePicker'
+import SelectField from 'material-ui/SelectField'
+import MenuItem from 'material-ui/MenuItem'
 import App from './App'
 import ArtContainer from '../containers/ArtContainer'
 import ArtDetailContainer from '../containers/ArtDetailContainer'
@@ -11,6 +18,7 @@ import FontIcon from 'material-ui/FontIcon'
 import IconButton from 'material-ui/IconButton'
 import Breadcrumbs from '../modules/Breadcrumbs'
 import Pager from '../modules/Pager'
+import NumberFormat from 'react-number-format'
 
 class ArtPage extends Component {
   constructor(props) {
@@ -18,10 +26,33 @@ class ArtPage extends Component {
 
     this.state = {
       expanded: false,
+      language: [],
+      languageItem: [],
+      name: '',
+      minAge: 15,
+      maxAge: 25,
+      city: 0,
+      religion: 0,
+      work_time: 0,
+      maxCost: 0,
     }
+
+    this.baseState = this.state
 
     this.handleToggle = this.handleToggle.bind(this)
     this.handlePageChanged = this.handlePageChanged.bind(this)
+    this.onChangeHandler = this.onChangeHandler.bind(this)
+    this.resetForm = this.resetForm.bind(this)
+  }
+
+  loadInitialData() {
+    this.props.getPlace(this, 'cityItem')
+
+    this.props.getLanguage(this, 'languageItem')
+
+    this.props.getJob(this, 'jobItem')
+
+    this.props.getWorkTime(this, 'workTimeItem')
   }
 
   handleExpandChange (expanded) {
@@ -33,37 +64,231 @@ class ArtPage extends Component {
     this.setState({expanded: !oldExpand});
   }
 
-  generatePaging(data) {
-    if (data && data.last_page) {
-      let i
-      let comp = []
-      if (data.prev_page_url) {
-        comp.push(
-          <Link key={comp.length} to={ data.prev_page_url } >Sebelumnya</Link>
-        )
-      }
-      for (i = 0; i < data.last_page; i++) {
-        const c = i + 1
-        comp.push(
-          <Link key={ comp.length } to={ data.path + '?page=' + c} >{c}</Link>
-        )
-      }
-      if (data.next_page_url) {
-        comp.push(
-          <Link key={ comp.length } to={ data.next_page_url } >Selanjutnya</Link>
-        )
-      }
-      return comp
-    }
+  onChangeHandler(e) {
+    const target = e.target
+    const value = target.value
+    const name = target.name
+
+    this.setState({ [name]: value })
   }
 
   componentDidMount() {
     this.props.getArt()
+    this.loadInitialData()
+
+    if (this.props.location.search) {
+      const params = this.props.location.search.substr(1).split('&')
+      params.map((param, idx) => {
+        const p = param.split('=')
+        if(p[0] == 'language') {
+          const temp = decodeURIComponent(p[1]).split(',')
+          let language = []
+          temp.map((t, idx) => {
+            language.push({
+              language_id: t
+            })
+          })
+          this.setState({'language': language})
+        }
+        else {
+          this.setState({[p[0]]: decodeURIComponent(p[1])})
+        }
+      })
+    }
   }
 
   handlePageChanged(newPage) {
 		this.props.getArt(newPage + 1)
-	}
+  }
+
+  menuItems(collection, values) {
+    if (collection) {
+      return collection.map((obj, idx) => (
+        <MenuItem
+          key={obj.id}
+          value={obj.id}
+          primaryText={obj.name || obj.job || obj.work_time}
+        />
+      ))
+    }
+  }
+  
+  checkItems(type, collection, isNeedTextBox) {
+    if (collection) {
+      return collection.map((obj, idx) => {
+        const values = this.state[type]
+        let curIdx = -1
+        let enabled = false
+        let name = ''
+        if (type === 'language') {
+          curIdx = values.findIndex(x => x.language_id == obj.id)
+          name = 'language_id'
+        }
+        else if (type === 'userJob') {
+          curIdx = values.findIndex(x => x.job_id == obj.id)
+          name = 'job_id'
+        }
+        else if (type === 'userWorkTime') {
+          curIdx = values.findIndex(x => x.work_time_id == obj.id)
+          enabled = curIdx > -1
+          name = 'work_time_id'
+        }
+        else if (type === 'userAdditionalInfo') {
+          curIdx = values.findIndex(x => x.info_id == obj.id)
+          name = 'info_id'
+        }
+        const checked = curIdx > -1
+        return (
+          <div key={obj.id} className="col s6 valign-wrapper">
+            <div className={"col" + (isNeedTextBox ? " s6" : " s12")}>
+              <Checkbox
+                checked={checked}
+                value={obj.id}
+                name={name}
+                label={obj.language || obj.job || obj.work_time || obj.info}
+                onCheck={this.onCheckHandler(type, name, isNeedTextBox)}
+              />
+            </div>
+            {
+              isNeedTextBox ?
+                <div className="col s6">
+                  <NumberFormat
+                    hintText={'Gaji ' + obj.work_time}
+                    thousandSeparator={true}
+                    prefix={'Rp. '}
+                    value={enabled ? values[curIdx].cost : ''}
+                    disabled={!enabled}
+                    fullWidth={true}
+                    name="userWorkTime"
+                    onChange={(e) => this.onChangeTextHandler(e, curIdx)}
+                    validators={[isNeedTextBox ? ('required') : '']}
+                    errorMessages={[isNeedTextBox ? ('Gaji dibutuhkan') : '']}
+                    customInput={TextValidator}
+                    />
+                </div>
+                :
+                null
+            }
+          </div>
+        )
+      })
+    }
+  }
+
+  resetForm() {
+    this.setState(this.baseState)
+    this.props.getArt()
+    this.loadInitialData()
+    this.props.history.push('/art')
+  }
+
+  submitHandler(e) {
+    e.preventDefault()
+    const { name, minAge, maxAge, city, religion, work_time, maxCost, language } = this.state
+    let queryString = []
+
+    if (name) {
+      queryString.push('name=' + encodeURIComponent(name))
+    }
+
+    if (minAge) {
+      queryString.push('minAge=' + encodeURIComponent(minAge))
+    }
+
+    if (maxAge) {
+      queryString.push('maxAge=' + encodeURIComponent(maxAge))
+    }
+
+    if (city) {
+      queryString.push('city=' + encodeURIComponent(city))
+    }
+
+    if (language && language.length > 0) {
+      let temp = []
+      language.map((lang, idx) => {
+        temp.push(lang.language_id)
+      })
+      queryString.push('language=' + encodeURIComponent(temp.join(',')))
+    }
+
+    if (religion) {
+      queryString.push('religion=' + encodeURIComponent(religion))
+    }
+
+    if (work_time) {
+      queryString.push('work_time=' + encodeURIComponent(work_time))
+    }
+
+    if (maxCost) {
+      queryString.push('maxCost=' + encodeURIComponent(maxCost))
+    }
+
+    if (queryString.length > 0) {
+      this.props.onSubmit(this, '?' + queryString.join('&'))
+    }
+  }
+
+  onChangeTextHandler(e, idx) {
+    const target = e.target
+    const value = target.value
+    const name = target.name
+    let old = this.state[name]
+
+    if (idx > -1) {
+      old[idx].cost = target.value
+    }
+    this.setState({ [name]: old })
+  }
+
+  onSelectFieldChangeHandler(name) {
+    const form = this
+    return function (event, index, value) {
+      form.setState({ [name]: value })
+    }
+  }
+
+  onCheckHandler(type, name, isNeedTextBox) {
+    const form = this
+    return function (event, checked) {
+      const target = event.target
+      const value = target.value
+      let old = form.state[type]
+      const idx = old.findIndex(x => x[name] === value)
+
+      if (!isNeedTextBox) {
+        if (checked && idx === -1) {
+          if (form.state[type + 'ErrorText']) {
+            form.setState({
+              [type + 'ErrorText']: ''
+            })
+          }
+          old.push({
+            [name]: value
+          })
+        }
+        else if (idx > -1) {
+          old.splice(idx, 1)
+        }
+      }
+      else {
+        if (checked && idx === -1) {
+          if (form.state[type + 'ErrorText']) {
+            form.setState({
+              [type + 'ErrorText']: ''
+            })
+          }
+          old.push({
+            work_time_id: target.value,
+            cost: 0,
+          })
+        }
+        else if (idx > -1) {
+          old.splice(idx, 1)
+        }
+      }
+      form.setState({ [type]: old })
+    }
+  }
 
   render() {
     return (
@@ -86,7 +311,7 @@ class ArtPage extends Component {
                   <CardTitle>
                     <h5 style={{ marginTop: 35 }}>
                       Daftar ART
-                      <IconButton tooltip="Pencarian" className="right" onClick={this.handleToggle}>
+                      <IconButton tooltip={this.state.expanded ? 'Tutup' : 'Pencarian'} className="right" onClick={this.handleToggle}>
                         <FontIcon className="material-icons">
                           {
                             this.state.expanded ?
@@ -97,18 +322,175 @@ class ArtPage extends Component {
                         </FontIcon>
                       </IconButton>
                       <div className="clearfix"></div>
-                      <small style={{ fontSize: 12 }}>
-                        <i>
-                          Menampilkan <b>{ this.props.arts.from }</b> - <b>{ this.props.arts.to }</b> dari <b>{ this.props.arts.total }</b> ART
-                        </i>
-                      </small>
                     </h5>
-                    <Divider></Divider>
+                    <Divider />
                   </CardTitle>
                   <CardText expandable={true}>
-                    Filter
+                    <ValidatorForm
+                      className="grey lighten-4"
+                      ref="form"
+                      onSubmit={(e) => this.submitHandler(e)}>
+                      <div className="col s12" style={{marginTop: 10}}>Pencarian</div>
+                      <div className="col m6">
+                        <TextValidator
+                          hintText="Nama"
+                          floatingLabelText="Nama"
+                          value={this.state.name}
+                          fullWidth={true}
+                          name="name"
+                          onChange={this.onChangeHandler}
+                          autoComplete={false}
+                        />
+                      </div>
+                      <div className="col s6 m3">
+                        <NumberFormat
+                          hintText="Usia (min)"
+                          floatingLabelText="Usia (min)"
+                          value={this.state.minAge}
+                          fullWidth={true}
+                          name="minAge"
+                          onChange={this.onChangeHandler}
+                          customInput={TextValidator}
+                          autoComplete={false}
+                          validators={['minNumber:0', 'maxNumber:' + this.state.maxAge ]}
+                          errorMessages={['Nilai harus diatas 0', 'Nilai harus kurang dari Usia (maks)']}
+                        />
+                      </div>
+                      <div className="col s6 m3">
+                        <NumberFormat
+                          hintText="Usia (maks)"
+                          floatingLabelText="Usia (maks)"
+                          value={this.state.maxAge}
+                          fullWidth={true}
+                          name="maxAge"
+                          onChange={this.onChangeHandler}
+                          customInput={TextValidator}
+                          autoComplete={false}
+                          validators={['minNumber:' + this.state.minAge, 'maxNumber:100' ]}
+                          errorMessages={['Nilai harus lebih dari Usia (min)', 'Nilai harus kurang dari 100']}
+                        />
+                      </div>
+                      <div className="col m6">
+                        <SelectValidator
+                          floatingLabelText="Kota"
+                          value={this.state.city}
+                          name="city"
+                          fullWidth={true}
+                          onChange={this.onSelectFieldChangeHandler('city')}
+                        >
+                          <MenuItem
+                            value={0}
+                            primaryText="Semua"
+                          />
+                          {this.menuItems(this.state.cityItem, this.state.city)}
+                        </SelectValidator>
+                      </div>
+                      <div className="col m6">
+                        <SelectValidator
+                          floatingLabelText="Agama"
+                          value={this.state.religion}
+                          name="religion"
+                          fullWidth={true}
+                          onChange={this.onSelectFieldChangeHandler('religion')}
+                        >
+                          <MenuItem value={0} primaryText="Semua" />
+                          <MenuItem value={1} primaryText="Islam" />
+                          <MenuItem value={2} primaryText="Kristen Protestan" />
+                          <MenuItem value={3} primaryText="Kristen Katolik" />
+                          <MenuItem value={4} primaryText="Hindu" />
+                          <MenuItem value={5} primaryText="Buddha" />
+                          <MenuItem value={6} primaryText="Konghucu" />
+                          <MenuItem value={7} primaryText="Lainnya" />
+                        </SelectValidator>
+                      </div>
+                      <div className="col s12">
+                        <fieldset>
+                          <legend style={{ color: 'rgba(0, 0, 0, 0.3)' }}>Bahasa</legend>
+                          {this.checkItems('language', this.state.languageItem)}
+                        </fieldset>
+                      </div>
+                      <div className="col m6">
+                        <TextValidator
+                          hintText="Suku"
+                          floatingLabelText="Suku"
+                          value={this.state.race}
+                          fullWidth={true}
+                          name="race"
+                          onChange={this.onChangeHandler}
+                          autoComplete={false}
+                        />
+                      </div>
+                      <div className="col m6">
+                        <SelectValidator
+                          floatingLabelText="Profesi"
+                          value={this.state.job}
+                          name="job"
+                          fullWidth={true}
+                          onChange={this.onSelectFieldChangeHandler('job')}
+                        >
+                          {this.menuItems(this.state.jobItem, this.state.job)}
+                        </SelectValidator>
+                      </div>
+                      <div className="col m6">
+                        <SelectValidator
+                          floatingLabelText="Waktu Kerja"
+                          value={this.state.work_time}
+                          name="work_time"
+                          fullWidth={true}
+                          onChange={this.onSelectFieldChangeHandler('work_time')}
+                        >
+                          <MenuItem
+                            value={0}
+                            primaryText="Semua"
+                          />
+                          {this.menuItems(this.state.workTimeItem, this.state.work_time)}
+                        </SelectValidator>
+                      </div>
+                      <div className="col m6">
+                        <NumberFormat
+                          hintText="Gaji maksimum"
+                          floatingLabelText="Gaji maksimum"
+                          thousandSeparator={true}
+                          prefix={'Rp. '}
+                          value={this.state.maxCost}
+                          fullWidth={true}
+                          name="maxCost"
+                          onChange={this.onChangeHandler}
+                          customInput={TextValidator}
+                          />
+                      </div>
+                      <div className="col s12">
+                        <div className="col hide-on-med-and-down l6">&nbsp;</div>
+                        <div className="input-field col s12 m6 l3" style={{ marginBottom: 10}}>
+                          <FlatButton
+                            primary={true}
+                            label="Reset"
+                            fullWidth={true}
+                            onClick={this.resetForm}
+                            />
+                        </div>
+                        <div className="input-field col s12 m6 l3" style={{ marginBottom: 10}}>
+                          <RaisedButton
+                            primary={true}
+                            label="Cari"
+                            fullWidth={true}
+                            type="submit" />
+                        </div>
+                      </div>
+                      <div className="clearfix"></div>                      
+                    </ValidatorForm>
                   </CardText>
                   <CardText>
+                    {
+                      this.props.arts.total ?
+                      <small style={{ fontSize: 12 }}>
+                        <i>
+                          Menampilkan <b>{ this.props.arts.from }</b> - <b>{ this.props.arts.to }</b> dari total <b>{ this.props.arts.total }</b> ART
+                        </i>
+                      </small>
+                      :
+                      null
+                    }
                     <ArtContainer arts={this.props.arts.data || [] } />
                     <Pager
                       total={this.props.arts.last_page || 1}

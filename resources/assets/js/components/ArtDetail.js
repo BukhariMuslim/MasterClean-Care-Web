@@ -65,6 +65,7 @@ class ArtDetail extends Component {
         },
         religion: null,
         race: '',
+        description: '',
         user_type: 2,
         status: 0,
         user_wallet: {
@@ -395,6 +396,11 @@ class ArtDetail extends Component {
                           </div>
                           <div className="col s12">
                               <StarComponent rate={this.state.art.rate} isShowRate={true} />
+                          </div>
+                          <div className="col s12">
+                            <small>
+                              { this.state.art.description || ''}
+                            </small>
                           </div>
                           <div className="col s12">
                             <Table

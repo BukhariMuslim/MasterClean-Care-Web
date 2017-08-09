@@ -4,11 +4,13 @@ const Breadcrumbs = breadcrumbConfig({
   staticRoutesMap: {
     '/': 'Beranda',
     '/art': 'ART',
+    '/member': 'Member',
     '/offer': 'Penawaran',
     '/order': 'Order',
     '/profile': 'Profile',
   },
   dynamicRoutesMap: {
+    '/member/:memberId': '{{memberId}}',
     '/art/:artId': '{{artId}}',
     '/offer/:offerId': '{{offerId}}',
     '/order/:orderId': '{{orderId}}',

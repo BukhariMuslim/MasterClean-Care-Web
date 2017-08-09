@@ -47,11 +47,14 @@ class Offer extends Component {
     super(props)
   }
 
-  componentDidMount() {
-    this.props.getOffer()
-  }
-
   offerList(collection) {
+    if (this.props.sortBy) {
+      let sort = this.props.sortBy
+      collection.sort(function (a, b) {
+        return parseFloat(b[sort]) - parseFloat(a[sort])
+      })
+    }
+    
     return collection.map((obj, idx) => {
       if (!this.props.maxItem || idx < this.props.maxItem) {
         return (
@@ -147,7 +150,7 @@ class Offer extends Component {
                       <TableRowColumn>
                         {
                           obj.contact ?
-                            <b><Link to={'/user/' + obj.member.id} >{obj.member.name}</Link></b>
+                            <b><Link to={'/member/' + obj.member.id} >{obj.member.name}</Link></b>
                             :
                             <b>-</b>
                         }
@@ -184,18 +187,18 @@ class Offer extends Component {
   }
 
   render() {
-    const { offer } = this.props;
+    const { offers } = this.props;
     return (
       <div>
         {
-          offer.length > 0 ?
+          offers.length > 0 ?
             <GridList
               style={styles.gridListVertical}
               cols={2}
               padding={10}
               cellHeight={'auto'}
             >
-              {this.offerList(offer)}
+              {this.offerList(offers)}
             </GridList>
             :
             <small>Tidak ada Penawaran ditemukan</small>
@@ -206,8 +209,7 @@ class Offer extends Component {
 }
 
 Offer.propTypes = {
-  offer: PropTypes.array.isRequired,
-  getOffer: PropTypes.func.isRequired,
+  offers: PropTypes.array.isRequired,
 }
 
 export default Offer

@@ -84,7 +84,6 @@ class Art extends Component {
   }
 
   artSlider(collection) {
-
     if (this.props.sortBy) {
       let sort = this.props.sortBy
       collection.sort(function (a, b) {
@@ -169,7 +168,7 @@ class Art extends Component {
                   style={this.props.maxItem && !this.props.isFeatured ? styles.gridList : styles.gridListVertical}
                   cols={this.props.maxItem ? this.props.isFeatured ? 2 : 2.2 : 5}
                   cellHeight={200}
-                  padding={1}
+                  padding={5}
                 >
                   {this.artList(arts)}
                 </GridList>

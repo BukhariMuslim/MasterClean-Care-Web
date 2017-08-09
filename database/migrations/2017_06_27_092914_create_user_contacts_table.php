@@ -17,6 +17,7 @@ class CreateUserContactsTable extends Migration
             $table->increments('id');
             $table->integer('user_id')->unsigned();
             $table->string('phone');
+            $table->string('emergency_numb');
             $table->integer('city')->unsigned();
             $table->string('address')->nullable()->default('');
             $table->string('location')->nullable()->default('');

@@ -86,3 +86,7 @@ fieldset {
 .bold {
   font-weight: 700;
 }
+
+.disabled .material-icons {
+  color: #999 !important;
+}

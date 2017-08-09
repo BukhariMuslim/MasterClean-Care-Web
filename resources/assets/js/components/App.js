@@ -6,7 +6,7 @@ import NotificationContainer from '../containers/NotificationContainer'
 import AppDrawerContainer from '../containers/AppDrawerContainer'
 import LoadingSpinContainer from '../containers/LoadingSpinContainer'
 import DefaultMenuCollection from '../modules/DefaultMenuCollection'
-import FooterComponent from './FooterComponent'
+import FooterContainer from '../containers/FooterContainer'
 import ScrollToTopOnMount from '../modules/ScrollToTopOnMount'
 
 const App = (props) => {
@@ -23,7 +23,7 @@ const App = (props) => {
           {props.children}
         </div>
       </main>
-      <FooterComponent />
+      <FooterContainer />
     </div>
   )
 }

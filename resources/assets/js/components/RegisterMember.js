@@ -34,6 +34,7 @@ class RegisterMember extends Component {
       gender: null,
       born_place: '',
       born_date: null,
+      emergency_numb: '',
       phone: '',
       city: '',
       address: '',
@@ -43,7 +44,9 @@ class RegisterMember extends Component {
       avatar: '',
       avatarUrl: '',
       avatarFile: null,
+      description: null,
       status: 1,
+      status_activation: 1,
       cityItem: [],
     }
     this.baseState = this.state
@@ -97,6 +100,7 @@ class RegisterMember extends Component {
         born_place: this.state.born_place,
         born_date: this.state.born_date,
         contact: {
+          emergency_numb: this.state.emergency_numb,
           phone: this.state.phone,
           city: this.state.city,
           address: this.state.address,
@@ -104,7 +108,9 @@ class RegisterMember extends Component {
         },
         religion: this.state.religion,
         race: this.state.race,
+        description: this.state.description,
         status: this.state.status,
+        status_activation: this.state.status_activation,
       }
     )
   }
@@ -298,6 +304,19 @@ class RegisterMember extends Component {
                     autoComplete={false}
                     validators={['required', 'matchRegexp:^[0-9]*$']}
                     errorMessages={['No. Telepon dibutuhkan', 'Input harus angka']}
+                  />
+                </div>
+                <div className="col s12">
+                  <TextValidator
+                    hintText="No. Telepon Darurat"
+                    floatingLabelText="No. Telp Darurat"
+                    value={this.state.emergency_numb}
+                    fullWidth={true}
+                    name="emergency_numb"
+                    onChange={this.onChangeHandler}
+                    autoComplete={false}
+                    validators={['required', 'matchRegexp:^[0-9]*$']}
+                    errorMessages={['No. Telepon Darurat dibutuhkan', 'Input harus angka']}
                   />
                 </div>
                 <div className="col s12">

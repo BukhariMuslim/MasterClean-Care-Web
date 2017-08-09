@@ -18,7 +18,7 @@ class OfferController extends Controller
     public function index()
     {
         return Offer::with([
-            'member.contact',
+            'member',
             'workTime',
             'contact',
             'offer_art',
@@ -275,5 +275,47 @@ class OfferController extends Controller
                 'offerTaskList',
                 'job',
             ]);
+    }
+
+    /**
+     * Display a listing of the Offer resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function getOffer()
+    {
+        $offers = Offer::with([
+                'member.contact',
+                'workTime',
+                'contact',
+                'offer_art',
+                'offerTaskList',
+                'job',
+            ])
+            ->paginate(10);
+
+        return $offers;
+    }
+
+    /**
+     * Display a listing of the Offer resource.
+     *
+     * @param  Parameter  $member
+     * @return \Illuminate\Http\Response
+     */
+    public function getOfferByMember($member)
+    {
+        $offers = Offer::with([
+                'member.contact',
+                'workTime',
+                'contact',
+                'offer_art',
+                'offerTaskList',
+                'job',
+            ])
+            ->where('member_id', $member)
+            ->paginate(10);
+
+        return $offers;
     }
 }

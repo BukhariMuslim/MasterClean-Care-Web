@@ -38,15 +38,18 @@ class RegisterArt extends Component {
       born_place: '',
       born_date: null,
       phone: '',
+      emergency_numb: '',
       city: '',
       address: '',
       location: '',
       religion: null,
       race: '',
+      description: '',
       avatar: '',
       avatarUrl: '',
       avatarFile: null,
-      status: 0,
+      status: 1,
+      status_activation: 0,
       userLanguage: [],
       userJob: [],
       userWorkTime: [],
@@ -220,13 +223,16 @@ class RegisterArt extends Component {
           born_date: this.state.born_date,
           contact: {
             phone: this.state.phone,
+            emergency_numb: this.state.emergency_numb,
             city: this.state.city,
             address: this.state.address,
             location: this.state.location,
           },
           religion: this.state.religion,
           race: this.state.race,
+          description: this.state.description,
           status: this.state.status,
+          status_activation: this.state.status_activation,
           user_wallet: { amt: 0 },
           user_language: this.state.userLanguage,
           user_job: this.state.userJob,
@@ -481,6 +487,19 @@ class RegisterArt extends Component {
                     autoComplete={false}
                     validators={['required', 'matchRegexp:^[0-9]*$']}
                     errorMessages={['No. Telepon dibutuhkan', 'Input harus angka']}
+                  />
+                </div>
+                <div className="col s12">
+                  <TextValidator
+                    hintText="No. Telepon Darurat"
+                    floatingLabelText="No. Telp Darurat"
+                    value={this.state.emergency_numb}
+                    fullWidth={true}
+                    name="emergency_numb"
+                    onChange={this.onChangeHandler}
+                    autoComplete={false}
+                    validators={['required', 'matchRegexp:^[0-9]*$']}
+                    errorMessages={['No. Telepon Darurat dibutuhkan', 'Input harus angka']}
                   />
                 </div>
                 <div className="col s12">

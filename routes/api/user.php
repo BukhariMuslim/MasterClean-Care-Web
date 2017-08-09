@@ -29,6 +29,10 @@ Route::group(['prefix' => 'user'], function () {
     
     Route::get('/art/{art}', 'UserController@getArtById')->where('art', '[0-9]+');
 
+    Route::get('/member/{member}', 'UserController@getMemberById')->where('member', '[0-9]+');
+
+    Route::get('/art/search', 'UserController@searchArt');
+
     Route::get('/me', 'UserController@getCurrent')->middleware(['auth:api']);
 
     Route::get('/{user_id}', 'UserController@show')->where('user_id', '[0-9]+');

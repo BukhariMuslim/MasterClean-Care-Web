@@ -8,12 +8,16 @@ import {
 
 const getInitial = () => {
     return {
-        id: '',
-        title: '',
-        tag: '',
-        content: '',
-        published_date: null,
-        isEdit: false,
+        current_page: 1,
+      data: [],
+      from: null,
+      last_page: 1,
+      next_page_url: null,
+      path: '',
+      per_page: 10,
+      prev_page_url: '',
+      to: null,
+      total: 0,
     }
 }
 

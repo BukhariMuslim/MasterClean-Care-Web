@@ -6,10 +6,10 @@ import { simpleAuthentication } from '../containers/LoginContainer'
 import LoginContainer from '../containers/LoginContainer'
 import RegisterMemberContainer from '../containers/RegisterMemberContainer'
 import RegisterArtContainer from '../containers/RegisterArtContainer'
+import MemberDetailContainer from '../containers/MemberDetailContainer'
 import ProfilePage from '../components/ProfilePage'
-import ArticlePage from '../components/ArticlePage'
 import ArtPageContainer from '../containers/ArtPageContainer'
-import OfferPage from '../components/OfferPage'
+import OfferPageContainer from '../containers/OfferPageContainer'
 import NotFound from '../components/NotFound'
 import HomeContainer from '../containers/HomeContainer'
 
@@ -51,10 +51,11 @@ class routesElement extends Component {
         <Route path="/register_member" component={RegisterMemberContainer} />
         <Route path="/register_art" component={RegisterArtContainer} />
         <Route path="/profile" component={ProfilePage} />
+        <Route path="/member/:memberId" component={MemberDetailContainer} />
         <Route path="/art/:artId" component={ArtPageContainer} />
         <Route path="/art" component={ArtPageContainer} />
-        <Route path="/offer/:offerId" component={OfferPage} />
-        <Route path="/offer" component={OfferPage} />
+        <Route path="/offer/:offerId" component={OfferPageContainer} />
+        <Route path="/offer" component={OfferPageContainer} />
         <Route path="/*" component={NotFound} />
       </Switch>
     )

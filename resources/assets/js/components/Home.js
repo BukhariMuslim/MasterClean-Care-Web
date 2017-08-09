@@ -17,6 +17,7 @@ class Home extends Component {
 
   componentDidMount() {
     this.props.getArt()
+    this.props.getOffer()
   }
 
   render() {
@@ -41,7 +42,7 @@ class Home extends Component {
                 <div className="clearfix"></div>
               </h5>
               <Divider></Divider>
-              <ArtContainer arts={this.props.arts.data || []} maxItem={10} sortBy="crated_at" />
+              <ArtContainer arts={this.props.arts.data || []} maxItem={10} sortBy="created_at" />
             </div>
             <div className="col s12">
               <h5 style={{ marginTop: 35 }}>
@@ -55,7 +56,7 @@ class Home extends Component {
                 <div className="clearfix"></div>
               </h5>
               <Divider></Divider>
-              <OfferContainer maxItem={10} />
+              <OfferContainer offers={this.props.offers.data || []} maxItem={10} sortBy="start_date" />
             </div>
             {/* <div className="col s12 m8">
               <h5 style={{ marginTop: 35 }}>

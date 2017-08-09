@@ -5,7 +5,7 @@ import FontIcon from 'material-ui/FontIcon'
 import FlatButton from 'material-ui/FlatButton'
 import DefaultMenuCollection from '../modules/DefaultMenuCollection'
 
-class FooterComponent extends Component {
+class Footer extends Component {
   currentYear() {
     const year = (new Date()).getFullYear()
     if (year > 2017) {
@@ -16,17 +16,24 @@ class FooterComponent extends Component {
 
   menuList(collection) {
     return collection.map((obj, idx) => {
-      return (
-        <li className="grey-text text-lighten-3" to="#!" key={obj.id} >
-           <FlatButton
-            label={obj.label}
-            secondary={true}
-            style={{ color: '#fff'}}
-            containerElement={<Link to={obj.link} />}
-            icon={<FontIcon className="material-icons">{obj.iconLabel}</FontIcon>}
-          />
-        </li>
-      )
+      let role_id = 0
+      if (this.props.user) {
+        role_id = this.props.user.role_id
+      }
+
+      if (obj.allowUser.indexOf(role_id) != -1) {
+        return (
+          <li className="grey-text text-lighten-3" to="#!" key={obj.id} >
+            <FlatButton
+              label={obj.label}
+              secondary={true}
+              style={{ color: '#fff'}}
+              containerElement={<Link to={obj.link} />}
+              icon={<FontIcon className="material-icons">{obj.iconLabel}</FontIcon>}
+            />
+          </li>
+        )
+      }
     })
   }
 
@@ -58,4 +65,4 @@ class FooterComponent extends Component {
   }
 }
 
-export default FooterComponent
+export default Footer

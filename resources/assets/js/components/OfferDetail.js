@@ -157,7 +157,7 @@ class OfferDetail extends Component {
                                 >
                                   <TableRow>
                                     <TableRowColumn>Nama</TableRowColumn>
-                                    <TableRowColumn><b><Link to={'/user/' + offer.member.id} >{offer.member.name}</Link></b></TableRowColumn>
+                                    <TableRowColumn><b><Link to={'/member/' + offer.member.id} >{offer.member.name}</Link></b></TableRowColumn>
                                   </TableRow>
                                   <TableRow>
                                     <TableRowColumn>Alamat</TableRowColumn>

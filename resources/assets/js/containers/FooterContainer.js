@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { updateSnack, fillOffer } from '../actions/DefaultAction'
-import Offer from '../components/Offer'
+import { updateSnack, fillArt } from '../actions/DefaultAction'
+import Footer from '../components/Footer'
 import {
   withRouter,
 } from 'react-router-dom'
@@ -10,23 +10,19 @@ import ApiService from '../modules/ApiService'
 
 const mapStateToProps = (state) => {
   return {
+    user: state.UserLoginReducer.user,
+    history,
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onUpdateSnack: (open, message) => {
-      dispatch(updateSnack({
-        open: true,
-        message: message
-      }))
-    },
   }
 }
 
-const OfferContainer = withRouter(connect(
+const FooterContainer = withRouter(connect(
   mapStateToProps,
   mapDispatchToProps
-)(Offer))
+)(Footer))
 
-export default OfferContainer
+export default FooterContainer

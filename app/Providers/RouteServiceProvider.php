@@ -15,6 +15,7 @@ use App\Models\Place;
 use App\Models\Offer;
 use App\Models\OfferArt;
 use App\Models\OfferTaskList;
+use App\Models\Report;
 use App\Models\TaskList;
 use App\Models\User;
 use App\Models\Wallet;
@@ -62,6 +63,7 @@ class RouteServiceProvider extends ServiceProvider
         Route::model('task_list_id', TaskList::class);
         Route::model('user_id', User::class);
         Route::model('art_id', User::class);
+        Route::model('report_id', Report::class);
         Route::model('wallet_id', Wallet::class);
         Route::model('work_time_id', WorkTime::class);
         Route::model('wallet_transaction_id', WalletTransaction::class);

@@ -27,6 +27,7 @@ class CreateUsersTable extends Migration
             $table->string('race')->nullable()->default('');
             $table->string('description', 500)->nullable()->default('');
             $table->tinyInteger('status')->comment('0: inactive, 1: active ');
+            $table->tinyInteger('activation')->comment('0: disabled, 1: enabled ');
             $table->rememberToken();
             $table->timestamps();
         });

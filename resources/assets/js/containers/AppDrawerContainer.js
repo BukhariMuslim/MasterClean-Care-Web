@@ -18,34 +18,34 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => {
-    return { 
+    return {
         getUserLogin: () => {
             dispatch(updateLoadingSpin({
                 show: true,
             }))
-            
+
             // /api/user/me
-            ApiService.onGet('/api/user/me', 
-            '',
-            function (response) {
-                dispatch(resetLoadingSpin())
-                let data = response
-                if (data.status === 200) {
-                    if (data.data) {
-                        data = data.data
+            ApiService.onGet('/api/user/me',
+                '',
+                function (response) {
+                    dispatch(resetLoadingSpin())
+                    let data = response
+                    if (data.status === 200) {
+                        if (data.data) {
+                            data = data.data
+                        }
+                        if (data.status != 403) {
+                            dispatch(loginAuth(data))
+                        }
                     }
-                    if (data.status != 403) {
-                        dispatch(loginAuth(data))
-                    }
-                }
-            },
-            function (error) {
-                dispatch(resetLoadingSpin())
-                // dispatch(updateSnack({
-                //     open: true,
-                //     message: error.name + ": " + error.message.name + ": " + error.message
-                // }))
-            })
+                },
+                function (error) {
+                    dispatch(resetLoadingSpin())
+                    // dispatch(updateSnack({
+                    //     open: true,
+                    //     message: error.name + ": " + error.message.name + ": " + error.message
+                    // }))
+                })
         }
     }
 }
