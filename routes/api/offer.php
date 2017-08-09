@@ -16,7 +16,7 @@ Route::group(['prefix' => 'offer', 'middleware' => ['api']], function () {
 
     Route::get('/{offer_id}/offer_art/{user_id}', 'OfferArtController@showByOfferArt')->where('offer_id', '[0-9]+')->where('user_id', '[0-9]+');
     
-    Route::patch('/{offer_id}/offer_art/{user_id}', 'OfferArtController@update')->where('offer_id', '[0-9]+')->where('user_id', '[0-9]+');
+    Route::patch('/offer_art/{offer_art_id}', 'OfferArtController@update')->where('offer_art_id', '[0-9]+');
 
     Route::delete('/{offer_id}/offer_art/{user_id}', 'OfferArtController@destroy')->where('offer_id', '[0-9]+')->where('user_id', '[0-9]+');
 
@@ -37,6 +37,10 @@ Route::group(['prefix' => 'offer', 'middleware' => ['api']], function () {
     Route::get('/{offer_id}', 'OfferController@show')->where('offer_id', '[0-9]+');
 
     Route::get('/full/{offer_id}', 'OfferController@showFull')->where('offer_id', '[0-9]+');
+
+    Route::get('/full', 'OfferController@getOffer');
+
+    Route::get('/full/{member}', 'OfferController@getOfferByMember');
 
     Route::get('/member/{member}', 'OfferController@getByMember')->where('member', '[0-9]+');
 

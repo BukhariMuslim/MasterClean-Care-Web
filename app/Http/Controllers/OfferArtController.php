@@ -67,7 +67,7 @@ class OfferArtController extends Controller
      */
     public function showByOfferArt(OfferArt $offerArt, Offer $offer, User $user)
     {
-        return $offerArt->where('offer_id', $offer->id)->where('art_id', $user->id)->get()->load(['offer', 'art']);;
+        return $offerArt->where('offer_id', $offer->id)->where('art_id', $user->id)->get()->load(['offer', 'art']);
     }
 
     /**
