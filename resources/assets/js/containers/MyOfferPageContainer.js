@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { updateSnack, updateLoadingSpin, resetLoadingSpin, fillArt } from '../actions/DefaultAction'
-import ArtPage from '../components/ArtPage'
+import { updateSnack, updateLoadingSpin, resetLoadingSpin, fillOffer } from '../actions/DefaultAction'
+import MyOfferPage from '../components/MyOfferPage'
 import {
   withRouter,
 } from 'react-router-dom'
@@ -10,7 +10,8 @@ import ApiService from '../modules/ApiService'
 
 const mapStateToProps = (state) => {
   return {
-    arts: state.ArtReducer
+    user: state.UserLoginReducer.user,
+    offers: state.OfferReducer
   }
 }
 
@@ -22,14 +23,36 @@ const mapDispatchToProps = (dispatch) => {
         message: message
       }))
     },
-    onSubmit: (self, queryString) => {
+    getUserLogin: (self) => {
       dispatch(updateLoadingSpin({
         show: true,
       }))
 
+      ApiService.onGet('/api/user/me',
+        '',
+        function (response) {
+          dispatch(resetLoadingSpin())
+          let data = response
+          if (data.status === 200) {
+            if (data.data) {
+              data = data.data
+              self.props.getMyOffer(data.id)
+              dispatch(loginAuth(data))
+            }
+          }
+        },
+        function (error) {
+          dispatch(resetLoadingSpin())
+        })
+    },
+    onSubmit: (self, queryString) => {
+      dispatch(updateLoadingSpin({
+        show: true,
+      }))
+      
       ApiService.onGet(
-        '/api/user/art/search',
-        queryString,
+        '/api/offer/search',
+        self.props.user.id + '/' + queryString,
         function (response) {
           dispatch(resetLoadingSpin())
           let data = response
@@ -40,8 +63,8 @@ const mapDispatchToProps = (dispatch) => {
             }))
           }
           else {
-            self.props.history.push('/art/' + queryString)
-            dispatch(fillArt(data.data))
+            self.props.history.push('/offer/my_offer/' + queryString)
+            dispatch(fillOffer(data.data))
           }
         },
         function (error) {
@@ -53,9 +76,34 @@ const mapDispatchToProps = (dispatch) => {
         }
       )
     },
-    getArt: (pageNumb) => {
+    getMyOffer: (id, pageNumb) => {
+      console.log('im on it')
       ApiService.onGet(
-        '/api/user/art',
+        '/api/offer/full/user',
+        id + '/?page=' + (pageNumb || 1) ,
+        function (response) {
+          let data = response
+          if (data.status != 200) {
+            dispatch(updateSnack({
+              open: true,
+              message: data.message
+            }))
+          }
+          else {
+            dispatch(fillOffer(data.data))
+          }
+        },
+        function (error) {
+          dispatch(updateSnack({
+            open: true,
+            message: error.name + ": " + error.message
+          }))
+        }
+      )
+    },
+    getOffer: (pageNumb) => {
+      ApiService.onGet(
+        '/api/offer/full',
         '?page=' + (pageNumb || 1) ,
         function (response) {
           let data = response
@@ -66,7 +114,7 @@ const mapDispatchToProps = (dispatch) => {
             }))
           }
           else {
-            dispatch(fillArt(data.data))
+            dispatch(fillOffer(data.data))
           }
         },
         function (error) {
@@ -94,34 +142,6 @@ const mapDispatchToProps = (dispatch) => {
             dataPlace = data.data
           }
           self.setState({ [type]: dataPlace })
-          self.props.getLanguage(self, 'languageItem')
-        },
-        function (error) {
-          dispatch(updateSnack({
-            open: true,
-            message: error.name + ": " + error.message
-          }))
-          self.setState({ [type]: dataPlace })
-        }
-      )
-    },
-    getLanguage: (self, type) => {
-      let dataLanguage = [];
-      ApiService.onGet(
-        '/api/language/',
-        '',
-        function (response) {
-          let data = response
-          if (data.status !== 200) {
-            dispatch(updateSnack({
-              open: true,
-              message: data.message
-            }))
-          }
-          else {
-            dataLanguage = data.data
-          }
-          self.setState({ [type]: dataLanguage })
           self.props.getJob(self, 'jobItem')
         },
         function (error) {
@@ -129,7 +149,7 @@ const mapDispatchToProps = (dispatch) => {
             open: true,
             message: error.name + ": " + error.message
           }))
-          self.setState({ [type]: dataLanguage })
+          self.setState({ [type]: dataPlace })
         }
       )
     },
@@ -192,9 +212,9 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-const ArtPageContainer = withRouter(connect(
+const MyOfferPageContainer = withRouter(connect(
   mapStateToProps,
   mapDispatchToProps
-)(ArtPage))
+)(MyOfferPage))
 
-export default ArtPageContainer
+export default MyOfferPageContainer

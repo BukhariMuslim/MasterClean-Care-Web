@@ -15,8 +15,8 @@ class OrdersTableSeeder extends Seeder
     { 
         DB::table('orders')->insert([
         	[
-				'member_id' => 1,
-				'art_id' => 2,
+				'member_id' => 5,
+				'art_id' => 11,
 				'work_time_id' => 1,
 				'job_id' => 1,
 				'start_date' => Carbon::create('2017', '07', '19', '09', '0', '0'),
@@ -28,7 +28,7 @@ class OrdersTableSeeder extends Seeder
 				'status_art' => 1
 			],
 			[
-				'member_id' => 5,
+				'member_id' => 9,
 				'art_id' => 3,
 				'work_time_id' => 2,
 				'job_id' => 2,
@@ -41,8 +41,8 @@ class OrdersTableSeeder extends Seeder
 				'status_art' => 0
 			],
 			[
-				'member_id' => 6,
-				'art_id' => 2,
+				'member_id' => 10,
+				'art_id' => 12,
 				'work_time_id' => 1,
 				'job_id' => 2,
 				'start_date' => Carbon::create('2017', '07', '20', '12', '0', '0'),

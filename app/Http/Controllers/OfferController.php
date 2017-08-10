@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Offer;
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Helpers\Operators;
+use Carbon\Carbon;
 use Exception;
 use DB;
 
@@ -317,5 +319,137 @@ class OfferController extends Controller
             ->paginate(10);
 
         return $offers;
+    }
+
+    /**
+     * Display a listing of the ART resource.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Offer  $offer
+     * @return \Illuminate\Http\Response
+     */
+    public function search(Request $request, Offer $offer)
+    {
+        try {
+            $inputs = $request->all();
+            
+            $offer = Offer::with([
+                'member.contact',
+                'workTime',
+                'contact',
+                'offer_art',
+                'offerTaskList',
+                'job',
+            ]);
+
+            $dateNow = Carbon::now();
+
+            foreach($inputs as $key => $input) {
+                if ($key == 'job') {
+                    $offer = $offer->has('job', $input);
+                }
+                else if ($key == 'work_time') {
+                    $offer = $offer->has('workTime', $input);
+                }
+                else if ($key == 'start_date') {
+                    $offer = $offer->where('start_date', Operators::GREATER_THAN_EQUAL, new Carbon($input));
+                }
+                else if ($key == 'end_date') {
+                    $offer = $offer->where('end_date', Operators::LESS_THAN_EQUAL, new Carbon($input));
+                }
+                else if ($key == 'maxCost') {
+                    $offer = $offer->where('cost', Operators::LESS_THAN_EQUAL, $input);
+                }
+                else if ($key == 'city') {
+                    $offer = $offer->where('contact.city', $input);
+                }
+                else if ($key == 'name') {
+                    $offer = $offer->whereHas('member', function($query) use ($input) {
+                        $query->where('name', Operators::LIKE, '%'.$input.'%');
+                    });
+                }
+                else {
+                    $offer = $offer->where($key, Operators::LIKE, '%'.$input.'%');
+                }
+            }
+            
+            return $offer->paginate(10);
+        }
+        catch (Exception $e) {
+            return response()->json([ 'message' => $e->getMessage(), 
+                                      'status' => 400 ]);
+        }
+    }
+
+    /**
+     * Display a listing of the ART resource.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Offer  $offer
+     * @param  Parameter  $user
+     * @return \Illuminate\Http\Response
+     */
+    public function searchByUser(Request $request, Offer $offer, $user)
+    {
+        try {
+            $inputs = $request->all();
+            
+            $userObj = User::find($user);
+        
+            $offer = Offer::with([
+                'member.contact',
+                'workTime',
+                'contact',
+                'offer_art',
+                'offerTaskList',
+                'job',
+            ]);
+
+            if ($userObj->role_id == 2) {
+                $offer->where('member_id', $user);
+            }
+            else if ($userObj->role_id == 3) {
+                $offer->whereHas('offer_art', function($query) use ($user) {
+                    $query->where('art_id', $user);
+                });
+            }
+
+            $dateNow = Carbon::now();
+
+            foreach($inputs as $key => $input) {
+                if ($key == 'job') {
+                    $offer = $offer->has('job', $input);
+                }
+                else if ($key == 'work_time') {
+                    $offer = $offer->has('workTime', $input);
+                }
+                else if ($key == 'start_date') {
+                    $offer = $offer->where('start_date', Operators::GREATER_THAN_EQUAL, new Carbon($input));
+                }
+                else if ($key == 'end_date') {
+                    $offer = $offer->where('end_date', Operators::LESS_THAN_EQUAL, new Carbon($input));
+                }
+                else if ($key == 'maxCost') {
+                    $offer = $offer->where('cost', Operators::LESS_THAN_EQUAL, $input);
+                }
+                else if ($key == 'city') {
+                    $offer = $offer->where('contact.city', $input);
+                }
+                else if ($key == 'name') {
+                    $offer = $offer->whereHas('member', function($query) use ($input) {
+                        $query->where('name', Operators::LIKE, '%'.$input.'%');
+                    });
+                }
+                else {
+                    $offer = $offer->where($key, Operators::LIKE, '%'.$input.'%');
+                }
+            }
+            
+            return $offer->paginate(10);
+        }
+        catch (Exception $e) {
+            return response()->json([ 'message' => $e->getMessage(), 
+                                      'status' => 400 ]);
+        }
     }
 }

@@ -201,7 +201,7 @@ class Offer extends Component {
               {this.offerList(offers)}
             </GridList>
             :
-            <small>Tidak ada Penawaran ditemukan</small>
+            null
         }
       </div>
     )

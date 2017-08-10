@@ -28,6 +28,11 @@ export const ADD_OFFER = 'ADD_OFFER'
 export const EDIT_OFFER = 'EDIT_OFFER'
 export const UPDATE_OFFER = 'UPDATE_OFFER'
 export const REMOVE_OFFER = 'REMOVE_OFFER'
+export const FILL_ORDER = 'FILL_ORDER'
+export const ADD_ORDER = 'ADD_ORDER'
+export const EDIT_ORDER = 'EDIT_ORDER'
+export const UPDATE_ORDER = 'UPDATE_ORDER'
+export const REMOVE_ORDER = 'REMOVE_ORDER'
 
 /*
  *  Action Creators
@@ -141,4 +146,24 @@ export function updateOffer(data) {
 
 export function removeOffer(index) {
     return { type: REMOVE_OFFER, data: index }
+}
+
+export function fillOrder(data) {
+    return { type: FILL_ORDER, data: data }
+}
+
+export function addOrder(data) {
+    return { type: ADD_ORDER, data: data }
+}
+
+export function editOrder(index) {
+    return { type: EDIT_ORDER, data: index }
+}
+
+export function updateOrder(data) {
+    return { type: UPDATE_ORDER, data: data }
+}
+
+export function removeOrder(index) {
+    return { type: REMOVE_ORDER, data: index }
 }

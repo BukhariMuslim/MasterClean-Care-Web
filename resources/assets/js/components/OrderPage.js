@@ -12,8 +12,8 @@ import DatePicker from 'material-ui/DatePicker'
 import SelectField from 'material-ui/SelectField'
 import MenuItem from 'material-ui/MenuItem'
 import App from './App'
-import OfferContainer from '../containers/OfferContainer'
-import OfferDetailContainer from '../containers/OfferDetailContainer'
+import OrderContainer from '../containers/OrderContainer'
+import OrderDetailContainer from '../containers/OrderDetailContainer'
 import FontIcon from 'material-ui/FontIcon'
 import IconButton from 'material-ui/IconButton'
 import Breadcrumbs from '../modules/Breadcrumbs'
@@ -22,7 +22,7 @@ import NumberFormat from 'react-number-format'
 
 const DateTimeFormat = global.Intl.DateTimeFormat
 
-class OfferPage extends Component {
+class OrderPage extends Component {
   constructor(props) {
     super(props)
 
@@ -75,7 +75,7 @@ class OfferPage extends Component {
   }
 
   componentDidMount() {
-    this.props.getOffer()
+    this.props.getUserLogin(this)
     this.loadInitialData()
   }
 
@@ -124,7 +124,7 @@ class OfferPage extends Component {
       this.props.onSubmit(this, this.props.location.search + '&page=' + (newPage + 1))
     }
     else {
-		  this.props.getOffer(newPage + 1)
+		  this.props.getOrder(newPage + 1)
     }
   }
 
@@ -149,9 +149,8 @@ class OfferPage extends Component {
 
   resetForm() {
     this.setState(this.baseState)
-    this.props.getArt()
     this.loadInitialData()
-    this.props.history.push('/offer')
+    this.props.history.push('/order')
   }
 
   submitHandler(e) {
@@ -247,6 +246,7 @@ class OfferPage extends Component {
   }
 
   render() {
+    const { isMine } = this.state
     return (
       <App>
         <div className="row">
@@ -256,17 +256,17 @@ class OfferPage extends Component {
             </div>
           </nav>
           {
-            this.props.match.params.offerId
+            this.props.match.params.orderId
               ?
               <Paper className="col s12" zDepth={1} style={{ padding: 10, marginTop: 10 }} >
-                <OfferDetailContainer id={this.props.match.params.offerId} />
+                <OrderDetailContainer id={this.props.match.params.orderId} />
               </Paper>
               :
               <Paper className="col s12" zDepth={1} style={{ padding: 10, marginTop: 10 }}>
                 <Card expanded={this.state.expanded} onExpandChange={this.handleExpandChange} className="col s12" zDepth={0} >
                   <CardTitle>
                     <h5 style={{ marginTop: 35 }}>
-                      Penawaran
+                      Pemesanan Saya
                       <IconButton tooltip="Pencarian" className="right" onClick={this.handleToggle}>
                           <FontIcon className="material-icons">
                             {
@@ -319,8 +319,8 @@ class OfferPage extends Component {
                       </div>
                       <div className="col m6">
                         <TextValidator
-                          hintText="Nama Penawar"
-                          floatingLabelText="Nama Penawar"
+                          hintText="Nama ART"
+                          floatingLabelText="Nama ART"
                           value={this.state.name}
                           fullWidth={true}
                           name="name"
@@ -451,16 +451,16 @@ class OfferPage extends Component {
                     <small style={{ fontSize: 12 }}>
                       <i>
                       {
-                        this.props.offers.total ?
+                        this.props.orders.total ?
                           <span>
-                            Menampilkan <b>{ this.props.offers.from }</b> - <b>{ this.props.offers.to }</b> dari total <b>{ this.props.offers.total }</b> Penawaran
+                            Menampilkan <b>{ this.props.orders.from }</b> - <b>{ this.props.orders.to }</b> dari total <b>{ this.props.orders.total }</b> Pemesanan Saya
                             {
                               this.state.criteria ? this.state.criteria : null
                             }
                           </span>
                         :
                           <span>
-                            Tidak ada Penawaran ditemukan
+                            Tidak ada Pemesanan ditemukan
                             {
                               this.state.criteria ? this.state.criteria : null
                             }
@@ -468,10 +468,10 @@ class OfferPage extends Component {
                       }
                       </i>
                     </small>
-                    <OfferContainer offers={this.props.offers.data || [] } />
+                    <OrderContainer orders={this.props.orders.data || [] } />
                     <Pager
-                      total={this.props.offers.last_page || 1}
-                      current={this.props.offers.current_page ? this.props.offers.current_page - 1 : 1}
+                      total={this.props.orders.last_page || 1}
+                      current={this.props.orders.current_page ? this.props.orders.current_page - 1 : 1}
                       visiblePages={ 3 }
                       onPageChanged={this.handlePageChanged}
                     />
@@ -485,4 +485,4 @@ class OfferPage extends Component {
   }
 }
 
-export default OfferPage
+export default OrderPage

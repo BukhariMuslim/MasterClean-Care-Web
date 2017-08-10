@@ -4,7 +4,7 @@ import Paper from 'material-ui/Paper'
 import Divider from 'material-ui/Divider'
 import { Card, CardActions, CardHeader, CardTitle, CardText } from 'material-ui/Card'
 import { ValidatorForm, TextValidator, SelectValidator, DateValidator } from 'react-material-ui-form-validator'
-import Checkbox from 'material-ui/Checkbox';
+import Checkbox from 'material-ui/Checkbox'
 import TextField from 'material-ui/TextField'
 import FlatButton from 'material-ui/FlatButton'
 import RaisedButton from 'material-ui/RaisedButton'
@@ -33,8 +33,10 @@ class ArtPage extends Component {
       maxAge: 25,
       city: 0,
       religion: 0,
+      job: 0,
       work_time: 0,
       maxCost: 0,
+      criteria: '',
     }
 
     this.baseState = this.state
@@ -48,11 +50,11 @@ class ArtPage extends Component {
   loadInitialData() {
     this.props.getPlace(this, 'cityItem')
 
-    this.props.getLanguage(this, 'languageItem')
+    // this.props.getLanguage(this, 'languageItem')
 
-    this.props.getJob(this, 'jobItem')
+    // this.props.getJob(this, 'jobItem')
 
-    this.props.getWorkTime(this, 'workTimeItem')
+    // this.props.getWorkTime(this, 'workTimeItem')
   }
 
   handleExpandChange (expanded) {
@@ -75,30 +77,91 @@ class ArtPage extends Component {
   componentDidMount() {
     this.props.getArt()
     this.loadInitialData()
+  }
 
-    if (this.props.location.search) {
-      const params = this.props.location.search.substr(1).split('&')
+  setParam(queryString) {
+    if (queryString) {
+      let tempCriteria = []
+      const params = queryString.substr(1).split('&')
       params.map((param, idx) => {
         const p = param.split('=')
+        const val = decodeURIComponent(p[1])
         if(p[0] == 'language') {
-          const temp = decodeURIComponent(p[1]).split(',')
+          const temp = decodeURIComponent(val).split(',')
           let language = []
+          let tempL = []
           temp.map((t, idx) => {
+            if (this.state.languageItem.length > 0) {
+              tempL.push(`"${this.state.languageItem[this.state.languageItem.findIndex(x => x.id == t)].language}"`)
+            }
             language.push({
               language_id: t
             })
           })
+          tempCriteria.push('Bahasa ' + `(${tempL.join(', ')})`)
           this.setState({'language': language})
         }
         else {
-          this.setState({[p[0]]: decodeURIComponent(p[1])})
+          this.setState({[p[0]]: decodeURIComponent(val)})
+          if (p[0] == 'name') {
+            tempCriteria.push("Nama " + `"${val}"`)
+          }
+          else if (p[0] == 'minAge') {
+            tempCriteria.push("Usia minimum " + `"${val}"`)
+          }
+          else if (p[0] == 'maxAge') {
+            tempCriteria.push("Usia maksimum " + `"${val}"`)
+          }
+          else if (p[0] == 'city') {
+            tempCriteria.push('Kota ' + `"${this.state.cityItem[this.state.cityItem.findIndex(x => x.id == val)].name}"`)
+          }
+          else if (p[0] == 'religion') {
+            let agama = ''
+            if (religion == 1) {
+              agama = 'Islam'
+            }
+            else if (religion == 2) {
+              agama = 'Kristen Protestan'
+            }
+            else if (religion == 3) {
+              agama = 'Kristen Katolik'
+            }
+            else if (religion == 4) {
+              agama = 'Hindu'
+            }
+            else if (religion == 5) {
+              agama = 'Buddha'
+            }
+            else if (religion == 6) {
+              agama = 'Konghucu'
+            }
+            else {
+              agama = 'Lainnya'
+            }
+            tempCriteria.push('Agama ' + `"${val}"`)
+          }
+          else if (p[0] == 'work_time') {
+            tempCriteria.push('Kelompok Waktu Kerja ' + `"${this.state.workTimeItem[this.state.workTimeItem.findIndex(x => x.id == val)].work_time}"`)
+          }
+          else if (p[0] == 'maxCost') {
+            tempCriteria.push("Upah maksimum " + `"${val}"`)
+          }
         }
       })
+      if (tempCriteria.length > 0) {
+        this.setState({ criteria: ' dengan kriteria ' + tempCriteria.join(', ')})
+      }
+      this.props.onSubmit(this, queryString)
     }
   }
 
   handlePageChanged(newPage) {
-		this.props.getArt(newPage + 1)
+    if (this.props.location.search) {
+      this.props.onSubmit(this, this.props.location.search + '&page=' + (newPage + 1))
+    }
+    else {
+		  this.props.getArt(newPage + 1)
+    }
   }
 
   menuItems(collection, values) {
@@ -184,47 +247,89 @@ class ArtPage extends Component {
 
   submitHandler(e) {
     e.preventDefault()
-    const { name, minAge, maxAge, city, religion, work_time, maxCost, language } = this.state
+    const { name, minAge, maxAge, city, job, religion, work_time, maxCost, language } = this.state
     let queryString = []
+    let tempCriteria = []
 
     if (name) {
       queryString.push('name=' + encodeURIComponent(name))
+      tempCriteria.push('Nama ' + `"${name}"`)
     }
 
-    if (minAge) {
+    if (minAge && minAge > 0) {
       queryString.push('minAge=' + encodeURIComponent(minAge))
+      tempCriteria.push('Umur minimum ' + `"${minAge}"`)
     }
 
-    if (maxAge) {
+    if (maxAge && maxAge > 0) {
       queryString.push('maxAge=' + encodeURIComponent(maxAge))
+      tempCriteria.push('Umur maksimum ' + `"${maxAge}"`)
     }
 
     if (city) {
       queryString.push('city=' + encodeURIComponent(city))
+      tempCriteria.push('Kota ' + `"${this.state.cityItem[this.state.cityItem.findIndex(x => x.place_id == city)].name}"`)
     }
 
     if (language && language.length > 0) {
       let temp = []
+      let tempC = []
       language.map((lang, idx) => {
         temp.push(lang.language_id)
+        tempC.push(`"${this.state.languageItem[this.state.languageItem.findIndex(x => x.id == lang.language_id)].language}"`)
       })
       queryString.push('language=' + encodeURIComponent(temp.join(',')))
+      tempCriteria.push('Bahasa ' + `(${tempC.join(', ')})`)
     }
 
     if (religion) {
       queryString.push('religion=' + encodeURIComponent(religion))
+      let agama = ''
+      if (religion == 1) {
+        agama = 'Islam'
+      }
+      else if (religion == 2) {
+        agama = 'Kristen Protestan'
+      }
+      else if (religion == 3) {
+        agama = 'Kristen Katolik'
+      }
+      else if (religion == 4) {
+        agama = 'Hindu'
+      }
+      else if (religion == 5) {
+        agama = 'Buddha'
+      }
+      else if (religion == 6) {
+        agama = 'Konghucu'
+      }
+      else {
+        agama = 'Lainnya'
+      }
+      tempCriteria.push('Agama ' + `"${agama}"`)
+    }
+
+    if (job) {
+      queryString.push('job=' + encodeURIComponent(job))
+      tempCriteria.push('Profesi ' + `"${this.state.jobItem[this.state.jobItem.findIndex(x => x.id == job)].job}"`)
     }
 
     if (work_time) {
       queryString.push('work_time=' + encodeURIComponent(work_time))
+      tempCriteria.push('Kelompok Waktu Kerja ' + `"${this.state.workTimeItem[this.state.workTimeItem.findIndex(x => x.id == work_time)].work_time}"`)
     }
 
     if (maxCost) {
       queryString.push('maxCost=' + encodeURIComponent(maxCost))
+      tempCriteria.push('Upah maksimum ' + `"${maxCost}"`)
     }
 
     if (queryString.length > 0) {
+      if (tempCriteria.length > 0) {
+        this.setState({ criteria: ' dengan kriteria ' + tempCriteria.join(', ')})
+      }
       this.props.onSubmit(this, '?' + queryString.join('&'))
+      this.setState({expanded: false})
     }
   }
 
@@ -428,12 +533,16 @@ class ArtPage extends Component {
                           fullWidth={true}
                           onChange={this.onSelectFieldChangeHandler('job')}
                         >
+                          <MenuItem
+                            value={0}
+                            primaryText="Semua"
+                          />
                           {this.menuItems(this.state.jobItem, this.state.job)}
                         </SelectValidator>
                       </div>
                       <div className="col m6">
                         <SelectValidator
-                          floatingLabelText="Waktu Kerja"
+                          floatingLabelText="Kelompok Waktu Kerja"
                           value={this.state.work_time}
                           name="work_time"
                           fullWidth={true}
@@ -448,8 +557,8 @@ class ArtPage extends Component {
                       </div>
                       <div className="col m6">
                         <NumberFormat
-                          hintText="Gaji maksimum"
-                          floatingLabelText="Gaji maksimum"
+                          hintText="Upah maksimum"
+                          floatingLabelText="Upah maksimum"
                           thousandSeparator={true}
                           prefix={'Rp. '}
                           value={this.state.maxCost}
@@ -477,20 +586,30 @@ class ArtPage extends Component {
                             type="submit" />
                         </div>
                       </div>
-                      <div className="clearfix"></div>                      
+                      <div className="clearfix"></div>
                     </ValidatorForm>
                   </CardText>
                   <CardText>
-                    {
-                      this.props.arts.total ?
-                      <small style={{ fontSize: 12 }}>
-                        <i>
-                          Menampilkan <b>{ this.props.arts.from }</b> - <b>{ this.props.arts.to }</b> dari total <b>{ this.props.arts.total }</b> ART
-                        </i>
-                      </small>
-                      :
-                      null
-                    }
+                    <small style={{ fontSize: 12 }}>
+                      <i>
+                      {
+                        this.props.arts.total ?
+                          <span>
+                            Menampilkan <b>{ this.props.arts.from }</b> - <b>{ this.props.arts.to }</b> dari total <b>{ this.props.arts.total }</b> ART
+                            {
+                              this.state.criteria ? this.state.criteria : null
+                            }
+                          </span>
+                        :
+                          <span>
+                            Tidak ada ART ditemukan
+                            {
+                              this.state.criteria ? this.state.criteria : null
+                            }
+                          </span>
+                      }
+                      </i>
+                    </small>
                     <ArtContainer arts={this.props.arts.data || [] } />
                     <Pager
                       total={this.props.arts.last_page || 1}

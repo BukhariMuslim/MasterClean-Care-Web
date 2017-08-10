@@ -9,7 +9,9 @@ import RegisterArtContainer from '../containers/RegisterArtContainer'
 import MemberDetailContainer from '../containers/MemberDetailContainer'
 import ProfilePage from '../components/ProfilePage'
 import ArtPageContainer from '../containers/ArtPageContainer'
+import MyOfferPageContainer from '../containers/MyOfferPageContainer'
 import OfferPageContainer from '../containers/OfferPageContainer'
+import OrderPageContainer from '../containers/OrderPageContainer'
 import NotFound from '../components/NotFound'
 import HomeContainer from '../containers/HomeContainer'
 
@@ -54,8 +56,12 @@ class routesElement extends Component {
         <Route path="/member/:memberId" component={MemberDetailContainer} />
         <Route path="/art/:artId" component={ArtPageContainer} />
         <Route path="/art" component={ArtPageContainer} />
+        <Route path="/offer/my_offer/:offerId" component={MyOfferPageContainer} />
+        <Route path="/offer/my_offer" component={MyOfferPageContainer} />
         <Route path="/offer/:offerId" component={OfferPageContainer} />
         <Route path="/offer" component={OfferPageContainer} />
+        <Route path="/order/:orderId" component={OrderPageContainer} />
+        <Route path="/order" component={OrderPageContainer} />
         <Route path="/*" component={NotFound} />
       </Switch>
     )

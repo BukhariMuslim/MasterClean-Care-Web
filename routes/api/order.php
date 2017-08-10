@@ -38,6 +38,12 @@ Route::group(['prefix' => 'order', 'middleware' => ['api']], function () {
 
     Route::get('/member/{member}', 'OrderController@getByMember')->where('member', '[0-9]+');
 
+    Route::get('/full/{order_id}', 'OrderController@showFull')->where('order_id', '[0-9]+');
+
+    Route::get('/full', 'OrderController@getOrder');
+
+    Route::get('/full/user/{member}', 'OrderController@getOrderByMember')->where('member', '[0-9]+');
+
     Route::get('/review/{art}', 'OrderController@getReview')->where('art', '[0-9]+');
 
     Route::get('/art/{art}', 'OrderController@getByArt')->where('art', '[0-9]+');
@@ -53,6 +59,10 @@ Route::group(['prefix' => 'order', 'middleware' => ['api']], function () {
     Route::patch('/{order_id}', 'OrderController@update')->where('order_id', '[0-9]+');
 
     Route::delete('/{order_id}', 'OrderController@destroy')->where('order_id', '[0-9]+');
+
+    Route::get('/search', 'OrderController@search');
+
+    Route::get('/search/{user}', 'OrderController@searchByUser')->where('user', '[0-9]+');
 
     Route::get('/search/{param}/{text}', 'OrderController@searchByParam');
 

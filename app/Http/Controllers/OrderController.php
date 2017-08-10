@@ -359,6 +359,25 @@ class OrderController extends Controller
     }
 
     /**
+     * Display the specified resource.
+     *
+     * @param  \App\Models\Order  $order
+     * @return \Illuminate\Http\Response
+     */
+    public function showFull(Order $order)
+    {
+        return $order->load([
+            'member.contact',
+            'art.contact',
+            'workTime',
+            'contact',
+            'orderTaskList',
+            'reviewOrder',
+            'job',
+        ]);
+    }
+
+    /**
      * Search the specified resource from storage by ART.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -381,5 +400,180 @@ class OrderController extends Controller
                 'orderTaskList',
                 'job',
             ]);
+    }
+
+    /**
+     * Display a listing of the Order resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function getOrder()
+    {
+        $orders = Order::with([
+                'member.contact',
+                'art.contact',
+                'workTime',
+                'contact',
+                'orderTaskList',
+                'reviewOrder',
+                'job',
+            ])
+            ->paginate(10);
+
+        return $orders;
+    }
+
+    /**
+     * Display a listing of the Order resource.
+     *
+     * @param  Parameter  $member
+     * @return \Illuminate\Http\Response
+     */
+    public function getOrderByMember($member)
+    {
+        $orders = Order::with([
+                'member.contact',
+                'art.contact',
+                'workTime',
+                'contact',
+                'orderTaskList',
+                'reviewOrder',
+                'job',
+            ])
+            ->where('member_id', $member)
+            ->paginate(10);
+
+        return $orders;
+    }
+
+    /**
+     * Display a listing of the ART resource.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Order  $order
+     * @return \Illuminate\Http\Response
+     */
+    public function search(Request $request, Order $order)
+    {
+        try {
+            $inputs = $request->all();
+            
+            $order = Order::with([
+                'member.contact',
+                'workTime',
+                'contact',
+                'orderTaskList',
+                'reviewOrder',
+                'job',
+            ]);
+
+            $dateNow = Carbon::now();
+
+            foreach($inputs as $key => $input) {
+                if ($key == 'job') {
+                    $order = $order->has('job', $input);
+                }
+                else if ($key == 'work_time') {
+                    $order = $order->has('workTime', $input);
+                }
+                else if ($key == 'start_date') {
+                    $order = $order->where('start_date', Operators::GREATER_THAN_EQUAL, new Carbon($input));
+                }
+                else if ($key == 'end_date') {
+                    $order = $order->where('end_date', Operators::LESS_THAN_EQUAL, new Carbon($input));
+                }
+                else if ($key == 'maxCost') {
+                    $order = $order->where('cost', Operators::LESS_THAN_EQUAL, $input);
+                }
+                else if ($key == 'city') {
+                    $order = $order->where('contact.city', $input);
+                }
+                else if ($key == 'name') {
+                    $order = $order->whereHas('art', function($query) use ($input) {
+                        $query->where('name', Operators::LIKE, '%'.$input.'%');
+                    });
+                }
+                else {
+                    $order = $order->where($key, Operators::LIKE, '%'.$input.'%');
+                }
+            }
+            
+            return $order->paginate(10);
+        }
+        catch (Exception $e) {
+            return response()->json([ 'message' => $e->getMessage(), 
+                                      'status' => 400 ]);
+        }
+    }
+
+    /**
+     * Display a listing of the User resource.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Order  $order
+     * @param  Parameter  $user
+     * @return \Illuminate\Http\Response
+     */
+    public function searchByUser(Request $request, Order $order, $user)
+    {
+        try {
+            $inputs = $request->all();
+            
+            $userObj = User::find($user);
+        
+            $order = Order::with([
+                'member.contact',
+                'art.contact',
+                'workTime',
+                'contact',
+                'orderTaskList',
+                'reviewOrder',
+                'job',
+            ]);
+
+            if ($userObj->role_id == 2) {
+                $order->where('member_id', $user);
+            }
+            else if ($userObj->role_id == 3) {
+                $order->where('art_id', $user);
+            }
+
+            $dateNow = Carbon::now();
+
+            foreach($inputs as $key => $input) {
+                if ($key == 'job') {
+                    $order = $order->has('job', $input);
+                }
+                else if ($key == 'work_time') {
+                    $order = $order->has('workTime', $input);
+                }
+                else if ($key == 'start_date') {
+                    $order = $order->where('start_date', Operators::GREATER_THAN_EQUAL, new Carbon($input));
+                }
+                else if ($key == 'end_date') {
+                    $order = $order->where('end_date', Operators::LESS_THAN_EQUAL, new Carbon($input));
+                }
+                else if ($key == 'maxCost') {
+                    $order = $order->where('cost', Operators::LESS_THAN_EQUAL, $input);
+                }
+                else if ($key == 'city') {
+                    $order = $order->where('contact.city', $input);
+                }
+                else if ($key == 'name') {
+                    $order = $order->whereHas('art', function($query) use ($input) {
+                        $query->where('name', Operators::LIKE, '%'.$input.'%');
+                    });
+                }
+                else {
+                    $order = $order->where($key, Operators::LIKE, '%'.$input.'%');
+                }
+            }
+            
+            return $offer->paginate(10);
+        }
+        catch (Exception $e) {
+            return response()->json([ 'message' => $e->getMessage(), 
+                                      'status' => 400 ]);
+        }
     }
 }

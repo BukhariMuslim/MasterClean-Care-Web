@@ -40,7 +40,7 @@ Route::group(['prefix' => 'offer', 'middleware' => ['api']], function () {
 
     Route::get('/full', 'OfferController@getOffer');
 
-    Route::get('/full/{member}', 'OfferController@getOfferByMember');
+    Route::get('/full/user/{member}', 'OfferController@getOfferByMember')->where('member', '[0-9]+');
 
     Route::get('/member/{member}', 'OfferController@getByMember')->where('member', '[0-9]+');
 
@@ -54,6 +54,10 @@ Route::group(['prefix' => 'offer', 'middleware' => ['api']], function () {
 
     Route::delete('/{offer_id}', 'OfferController@destroy')->where('offer_id', '[0-9]+');
 
+    Route::get('/search', 'OfferController@search');
+
+    Route::get('/search/{user}', 'OfferController@searchByUser')->where('user', '[0-9]+');
+    
     Route::get('/search/{param}/{text}', 'OfferController@searchByParam');
 
 });

@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { updateSnack, updateLoadingSpin, resetLoadingSpin, fillArt } from '../actions/DefaultAction'
-import ArtPage from '../components/ArtPage'
+import { updateSnack, updateLoadingSpin, resetLoadingSpin, fillOrder } from '../actions/DefaultAction'
+import OrderPage from '../components/OrderPage'
 import {
   withRouter,
 } from 'react-router-dom'
@@ -10,7 +10,8 @@ import ApiService from '../modules/ApiService'
 
 const mapStateToProps = (state) => {
   return {
-    arts: state.ArtReducer
+    user: state.UserLoginReducer.user,
+    orders: state.OrderReducer
   }
 }
 
@@ -22,14 +23,37 @@ const mapDispatchToProps = (dispatch) => {
         message: message
       }))
     },
-    onSubmit: (self, queryString) => {
+    getUserLogin: (self) => {
       dispatch(updateLoadingSpin({
         show: true,
       }))
 
+      ApiService.onGet('/api/user/me',
+        '',
+        function (response) {
+          dispatch(resetLoadingSpin())
+          let data = response
+          if (data.status === 200) {
+            if (data.data) {
+              data = data.data
+              console.log(data)
+              self.props.getMyOffer(data.id)
+              dispatch(loginAuth(data))
+            }
+          }
+        },
+        function (error) {
+          dispatch(resetLoadingSpin())
+        })
+    },
+    onSubmit: (self, queryString) => {
+      dispatch(updateLoadingSpin({
+        show: true,
+      }))
+      
       ApiService.onGet(
-        '/api/user/art/search',
-        queryString,
+        '/api/order/search',
+        self.props.user.id + '/' + queryString,
         function (response) {
           dispatch(resetLoadingSpin())
           let data = response
@@ -40,8 +64,8 @@ const mapDispatchToProps = (dispatch) => {
             }))
           }
           else {
-            self.props.history.push('/art/' + queryString)
-            dispatch(fillArt(data.data))
+            self.props.history.push('/order/' + queryString)
+            dispatch(fillOrder(data.data))
           }
         },
         function (error) {
@@ -53,9 +77,33 @@ const mapDispatchToProps = (dispatch) => {
         }
       )
     },
-    getArt: (pageNumb) => {
+    getMyOffer: (id, pageNumb) => {
       ApiService.onGet(
-        '/api/user/art',
+        '/api/order/full/user',
+        id + '/?page=' + (pageNumb || 1) ,
+        function (response) {
+          let data = response
+          if (data.status != 200) {
+            dispatch(updateSnack({
+              open: true,
+              message: data.message
+            }))
+          }
+          else {
+            dispatch(fillOrder(data.data))
+          }
+        },
+        function (error) {
+          dispatch(updateSnack({
+            open: true,
+            message: error.name + ": " + error.message
+          }))
+        }
+      )
+    },
+    getOffer: (pageNumb) => {
+      ApiService.onGet(
+        '/api/order/full',
         '?page=' + (pageNumb || 1) ,
         function (response) {
           let data = response
@@ -66,7 +114,7 @@ const mapDispatchToProps = (dispatch) => {
             }))
           }
           else {
-            dispatch(fillArt(data.data))
+            dispatch(fillOrder(data.data))
           }
         },
         function (error) {
@@ -94,34 +142,6 @@ const mapDispatchToProps = (dispatch) => {
             dataPlace = data.data
           }
           self.setState({ [type]: dataPlace })
-          self.props.getLanguage(self, 'languageItem')
-        },
-        function (error) {
-          dispatch(updateSnack({
-            open: true,
-            message: error.name + ": " + error.message
-          }))
-          self.setState({ [type]: dataPlace })
-        }
-      )
-    },
-    getLanguage: (self, type) => {
-      let dataLanguage = [];
-      ApiService.onGet(
-        '/api/language/',
-        '',
-        function (response) {
-          let data = response
-          if (data.status !== 200) {
-            dispatch(updateSnack({
-              open: true,
-              message: data.message
-            }))
-          }
-          else {
-            dataLanguage = data.data
-          }
-          self.setState({ [type]: dataLanguage })
           self.props.getJob(self, 'jobItem')
         },
         function (error) {
@@ -129,7 +149,7 @@ const mapDispatchToProps = (dispatch) => {
             open: true,
             message: error.name + ": " + error.message
           }))
-          self.setState({ [type]: dataLanguage })
+          self.setState({ [type]: dataPlace })
         }
       )
     },
@@ -192,9 +212,9 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-const ArtPageContainer = withRouter(connect(
+const OrderPageContainer = withRouter(connect(
   mapStateToProps,
   mapDispatchToProps
-)(ArtPage))
+)(OrderPage))
 
-export default ArtPageContainer
+export default OrderPageContainer

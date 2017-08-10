@@ -15,7 +15,7 @@ class OffersTableSeeder extends Seeder
         DB::table('offers')->insert([
 
             [
-                'member_id'=>1,
+                'member_id'=>5,
                 'work_time_id'=>1,
                 'job_id'=>1,
                 'start_date'=>Carbon::create('2017', '07', '19', '09', '0', '0'),
@@ -26,7 +26,7 @@ class OffersTableSeeder extends Seeder
             ],
 
             [
-                'member_id'=>2,
+                'member_id'=>6,
                 'work_time_id'=>2,
                 'job_id'=>2,
                 'start_date'=>Carbon::create('2017', '07', '19', '12', '0', '0'),
@@ -36,7 +36,7 @@ class OffersTableSeeder extends Seeder
                 'status'=>1,
             ],
             [
-                'member_id'=>3,
+                'member_id'=>9,
                 'work_time_id'=>3,
                 'job_id'=>1,
                 'start_date'=>Carbon::create('2017', '07', '19', '15', '0', '0'),

@@ -22,7 +22,7 @@ import NumberFormat from 'react-number-format'
 
 const DateTimeFormat = global.Intl.DateTimeFormat
 
-class OfferPage extends Component {
+class MyOfferPage extends Component {
   constructor(props) {
     super(props)
 
@@ -75,7 +75,7 @@ class OfferPage extends Component {
   }
 
   componentDidMount() {
-    this.props.getOffer()
+    this.props.getUserLogin(this)
     this.loadInitialData()
   }
 
@@ -124,7 +124,7 @@ class OfferPage extends Component {
       this.props.onSubmit(this, this.props.location.search + '&page=' + (newPage + 1))
     }
     else {
-		  this.props.getOffer(newPage + 1)
+		  this.props.getMyOffer(newPage + 1)
     }
   }
 
@@ -149,9 +149,8 @@ class OfferPage extends Component {
 
   resetForm() {
     this.setState(this.baseState)
-    this.props.getArt()
     this.loadInitialData()
-    this.props.history.push('/offer')
+    this.props.history.push('/offer/my_offer')
   }
 
   submitHandler(e) {
@@ -247,6 +246,7 @@ class OfferPage extends Component {
   }
 
   render() {
+    const { isMine } = this.state
     return (
       <App>
         <div className="row">
@@ -266,7 +266,7 @@ class OfferPage extends Component {
                 <Card expanded={this.state.expanded} onExpandChange={this.handleExpandChange} className="col s12" zDepth={0} >
                   <CardTitle>
                     <h5 style={{ marginTop: 35 }}>
-                      Penawaran
+                      Penawaran Saya
                       <IconButton tooltip="Pencarian" className="right" onClick={this.handleToggle}>
                           <FontIcon className="material-icons">
                             {
@@ -453,7 +453,7 @@ class OfferPage extends Component {
                       {
                         this.props.offers.total ?
                           <span>
-                            Menampilkan <b>{ this.props.offers.from }</b> - <b>{ this.props.offers.to }</b> dari total <b>{ this.props.offers.total }</b> Penawaran
+                            Menampilkan <b>{ this.props.offers.from }</b> - <b>{ this.props.offers.to }</b> dari total <b>{ this.props.offers.total }</b> Penawaran Saya
                             {
                               this.state.criteria ? this.state.criteria : null
                             }
@@ -485,4 +485,4 @@ class OfferPage extends Component {
   }
 }
 
-export default OfferPage
+export default MyOfferPage

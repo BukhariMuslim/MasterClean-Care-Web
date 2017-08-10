@@ -165,8 +165,8 @@ class Art extends Component {
               :
               <div style={styles.root}>
                 <GridList
-                  style={this.props.maxItem && !this.props.isFeatured ? styles.gridList : styles.gridListVertical}
-                  cols={this.props.maxItem ? this.props.isFeatured ? 2 : 2.2 : 5}
+                  style={styles.gridListVertical}
+                  cols={arts.length >= 5 ? 5 : arts.length}
                   cellHeight={200}
                   padding={5}
                 >
@@ -174,7 +174,7 @@ class Art extends Component {
                 </GridList>
               </div>
             :
-            <small>Tidak ada ART ditemukan</small>
+            null
         }
       </div>
     )
