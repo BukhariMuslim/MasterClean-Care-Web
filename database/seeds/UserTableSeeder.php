@@ -27,6 +27,7 @@ class UserTableSeeder extends Seeder
                 'race' => '',
                 'description' => '',
                 'status' => 1,
+                'activation' => 1,
             ],
             [
                 'name' => 'Art 1',
@@ -41,6 +42,7 @@ class UserTableSeeder extends Seeder
                 'race' => '',
                 'description' => '',
                 'status' => 1,
+                'activation' => 1,
             ],
             [
                 'name' => 'Art 2',
@@ -55,6 +57,7 @@ class UserTableSeeder extends Seeder
                 'race' => '',
                 'description' => '',
                 'status' => 1,
+                'activation' => 1,
             ],
             [
                 'name' => 'Art 3',
@@ -69,6 +72,7 @@ class UserTableSeeder extends Seeder
                 'race' => '',
                 'description' => '',
                 'status' => 0,
+                'activation' => 1,
             ],
             [
                 'name' => 'Member 1',
@@ -83,6 +87,7 @@ class UserTableSeeder extends Seeder
                 'race' => '',
                 'description' => '',
                 'status' => 1,
+                'activation' => 1,
             ],
             [
                 'name' => 'Member 2',
@@ -97,6 +102,7 @@ class UserTableSeeder extends Seeder
                 'race' => '',
                 'description' => '',
                 'status' => 1,
+                'activation' => 1,
             ],
             [
                 'name' => 'Art 4',
@@ -111,6 +117,7 @@ class UserTableSeeder extends Seeder
                 'race' => '',
                 'description' => '',
                 'status' => 1,
+                'activation' => 1,
             ],
             [
                 'name' => 'Art 5',
@@ -125,6 +132,7 @@ class UserTableSeeder extends Seeder
                 'race' => '',
                 'description' => '',
                 'status' => 1,
+                'activation' => 1,
             ],
             [
                 'name' => 'Andi',
@@ -139,6 +147,7 @@ class UserTableSeeder extends Seeder
                 'race' => '',
                 'description' => '',
                 'status' => 1,
+                'activation' => 1,
             ],
             [
                 'name' => 'Budi',
@@ -153,6 +162,7 @@ class UserTableSeeder extends Seeder
                 'race' => '',
                 'description' => '',
                 'status' => 1,
+                'activation' => 1,
             ],
             [
                 'name' => 'Cici',
@@ -167,6 +177,7 @@ class UserTableSeeder extends Seeder
                 'race' => '',
                 'description' => '',
                 'status' => 1,
+                'activation' => 1,
             ],
             [
                 'name' => 'Dodi',
@@ -181,6 +192,7 @@ class UserTableSeeder extends Seeder
                 'race' => '',
                 'description' => '',
                 'status' => 1,
+                'activation' => 1,
             ],
             [
                 'name' => 'evi',
@@ -195,6 +207,7 @@ class UserTableSeeder extends Seeder
                 'race' => '',
                 'description' => '',
                 'status' => 1,
+                'activation' => 1,
             ],
             [
                 'name' => 'feri',
@@ -209,6 +222,7 @@ class UserTableSeeder extends Seeder
                 'race' => '',
                 'description' => '',
                 'status' => 1,
+                'activation' => 1,
             ],
             [
                 'name' => 'gina',
@@ -223,6 +237,7 @@ class UserTableSeeder extends Seeder
                 'race' => '',
                 'description' => '',
                 'status' => 1,
+                'activation' => 1,
             ],
             [
                 'name' => 'heri',
@@ -237,6 +252,7 @@ class UserTableSeeder extends Seeder
                 'race' => '',
                 'description' => '',
                 'status' => 1,
+                'activation' => 1,
             ],
             [
                 'name' => 'ina',
@@ -251,6 +267,7 @@ class UserTableSeeder extends Seeder
                 'race' => '',
                 'description' => '',
                 'status' => 1,
+                'activation' => 1,
             ],
             [
                 'name' => 'joko',
@@ -265,6 +282,7 @@ class UserTableSeeder extends Seeder
                 'race' => '',
                 'description' => '',
                 'status' => 1,
+                'activation' => 1,
             ],
         ]);
     }
