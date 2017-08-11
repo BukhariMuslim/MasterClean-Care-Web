@@ -57,7 +57,7 @@ class AppDrawer extends Component {
     })
   }
 
-  componentWillMount() {
+  componentDidMount() {
     if (!this.props.user) {
       this.props.getUserLogin()
     }

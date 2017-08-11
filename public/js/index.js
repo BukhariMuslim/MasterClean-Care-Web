@@ -606,6 +606,11 @@ exports.addOffer = addOffer;
 exports.editOffer = editOffer;
 exports.updateOffer = updateOffer;
 exports.removeOffer = removeOffer;
+exports.fillMyOffer = fillMyOffer;
+exports.addMyOffer = addMyOffer;
+exports.editMyOffer = editMyOffer;
+exports.updateMyOffer = updateMyOffer;
+exports.removeMyOffer = removeMyOffer;
 exports.fillOrder = fillOrder;
 exports.addOrder = addOrder;
 exports.editOrder = editOrder;
@@ -641,6 +646,11 @@ var ADD_OFFER = exports.ADD_OFFER = 'ADD_OFFER';
 var EDIT_OFFER = exports.EDIT_OFFER = 'EDIT_OFFER';
 var UPDATE_OFFER = exports.UPDATE_OFFER = 'UPDATE_OFFER';
 var REMOVE_OFFER = exports.REMOVE_OFFER = 'REMOVE_OFFER';
+var FILL_MYOFFER = exports.FILL_MYOFFER = 'FILL_MYOFFER';
+var ADD_MYOFFER = exports.ADD_MYOFFER = 'ADD_MYOFFER';
+var EDIT_MYOFFER = exports.EDIT_MYOFFER = 'EDIT_MYOFFER';
+var UPDATE_MYOFFER = exports.UPDATE_MYOFFER = 'UPDATE_MYOFFER';
+var REMOVE_MYOFFER = exports.REMOVE_MYOFFER = 'REMOVE_MYOFFER';
 var FILL_ORDER = exports.FILL_ORDER = 'FILL_ORDER';
 var ADD_ORDER = exports.ADD_ORDER = 'ADD_ORDER';
 var EDIT_ORDER = exports.EDIT_ORDER = 'EDIT_ORDER';
@@ -759,6 +769,26 @@ function updateOffer(data) {
 
 function removeOffer(index) {
     return { type: REMOVE_OFFER, data: index };
+}
+
+function fillMyOffer(data) {
+    return { type: FILL_MYOFFER, data: data };
+}
+
+function addMyOffer(data) {
+    return { type: ADD_MYOFFER, data: data };
+}
+
+function editMyOffer(index) {
+    return { type: EDIT_MYOFFER, data: index };
+}
+
+function updateMyOffer(data) {
+    return { type: UPDATE_MYOFFER, data: data };
+}
+
+function removeMyOffer(index) {
+    return { type: REMOVE_MYOFFER, data: index };
 }
 
 function fillOrder(data) {
@@ -18015,7 +18045,7 @@ var DefaultMenuCollection = [{
   label: 'Penawaran',
   link: '/offer',
   iconLabel: 'business_center',
-  allowUser: [0, 1, 2, 3]
+  allowUser: [0, 1, 3]
 }, {
   id: 4,
   label: 'Penawaran Saya',
@@ -28424,8 +28454,8 @@ var AppDrawer = function (_Component) {
       });
     }
   }, {
-    key: 'componentWillMount',
-    value: function componentWillMount() {
+    key: 'componentDidMount',
+    value: function componentDidMount() {
       if (!this.props.user) {
         this.props.getUserLogin();
       }
@@ -30971,6 +31001,7 @@ var Home = function (_Component) {
   _createClass(Home, [{
     key: 'componentDidMount',
     value: function componentDidMount() {
+      console.log(this.props.user);
       this.props.getArt();
       this.props.getOffer();
     }
@@ -30979,7 +31010,7 @@ var Home = function (_Component) {
     value: function render() {
       return _react2.default.createElement(
         _App2.default,
-        null,
+        { user: this.props.user },
         _react2.default.createElement(
           'div',
           { className: 'row' },
@@ -30995,7 +31026,7 @@ var Home = function (_Component) {
           _react2.default.createElement(
             _Paper2.default,
             { className: 'col s12', zDepth: 1, style: { padding: '10px', marginTop: '10px' } },
-            _react2.default.createElement(
+            this.props.user && this.props.user.role_id == 3 ? null : _react2.default.createElement(
               'div',
               { className: 'col s12' },
               _react2.default.createElement(
@@ -31013,7 +31044,25 @@ var Home = function (_Component) {
               _react2.default.createElement(_Divider2.default, null),
               _react2.default.createElement(_ArtContainer2.default, { arts: this.props.arts.data || [], maxItem: 10, sortBy: 'created_at' })
             ),
-            _react2.default.createElement(
+            this.props.user && (this.props.user.role_id == 2 || this.props.user.role_id == 3) ? _react2.default.createElement(
+              'div',
+              { className: 'col s12' },
+              _react2.default.createElement(
+                'h5',
+                { style: { marginTop: 35 } },
+                'Penawaran Saya',
+                _react2.default.createElement(_FlatButton2.default, {
+                  className: 'right',
+                  label: 'Lihat Semua',
+                  primary: true,
+                  containerElement: _react2.default.createElement(_reactRouterDom.Link, { to: "/offer/my_offer" })
+                }),
+                _react2.default.createElement('div', { className: 'clearfix' })
+              ),
+              _react2.default.createElement(_Divider2.default, null),
+              _react2.default.createElement(_OfferContainer2.default, { offers: this.props.myOffers.data || [], maxItem: 10, sortBy: 'start_date' })
+            ) : null,
+            this.props.user && this.props.user.role_id != 2 ? null : _react2.default.createElement(
               'div',
               { className: 'col s12' },
               _react2.default.createElement(
@@ -38509,7 +38558,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var mapStateToProps = function mapStateToProps(state) {
   return {
-    user: state.UserLoginReducer.user,
+    user: state.UserLoginReducer,
     history: _history2.default
   };
 };
@@ -39033,7 +39082,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var mapStateToProps = function mapStateToProps(state) {
   return {
-    user: state.UserLoginReducer.user,
+    user: state.UserLoginReducer,
     history: history
   };
 };
@@ -39071,10 +39120,6 @@ var _Home2 = _interopRequireDefault(_Home);
 
 var _reactRouterDom = __webpack_require__(11);
 
-var _App = __webpack_require__(16);
-
-var _App2 = _interopRequireDefault(_App);
-
 var _ApiService = __webpack_require__(23);
 
 var _ApiService2 = _interopRequireDefault(_ApiService);
@@ -39083,8 +39128,10 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var mapStateToProps = function mapStateToProps(state) {
   return {
+    user: state.UserLoginReducer,
     arts: state.ArtReducer,
-    offers: state.OfferReducer
+    offers: state.OfferReducer,
+    myOffers: state.MyOfferReducer
   };
 };
 
@@ -39096,6 +39143,31 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
         message: message
       }));
     },
+    getUserLogin: function getUserLogin(self) {
+      dispatch((0, _DefaultAction.updateLoadingSpin)({
+        show: true
+      }));
+
+      _ApiService2.default.onGet('/api/user/me', '', function (response) {
+        dispatch((0, _DefaultAction.resetLoadingSpin)());
+        var data = response;
+        if (data.status === 200) {
+          if (data.data) {
+            data = data.data;
+          }
+          if (data.status != 403) {
+            self.props.getMyOffer(data.id);
+            dispatch(loginAuth(data));
+          }
+        }
+      }, function (error) {
+        dispatch((0, _DefaultAction.resetLoadingSpin)());
+        // dispatch(updateSnack({
+        //     open: true,
+        //     message: error.name + ": " + error.message.name + ": " + error.message
+        // }))
+      });
+    },
     getArt: function getArt() {
       _ApiService2.default.onGet('/api/user/art', '?page=1', function (response) {
         var data = response;
@@ -39106,6 +39178,24 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
           }));
         } else {
           dispatch((0, _DefaultAction.fillArt)(data.data));
+        }
+      }, function (error) {
+        dispatch((0, _DefaultAction.updateSnack)({
+          open: true,
+          message: error.name + ": " + error.message
+        }));
+      });
+    },
+    getMyOffer: function getMyOffer(id, pageNumb) {
+      _ApiService2.default.onGet('/api/offer/full/user', id + '/?page=' + (pageNumb || 1), function (response) {
+        var data = response;
+        if (data.status != 200) {
+          dispatch((0, _DefaultAction.updateSnack)({
+            open: true,
+            message: data.message
+          }));
+        } else {
+          dispatch((0, _DefaultAction.fillMyOffer)(data.data));
         }
       }, function (error) {
         dispatch((0, _DefaultAction.updateSnack)({
@@ -39172,7 +39262,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var mapStateToProps = function mapStateToProps(state) {
     return {
-        user: state.UserLoginReducer.user
+        user: state.UserLoginReducer
     };
 };
 
@@ -39324,8 +39414,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 var mapStateToProps = function mapStateToProps(state) {
   return {
-    user: state.UserLoginReducer.user,
-    offers: state.OfferReducer
+    user: state.UserLoginReducer,
+    offers: state.MyOfferReducer
   };
 };
 
@@ -39530,7 +39620,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 var mapStateToProps = function mapStateToProps(state) {
   return {
-    user: state.UserLoginReducer.user,
+    user: state.UserLoginReducer,
     offers: state.OfferReducer
   };
 };
@@ -39847,7 +39937,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 var mapStateToProps = function mapStateToProps(state) {
   return {
-    user: state.UserLoginReducer.user,
+    user: state.UserLoginReducer,
     orders: state.OrderReducer
   };
 };
@@ -40053,7 +40143,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 var mapStateToProps = function mapStateToProps(state) {
   return {
-    user: state.UserLoginReducer.user
+    user: state.UserLoginReducer
   };
 };
 
@@ -41539,15 +41629,15 @@ Object.defineProperty(exports, "__esModule", {
 var _DefaultAction = __webpack_require__(15);
 
 var UserLoginReducer = function UserLoginReducer() {
-    var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
+    var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
     var action = arguments[1];
 
     switch (action.type) {
         case _DefaultAction.LOGIN:
             var user = action.data;
-            return Object.assign({}, state, { user: user });
+            return Object.assign({}, state, user);
         case _DefaultAction.LOGOUT:
-            return '';
+            return null;
         default:
             return state;
     }
@@ -41588,6 +41678,10 @@ var _OrderReducer = __webpack_require__(347);
 
 var _OrderReducer2 = _interopRequireDefault(_OrderReducer);
 
+var _MyOfferReducer = __webpack_require__(754);
+
+var _MyOfferReducer2 = _interopRequireDefault(_MyOfferReducer);
+
 var _OfferReducer = __webpack_require__(346);
 
 var _OfferReducer2 = _interopRequireDefault(_OfferReducer);
@@ -41605,6 +41699,7 @@ var mcc = (0, _redux.combineReducers)({
     ArtReducer: _ArtReducer2.default,
     OrderReducer: _OrderReducer2.default,
     OfferReducer: _OfferReducer2.default,
+    MyOfferReducer: _MyOfferReducer2.default,
     ArticleReducer: _ArticleReducer2.default
 });
 
@@ -114062,6 +114157,126 @@ __webpack_require__(272);
 __webpack_require__(273);
 module.exports = __webpack_require__(274);
 
+
+/***/ }),
+/* 739 */,
+/* 740 */,
+/* 741 */,
+/* 742 */,
+/* 743 */,
+/* 744 */,
+/* 745 */,
+/* 746 */,
+/* 747 */,
+/* 748 */,
+/* 749 */,
+/* 750 */,
+/* 751 */,
+/* 752 */,
+/* 753 */,
+/* 754 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _DefaultAction = __webpack_require__(15);
+
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
+var getInitial = function getInitial() {
+    return {
+        current_page: 1,
+        data: [],
+        from: null,
+        last_page: 1,
+        next_page_url: null,
+        path: '',
+        per_page: 10,
+        prev_page_url: '',
+        to: null,
+        total: 0
+    };
+};
+
+var MyOfferReducer = function MyOfferReducer() {
+    var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+    var action = arguments[1];
+
+    switch (action.type) {
+        case _DefaultAction.FILL_MYOFFER:
+            return Object.assign([], state, action.data);
+        case _DefaultAction.ADD_MYOFFER:
+            var date = action.data.published_date;
+            var article = [];
+
+            if (Object.keys(date).length !== 0 || date.constructor !== Object) {
+                date = new Date(date);
+            }
+
+            article = [].concat(_toConsumableArray(state), [{
+                id: action.id,
+                title: action.data.name,
+                tag: action.data.tag,
+                content: action.data.desc,
+                published_date: date,
+                isEdit: false
+            }]);
+
+            return Object.assign([], state, article);
+        case _DefaultAction.UPDATE_MYOFFER:
+            date = action.data.published_date;
+            article = [];
+            if (Object.keys(date).length !== 0 || date.constructor !== Object) {
+                date = new Date(date);
+            }
+
+            idx = state.map(function (e) {
+                return e.id;
+            }).indexOf(action.data.id);
+            article = [].concat(_toConsumableArray(state.slice(0, idx)), [{
+                id: action.id,
+                title: action.data.name,
+                tag: action.data.tag,
+                content: action.data.desc,
+                published_date: date,
+                isEdit: false
+            }], _toConsumableArray(state.slice(idx + 1)));
+            return Object.assign([], state, article);
+        case _DefaultAction.EDIT_MYOFFER:
+            article = state.map(function (t) {
+                if (state.id !== action.data) {
+                    return state;
+                }
+
+                return Object.assign({}, state, {
+                    isEdit: !state.isEdit
+                });
+            });
+
+            return article;
+        case _DefaultAction.REMOVE_MYOFFER:
+            article = state.map(function (t) {
+                var idx = state.map(function (e) {
+                    return e.id;
+                }).indexOf(action.data);
+                if (idx > -1) {
+                    return [].concat(_toConsumableArray(state.slice(0, idx)), _toConsumableArray(state.slice(idx + 1)));
+                }
+                return state;
+            });
+
+            return article;
+        default:
+            return state;
+    }
+};
+
+exports.default = MyOfferReducer;
 
 /***/ })
 /******/ ]);

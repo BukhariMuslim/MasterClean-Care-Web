@@ -28,6 +28,11 @@ export const ADD_OFFER = 'ADD_OFFER'
 export const EDIT_OFFER = 'EDIT_OFFER'
 export const UPDATE_OFFER = 'UPDATE_OFFER'
 export const REMOVE_OFFER = 'REMOVE_OFFER'
+export const FILL_MYOFFER = 'FILL_MYOFFER'
+export const ADD_MYOFFER = 'ADD_MYOFFER'
+export const EDIT_MYOFFER = 'EDIT_MYOFFER'
+export const UPDATE_MYOFFER = 'UPDATE_MYOFFER'
+export const REMOVE_MYOFFER = 'REMOVE_MYOFFER'
 export const FILL_ORDER = 'FILL_ORDER'
 export const ADD_ORDER = 'ADD_ORDER'
 export const EDIT_ORDER = 'EDIT_ORDER'
@@ -146,6 +151,26 @@ export function updateOffer(data) {
 
 export function removeOffer(index) {
     return { type: REMOVE_OFFER, data: index }
+}
+
+export function fillMyOffer(data) {
+    return { type: FILL_MYOFFER, data: data }
+}
+
+export function addMyOffer(data) {
+    return { type: ADD_MYOFFER, data: data }
+}
+
+export function editMyOffer(index) {
+    return { type: EDIT_MYOFFER, data: index }
+}
+
+export function updateMyOffer(data) {
+    return { type: UPDATE_MYOFFER, data: data }
+}
+
+export function removeMyOffer(index) {
+    return { type: REMOVE_MYOFFER, data: index }
 }
 
 export function fillOrder(data) {

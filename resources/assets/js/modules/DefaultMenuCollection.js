@@ -18,7 +18,7 @@ const DefaultMenuCollection = [
     label: 'Penawaran',
     link: '/offer',
     iconLabel: 'business_center',
-    allowUser: [0, 1, 2, 3],
+    allowUser: [0, 1, 3],
   },
   {
     id: 4,

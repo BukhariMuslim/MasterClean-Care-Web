@@ -16,13 +16,14 @@ class Home extends Component {
   }
 
   componentDidMount() {
+    console.log(this.props.user)
     this.props.getArt()
     this.props.getOffer()
   }
 
   render() {
     return (
-      <App>
+      <App user={this.props.user}>
         <div className="row">
           <nav className="cyan breadcrumbsNav">
             <div className="nav-wrapper">
@@ -30,62 +31,63 @@ class Home extends Component {
             </div>
           </nav>
           <Paper className="col s12" zDepth={1} style={{ padding: '10px', marginTop: '10px' }}>
-            <div className="col s12">
-              <h5 style={{ marginTop: 35 }}>
-                ART Pendatang Baru
-                <FlatButton
-                  className="right"
-                  label="Lihat Semua"
-                  primary={true}
-                  containerElement={<Link to={"/art"} />}
-                />
-                <div className="clearfix"></div>
-              </h5>
-              <Divider></Divider>
-              <ArtContainer arts={this.props.arts.data || []} maxItem={10} sortBy="created_at" />
-            </div>
-            <div className="col s12">
-              <h5 style={{ marginTop: 35 }}>
-                Penawaran Pekerjaan Tersedia
-                <FlatButton
-                  className="right"
-                  label="Lihat Semua"
-                  primary={true}
-                  containerElement={<Link to={"/offer"} />}
-                />
-                <div className="clearfix"></div>
-              </h5>
-              <Divider></Divider>
-              <OfferContainer offers={this.props.offers.data || []} maxItem={10} sortBy="start_date" />
-            </div>
-            {/* <div className="col s12 m8">
-              <h5 style={{ marginTop: 35 }}>
-                Artikel Terbaru
-                <FlatButton
-                  className="right"
-                  label="Lihat Semua"
-                  primary={true}
-                  containerElement={<Link to={"/article"} />}
-                />
-                <div className="clearfix"></div>
-              </h5>
-              <Divider></Divider>
-              <ArticleContainer maxItem={10} />
-            </div> 
-            <div className="col s12 m4">
-              <h5 style={{ marginTop: 35 }}>
-                ART Terunggul
-                <FlatButton
-                  className="right"
-                  label="Lihat Semua"
-                  primary={true}
-                  containerElement={<Link to={"/art"} />}
-                />
-                <div className="clearfix"></div>
-              </h5>
-              <Divider></Divider>
-              <ArtContainer isFeatured={true} maxItem={10} sortBy="rate" />
-            </div> */}
+            {
+              this.props.user && this.props.user.role_id == 3 ?
+              null
+              :
+              <div className="col s12">
+                <h5 style={{ marginTop: 35 }}>
+                  ART Pendatang Baru
+                  <FlatButton
+                    className="right"
+                    label="Lihat Semua"
+                    primary={true}
+                    containerElement={<Link to={"/art"} />}
+                  />
+                  <div className="clearfix"></div>
+                </h5>
+                <Divider></Divider>
+                <ArtContainer arts={this.props.arts.data || []} maxItem={10} sortBy="created_at" />
+              </div>
+            }
+            {
+              this.props.user && (this.props.user.role_id == 2 || this.props.user.role_id == 3) ?
+              <div className="col s12">
+                <h5 style={{ marginTop: 35 }}>
+                  Penawaran Saya
+                  <FlatButton
+                    className="right"
+                    label="Lihat Semua"
+                    primary={true}
+                    containerElement={<Link to={"/offer/my_offer"} />}
+                  />
+                  <div className="clearfix"></div>
+                </h5>
+                <Divider></Divider>
+                <OfferContainer offers={this.props.myOffers.data || []} maxItem={10} sortBy="start_date" />
+              </div>
+              :
+              null
+            }
+            {
+              this.props.user && this.props.user.role_id != 2 ?
+              null
+              :
+              <div className="col s12">
+                <h5 style={{ marginTop: 35 }}>
+                  Penawaran Pekerjaan Tersedia
+                  <FlatButton
+                    className="right"
+                    label="Lihat Semua"
+                    primary={true}
+                    containerElement={<Link to={"/offer"} />}
+                  />
+                  <div className="clearfix"></div>
+                </h5>
+                <Divider></Divider>
+                <OfferContainer offers={this.props.offers.data || []} maxItem={10} sortBy="start_date" />
+              </div>
+            }
           </Paper>
         </div>
       </App>
