@@ -48,7 +48,8 @@
         ],
         "test": [
             "vendor/bin/phpunit"
-        ]
+        ],
+        "dep": "vendor/bin/dep"
     },
     "config": {
         "preferred-install": "dist",

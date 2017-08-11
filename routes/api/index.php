@@ -7,7 +7,7 @@ require_once(base_path('routes/api/task_list.php'));
 require_once(base_path('routes/api/article.php'));
 require_once(base_path('routes/api/emergency_call.php'));
 require_once(base_path('routes/api/job.php'));
-require_once(base_path('routes/api/critim.php'));
+require_once(base_path('routes/api/critism.php'));
 require_once(base_path('routes/api/language.php'));
 require_once(base_path('routes/api/message.php'));
 require_once(base_path('routes/api/place.php'));
