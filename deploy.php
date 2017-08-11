@@ -54,10 +54,10 @@ task('deploy', [
     'deploy:vendors',
     'deploy:writable',
     'artisan:view:clear',
-    'artisan:route:cache',
+    // 'artisan:route:cache',
     'artisan:optimize',
     'deploy:symlink',
-    'artisan:cache:clear',
+    // 'artisan:cache:clear',
     'deploy:unlock',
     'cleanup',
 ]);
