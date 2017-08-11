@@ -31,8 +31,8 @@ const mapDispatchToProps = (dispatch) => {
             ApiService.onLogout()
             dispatch(logoutUser())
             dispatch(resetLoadingSpin())
-            parent.setState({open:false})
             history.push('/')
+            parent.setState({open:false})
             dispatch(updateSnack({
                 open: true,
                 message: 'Logout Success'

@@ -33,96 +33,6 @@ class MenuItemsTableSeeder extends Seeder
                 ])->save();
             }
 
-            $managementMenuItem = MenuItem::firstOrNew([
-                'menu_id'    => $menu->id,
-                'title'      => 'Management',
-                'url'        => '',
-            ]);
-            if (!$managementMenuItem->exists) {
-                $managementMenuItem->fill([
-                    'target'     => '_self',
-                    'icon_class' => 'voyager-helm',
-                    'color'      => null,
-                    'parent_id'  => null,
-                    'order'      => 2,
-                ])->save();
-            }
-
-            $menuItem = MenuItem::firstOrNew([
-                'menu_id'    => $menu->id,
-                'title'      => 'Users',
-                'url'        => '/admin/users',
-            ]);
-            if (!$menuItem->exists) {
-                $menuItem->fill([
-                    'target'     => '_self',
-                    'icon_class' => 'voyager-person',
-                    'color'      => null,
-                    'parent_id'  => $managementMenuItem->id,
-                    'order'      => 1,
-                ])->save();
-            }
-
-            $menuItem = MenuItem::firstOrNew([
-                'menu_id'    => $menu->id,
-                'title'      => 'Roles',
-                'url'        => route('voyager.roles.index', [], false),
-            ]);
-            if (!$menuItem->exists) {
-                $menuItem->fill([
-                    'target'     => '_self',
-                    'icon_class' => 'voyager-lock',
-                    'color'      => null,
-                    'parent_id'  => $managementMenuItem->id,
-                    'order'      => 2,
-                ])->save();
-            }
-
-            $menuItem = MenuItem::firstOrNew([
-                'menu_id'    => $menu->id,
-                'title'      => 'Media',
-                'url'        => route('voyager.media.index', [], false),
-            ]);
-            if (!$menuItem->exists) {
-                $menuItem->fill([
-                    'target'     => '_self',
-                    'icon_class' => 'voyager-images',
-                    'color'      => null,
-                    'parent_id'  => $managementMenuItem->id,
-                    'order'      => 3,
-                ])->save();
-            }
-
-            $menuItem = MenuItem::firstOrNew([
-                'menu_id'    => $menu->id,
-                'title'      => 'Review Orders',
-                'url'        => '/admin/review-orders',
-            ]);
-            if (!$menuItem->exists) {
-                $menuItem->fill([
-                    'target'     => '_self',
-                    'icon_class' => 'voyager-check',
-                    'color'      => null,
-                    'parent_id'  => $managementMenuItem->id,
-                    'order'      => 4,
-                ])->save();
-            }
-
-            $menuItem = MenuItem::firstOrNew([
-                'menu_id'    => $menu->id,
-                'title'      => 'Wallet Transactions',
-                'url'        => '/admin/wallet-transactions',
-            ]);
-            if (!$menuItem->exists) {
-                $menuItem->fill([
-                    'target'     => '_self',
-                    'icon_class' => 'voyager-dollar',
-                    'color'      => null,
-                    'parent_id'  => $managementMenuItem->id,
-                    'order'      => 5,
-                ])->save();
-            }
-
             $basicMenuItem = MenuItem::firstOrNew([
                 'menu_id'    => $menu->id,
                 'title'      => 'Basic',
@@ -134,7 +44,7 @@ class MenuItemsTableSeeder extends Seeder
                     'icon_class' => 'voyager-receipt',
                     'color'      => null,
                     'parent_id'  => null,
-                    'order'      => 3,
+                    'order'      => 2,
                 ])->save();
             }
 
@@ -225,6 +135,96 @@ class MenuItemsTableSeeder extends Seeder
                     'color'      => null,
                     'parent_id'  => $basicMenuItem->id,
                     'order'      => 6,
+                ])->save();
+            }
+
+            $managementMenuItem = MenuItem::firstOrNew([
+                'menu_id'    => $menu->id,
+                'title'      => 'Management',
+                'url'        => '',
+            ]);
+            if (!$managementMenuItem->exists) {
+                $managementMenuItem->fill([
+                    'target'     => '_self',
+                    'icon_class' => 'voyager-helm',
+                    'color'      => null,
+                    'parent_id'  => null,
+                    'order'      => 3,
+                ])->save();
+            }
+
+            $menuItem = MenuItem::firstOrNew([
+                'menu_id'    => $menu->id,
+                'title'      => 'Users',
+                'url'        => '/admin/users',
+            ]);
+            if (!$menuItem->exists) {
+                $menuItem->fill([
+                    'target'     => '_self',
+                    'icon_class' => 'voyager-person',
+                    'color'      => null,
+                    'parent_id'  => $managementMenuItem->id,
+                    'order'      => 1,
+                ])->save();
+            }
+
+            $menuItem = MenuItem::firstOrNew([
+                'menu_id'    => $menu->id,
+                'title'      => 'Roles',
+                'url'        => route('voyager.roles.index', [], false),
+            ]);
+            if (!$menuItem->exists) {
+                $menuItem->fill([
+                    'target'     => '_self',
+                    'icon_class' => 'voyager-lock',
+                    'color'      => null,
+                    'parent_id'  => $managementMenuItem->id,
+                    'order'      => 2,
+                ])->save();
+            }
+
+            $menuItem = MenuItem::firstOrNew([
+                'menu_id'    => $menu->id,
+                'title'      => 'Media',
+                'url'        => route('voyager.media.index', [], false),
+            ]);
+            if (!$menuItem->exists) {
+                $menuItem->fill([
+                    'target'     => '_self',
+                    'icon_class' => 'voyager-images',
+                    'color'      => null,
+                    'parent_id'  => $managementMenuItem->id,
+                    'order'      => 3,
+                ])->save();
+            }
+
+            $menuItem = MenuItem::firstOrNew([
+                'menu_id'    => $menu->id,
+                'title'      => 'Review Orders',
+                'url'        => '/admin/review-orders',
+            ]);
+            if (!$menuItem->exists) {
+                $menuItem->fill([
+                    'target'     => '_self',
+                    'icon_class' => 'voyager-check',
+                    'color'      => null,
+                    'parent_id'  => $managementMenuItem->id,
+                    'order'      => 4,
+                ])->save();
+            }
+
+            $menuItem = MenuItem::firstOrNew([
+                'menu_id'    => $menu->id,
+                'title'      => 'Wallet Transactions',
+                'url'        => '/admin/wallet-transactions',
+            ]);
+            if (!$menuItem->exists) {
+                $menuItem->fill([
+                    'target'     => '_self',
+                    'icon_class' => 'voyager-dollar',
+                    'color'      => null,
+                    'parent_id'  => $managementMenuItem->id,
+                    'order'      => 5,
                 ])->save();
             }
 

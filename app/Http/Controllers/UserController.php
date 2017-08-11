@@ -535,7 +535,9 @@ class UserController extends Controller
                     });
                 }
                 else if ($key == 'city') {
-                    $user = $user->where('user_contact.city', $input);
+                    $user = $user->whereHas('contact', function($query) use ($input) {
+                        $query->where('name', $input);
+                    });
                 }
                 else if ($key == 'gender'
                     || $key == 'religion'

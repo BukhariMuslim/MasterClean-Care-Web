@@ -76,6 +76,7 @@ class ArtPage extends Component {
 
   componentDidMount() {
     this.props.getArt()
+    // if (this.props.)
     this.loadInitialData()
   }
 
@@ -268,7 +269,7 @@ class ArtPage extends Component {
 
     if (city) {
       queryString.push('city=' + encodeURIComponent(city))
-      tempCriteria.push('Kota ' + `"${this.state.cityItem[this.state.cityItem.findIndex(x => x.place_id == city)].name}"`)
+      tempCriteria.push('Kota ' + `"${this.state.cityItem[this.state.cityItem.findIndex(x => x.id == city)].name}"`)
     }
 
     if (language && language.length > 0) {
