@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\critism;
+use App\Models\Critism;
 use Illuminate\Http\Request;
 use Exception;
 
@@ -57,10 +57,10 @@ class CritismController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\critism  $critism
+     * @param  \App\Models\Critism  $critism
      * @return \Illuminate\Http\Response
      */
-    public function show(critism $critism)
+    public function show(Critism $critism)
     {
         return $critism;
     }
@@ -68,10 +68,10 @@ class CritismController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\critism  $critism
+     * @param  \App\Models\Critism  $critism
      * @return \Illuminate\Http\Response
      */
-    public function edit(critism $critism)
+    public function edit(Critism $critism)
     {
         //
     }
@@ -80,10 +80,10 @@ class CritismController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\critism  $critism
+     * @param  \App\Models\Critism  $critism
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, critism $critism)
+    public function update(Request $request, Critism $critism)
     {
         $data = $request->all();
 
@@ -112,10 +112,10 @@ class CritismController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\critism  $critism
+     * @param  \App\Models\Critism  $critism
      * @return \Illuminate\Http\Response
      */
-    public function destroy(critism $critism)
+    public function destroy(Critism $critism)
     {
         $critism->delete();
 
