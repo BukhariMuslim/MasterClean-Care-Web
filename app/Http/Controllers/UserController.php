@@ -321,8 +321,8 @@ class UserController extends Controller
             if (array_key_exists('status', $data)) {
                 $user->status = $data['status'];
             }
-            if (array_key_exists('status_activation', $data)) {
-                $user->status_activation = $data['status_activation'];
+            if (array_key_exists('activation', $data)) {
+                $user->status_activation = $data['activation'];
             }
 
             $user->save();
