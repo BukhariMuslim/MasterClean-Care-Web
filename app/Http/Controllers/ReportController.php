@@ -94,6 +94,9 @@ class ReportController extends Controller
             if (array_key_exists('user_id', $data)) {
                 $data->user_id = $data['user_id'];
             }
+            if (array_key_exists('reporter_id', $data)) {
+                $data->reporter_id = $data['reporter_id'];
+            }
             if (array_key_exists('remark', $data)) {
                 $data->remark = $data['remark'];
             }
