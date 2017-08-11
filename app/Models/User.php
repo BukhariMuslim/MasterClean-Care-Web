@@ -29,7 +29,7 @@ class User extends Authenticatable
         'user_type',
         'description',
         'status',
-        'status_activation',
+        'activation',
     ];
 
     /**
