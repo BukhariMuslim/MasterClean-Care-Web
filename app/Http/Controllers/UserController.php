@@ -154,13 +154,13 @@ class UserController extends Controller
             // Save Contact
             $user->contact()->create($data['contact']);
 
-            if ($user->role_id == 1) {
+            if ($user->role_id == 2) {
                 // Initial Wallet
                 $user_wallet = new UserWallet;
                 $user_wallet->amt = 0; 
                 $user->user_wallet()->save($user_wallet);
             }
-            else if ($user->role_id == 2)
+            else if ($user->role_id == 3)
             {
                 // Save Wallet
                 $user->user_wallet()->create($data['user_wallet']);
