@@ -57,7 +57,7 @@ task('deploy', [
     // 'artisan:route:cache',
     'artisan:optimize',
     'deploy:symlink',
-    // 'artisan:cache:clear',
+    'artisan:cache:clear',
     'deploy:unlock',
     'cleanup',
 ]);
