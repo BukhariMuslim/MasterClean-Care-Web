@@ -336,7 +336,7 @@ class UserController extends Controller
             // Update Wallet
             if (array_key_exists('user_wallet', $data)) {
                 $user->user_wallet()->delete();
-                $user->user_wallet()->createMany($data['user_wallet']);
+                $user->user_wallet()->create($data['user_wallet']);
             }
 
             // Update Language
