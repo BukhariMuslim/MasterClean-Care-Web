@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Models\AdditionalInfo;
 use App\Models\Article;
 use App\Models\Comment;
+use App\Models\Critism;
 use App\Models\EmergencyCall;
 use App\Models\Job;
 use App\Models\Language;
@@ -49,6 +50,7 @@ class RouteServiceProvider extends ServiceProvider
 
         Route::model('info_id', AdditionalInfo::class);
         Route::model('article_id', Article::class);
+        Route::model('critism_id', Critism::class);
         Route::model('comment_id', Comment::class);
         Route::model('emergency_call_id', EmergencyCall::class);
         Route::model('message_id', Message::class);

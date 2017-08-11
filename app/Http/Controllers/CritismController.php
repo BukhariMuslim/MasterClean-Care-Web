@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Report;
+use App\Models\critism;
 use Illuminate\Http\Request;
 use Exception;
 
-class ReportController extends Controller
+class CritismController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +15,7 @@ class ReportController extends Controller
      */
     public function index()
     {
-        return Report::all();
+        return Critism::all();
     }
 
     /**
@@ -43,9 +43,9 @@ class ReportController extends Controller
                 $data = $data['data'];
             }
 
-            $report = Report::create($data);
+            $critism = Report::create($data);
 
-            return response()->json([ 'data' => $report, 
+            return response()->json([ 'data' => $critism, 
                                       'status' => 201]);
         }
         catch(Exception $e) {
@@ -57,21 +57,21 @@ class ReportController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Report  $report
+     * @param  \App\Models\critism  $critism
      * @return \Illuminate\Http\Response
      */
-    public function show(Report $report)
+    public function show(critism $critism)
     {
-        return $report;
+        return $critism;
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Report  $report
+     * @param  \App\Models\critism  $critism
      * @return \Illuminate\Http\Response
      */
-    public function edit(Report $report)
+    public function edit(critism $critism)
     {
         //
     }
@@ -80,10 +80,10 @@ class ReportController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Report  $report
+     * @param  \App\Models\critism  $critism
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Report $report)
+    public function update(Request $request, critism $critism)
     {
         $data = $request->all();
 
@@ -91,19 +91,16 @@ class ReportController extends Controller
             if (array_key_exists('data', $data)) {
                 $data = $data['data'];
             }
-            if (array_key_exists('user_id', $data)) {
-                $report->user_id = $data['user_id'];
+            if (array_key_exists('email', $data)) {
+                $critism->email = $data['email'];
             }
-            if (array_key_exists('reporter_id', $data)) {
-                $report->reporter_id = $data['reporter_id'];
-            }
-            if (array_key_exists('remark', $data)) {
-                $report->remark = $data['remark'];
+            if (array_key_exists('content', $data)) {
+                $critism->content = $data['content'];
             }
 
-            $report->save();
+            $critism->save();
 
-            return response()->json([ 'data' => $report, 
+            return response()->json([ 'data' => $critism, 
                                       'status' => 200]);
         }
         catch(Exception $e) {
@@ -115,31 +112,14 @@ class ReportController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Report  $report
+     * @param  \App\Models\critism  $critism
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Report $report)
+    public function destroy(critism $critism)
     {
-        $report->delete();
+        $critism->delete();
 
         return response()->json([ 'message' => 'Deleted Success', 
                                   'status' => 200]);
-    }
-
-    /**
-     * Display a listing of the ART resource.
-     *
-     * @param  \App\Models\User  $User
-     * @return \Illuminate\Http\Response
-     */
-    public function getByUser(User $user)
-    {
-        $report = Report::with([
-                'user',
-            ])
-            ->where('user_id', $user->id)
-            ->get();
-
-        return $users;
     }
 }
