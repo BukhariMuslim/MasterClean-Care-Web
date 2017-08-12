@@ -1,2 +1,4 @@
 *
+!users/
+!users/*
 !.gitignore
