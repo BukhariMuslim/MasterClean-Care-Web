@@ -24,6 +24,7 @@ use Route;
 
 class UserController extends Controller
 {
+    // comment added
     use ImageTrait;
 
     /**
