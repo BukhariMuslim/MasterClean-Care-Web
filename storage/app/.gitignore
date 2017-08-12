@@ -1,5 +1,4 @@
 *
 !public/
-!public/users/
 !public/users/*
 !.gitignore
