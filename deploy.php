@@ -31,15 +31,11 @@ set('writable_use_sudo', false);
 set('permission_method', 'chmod_777');
 set('http_user', 'root');
 // set('git_tty', true); // [Optional] Allocate tty for git on first deployment
-set('shared_files',
+add('shared_files',
     ['.env', 'resources/assets/js/lib/pusher-conf.js']
 );
 set('shared_dirs', [
-    'storage/app',
-    'storage/framework/cache',
-    'storage/framework/sessions',
-    'storage/framework/views',
-    'storage/logs',
+    'storage', 
     'public/images', 
     'public/users', 
     'public/api',
@@ -77,7 +73,6 @@ task('deploy', [
     'artisan:view:clear',
     // 'artisan:route:cache',
     'artisan:optimize',
-    'deploy:public_disk',
     'deploy:symlink',
     'artisan:cache:clear',
     'deploy:unlock',
