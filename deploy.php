@@ -73,6 +73,7 @@ task('deploy', [
     'artisan:view:clear',
     // 'artisan:route:cache',
     'artisan:optimize',
+    'deploy:public_disk',
     'deploy:symlink',
     'artisan:cache:clear',
     'deploy:unlock',
