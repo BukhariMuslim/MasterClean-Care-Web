@@ -35,7 +35,11 @@ set('shared_files',
     ['.env', 'resources/assets/js/lib/pusher-conf.js']
 );
 set('shared_dirs', [
-    'storage', 
+    'storage/app',
+    'storage/framework/cache',
+    'storage/framework/sessions',
+    'storage/framework/views',
+    'storage/logs',
     'public/images', 
     'public/users', 
     'public/api',
