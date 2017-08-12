@@ -31,11 +31,26 @@ set('writable_use_sudo', false);
 set('permission_method', 'chmod_777');
 set('http_user', 'root');
 // set('git_tty', true); // [Optional] Allocate tty for git on first deployment
-add('shared_files',
+set('shared_files',
     ['.env', 'resources/assets/js/lib/pusher-conf.js']
 );
-set('shared_dirs', ['storage', 'public/images', 'public/users', 'public/api']);
-set('writable_dirs', ['storage', 'bootstrap/cache']);
+set('shared_dirs', [
+    'storage', 
+    'public/images', 
+    'public/users', 
+    'public/api',
+]);
+set('writable_dirs', [
+    'bootstrap/cache',
+    'storage',
+    'storage/app',
+    'storage/app/public',
+    'storage/framework',
+    'storage/framework/cache',
+    'storage/framework/sessions',
+    'storage/framework/views',
+    'storage/logs',
+]);
 // add('shared_dirs', []);
 // add('writable_dirs', []);
 inventory('hosts.yml');
