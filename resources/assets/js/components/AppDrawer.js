@@ -18,6 +18,7 @@ import Header from './Header'
 
 const BgImg = '/img/bg.jpg'
 const LockImg = '/img/lock.jpg'
+const LogoImg = '/img/logo.png'
 
 class AppDrawer extends Component {
   constructor(props) {
@@ -69,7 +70,14 @@ class AppDrawer extends Component {
       <div>
         {/*iconElementLeft={<IconButton><ActionHome onClick={() => this.onAddTodoItemClick(this.props.history, this.state.actHome)}/></IconButton>}*/}
         <AppBar
-          title="Master Clean & Care"
+          title={
+            <div>
+              <img src={LogoImg} style={{height: 32, width: 'auto', verticalAlign: 'middle', marginRight: 10 }} alt="Master Clean &amp; Care"/>
+              <span style={{ verticalAlign: 'middle' }}>
+                Master Clean &amp; Care
+              </span>
+            </div>
+          }
           iconElementLeft={
             <IconButton onTouchTap={() => this.handleToggle()} ><FontIcon className="material-icons">dehaze</FontIcon></IconButton>
           }
