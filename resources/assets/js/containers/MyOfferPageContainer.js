@@ -33,13 +33,13 @@ const mapDispatchToProps = (dispatch) => {
         function (response) {
           dispatch(resetLoadingSpin())
           let data = response
-          if (data.status === 200) {
-            if (data.data) {
+          if (data.data) {
               data = data.data
+            }
+            if (data.status != 403) {
               self.props.getMyOffer(data.id)
               dispatch(loginAuth(data))
             }
-          }
         },
         function (error) {
           dispatch(resetLoadingSpin())
@@ -63,7 +63,7 @@ const mapDispatchToProps = (dispatch) => {
             }))
           }
           else {
-            self.props.history.push('/offer/my_offer/' + queryString)
+            self.props.history.push('/my_offer/' + queryString)
             dispatch(fillOffer(data.data))
           }
         },
@@ -77,7 +77,6 @@ const mapDispatchToProps = (dispatch) => {
       )
     },
     getMyOffer: (id, pageNumb) => {
-      console.log('im on it')
       ApiService.onGet(
         '/api/offer/full/user',
         id + '/?page=' + (pageNumb || 1) ,

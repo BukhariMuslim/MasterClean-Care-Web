@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { updateSnack, updateLoadingSpin, resetLoadingSpin, fillArt, fillOffer, fillMyOffer } from '../actions/DefaultAction'
+import { updateSnack, updateLoadingSpin, resetLoadingSpin, fillArt, fillOffer, fillMyOffer, fillOrder } from '../actions/DefaultAction'
 import Home from '../components/Home'
 import {
   withRouter,
@@ -11,6 +11,7 @@ const mapStateToProps = (state) => {
   return {
     user: state.UserLoginReducer,
     arts: state.ArtReducer,
+    orders: state.OrderReducer,
     offers: state.OfferReducer,
     myOffers: state.MyOfferReducer,
   }
@@ -40,6 +41,7 @@ const mapDispatchToProps = (dispatch) => {
             }
             if (data.status != 403) {
               self.props.getMyOffer(data.id)
+              self.props.getMyOrder(data.id)
               dispatch(loginAuth(data))
             }
           }
@@ -114,6 +116,30 @@ const mapDispatchToProps = (dispatch) => {
           }
           else {
             dispatch(fillOffer(data.data))
+          }
+        },
+        function (error) {
+          dispatch(updateSnack({
+            open: true,
+            message: error.name + ": " + error.message
+          }))
+        }
+      )
+    },
+    getMyOrder: (id, pageNumb) => {
+      ApiService.onGet(
+        '/api/order/full/user',
+        id + '/?page=' + (pageNumb || 1) ,
+        function (response) {
+          let data = response
+          if (data.status != 200) {
+            dispatch(updateSnack({
+              open: true,
+              message: data.message
+            }))
+          }
+          else {
+            dispatch(fillOrder(data.data))
           }
         },
         function (error) {

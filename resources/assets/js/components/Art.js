@@ -174,7 +174,10 @@ class Art extends Component {
                 </GridList>
               </div>
             :
-            null
+            this.props.maxItem ?
+              <small>Tidak ada ART ditemukan.</small>
+              :
+              null
         }
       </div>
     )

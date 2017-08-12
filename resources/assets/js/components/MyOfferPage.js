@@ -150,7 +150,7 @@ class MyOfferPage extends Component {
   resetForm() {
     this.setState(this.baseState)
     this.loadInitialData()
-    this.props.history.push('/offer/my_offer')
+    this.props.history.push('/my_offer')
   }
 
   submitHandler(e) {

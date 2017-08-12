@@ -23,7 +23,7 @@ const DefaultMenuCollection = [
   {
     id: 4,
     label: 'Penawaran Saya',
-    link: '/offer/my_offer',
+    link: '/my_offer',
     iconLabel: 'business_center',
     allowUser: [2, 3],
   },

@@ -124,7 +124,7 @@ class OrderPage extends Component {
       this.props.onSubmit(this, this.props.location.search + '&page=' + (newPage + 1))
     }
     else {
-		  this.props.getOrder(newPage + 1)
+		  this.props.getMyOrder(this.props.user.id, newPage + 1)
     }
   }
 

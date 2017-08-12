@@ -14,6 +14,7 @@ import OfferPageContainer from '../containers/OfferPageContainer'
 import OrderPageContainer from '../containers/OrderPageContainer'
 import NotFound from '../components/NotFound'
 import HomeContainer from '../containers/HomeContainer'
+import ApiService from './ApiService'
 
 const mapStateToProps = (state) => {
   return {
@@ -30,21 +31,6 @@ class routesElement extends Component {
     super(props)
   }
 
-  requireAuth(store) {
-    return (nextState, replace) => {
-      const state = store.getState()
-
-      console.log(state)
-
-      // if (state) {
-      //     replace({
-      //         pathname: '/login',
-      //         state: { nextPathname: nextState.location.pathname }
-      //     })
-      // }
-    }
-  }
-
   render() {
     return (
       <Switch>
@@ -56,8 +42,8 @@ class routesElement extends Component {
         <Route path="/member/:memberId" component={MemberDetailContainer} />
         <Route path="/art/:artId" component={ArtPageContainer} />
         <Route path="/art" component={ArtPageContainer} />
-        <Route path="/offer/my_offer/:offerId" component={MyOfferPageContainer} />
-        <Route path="/offer/my_offer" component={MyOfferPageContainer} />
+        <Route path="/my_offer/:offerId" component={MyOfferPageContainer} />
+        <Route path="/my_offer" component={MyOfferPageContainer} />
         <Route path="/offer/:offerId" component={OfferPageContainer} />
         <Route path="/offer" component={OfferPageContainer} />
         <Route path="/order/:orderId" component={OrderPageContainer} />

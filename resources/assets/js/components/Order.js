@@ -204,7 +204,10 @@ class Order extends Component {
               {this.orderList(orders)}
             </GridList>
             :
-            null
+            this.props.maxItem ?
+              <small>Tidak ada Pemesanan ditemukan.</small>
+              :
+              null
         }
       </div>
     )
