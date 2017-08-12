@@ -28,6 +28,7 @@ class UserTableSeeder extends Seeder
                 'description' => '',
                 'status' => 1,
                 'activation' => 1,
+                'created_at' => new Carbon(),
             ],
             [
                 'name' => 'Art 1',
@@ -43,6 +44,7 @@ class UserTableSeeder extends Seeder
                 'description' => '',
                 'status' => 1,
                 'activation' => 1,
+                'created_at' => new Carbon(),
             ],
             [
                 'name' => 'Art 2',
@@ -58,6 +60,7 @@ class UserTableSeeder extends Seeder
                 'description' => '',
                 'status' => 1,
                 'activation' => 1,
+                'created_at' => new Carbon(),
             ],
             [
                 'name' => 'Art 3',
@@ -73,6 +76,7 @@ class UserTableSeeder extends Seeder
                 'description' => '',
                 'status' => 0,
                 'activation' => 1,
+                'created_at' => new Carbon(),
             ],
             [
                 'name' => 'Member 1',
@@ -88,6 +92,7 @@ class UserTableSeeder extends Seeder
                 'description' => '',
                 'status' => 1,
                 'activation' => 1,
+                'created_at' => new Carbon(),
             ],
             [
                 'name' => 'Member 2',
@@ -103,6 +108,7 @@ class UserTableSeeder extends Seeder
                 'description' => '',
                 'status' => 1,
                 'activation' => 1,
+                'created_at' => new Carbon(),
             ],
             [
                 'name' => 'Art 4',
@@ -118,6 +124,7 @@ class UserTableSeeder extends Seeder
                 'description' => '',
                 'status' => 1,
                 'activation' => 1,
+                'created_at' => new Carbon(),
             ],
             [
                 'name' => 'Art 5',
@@ -133,6 +140,7 @@ class UserTableSeeder extends Seeder
                 'description' => '',
                 'status' => 1,
                 'activation' => 1,
+                'created_at' => new Carbon(),
             ],
             [
                 'name' => 'Andi',
@@ -148,6 +156,7 @@ class UserTableSeeder extends Seeder
                 'description' => '',
                 'status' => 1,
                 'activation' => 1,
+                'created_at' => new Carbon(),
             ],
             [
                 'name' => 'Budi',
@@ -163,6 +172,7 @@ class UserTableSeeder extends Seeder
                 'description' => '',
                 'status' => 1,
                 'activation' => 1,
+                'created_at' => new Carbon(),
             ],
             [
                 'name' => 'Cici',
@@ -178,6 +188,7 @@ class UserTableSeeder extends Seeder
                 'description' => '',
                 'status' => 1,
                 'activation' => 1,
+                'created_at' => new Carbon(),
             ],
             [
                 'name' => 'Dodi',
@@ -193,6 +204,7 @@ class UserTableSeeder extends Seeder
                 'description' => '',
                 'status' => 1,
                 'activation' => 1,
+                'created_at' => new Carbon(),
             ],
             [
                 'name' => 'evi',
@@ -208,6 +220,7 @@ class UserTableSeeder extends Seeder
                 'description' => '',
                 'status' => 1,
                 'activation' => 1,
+                'created_at' => new Carbon(),
             ],
             [
                 'name' => 'feri',
@@ -223,6 +236,7 @@ class UserTableSeeder extends Seeder
                 'description' => '',
                 'status' => 1,
                 'activation' => 1,
+                'created_at' => new Carbon(),
             ],
             [
                 'name' => 'gina',
@@ -238,6 +252,7 @@ class UserTableSeeder extends Seeder
                 'description' => '',
                 'status' => 1,
                 'activation' => 1,
+                'created_at' => new Carbon(),
             ],
             [
                 'name' => 'heri',
@@ -253,6 +268,7 @@ class UserTableSeeder extends Seeder
                 'description' => '',
                 'status' => 1,
                 'activation' => 1,
+                'created_at' => new Carbon(),
             ],
             [
                 'name' => 'ina',
@@ -268,6 +284,7 @@ class UserTableSeeder extends Seeder
                 'description' => '',
                 'status' => 1,
                 'activation' => 1,
+                'created_at' => new Carbon(),
             ],
             [
                 'name' => 'joko',
@@ -283,6 +300,7 @@ class UserTableSeeder extends Seeder
                 'description' => '',
                 'status' => 1,
                 'activation' => 1,
+                'created_at' => new Carbon(),
             ],
         ]);
     }
