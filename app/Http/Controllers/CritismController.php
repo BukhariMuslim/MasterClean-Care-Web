@@ -43,7 +43,7 @@ class CritismController extends Controller
                 $data = $data['data'];
             }
 
-            $critism = Report::create($data);
+            $critism = Critism::create($data);
 
             return response()->json([ 'data' => $critism, 
                                       'status' => 201]);
