@@ -34,7 +34,7 @@ set('http_user', 'root');
 add('shared_files',
     ['.env', 'resources/assets/js/lib/pusher-conf.js']
 );
-set('shared_dirs', ['storage', 'storage/app/public', 'public/images', 'public/users', 'public/api']);
+set('shared_dirs', ['storage', 'public/images', 'public/users', 'public/api']);
 set('writable_dirs', ['storage', 'bootstrap/cache']);
 // add('shared_dirs', []);
 // add('writable_dirs', []);
