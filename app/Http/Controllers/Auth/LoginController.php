@@ -95,7 +95,6 @@ class LoginController extends Controller
                     return response()->json([ 'message' => '',
                                                 'status' => 403 ]);    
                 }
-
                 if ($user->role_id != $role_id && $role_id != 0) {
                     return response()->json([ 'message' => 'Akun Anda tidak memiliki hak untuk login',
                                                 'status' => 403 ]);    

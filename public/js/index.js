@@ -30790,6 +30790,8 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+var LogoImg = '/img/logo.png';
+
 var Footer = function (_Component) {
   _inherits(Footer, _Component);
 
@@ -30856,7 +30858,12 @@ var Footer = function (_Component) {
               _react2.default.createElement(
                 'h5',
                 { className: 'white-text' },
-                'Master Clean & Care'
+                _react2.default.createElement('img', { src: LogoImg, style: { height: 64, width: 'auto', verticalAlign: 'middle', marginRight: 10 }, alt: 'Master Clean & Care' }),
+                _react2.default.createElement(
+                  'span',
+                  { style: { verticalAlign: 'middle' } },
+                  'Master Clean & Care'
+                )
               ),
               _react2.default.createElement(
                 'p',
