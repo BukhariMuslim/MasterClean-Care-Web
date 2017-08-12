@@ -7,6 +7,7 @@ require 'recipe/laravel.php';
 set('bin/npm', function () {
     return (string) run('which npm');
 });
+
 desc('Install Yarn packages');
 
 task('npm:install', function () {
@@ -40,17 +41,8 @@ set('shared_dirs', [
     'public/users', 
     'public/api',
 ]);
-set('writable_dirs', [
-    'bootstrap/cache',
-    'storage',
-    'storage/app',
-    'storage/app/public',
-    'storage/framework',
-    'storage/framework/cache',
-    'storage/framework/sessions',
-    'storage/framework/views',
-    'storage/logs',
-]);
+set('writable_dirs', ['storage', 'bootstrap/cache']);
+
 // add('shared_dirs', []);
 // add('writable_dirs', []);
 inventory('hosts.yml');
