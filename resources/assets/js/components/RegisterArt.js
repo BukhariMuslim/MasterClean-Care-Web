@@ -613,6 +613,9 @@ class RegisterArt extends Component {
                     {$imagePreview}
                   </div>
                 </div>
+                <div className="col s12" style={{ marginTop: 10 }}>
+                  
+                </div>
                 <div className="input-field col s12 m6">
                   <FlatButton
                     label="Login"

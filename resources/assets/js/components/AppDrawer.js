@@ -72,10 +72,12 @@ class AppDrawer extends Component {
         <AppBar
           title={
             <div>
-              <img src={LogoImg} style={{height: 32, width: 'auto', verticalAlign: 'middle', marginRight: 10 }} alt="Master Clean &amp; Care"/>
-              <span style={{ verticalAlign: 'middle' }}>
-                Master Clean &amp; Care
-              </span>
+              <Link to="/" style={{ color: 'white'}}>
+                <img src={LogoImg} style={{height: 32, width: 'auto', verticalAlign: 'middle', marginRight: 10 }} alt="Master Clean &amp; Care"/>
+                <span style={{ verticalAlign: 'middle' }}>
+                  Master Clean &amp; Care
+                </span>
+              </Link>
             </div>
           }
           iconElementLeft={

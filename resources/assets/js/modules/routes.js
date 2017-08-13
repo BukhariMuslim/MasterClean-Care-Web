@@ -8,6 +8,8 @@ import RegisterMemberContainer from '../containers/RegisterMemberContainer'
 import RegisterArtContainer from '../containers/RegisterArtContainer'
 import MemberDetailContainer from '../containers/MemberDetailContainer'
 import ProfilePage from '../components/ProfilePage'
+import Term from '../components/Term'
+import TermMobile from '../components/TermMobile'
 import ArtPageContainer from '../containers/ArtPageContainer'
 import MyOfferPageContainer from '../containers/MyOfferPageContainer'
 import OfferPageContainer from '../containers/OfferPageContainer'
@@ -48,6 +50,8 @@ class routesElement extends Component {
         <Route path="/offer" component={OfferPageContainer} />
         <Route path="/order/:orderId" component={OrderPageContainer} />
         <Route path="/order" component={OrderPageContainer} />
+        <Route path="/term" component={Term} />
+        <Route path="/term_mobile" component={TermMobile} />
         <Route path="/*" component={NotFound} />
       </Switch>
     )

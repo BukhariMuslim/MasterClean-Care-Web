@@ -12,9 +12,7 @@ use Illuminate\Http\Request;
 
 Route::post('/check_login', 'Auth\LoginController@doLogin');
 
-Route::post('/check_login_member', 'Auth\LoginController@doLogin')->where('role_id', '2');
-
-Route::post('/check_login_art', 'Auth\LoginController@doLogin')->where('role_id', '3');
+Route::post('/check_login/{role_id}', 'Auth\LoginController@doLogin');
 
 // Route::post('/logout', 'Auth\LoginController@doLogout');
 

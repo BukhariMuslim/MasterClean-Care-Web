@@ -9,6 +9,8 @@ const Breadcrumbs = breadcrumbConfig({
     '/my_offer': 'Penawaran Saya',
     '/order': 'Pemesanan',
     '/profile': 'Profile',
+    '/term': 'Syarat & Ketentuan',
+    '/term_mobile': 'Syarat & Ketentuan',
   },
   dynamicRoutesMap: {
     '/member/:memberId': '{{memberId}}',

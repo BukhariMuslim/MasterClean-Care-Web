@@ -3,9 +3,12 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Helpers\Traits\TimeStampTrait;
 
 class Critism extends Model
 {
+    use TimeStampTrait;
+
     /**
      * The attributes that are mass assignable.
      *

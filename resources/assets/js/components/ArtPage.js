@@ -397,6 +397,7 @@ class ArtPage extends Component {
   }
 
   render() {
+    console.log(this.props.arts)
     return (
       <App>
         <div className="row">

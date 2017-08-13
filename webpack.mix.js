@@ -12,5 +12,14 @@ const { mix } = require('laravel-mix');
  */
 
 mix.react('resources/assets/js/index.js', 'public/js')
-   .sass('resources/assets/sass/materialize.scss', 'public/css')
-   .sass('resources/assets/sass/default.scss', 'public/css');
+  .extract([
+    'react'
+  ])
+  .sass('resources/assets/sass/materialize.scss', 'public/css')
+  .sass('resources/assets/sass/default.scss', 'public/css')
+  .webpackConfig({
+    output: {
+      chunkFilename: `chunks/[name]${mix.config.inProduction ? '.[chunkhash].chunk.js' : '.chunk.js'}`,
+      publicPath: '/',
+    },
+  });
