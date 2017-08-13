@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { updateSnack } from '../actions/DefaultAction'
+import { updateSnack, resetLoadingSpin, updateLoadingSpin, loginAuth } from '../actions/DefaultAction'
 import ProfileDetail from '../components/ProfileDetail'
 import {
   withRouter,
@@ -22,11 +22,49 @@ const mapDispatchToProps = (dispatch) => {
         message: message
       }))
     },
-    getProfile: (id, self) => {
-      let art = {}
+    onUpdateProfile: (self, data) => {
+      dispatch(updateLoadingSpin({
+        show: true,
+      }))
+      ApiService.onPatch(
+        '/api/user',
+        data.id,
+        { data },
+        function (response) {
+          dispatch(resetLoadingSpin())
+          let data = response.data
+
+          if (data.status != 200) {
+            dispatch(updateSnack({
+              open: true,
+              message: data.message
+            }))
+          }
+          else {
+            dispatch(loginAuth(data.user))
+            self.setState({
+              isEdit: false
+            })
+            dispatch(updateSnack({
+              open: true,
+              message: 'Update profile berhasil.'
+            }))
+          }
+        },
+        function (error) {
+          dispatch(resetLoadingSpin())
+          dispatch(updateSnack({
+            open: true,
+            message: error.name + ": " + error.message
+          }))
+        },
+      )
+    },
+    getProfile: (self) => {
+      let user = {}
       ApiService.onGet(
-        '/api/user/art',
-        id,
+        '/api/user/me',
+        '',
         function (response) {
           let data = response
 
@@ -37,9 +75,9 @@ const mapDispatchToProps = (dispatch) => {
             }))
           }
           else {
-            art = data.data
-            const oldProfile = self.state.art
-            self.setState({ art: Object.assign({}, oldProfile, art) })
+            user = data.data
+            const oldProfile = self.state.user
+            self.setState({ user: Object.assign({}, oldProfile, user) })
             self.loadInitialData()
           }
         },
@@ -48,7 +86,7 @@ const mapDispatchToProps = (dispatch) => {
             open: true,
             message: error.name + ": " + error.message
           }))
-          this.setState(art)
+          this.setState(user)
         }
       )
     },

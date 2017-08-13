@@ -1,8 +1,16 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { Link } from 'react-router-dom'
 import { Card, CardActions, CardHeader, CardTitle, CardText, CardMedia } from 'material-ui/Card'
 import { ValidatorForm, TextValidator, SelectValidator, DateValidator } from 'react-material-ui-form-validator'
+import { FormattedDate, FormattedTime } from 'react-intl'
+import {
+  Table,
+  TableBody,
+  TableHeader,
+  TableHeaderColumn,
+  TableRow,
+  TableRowColumn,
+} from 'material-ui/Table'
 import Paper from 'material-ui/Paper'
 import FlatButton from 'material-ui/FlatButton'
 import RaisedButton from 'material-ui/RaisedButton'
@@ -13,6 +21,8 @@ import DatePicker from 'material-ui/DatePicker'
 import TextField from 'material-ui/TextField'
 import MenuItem from 'material-ui/MenuItem'
 import StarComponent from './StarComponent'
+import FontIcon from 'material-ui/FontIcon'
+import IconButton from 'material-ui/IconButton'
 import NumberFormat from 'react-number-format'
 
 const fieldStyle = {
@@ -21,11 +31,11 @@ const fieldStyle = {
 }
 
 const disabledStyle = {
-  color: '#555',
+  color: '#64DD17',
 }
 
 const disabledInputStyle = {
-  color: '#555',
+  color: '#64DD17',
   textAlign: 'right',
 }
 
@@ -41,7 +51,7 @@ class ProfileDetail extends Component {
       workTimeItem: [],
       additionalInfoItem: [],
       cityItem: [],
-      art: {
+      user: {
         email: '',
         password: '',
         re_password: '',
@@ -57,6 +67,7 @@ class ProfileDetail extends Component {
         },
         religion: null,
         race: '',
+        description: '',
         user_type: 2,
         status: 0,
         user_wallet: {
@@ -77,13 +88,15 @@ class ProfileDetail extends Component {
 
     this.baseState = this.state
     this.onChangeHandler = this.onChangeHandler.bind(this)
+    this.onEdit = this.onEdit.bind(this)
+    this.onCancelEdit = this.onCancelEdit.bind(this)
   }
 
   onSelectFieldChangeHandler(name) {
     const form = this
     return function (event, index, value) {
-      let art = form.state.art
-      form.setState({ art: Object.assign({}, art, { [name]: value }) })
+      let user = form.state.user
+      form.setState({ user: Object.assign({}, user, { [name]: value }) })
     }
   }
 
@@ -92,15 +105,15 @@ class ProfileDetail extends Component {
     const value = target.value
     const name = target.name
 
-    let art = this.state.art
-    this.setState({ art: Object.assign({}, art, { [name]: value }) })
+    let user = this.state.user
+    this.setState({ user: Object.assign({}, user, { [name]: value }) })
   }
 
   onChangeDateHandler(name) {
     const form = this
     return function (event, date) {
-      let art = form.state.art
-      form.setState({ art: Object.assign({}, art, { [name]: date }) })
+      let user = form.state.user
+      form.setState({ user: Object.assign({}, user, { [name]: date }) })
     }
   }
 
@@ -117,7 +130,7 @@ class ProfileDetail extends Component {
   }
 
   componentDidMount() {
-    this.props.getProfile(this.props.id, this)
+    this.props.getProfile(this)
   }
 
   onCheckHandler(type, name, isNeedTextBox) {
@@ -125,15 +138,15 @@ class ProfileDetail extends Component {
     return function (event, checked) {
       const target = event.target
       const value = target.value
-      let old = form.state.art[type]
-      const idx = old.findIndex(x => x[name] === value)
-      let art = form.state.art
+      let old = form.state.user[type]
+      const idx = old.findIndex(x => x[name] == value)
+      let user = form.state.user
 
       if (!isNeedTextBox) {
         if (checked && idx === -1) {
-          if (form.state.art[type + 'ErrorText']) {
+          if (form.state.user[type + 'ErrorText']) {
             form.setState({
-              art: Object.assign({}, art, {
+              user: Object.assign({}, user, {
                 [type + 'ErrorText']: ''
               })
             })
@@ -148,9 +161,9 @@ class ProfileDetail extends Component {
       }
       else {
         if (checked && idx === -1) {
-          if (form.state.art[type + 'ErrorText']) {
+          if (form.state.user[type + 'ErrorText']) {
             form.setState({
-              art: Object.assign({}, art, {
+              user: Object.assign({}, user, {
                 [type + 'ErrorText']: ''
               })
             })
@@ -165,7 +178,7 @@ class ProfileDetail extends Component {
         }
       }
       form.setState({
-        art: Object.assign({}, art, {
+        user: Object.assign({}, user, {
           [type]: old
         })
       })
@@ -173,7 +186,7 @@ class ProfileDetail extends Component {
   }
 
   errorText(type) {
-    const text = this.state.art[type]
+    const text = this.state.user[type]
     if (text) {
       const style = {
         fontSize: '12px',
@@ -193,7 +206,7 @@ class ProfileDetail extends Component {
   checkItems(type, collection, isNeedTextBox) {
     if (collection && collection.length > 0) {
       return collection.map((obj, idx) => {
-        const values = this.state.art[type]
+        const values = this.state.user[type]
         let curIdx = -1
         let costEnabled = false
         let name = ''
@@ -219,7 +232,6 @@ class ProfileDetail extends Component {
           <div key={obj.id} className="col s12 valign-wrapper">
             <div className={"col" + (isNeedTextBox ? " s6" : " s12")}>
               <Checkbox
-                labelStyle={disabledStyle}
                 checked={checked}
                 value={obj.id}
                 disabled={!this.state.isEdit}
@@ -233,7 +245,6 @@ class ProfileDetail extends Component {
                 <div className="col s6">
                   <NumberFormat
                     hintText={'Gaji ' + obj.work_time}
-                    inputStyle={disabledInputStyle}
                     thousandSeparator={true}
                     prefix={'Rp. '}
                     value={costEnabled ? values[curIdx].cost : ''}
@@ -242,8 +253,8 @@ class ProfileDetail extends Component {
                     fullWidth={true}
                     name="user_work_time"
                     onChange={(e) => this.onChangeTextHandler(e, curIdx)}
-                    validators={[isNeedTextBox ? ('required') : '']}
-                    errorMessages={[isNeedTextBox ? ('Gaji dibutuhkan') : '']}
+                    validators={ isNeedTextBox && checked ? ['required'] : []}
+                    errorMessages={ isNeedTextBox && checked ? ['Gaji dibutuhkan'] : []}
                     customInput={TextValidator}
                     />
                 </div>
@@ -260,6 +271,19 @@ class ProfileDetail extends Component {
   resetForm() {
     this.setState(this.baseState)
     this.loadInitialData()
+  }
+
+  onChangeTextHandler(e, idx) {
+    const target = e.target
+    const value = target.value
+    const name = target.name
+    
+    let old = this.state.user[name]
+
+    if (idx > -1) {
+      old[idx].cost = target.value
+    }
+    this.setState({ [name]: old })
   }
 
   comments(comments) {
@@ -306,19 +330,19 @@ class ProfileDetail extends Component {
   postHandler(e) {
     e.preventDefault()
     let isValid = true
-    if (this.state.art.user_language.length <= 0) {
+    if (this.state.user.user_language.length <= 0) {
       isValid = false
       this.setState({
         user_languageErrorText: "Pilih minimal 1 Bahasa yang dikuasai.",
       })
     }
-    if (this.state.art.user_job.length <= 0) {
+    if (this.state.user.user_job.length <= 0) {
       isValid = false
       this.setState({
         user_jobErrorText: "Pilih minimal 1 Profesi.",
       })
     }
-    if (this.state.art.user_work_time.length <= 0) {
+    if (this.state.user.user_work_time.length <= 0) {
       isValid = false
       this.setState({
         user_work_timeErrorText: "Pilih minimal 1 Waktu Kerja.",
@@ -326,47 +350,72 @@ class ProfileDetail extends Component {
     }
 
     if (isValid) {
-      this.props.onRegister(
+      this.props.onUpdateProfile(
         this,
         {
-          name: this.state.art.name,
-          email: this.state.art.email,
-          password: this.state.art.password,
-          gender: this.state.art.gender,
-          born_place: this.state.art.born_place,
-          born_date: this.state.art.born_date,
-          contact: this.state.art.contact,
-          religion: this.state.art.religion,
-          race: this.state.art.race,
-          user_type: this.state.art.user_type,
-          status: this.state.art.status,
-          user_wallet: this.state.art.user_wallet,
-          user_language: this.state.art.user_language,
-          user_job: this.state.art.user_job,
-          user_work_time: this.state.art.user_work_time,
-          user_additional_info: this.state.art.user_additional_info,
-          user_document: this.state.art.user_document,
-        }
+          id: this.state.user.id,
+          name: this.state.user.name,
+          email: this.state.user.email,
+          password: this.state.user.password,
+          gender: this.state.user.gender,
+          born_place: this.state.user.born_place,
+          born_date: this.state.user.born_date,
+          contact: {
+            address: this.state.user.contact.address,
+            location: this.state.user.contact.location,
+            emergency_numb: this.state.user.contact.emergency_numb,
+            location: this.state.user.contact.location,
+            phone: this.state.user.contact.phone,
+            city: this.state.user.contact.city.id,
+          },
+          religion: this.state.user.religion,
+          race: this.state.user.race,
+          user_type: this.state.user.user_type,
+          status: this.state.user.status,
+          user_language: this.state.user.user_language,
+          user_job: this.state.user.user_job, 
+          user_work_time: this.state.user.user_work_time,
+          user_additional_info: this.state.user.user_additional_info,
+        },
       )
     }
   }
 
   onError(errors) {
+    console.log(errors)
     this.props.onUpdateSnack(true, "Telah terjadi " + errors.length + " kesalahan. Mohon periksa kembali form ini.")
   }
 
+  onEdit() {
+    this.setState({
+      isEdit: true,
+    })
+  }
+
+  onCancelEdit() {
+    this.setState({
+      isEdit: false,
+    })
+  }
+
   render() {
+    let age = 0
     const calculateAge = (birthday) => {
-      birthday = new Date(birthday)
-      let ageDifMs = Date.now() - birthday.getTime()
-      let ageDate = new Date(ageDifMs)
-      return Math.abs(ageDate.getUTCFullYear() - 1970)
+      if (birthday) {
+        birthday = new Date(birthday)
+        let ageDifMs = Date.now() - birthday.getTime()
+        let ageDate = new Date(ageDifMs)
+        return Math.abs(ageDate.getUTCFullYear() - 1970)
+      }
+      return 0
     }
-    let age = calculateAge(this.state.art.born_date)
+    if (this.props.user) {
+      age = calculateAge(this.props.user.born_date)
+    }
     return (
       <div>
         {
-          this.state.art && this.state.art.name ?
+          this.props.user && this.props.user.name ?
             <ValidatorForm
               ref="form"
               onSubmit={(e) => this.postHandler(e)}
@@ -376,222 +425,406 @@ class ProfileDetail extends Component {
                   <CardMedia
                     className="col s12 m3"
                   >
-                    {/* overlay={<CardTitle title="Overlay title" subtitle="Overlay subtitle" />} */}
-                    <img src={this.state.art.avatar || '/img/profile.png'} alt="" />
+                    <img src={'/image/medium/' + this.props.user.avatar || 'image/medium/users/profile.png'} alt="" />
                   </CardMedia>
                   <div className="col s12 m9" >
-                    {/* <CardTitle 
-                                            title={ <div>{this.state.art.name} <small>({age} tahun)</small></div> } 
-                                            subtitle={ this.state.art.description }
-                                            /> */}
                     <div className="row">
                       <div className="col s12">
-                        {/* <div className="col s12">
-                                                    <h6><b>Detail</b></h6>
-                                                </div> */}
                         <Paper zDepth={0}>
-                          <div className="col s12">
-                            <StarComponent rate={this.state.art.rate} isShowRate={true} />
+                          <div className={ `col s12${ this.state.isEdit ? ' grey-text' : '' }` }>
+                            <h5>
+                              {this.props.user.name || ''} <small>({age} thn)</small>
+                              {
+                                this.state.isEdit ?
+                                <IconButton tooltip="Cancel" iconClassName="material-icons" className="right" onClick={this.onCancelEdit} >
+                                  clear
+                                </IconButton>
+                                :
+                                <IconButton tooltip="Edit" iconClassName="material-icons" className="right" onClick={this.onEdit} >
+                                  create
+                                </IconButton>
+                              }
+                            </h5>
+                          </div>
+                          <div className={ `col s12${ this.state.isEdit ? ' grey-text' : '' }` }>
+                            <StarComponent rate={this.props.user.rate} isShowRate={true} />
+                          </div>
+                          <div className={ `col s12${ this.state.isEdit ? ' grey-text' : '' }` }>
+                            <small>
+                              { this.props.user.description || ''}
+                            </small>
                           </div>
                           <div className="col s12">
-                            <TextValidator
-                              floatingLabelText="Nama"
-                              inputStyle={disabledStyle}
-                              hintText="Nama"
-                              name="name"
-                              fullWidth={true}
-                              underlineShow={this.state.isEdit}
-                              disabled={!this.state.isEdit}
-                              value={this.state.art.name || ''}
-                              onChange={this.onChangeHandler}
-                              autoComplete={false}
-                              validators={['required']}
-                              style={{ fontSize: 32 }}
-                              errorMessages={['Nama dibutuhkan']}
-                            />
-                          </div>
-                          <div className="col s12">
-                            <SelectValidator
-                              floatingLabelText="Gender"
-                              labelStyle={disabledStyle}
-                              hintText="Gender"
-                              value={this.state.art.gender}
-                              fullWidth={true}
-                              underlineShow={this.state.isEdit}
-                              disabled={!this.state.isEdit}
-                              name="gender"
-                              onChange={this.onSelectFieldChangeHandler('gender')}
-                              validators={['required']}
-                              errorMessages={['Gender dibutuhkan']}
+                            <Table
+                              selectable={false}
                             >
-                              <MenuItem value={1} primaryText="Pria" />
-                              <MenuItem value={2} primaryText="Wanita" />
-                            </SelectValidator>
-                          </div>
-                          <div className="col s6" >
-                            <TextValidator
-                              floatingLabelText="Tempat Lahir"
-                              inputStyle={disabledStyle}
-                              hintText="Tempat Lahir"
-                              underlineShow={this.state.isEdit}
-                              disabled={!this.state.isEdit}
-                              value={this.state.art.born_place || ''}
-                              fullWidth={true}
-                              name="born_place"
-                              onChange={this.onChangeHandler}
-                              autoComplete={false}
-                              validators={['required']}
-                              errorMessages={['Tempat Lahir dibutuhkan']}
-                            />
-                          </div>
-                          <div className="col s6" >
-                            <DateValidator
-                              hintText="Tanggal Lahir"
-                              inputStyle={disabledStyle}
-                              floatingLabelText="Tanggal Lahir"
-                              underlineShow={this.state.isEdit}
-                              disabled={!this.state.isEdit}
-                              value={new Date(this.state.art.born_date)}
-                              onChange={this.onChangeDateHandler('born_date')}
-                              name="born_date"
-                              autoOk={true}
-                              fullWidth={true}
-                              formatDate={new DateTimeFormat('id-ID', {
-                                day: 'numeric',
-                                month: 'long',
-                                year: 'numeric',
-                              }).format}
-                              validators={['required']}
-                              errorMessages={['Tanggal Lahir dibutuhkan']}
-                            />
-                          </div>
-                          <div className="col s12">
-                            <SelectValidator
-                              floatingLabelText="Kota"
-                              labelStyle={disabledStyle}
-                              hintText="Kota"
-                              underlineShow={this.state.isEdit}
-                              disabled={!this.state.isEdit}
-                              value={this.state.art.contact ? this.state.art.contact.city : ''}
-                              name="city"
-                              fullWidth={true}
-                              onChange={this.onSelectFieldChangeHandler('city')}
-                              validators={['required']}
-                              errorMessages={['Kota dibutuhkan']}
-                            >
-                              {this.menuItems(this.state.cityItem, this.state.art.contact ? this.state.art.contact.city : '')}
-                            </SelectValidator>
-                          </div>
-                          <div className="col s12">
-                            <TextValidator
-                              hintText="Alamat"
-                              textareaStyle={disabledStyle}
-                              floatingLabelText="Alamat"
-                              underlineShow={this.state.isEdit}
-                              disabled={!this.state.isEdit}
-                              value={this.state.art.contact ? this.state.art.contact.address : ''}
-                              fullWidth={true}
-                              name="address"
-                              onChange={this.onChangeHandler}
-                              autoComplete={false}
-                              multiLine={true}
-                              rows={2}
-                              rowsMax={4}
-                              validators={['required']}
-                              errorMessages={['Alamat dibutuhkan']}
-                            />
-                          </div>
-                          {/* location */}
-                          <div className="col s12">
-                            <SelectValidator
-                              floatingLabelText="Agama"
-                              labelStyle={disabledStyle}
-                              value={this.state.art.religion}
-                              underlineShow={this.state.isEdit}
-                              disabled={!this.state.isEdit}
-                              name="religion"
-                              fullWidth={true}
-                              onChange={this.onSelectFieldChangeHandler('religion')}
-                              validators={['required']}
-                              errorMessages={['Agama dibutuhkan']}
-                            >
-                              <MenuItem value={1} primaryText="Islam" />
-                              <MenuItem value={2} primaryText="Kristen Protestan" />
-                              <MenuItem value={3} primaryText="Kristen Katolik" />
-                              <MenuItem value={4} primaryText="Hindu" />
-                              <MenuItem value={5} primaryText="Buddha" />
-                              <MenuItem value={6} primaryText="Konghucu" />
-                              <MenuItem value={7} primaryText="Lainnya" />
-                            </SelectValidator>
-                          </div>
-                          <div className="col s12">
-                            <TextField
-                              hintText="Suku"
-                              inputStyle={disabledStyle}
-                              floatingLabelText="Suku"
-                              underlineShow={this.state.isEdit}
-                              disabled={!this.state.isEdit}
-                              fullWidth={true}
-                              value={this.state.art.race}
-                              name="race"
-                              onChange={this.onChangeHandler}
-                              autoComplete={false}
-                            />
-                          </div>
-                          <div className="col s12">
-                            <fieldset>
-                              <legend>Bahasa yang dikuasai</legend>
-                              {this.checkItems('user_language', this.state.languageItem)}
-                              {this.errorText('user_languageErrorText')}
-                            </fieldset>
-                          </div>
-                          <div className="col s12">
-                            <fieldset>
-                              <legend>Profesi</legend>
-                              {this.checkItems('user_job', this.state.jobItem)}
-                              {this.errorText('user_jobErrorText')}
-                            </fieldset>
-                          </div>
-                          <div className="col s12">
-                            <fieldset>
-                              <legend>Waktu Kerja</legend>
-                              {this.checkItems('user_work_time', this.state.workTimeItem, true)}
-                              <br />
-                              {this.errorText('user_work_timeErrorText')}
-                              <div></div>
-                            </fieldset>
-                          </div>
-                          <div className="col s12">
-                            <fieldset>
-                              <legend>Informasi Tambahan</legend>
-                              {this.checkItems('user_additional_info', this.state.additionalInfoItem)}
-                            </fieldset>
-                          </div>
-
-                          <div className="input-field col hide-on-small-only m6">&nbsp;
-                                                    </div>
-                          <div className="input-field col s12 m6">
-                            <RaisedButton
-                              className={this.state.isEdit ? '' : ' hide'}
-                              label="Simpan"
-                              fullWidth={true}
-                              type="submit" />
+                              <TableHeader
+                                displaySelectAll={false}
+                                adjustForCheckbox={false}
+                              >
+                                <TableRow>
+                                  <TableHeaderColumn colSpan="2" style={{textAlign: 'center'}}>
+                                    Informasi ART
+                                  </TableHeaderColumn>
+                                </TableRow>
+                              </TableHeader>
+                              <TableBody
+                                displayRowCheckbox={false}
+                              >
+                                <TableRow>
+                                  <TableRowColumn style={{ textAlign: 'right', verticalAlign: 'top' , color: '#888' }}>Nama</TableRowColumn>
+                                  <TableRowColumn className="bold" >
+                                    {
+                                      this.state.isEdit ?
+                                      <TextValidator
+                                        style={{ fontSize: '13px', lineHeight: '13px', height: 'auto'}}
+                                        hintText="Nama"
+                                        value={this.state.user.name}
+                                        fullWidth={true}
+                                        name="name"
+                                        onChange={this.onChangeHandler}
+                                        autoComplete={false}
+                                        validators={['required']}
+                                        errorMessages={['Nama dibutuhkan']}
+                                      />
+                                      :
+                                      this.props.user.name
+                                    }
+                                  </TableRowColumn>
+                                </TableRow>
+                                <TableRow>
+                                  <TableRowColumn style={{ textAlign: 'right', verticalAlign: 'top' , color: '#888' }}>Gender</TableRowColumn>
+                                  <TableRowColumn className="bold" >
+                                    {
+                                      this.state.isEdit ?
+                                      <SelectValidator
+                                        style={{ fontSize: '13px', lineHeight: '13px', height: 'auto'}}
+                                        hintText="Gender"
+                                        value={this.state.user.gender}
+                                        fullWidth={true}
+                                        name="gender"
+                                        onChange={this.onSelectFieldChangeHandler('gender')}
+                                        validators={['required']}
+                                        errorMessages={['Gender dibutuhkan']}
+                                      >
+                                        <MenuItem value={1} primaryText="Pria" />
+                                        <MenuItem value={2} primaryText="Wanita" />
+                                      </SelectValidator>
+                                      :
+                                      this.props.user.gender == 1 ? 'Pria' : 'Wanita' 
+                                    }
+                                  </TableRowColumn>
+                                </TableRow>
+                                <TableRow>
+                                  <TableRowColumn style={{ textAlign: 'right', verticalAlign: 'top' , color: '#888' }}>Tempat / Tanggal Lahir</TableRowColumn>
+                                  <TableRowColumn className="bold" >
+                                    {
+                                      this.state.isEdit ?
+                                      <div>
+                                        <div className="col s12 m6" style={{ paddingLeft: 0 }}>
+                                          <TextValidator
+                                            style={{ fontSize: '13px', lineHeight: '13px', height: 'auto'}}
+                                            hintText="Tempat Lahir"
+                                            value={this.state.user.born_place}
+                                            fullWidth={true}
+                                            name="born_place"
+                                            onChange={this.onChangeHandler}
+                                            autoComplete={false}
+                                            validators={['required']}
+                                            errorMessages={['Tempat Lahir dibutuhkan']}
+                                          />
+                                        </div>
+                                        <div className="col s12 m6" style={{ paddingRight: 0 }}>
+                                          <DateValidator
+                                            hintText="Tanggal Lahir"
+                                            textFieldStyle={{ fontSize: '13px', lineHeight: '13px', height: 'auto'}}
+                                            value={this.state.user.born_date ? new Date(this.state.user.born_date) : {}}
+                                            onChange={this.onChangeDateHandler('born_date')}
+                                            name="born_date"
+                                            autoOk={true}
+                                            fullWidth={true}
+                                            formatDate={new DateTimeFormat('id-ID', {
+                                              day: 'numeric',
+                                              month: 'long',
+                                              year: 'numeric',
+                                            }).format}
+                                            validators={['required']}
+                                            errorMessages={['Tanggal Lahir dibutuhkan']}
+                                          />
+                                        </div>
+                                      </div>
+                                      :
+                                      <span>
+                                        {this.props.user.born_place || ''}, <FormattedDate value={this.props.user.born_date} day="numeric" month="long" year="numeric" />
+                                      </span>
+                                    }
+                                  </TableRowColumn>
+                                </TableRow>
+                                <TableRow>
+                                  <TableRowColumn style={{ textAlign: 'right', verticalAlign: 'top' , color: '#888' }}>Kota</TableRowColumn>
+                                  <TableRowColumn className="bold" >
+                                    {
+                                      this.state.isEdit ?
+                                      <SelectValidator
+                                        hintText="Kota"
+                                        style={{ fontSize: '13px', lineHeight: '13px', height: 'auto'}}
+                                        value={this.state.user.contact.city.id}
+                                        name="city"
+                                        fullWidth={true}
+                                        onChange={this.onSelectFieldChangeHandler('city')}
+                                        validators={['required']}
+                                        errorMessages={['Kota dibutuhkan']}
+                                      >
+                                        {this.menuItems(this.state.cityItem, this.state.user.contact.city.id)}
+                                      </SelectValidator>
+                                      :
+                                      this.props.user.contact ? this.props.user.contact.city.name : ''
+                                    }
+                                  </TableRowColumn>
+                                </TableRow>
+                                <TableRow>
+                                  <TableRowColumn style={{ textAlign: 'right', verticalAlign: 'top' , color: '#888' }}>Alamat</TableRowColumn>
+                                  <TableRowColumn className="bold" >
+                                    {
+                                      this.state.isEdit ?
+                                      <TextValidator
+                                        hintText="Alamat"
+                                        style={{ fontSize: '13px', lineHeight: '13px', height: 'auto'}}
+                                        value={this.state.user.contact.address}
+                                        fullWidth={true}
+                                        name="address"
+                                        onChange={this.onChangeHandler}
+                                        autoComplete={false}
+                                        multiLine={true}
+                                        rows={2}
+                                        rowsMax={4}
+                                        validators={['required']}
+                                        errorMessages={['Alamat dibutuhkan']}
+                                      />
+                                      :
+                                      this.props.user.contact ? this.props.user.contact.address : ''
+                                    }
+                                  </TableRowColumn>
+                                </TableRow>
+                                <TableRow>
+                                  <TableRowColumn style={{ textAlign: 'right', verticalAlign: 'top' , color: '#888' }}>Agama</TableRowColumn>
+                                  <TableRowColumn className="bold" >
+                                    {
+                                      this.state.isEdit ?
+                                      <SelectValidator
+                                        hintText="Agama"
+                                        style={{ fontSize: '13px', lineHeight: '13px', height: 'auto'}}
+                                        value={this.state.user.religion}
+                                        name="religion"
+                                        fullWidth={true}
+                                        onChange={this.onSelectFieldChangeHandler('religion')}
+                                        validators={['required']}
+                                        errorMessages={['Agama dibutuhkan']}
+                                      >
+                                        <MenuItem value={1} primaryText="Islam" />
+                                        <MenuItem value={2} primaryText="Kristen Protestan" />
+                                        <MenuItem value={3} primaryText="Kristen Katolik" />
+                                        <MenuItem value={4} primaryText="Hindu" />
+                                        <MenuItem value={5} primaryText="Buddha" />
+                                        <MenuItem value={6} primaryText="Konghucu" />
+                                        <MenuItem value={7} primaryText="Lainnya" />
+                                      </SelectValidator>
+                                      :
+                                      this.props.user.religion == 1 ?
+                                      'Islam'
+                                      : this.props.user.religion == 2 ?
+                                      'Kristen Protestan'
+                                      : this.props.user.religion == 3 ?
+                                      'Kristen Katolik'
+                                      : this.props.user.religion == 4 ?
+                                      'Hindu'
+                                      : this.props.user.religion == 5 ?
+                                      'Buddha'
+                                      : this.props.user.religion == 6 ?
+                                      'Konghucu'
+                                      :
+                                      'Lainnya'
+                                    }
+                                  </TableRowColumn>
+                                </TableRow>
+                                <TableRow>
+                                  <TableRowColumn style={{ textAlign: 'right', verticalAlign: 'top' , color: '#888' }}>Suku</TableRowColumn>
+                                  <TableRowColumn className="bold" >
+                                    {
+                                      this.state.isEdit ?
+                                      <TextField
+                                        hintText="Suku"
+                                        style={{ fontSize: '13px', lineHeight: '13px', height: 'auto'}}
+                                        fullWidth={true}
+                                        value={this.state.user.race}
+                                        name="race"
+                                        onChange={this.onChangeHandler}
+                                        autoComplete={false}
+                                      />
+                                      :
+                                      this.props.user.race || '-'
+                                    }
+                                  </TableRowColumn>
+                                </TableRow>
+                                {
+                                  this.props.user.role_id != 3 ?
+                                  null
+                                  :
+                                  <TableRow>
+                                    <TableRowColumn style={{ textAlign: 'right', verticalAlign: 'top' , color: '#888' }}>Bahasa yang Dikuasai</TableRowColumn>
+                                    <TableRowColumn className="bold" >
+                                      {
+                                        this.state.isEdit ?
+                                        <div>
+                                          {this.checkItems('user_language', this.state.languageItem)}
+                                          {this.errorText('user_languageErrorText')}
+                                        </div>
+                                        :
+                                        this.props.user.user_language && this.props.user.user_language.length > 0 ?
+                                        <ul style={{ margin: 0}}>
+                                          {
+                                            this.props.user.user_language.map((language, idx) => (
+                                              <li key={idx} style={{ marginBottom: 5, borderLeft: '5px solid #64DD17'}}>
+                                                &nbsp;{language.language.language}
+                                                <Divider style={{ marginTop: 5}}/>
+                                              </li>
+                                            ))
+                                          }
+                                        </ul>
+                                        :
+                                        '-'
+                                      }
+                                    </TableRowColumn>
+                                  </TableRow>
+                                }
+                                {
+                                  this.props.user.role_id != 3 ?
+                                  null
+                                  :
+                                  <TableRow>
+                                    <TableRowColumn style={{ textAlign: 'right', verticalAlign: 'top' , color: '#888' }}>Profesi</TableRowColumn>
+                                    <TableRowColumn className="bold" >
+                                      {
+                                        this.state.isEdit ?
+                                        <div>
+                                          {this.checkItems('user_job', this.state.jobItem)}
+                                          {this.errorText('user_jobErrorText')}
+                                        </div>
+                                        :
+                                        this.props.user.user_job && this.props.user.user_job.length > 0 ?
+                                        <ul style={{ margin: 0}}>
+                                          {
+                                            this.props.user.user_job.map((job, idx) => (
+                                              <li key={idx} style={{ marginBottom: 5, borderLeft: '5px solid #64DD17'}}>
+                                                &nbsp;{job.job.job}
+                                                <Divider style={{ marginTop: 5}}/>
+                                              </li>
+                                            ))
+                                          }
+                                        </ul>
+                                        :
+                                        '-'
+                                      }
+                                    </TableRowColumn>
+                                  </TableRow>
+                                }
+                                {
+                                  this.props.user.role_id != 3 ?
+                                  null
+                                  :
+                                  <TableRow>
+                                    <TableRowColumn style={{ textAlign: 'right', verticalAlign: 'top' , color: '#888' }}>Waktu Kerja</TableRowColumn>
+                                    <TableRowColumn className="bold" >
+                                      {
+                                        this.state.isEdit ?
+                                        <div>
+                                          {this.checkItems('user_work_time', this.state.workTimeItem, true)}
+                                          <br />
+                                          {this.errorText('user_work_timeErrorText')}
+                                        </div>
+                                        :
+                                        this.props.user.user_work_time && this.props.user.user_work_time.length > 0 ?
+                                        <Table
+                                          selectable={false}
+                                        >
+                                          <TableHeader
+                                            displaySelectAll={false}
+                                            adjustForCheckbox={false}
+                                          >
+                                            <TableRow>
+                                              <TableHeaderColumn tooltip="Waktu Kerja">Waktu Kerja</TableHeaderColumn>
+                                              <TableHeaderColumn tooltip="Upah">Upah</TableHeaderColumn>
+                                            </TableRow>
+                                          </TableHeader>
+                                          <TableBody
+                                            displayRowCheckbox={false}
+                                          >
+                                          {
+                                            this.props.user.user_work_time.map((work_time, idx) => (
+                                              <TableRow key={idx}>
+                                                <TableRowColumn >{work_time.work_time.work_time}</TableRowColumn>
+                                                <TableRowColumn ><NumberFormat value={work_time.cost} displayType={'text'} thousandSeparator={true} prefix={'Rp. '} /></TableRowColumn>
+                                              </TableRow>
+                                            ))
+                                          }
+                                          </TableBody>
+                                        </Table>
+                                        :
+                                        '-'
+                                      }
+                                    </TableRowColumn>
+                                  </TableRow>
+                                }
+                                {
+                                  this.props.user.role_id != 3 ?
+                                  null
+                                  :
+                                  <TableRow>
+                                    <TableRowColumn style={{ textAlign: 'right', verticalAlign: 'top' , color: '#888' }}>Informasi Tambahan</TableRowColumn>
+                                    <TableRowColumn className="bold" >
+                                      {
+                                        this.state.isEdit ?
+                                        this.checkItems('user_additional_info', this.state.additionalInfoItem)
+                                        :
+                                        this.props.user.user_additional_info && this.props.user.user_additional_info.length > 0 ?
+                                        <ul style={{ margin: 0}}>
+                                          {
+                                            this.props.user.user_additional_info.map((additional_info, idx) => (
+                                              <li key={idx} style={{ marginBottom: 5, borderLeft: '5px solid #64DD17'}}>
+                                                &nbsp;{additional_info.additional_info.info}
+                                                <Divider style={{ marginTop: 5}}/>
+                                              </li>
+                                            ))
+                                          }
+                                        </ul>
+                                        :
+                                        '-'
+                                      }
+                                    </TableRowColumn>
+                                  </TableRow>
+                                }
+                              </TableBody>
+                            </Table>
                           </div>
                         </Paper>
                       </div>
                     </div>
                   </div>
-                  {/* <Card className="col s12" style={{ marginTop: '10px', paddingBottom: '10px' }}>
-                                        <CardTitle title="Komentar" />
-                                        <CardText>
-                                            { 
-                                                this.state.art.comment ? 
-                                                this.comments(this.state.art.comment) 
-                                                :
-                                                'Tidak ada komentar.'
-                                            } 
-                                        </CardText>
-                                    </Card> */}
+                  {
+                    this.state.isEdit ?
+                    <div>
+                      <div className="input-field col s12 m8 l10">&nbsp;</div>
+                      <div className="input-field col s12 m4 l2">
+                        <RaisedButton
+                          primary={true}
+                          label="Simpan"
+                          fullWidth={true}
+                          type="submit" />
+                      </div>
+                    </div>
+                    :
+                    null
+                  }
                   <div className="clearfix"></div>
                 </CardText>
               </Card>
@@ -607,7 +840,6 @@ class ProfileDetail extends Component {
 }
 
 ProfileDetail.propTypes = {
-  id: PropTypes.string.isRequired,
   getProfile: PropTypes.func.isRequired,
 }
 

@@ -64,7 +64,7 @@ class Footer extends Component {
         <div className="footer-copyright">
           <div className="container">
             © 2017{this.currentYear()} Master Clean &amp; Care, All rights reserved.
-          <Link className="grey-text text-lighten-4 right" to="#!" >Syarat &amp; Kententuan</Link>
+          <Link className="grey-text text-lighten-4 right" to="/term" >Syarat &amp; Kententuan</Link>
           </div>
         </div>
       </footer>

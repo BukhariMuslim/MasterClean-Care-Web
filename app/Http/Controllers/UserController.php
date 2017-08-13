@@ -89,14 +89,13 @@ class UserController extends Controller
         if (Auth::guard('api')->check()) {
             $user = Auth::guard('api')->user();
             $user->load([
-                'user_additional_info',
+                'user_additional_info.additionalInfo',
                 'user_document',
-                'user_language',
-                'user_job',
+                'user_language.language',
+                'user_job.job',
                 'user_wallet',
-                'user_work_time',
-                'emergency_call',
-                'contact',
+                'user_work_time.workTime',
+                'contact.city',
             ]);
 
             // if ($user->avatar) {
@@ -277,6 +276,10 @@ class UserController extends Controller
         try {
             DB::beginTransaction();
 
+            if (array_key_exists('data', $data)) {
+                $data = $data['data'];
+            }
+            
             if (array_key_exists('name', $data)) {
                 $user->name = $data['name'];
             }
@@ -373,13 +376,13 @@ class UserController extends Controller
             DB::commit();
 
             return response()->json(['user' => $user->load([
-                'user_additional_info',
+                'user_additional_info.additionalInfo',
                 'user_document',
-                'user_language',
-                'user_job',
+                'user_language.language',
+                'user_job.job',
                 'user_wallet',
-                'user_work_time',
-                'contact'
+                'user_work_time.workTime',
+                'contact.city',
             ]), 'status' => 200]);
         }
         catch (Exception $e) {
@@ -546,7 +549,7 @@ class UserController extends Controller
                 ) {
                     $user = $user->where($key, $input);
                 }
-                else {
+                else if ($key == 'name'){
                     $user = $user->where($key, Operators::LIKE, '%'.$input.'%');
                 }
             }

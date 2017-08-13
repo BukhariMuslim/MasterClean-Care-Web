@@ -32,7 +32,7 @@ Route::group(['prefix' => 'user'], function () {
     Route::get('/art/search', 'UserController@searchArt');
 
     Route::get('/me', 'UserController@getCurrent')->middleware(['auth:api']);
-
+    
     Route::get('/{user_id}', 'UserController@show')->where('user_id', '[0-9]+');
 
     // ->middleware(['auth:api']) Delete for Mobile

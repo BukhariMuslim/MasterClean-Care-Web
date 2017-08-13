@@ -493,9 +493,9 @@ class OrderController extends Controller
                         $query->where('name', Operators::LIKE, '%'.$input.'%');
                     });
                 }
-                else {
-                    $order = $order->where($key, Operators::LIKE, '%'.$input.'%');
-                }
+                // else {
+                //     $order = $order->where($key, Operators::LIKE, '%'.$input.'%');
+                // }
             }
             
             return $order->paginate(10);
@@ -564,9 +564,9 @@ class OrderController extends Controller
                         $query->where('name', Operators::LIKE, '%'.$input.'%');
                     });
                 }
-                else {
-                    $order = $order->where($key, Operators::LIKE, '%'.$input.'%');
-                }
+                // else {
+                //     $order = $order->where($key, Operators::LIKE, '%'.$input.'%');
+                // }
             }
             
             return $offer->paginate(10);

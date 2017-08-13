@@ -7139,7 +7139,7 @@ var Footer = function (_Component) {
             ' Master Clean & Care, All rights reserved.',
             _react2.default.createElement(
               _reactRouterDom.Link,
-              { className: 'grey-text text-lighten-4 right', to: '#!' },
+              { className: 'grey-text text-lighten-4 right', to: '/term' },
               'Syarat & Kententuan'
             )
           )
@@ -7314,6 +7314,8 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+var LogoImg = '/img/logo.png';
+
 var Home = function (_Component) {
   _inherits(Home, _Component);
 
@@ -7354,8 +7356,131 @@ var Home = function (_Component) {
             )
           ),
           _react2.default.createElement(
+            'div',
+            { className: 'col s12', style: { marginTop: '35px' } },
+            _react2.default.createElement(
+              'div',
+              { className: 'col hide-on-small-only m2' },
+              '\xA0'
+            ),
+            _react2.default.createElement(
+              'div',
+              { className: 'col s12 m8' },
+              _react2.default.createElement('img', { src: LogoImg, style: { height: 'auto', width: '200px', verticalAlign: 'middle', marginRight: 10, display: 'inline-block' }, alt: 'Master Clean & Care' }),
+              _react2.default.createElement(
+                'span',
+                { style: { verticalAlign: 'middle', display: 'inline-block' } },
+                'Selamat datang di',
+                _react2.default.createElement(
+                  'h4',
+                  null,
+                  _react2.default.createElement(
+                    'span',
+                    { style: { background: '#00bcd4', color: 'white', padding: '2px 5px' } },
+                    'Master Clean & Care'
+                  )
+                ),
+                _react2.default.createElement(
+                  'small',
+                  { style: { color: '#00bcd4' } },
+                  'Temukan solusi kebersihan dan perawatan rumah tangga terbaik.'
+                )
+              )
+            ),
+            _react2.default.createElement(
+              'div',
+              { className: 'col s12' },
+              _react2.default.createElement(_Divider2.default, { style: { marginTop: 40, marginBottom: 40 } })
+            ),
+            _react2.default.createElement(
+              'div',
+              { className: 'col s12' },
+              _react2.default.createElement(
+                'div',
+                { className: 'col s12 m4' },
+                _react2.default.createElement(
+                  'div',
+                  { className: 'center' },
+                  _react2.default.createElement(
+                    'i',
+                    { className: 'material-icons', style: { fontSize: '7rem', color: '#00bcd4' } },
+                    'thumb_up'
+                  ),
+                  _react2.default.createElement(
+                    'p',
+                    null,
+                    'Mudah'
+                  ),
+                  _react2.default.createElement(
+                    'p',
+                    { className: 'light center' },
+                    'Memesan dan mencari menjadi lebih mudah sesuai dengan pilihan dan spesifikasi yang Anda inginkan.'
+                  )
+                )
+              ),
+              _react2.default.createElement(
+                'div',
+                { className: 'col s12 m4' },
+                _react2.default.createElement(
+                  'div',
+                  { className: 'center' },
+                  _react2.default.createElement(
+                    'i',
+                    { className: 'material-icons', style: { fontSize: '7rem', color: '#00bcd4' } },
+                    'lock'
+                  ),
+                  _react2.default.createElement(
+                    'p',
+                    null,
+                    'Aman'
+                  ),
+                  _react2.default.createElement(
+                    'p',
+                    { className: 'light center' },
+                    'Transaksi lebih aman menggunakan sistem ',
+                    _react2.default.createElement(
+                      'i',
+                      null,
+                      'Wallet'
+                    ),
+                    '.'
+                  )
+                )
+              ),
+              _react2.default.createElement(
+                'div',
+                { className: 'col s12 m4' },
+                _react2.default.createElement(
+                  'div',
+                  { className: 'center' },
+                  _react2.default.createElement(
+                    'i',
+                    { className: 'material-icons', style: { fontSize: '7rem', color: '#00bcd4' } },
+                    'location_on'
+                  ),
+                  _react2.default.createElement(
+                    'p',
+                    null,
+                    'Dimana saja'
+                  ),
+                  _react2.default.createElement(
+                    'p',
+                    { className: 'light center' },
+                    'Pesan ART di mana saja disekitar Anda melalui aplikasi ',
+                    _react2.default.createElement(
+                      'i',
+                      null,
+                      'mobile'
+                    ),
+                    '.'
+                  )
+                )
+              )
+            )
+          ),
+          _react2.default.createElement(
             _Paper2.default,
-            { className: 'col s12', zDepth: 1, style: { padding: '10px', marginTop: '10px' } },
+            { className: 'col s12', zDepth: 1, style: { padding: '10px', marginTop: '25px' } },
             this.props.user && this.props.user.role_id == 3 ? null : _react2.default.createElement(
               'div',
               { className: 'col s12' },
@@ -12409,11 +12534,13 @@ var _propTypes = __webpack_require__(1);
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
-var _reactRouterDom = __webpack_require__(10);
-
 var _Card = __webpack_require__(35);
 
 var _reactMaterialUiFormValidator = __webpack_require__(49);
+
+var _reactIntl = __webpack_require__(60);
+
+var _Table = __webpack_require__(89);
 
 var _Paper = __webpack_require__(21);
 
@@ -12455,6 +12582,14 @@ var _StarComponent = __webpack_require__(102);
 
 var _StarComponent2 = _interopRequireDefault(_StarComponent);
 
+var _FontIcon = __webpack_require__(43);
+
+var _FontIcon2 = _interopRequireDefault(_FontIcon);
+
+var _IconButton = __webpack_require__(56);
+
+var _IconButton2 = _interopRequireDefault(_IconButton);
+
 var _reactNumberFormat = __webpack_require__(37);
 
 var _reactNumberFormat2 = _interopRequireDefault(_reactNumberFormat);
@@ -12475,11 +12610,11 @@ var fieldStyle = {
 };
 
 var disabledStyle = {
-  color: '#555'
+  color: '#64DD17'
 };
 
 var disabledInputStyle = {
-  color: '#555',
+  color: '#64DD17',
   textAlign: 'right'
 };
 
@@ -12499,7 +12634,7 @@ var ProfileDetail = function (_Component) {
       workTimeItem: [],
       additionalInfoItem: [],
       cityItem: [],
-      art: {
+      user: {
         email: '',
         password: '',
         re_password: '',
@@ -12515,6 +12650,7 @@ var ProfileDetail = function (_Component) {
         },
         religion: null,
         race: '',
+        description: '',
         user_type: 2,
         status: 0,
         user_wallet: {
@@ -12535,6 +12671,8 @@ var ProfileDetail = function (_Component) {
 
     _this.baseState = _this.state;
     _this.onChangeHandler = _this.onChangeHandler.bind(_this);
+    _this.onEdit = _this.onEdit.bind(_this);
+    _this.onCancelEdit = _this.onCancelEdit.bind(_this);
     return _this;
   }
 
@@ -12543,8 +12681,8 @@ var ProfileDetail = function (_Component) {
     value: function onSelectFieldChangeHandler(name) {
       var form = this;
       return function (event, index, value) {
-        var art = form.state.art;
-        form.setState({ art: Object.assign({}, art, _defineProperty({}, name, value)) });
+        var user = form.state.user;
+        form.setState({ user: Object.assign({}, user, _defineProperty({}, name, value)) });
       };
     }
   }, {
@@ -12554,16 +12692,16 @@ var ProfileDetail = function (_Component) {
       var value = target.value;
       var name = target.name;
 
-      var art = this.state.art;
-      this.setState({ art: Object.assign({}, art, _defineProperty({}, name, value)) });
+      var user = this.state.user;
+      this.setState({ user: Object.assign({}, user, _defineProperty({}, name, value)) });
     }
   }, {
     key: 'onChangeDateHandler',
     value: function onChangeDateHandler(name) {
       var form = this;
       return function (event, date) {
-        var art = form.state.art;
-        form.setState({ art: Object.assign({}, art, _defineProperty({}, name, date)) });
+        var user = form.state.user;
+        form.setState({ user: Object.assign({}, user, _defineProperty({}, name, date)) });
       };
     }
   }, {
@@ -12582,7 +12720,7 @@ var ProfileDetail = function (_Component) {
   }, {
     key: 'componentDidMount',
     value: function componentDidMount() {
-      this.props.getProfile(this.props.id, this);
+      this.props.getProfile(this);
     }
   }, {
     key: 'onCheckHandler',
@@ -12591,17 +12729,17 @@ var ProfileDetail = function (_Component) {
       return function (event, checked) {
         var target = event.target;
         var value = target.value;
-        var old = form.state.art[type];
+        var old = form.state.user[type];
         var idx = old.findIndex(function (x) {
-          return x[name] === value;
+          return x[name] == value;
         });
-        var art = form.state.art;
+        var user = form.state.user;
 
         if (!isNeedTextBox) {
           if (checked && idx === -1) {
-            if (form.state.art[type + 'ErrorText']) {
+            if (form.state.user[type + 'ErrorText']) {
               form.setState({
-                art: Object.assign({}, art, _defineProperty({}, type + 'ErrorText', ''))
+                user: Object.assign({}, user, _defineProperty({}, type + 'ErrorText', ''))
               });
             }
             old.push(_defineProperty({}, name, value));
@@ -12610,9 +12748,9 @@ var ProfileDetail = function (_Component) {
           }
         } else {
           if (checked && idx === -1) {
-            if (form.state.art[type + 'ErrorText']) {
+            if (form.state.user[type + 'ErrorText']) {
               form.setState({
-                art: Object.assign({}, art, _defineProperty({}, type + 'ErrorText', ''))
+                user: Object.assign({}, user, _defineProperty({}, type + 'ErrorText', ''))
               });
             }
             old.push({
@@ -12624,14 +12762,14 @@ var ProfileDetail = function (_Component) {
           }
         }
         form.setState({
-          art: Object.assign({}, art, _defineProperty({}, type, old))
+          user: Object.assign({}, user, _defineProperty({}, type, old))
         });
       };
     }
   }, {
     key: 'errorText',
     value: function errorText(type) {
-      var text = this.state.art[type];
+      var text = this.state.user[type];
       if (text) {
         var style = {
           fontSize: '12px',
@@ -12654,7 +12792,7 @@ var ProfileDetail = function (_Component) {
 
       if (collection && collection.length > 0) {
         return collection.map(function (obj, idx) {
-          var values = _this2.state.art[type];
+          var values = _this2.state.user[type];
           var curIdx = -1;
           var costEnabled = false;
           var name = '';
@@ -12688,7 +12826,6 @@ var ProfileDetail = function (_Component) {
               'div',
               { className: "col" + (isNeedTextBox ? " s6" : " s12") },
               _react2.default.createElement(_Checkbox2.default, {
-                labelStyle: disabledStyle,
                 checked: checked,
                 value: obj.id,
                 disabled: !_this2.state.isEdit,
@@ -12702,7 +12839,6 @@ var ProfileDetail = function (_Component) {
               { className: 'col s6' },
               _react2.default.createElement(_reactNumberFormat2.default, {
                 hintText: 'Gaji ' + obj.work_time,
-                inputStyle: disabledInputStyle,
                 thousandSeparator: true,
                 prefix: 'Rp. ',
                 value: costEnabled ? values[curIdx].cost : '',
@@ -12713,8 +12849,8 @@ var ProfileDetail = function (_Component) {
                 onChange: function onChange(e) {
                   return _this2.onChangeTextHandler(e, curIdx);
                 },
-                validators: [isNeedTextBox ? 'required' : ''],
-                errorMessages: [isNeedTextBox ? 'Gaji dibutuhkan' : ''],
+                validators: isNeedTextBox && checked ? ['required'] : [],
+                errorMessages: isNeedTextBox && checked ? ['Gaji dibutuhkan'] : [],
                 customInput: _reactMaterialUiFormValidator.TextValidator
               })
             ) : null
@@ -12727,6 +12863,20 @@ var ProfileDetail = function (_Component) {
     value: function resetForm() {
       this.setState(this.baseState);
       this.loadInitialData();
+    }
+  }, {
+    key: 'onChangeTextHandler',
+    value: function onChangeTextHandler(e, idx) {
+      var target = e.target;
+      var value = target.value;
+      var name = target.name;
+
+      var old = this.state.user[name];
+
+      if (idx > -1) {
+        old[idx].cost = target.value;
+      }
+      this.setState(_defineProperty({}, name, old));
     }
   }, {
     key: 'comments',
@@ -12774,19 +12924,19 @@ var ProfileDetail = function (_Component) {
     value: function postHandler(e) {
       e.preventDefault();
       var isValid = true;
-      if (this.state.art.user_language.length <= 0) {
+      if (this.state.user.user_language.length <= 0) {
         isValid = false;
         this.setState({
           user_languageErrorText: "Pilih minimal 1 Bahasa yang dikuasai."
         });
       }
-      if (this.state.art.user_job.length <= 0) {
+      if (this.state.user.user_job.length <= 0) {
         isValid = false;
         this.setState({
           user_jobErrorText: "Pilih minimal 1 Profesi."
         });
       }
-      if (this.state.art.user_work_time.length <= 0) {
+      if (this.state.user.user_work_time.length <= 0) {
         isValid = false;
         this.setState({
           user_work_timeErrorText: "Pilih minimal 1 Waktu Kerja."
@@ -12794,48 +12944,74 @@ var ProfileDetail = function (_Component) {
       }
 
       if (isValid) {
-        this.props.onRegister(this, {
-          name: this.state.art.name,
-          email: this.state.art.email,
-          password: this.state.art.password,
-          gender: this.state.art.gender,
-          born_place: this.state.art.born_place,
-          born_date: this.state.art.born_date,
-          contact: this.state.art.contact,
-          religion: this.state.art.religion,
-          race: this.state.art.race,
-          user_type: this.state.art.user_type,
-          status: this.state.art.status,
-          user_wallet: this.state.art.user_wallet,
-          user_language: this.state.art.user_language,
-          user_job: this.state.art.user_job,
-          user_work_time: this.state.art.user_work_time,
-          user_additional_info: this.state.art.user_additional_info,
-          user_document: this.state.art.user_document
+        var _contact;
+
+        this.props.onUpdateProfile(this, {
+          id: this.state.user.id,
+          name: this.state.user.name,
+          email: this.state.user.email,
+          password: this.state.user.password,
+          gender: this.state.user.gender,
+          born_place: this.state.user.born_place,
+          born_date: this.state.user.born_date,
+          contact: (_contact = {
+            address: this.state.user.contact.address,
+            location: this.state.user.contact.location,
+            emergency_numb: this.state.user.contact.emergency_numb
+          }, _defineProperty(_contact, 'location', this.state.user.contact.location), _defineProperty(_contact, 'phone', this.state.user.contact.phone), _defineProperty(_contact, 'city', this.state.user.contact.city.id), _contact),
+          religion: this.state.user.religion,
+          race: this.state.user.race,
+          user_type: this.state.user.user_type,
+          status: this.state.user.status,
+          user_language: this.state.user.user_language,
+          user_job: this.state.user.user_job,
+          user_work_time: this.state.user.user_work_time,
+          user_additional_info: this.state.user.user_additional_info
         });
       }
     }
   }, {
     key: 'onError',
     value: function onError(errors) {
+      console.log(errors);
       this.props.onUpdateSnack(true, "Telah terjadi " + errors.length + " kesalahan. Mohon periksa kembali form ini.");
+    }
+  }, {
+    key: 'onEdit',
+    value: function onEdit() {
+      this.setState({
+        isEdit: true
+      });
+    }
+  }, {
+    key: 'onCancelEdit',
+    value: function onCancelEdit() {
+      this.setState({
+        isEdit: false
+      });
     }
   }, {
     key: 'render',
     value: function render() {
       var _this3 = this;
 
+      var age = 0;
       var calculateAge = function calculateAge(birthday) {
-        birthday = new Date(birthday);
-        var ageDifMs = Date.now() - birthday.getTime();
-        var ageDate = new Date(ageDifMs);
-        return Math.abs(ageDate.getUTCFullYear() - 1970);
+        if (birthday) {
+          birthday = new Date(birthday);
+          var ageDifMs = Date.now() - birthday.getTime();
+          var ageDate = new Date(ageDifMs);
+          return Math.abs(ageDate.getUTCFullYear() - 1970);
+        }
+        return 0;
       };
-      var age = calculateAge(this.state.art.born_date);
+      if (this.props.user) {
+        age = calculateAge(this.props.user.born_date);
+      }
       return _react2.default.createElement(
         'div',
         null,
-        this.state.art && this.state.art.name ? _react2.default.createElement(
+        this.props.user && this.props.user.name ? _react2.default.createElement(
           _reactMaterialUiFormValidator.ValidatorForm,
           {
             ref: 'form',
@@ -12856,7 +13032,7 @@ var ProfileDetail = function (_Component) {
                 {
                   className: 'col s12 m3'
                 },
-                _react2.default.createElement('img', { src: this.state.art.avatar || '/img/profile.png', alt: '' })
+                _react2.default.createElement('img', { src: '/image/medium/' + this.props.user.avatar || 'image/medium/users/profile.png', alt: '' })
               ),
               _react2.default.createElement(
                 'div',
@@ -12872,254 +13048,473 @@ var ProfileDetail = function (_Component) {
                       { zDepth: 0 },
                       _react2.default.createElement(
                         'div',
-                        { className: 'col s12' },
-                        _react2.default.createElement(_StarComponent2.default, { rate: this.state.art.rate, isShowRate: true })
+                        { className: 'col s12' + (this.state.isEdit ? ' grey-text' : '') },
+                        _react2.default.createElement(
+                          'h5',
+                          null,
+                          this.props.user.name || '',
+                          ' ',
+                          _react2.default.createElement(
+                            'small',
+                            null,
+                            '(',
+                            age,
+                            ' thn)'
+                          ),
+                          this.state.isEdit ? _react2.default.createElement(
+                            _IconButton2.default,
+                            { tooltip: 'Cancel', iconClassName: 'material-icons', className: 'right', onClick: this.onCancelEdit },
+                            'clear'
+                          ) : _react2.default.createElement(
+                            _IconButton2.default,
+                            { tooltip: 'Edit', iconClassName: 'material-icons', className: 'right', onClick: this.onEdit },
+                            'create'
+                          )
+                        )
                       ),
                       _react2.default.createElement(
                         'div',
-                        { className: 'col s12' },
-                        _react2.default.createElement(_reactMaterialUiFormValidator.TextValidator, {
-                          floatingLabelText: 'Nama',
-                          inputStyle: disabledStyle,
-                          hintText: 'Nama',
-                          name: 'name',
-                          fullWidth: true,
-                          underlineShow: this.state.isEdit,
-                          disabled: !this.state.isEdit,
-                          value: this.state.art.name || '',
-                          onChange: this.onChangeHandler,
-                          autoComplete: false,
-                          validators: ['required'],
-                          style: { fontSize: 32 },
-                          errorMessages: ['Nama dibutuhkan']
-                        })
+                        { className: 'col s12' + (this.state.isEdit ? ' grey-text' : '') },
+                        _react2.default.createElement(_StarComponent2.default, { rate: this.props.user.rate, isShowRate: true })
+                      ),
+                      _react2.default.createElement(
+                        'div',
+                        { className: 'col s12' + (this.state.isEdit ? ' grey-text' : '') },
+                        _react2.default.createElement(
+                          'small',
+                          null,
+                          this.props.user.description || ''
+                        )
                       ),
                       _react2.default.createElement(
                         'div',
                         { className: 'col s12' },
                         _react2.default.createElement(
-                          _reactMaterialUiFormValidator.SelectValidator,
+                          _Table.Table,
                           {
-                            floatingLabelText: 'Gender',
-                            labelStyle: disabledStyle,
-                            hintText: 'Gender',
-                            value: this.state.art.gender,
-                            fullWidth: true,
-                            underlineShow: this.state.isEdit,
-                            disabled: !this.state.isEdit,
-                            name: 'gender',
-                            onChange: this.onSelectFieldChangeHandler('gender'),
-                            validators: ['required'],
-                            errorMessages: ['Gender dibutuhkan']
+                            selectable: false
                           },
-                          _react2.default.createElement(_MenuItem2.default, { value: 1, primaryText: 'Pria' }),
-                          _react2.default.createElement(_MenuItem2.default, { value: 2, primaryText: 'Wanita' })
-                        )
-                      ),
-                      _react2.default.createElement(
-                        'div',
-                        { className: 'col s6' },
-                        _react2.default.createElement(_reactMaterialUiFormValidator.TextValidator, {
-                          floatingLabelText: 'Tempat Lahir',
-                          inputStyle: disabledStyle,
-                          hintText: 'Tempat Lahir',
-                          underlineShow: this.state.isEdit,
-                          disabled: !this.state.isEdit,
-                          value: this.state.art.born_place || '',
-                          fullWidth: true,
-                          name: 'born_place',
-                          onChange: this.onChangeHandler,
-                          autoComplete: false,
-                          validators: ['required'],
-                          errorMessages: ['Tempat Lahir dibutuhkan']
-                        })
-                      ),
-                      _react2.default.createElement(
-                        'div',
-                        { className: 'col s6' },
-                        _react2.default.createElement(_reactMaterialUiFormValidator.DateValidator, {
-                          hintText: 'Tanggal Lahir',
-                          inputStyle: disabledStyle,
-                          floatingLabelText: 'Tanggal Lahir',
-                          underlineShow: this.state.isEdit,
-                          disabled: !this.state.isEdit,
-                          value: new Date(this.state.art.born_date),
-                          onChange: this.onChangeDateHandler('born_date'),
-                          name: 'born_date',
-                          autoOk: true,
-                          fullWidth: true,
-                          formatDate: new DateTimeFormat('id-ID', {
-                            day: 'numeric',
-                            month: 'long',
-                            year: 'numeric'
-                          }).format,
-                          validators: ['required'],
-                          errorMessages: ['Tanggal Lahir dibutuhkan']
-                        })
-                      ),
-                      _react2.default.createElement(
-                        'div',
-                        { className: 'col s12' },
-                        _react2.default.createElement(
-                          _reactMaterialUiFormValidator.SelectValidator,
-                          {
-                            floatingLabelText: 'Kota',
-                            labelStyle: disabledStyle,
-                            hintText: 'Kota',
-                            underlineShow: this.state.isEdit,
-                            disabled: !this.state.isEdit,
-                            value: this.state.art.contact ? this.state.art.contact.city : '',
-                            name: 'city',
-                            fullWidth: true,
-                            onChange: this.onSelectFieldChangeHandler('city'),
-                            validators: ['required'],
-                            errorMessages: ['Kota dibutuhkan']
-                          },
-                          this.menuItems(this.state.cityItem, this.state.art.contact ? this.state.art.contact.city : '')
-                        )
-                      ),
-                      _react2.default.createElement(
-                        'div',
-                        { className: 'col s12' },
-                        _react2.default.createElement(_reactMaterialUiFormValidator.TextValidator, {
-                          hintText: 'Alamat',
-                          textareaStyle: disabledStyle,
-                          floatingLabelText: 'Alamat',
-                          underlineShow: this.state.isEdit,
-                          disabled: !this.state.isEdit,
-                          value: this.state.art.contact ? this.state.art.contact.address : '',
-                          fullWidth: true,
-                          name: 'address',
-                          onChange: this.onChangeHandler,
-                          autoComplete: false,
-                          multiLine: true,
-                          rows: 2,
-                          rowsMax: 4,
-                          validators: ['required'],
-                          errorMessages: ['Alamat dibutuhkan']
-                        })
-                      ),
-                      _react2.default.createElement(
-                        'div',
-                        { className: 'col s12' },
-                        _react2.default.createElement(
-                          _reactMaterialUiFormValidator.SelectValidator,
-                          {
-                            floatingLabelText: 'Agama',
-                            labelStyle: disabledStyle,
-                            value: this.state.art.religion,
-                            underlineShow: this.state.isEdit,
-                            disabled: !this.state.isEdit,
-                            name: 'religion',
-                            fullWidth: true,
-                            onChange: this.onSelectFieldChangeHandler('religion'),
-                            validators: ['required'],
-                            errorMessages: ['Agama dibutuhkan']
-                          },
-                          _react2.default.createElement(_MenuItem2.default, { value: 1, primaryText: 'Islam' }),
-                          _react2.default.createElement(_MenuItem2.default, { value: 2, primaryText: 'Kristen Protestan' }),
-                          _react2.default.createElement(_MenuItem2.default, { value: 3, primaryText: 'Kristen Katolik' }),
-                          _react2.default.createElement(_MenuItem2.default, { value: 4, primaryText: 'Hindu' }),
-                          _react2.default.createElement(_MenuItem2.default, { value: 5, primaryText: 'Buddha' }),
-                          _react2.default.createElement(_MenuItem2.default, { value: 6, primaryText: 'Konghucu' }),
-                          _react2.default.createElement(_MenuItem2.default, { value: 7, primaryText: 'Lainnya' })
-                        )
-                      ),
-                      _react2.default.createElement(
-                        'div',
-                        { className: 'col s12' },
-                        _react2.default.createElement(_TextField2.default, {
-                          hintText: 'Suku',
-                          inputStyle: disabledStyle,
-                          floatingLabelText: 'Suku',
-                          underlineShow: this.state.isEdit,
-                          disabled: !this.state.isEdit,
-                          fullWidth: true,
-                          value: this.state.art.race,
-                          name: 'race',
-                          onChange: this.onChangeHandler,
-                          autoComplete: false
-                        })
-                      ),
-                      _react2.default.createElement(
-                        'div',
-                        { className: 'col s12' },
-                        _react2.default.createElement(
-                          'fieldset',
-                          null,
                           _react2.default.createElement(
-                            'legend',
-                            null,
-                            'Bahasa yang dikuasai'
+                            _Table.TableHeader,
+                            {
+                              displaySelectAll: false,
+                              adjustForCheckbox: false
+                            },
+                            _react2.default.createElement(
+                              _Table.TableRow,
+                              null,
+                              _react2.default.createElement(
+                                _Table.TableHeaderColumn,
+                                { colSpan: '2', style: { textAlign: 'center' } },
+                                'Informasi ART'
+                              )
+                            )
                           ),
-                          this.checkItems('user_language', this.state.languageItem),
-                          this.errorText('user_languageErrorText')
-                        )
-                      ),
-                      _react2.default.createElement(
-                        'div',
-                        { className: 'col s12' },
-                        _react2.default.createElement(
-                          'fieldset',
-                          null,
                           _react2.default.createElement(
-                            'legend',
-                            null,
-                            'Profesi'
-                          ),
-                          this.checkItems('user_job', this.state.jobItem),
-                          this.errorText('user_jobErrorText')
+                            _Table.TableBody,
+                            {
+                              displayRowCheckbox: false
+                            },
+                            _react2.default.createElement(
+                              _Table.TableRow,
+                              null,
+                              _react2.default.createElement(
+                                _Table.TableRowColumn,
+                                { style: { textAlign: 'right', verticalAlign: 'top', color: '#888' } },
+                                'Nama'
+                              ),
+                              _react2.default.createElement(
+                                _Table.TableRowColumn,
+                                { className: 'bold' },
+                                this.state.isEdit ? _react2.default.createElement(_reactMaterialUiFormValidator.TextValidator, {
+                                  style: { fontSize: '13px', lineHeight: '13px', height: 'auto' },
+                                  hintText: 'Nama',
+                                  value: this.state.user.name,
+                                  fullWidth: true,
+                                  name: 'name',
+                                  onChange: this.onChangeHandler,
+                                  autoComplete: false,
+                                  validators: ['required'],
+                                  errorMessages: ['Nama dibutuhkan']
+                                }) : this.props.user.name
+                              )
+                            ),
+                            _react2.default.createElement(
+                              _Table.TableRow,
+                              null,
+                              _react2.default.createElement(
+                                _Table.TableRowColumn,
+                                { style: { textAlign: 'right', verticalAlign: 'top', color: '#888' } },
+                                'Gender'
+                              ),
+                              _react2.default.createElement(
+                                _Table.TableRowColumn,
+                                { className: 'bold' },
+                                this.state.isEdit ? _react2.default.createElement(
+                                  _reactMaterialUiFormValidator.SelectValidator,
+                                  {
+                                    style: { fontSize: '13px', lineHeight: '13px', height: 'auto' },
+                                    hintText: 'Gender',
+                                    value: this.state.user.gender,
+                                    fullWidth: true,
+                                    name: 'gender',
+                                    onChange: this.onSelectFieldChangeHandler('gender'),
+                                    validators: ['required'],
+                                    errorMessages: ['Gender dibutuhkan']
+                                  },
+                                  _react2.default.createElement(_MenuItem2.default, { value: 1, primaryText: 'Pria' }),
+                                  _react2.default.createElement(_MenuItem2.default, { value: 2, primaryText: 'Wanita' })
+                                ) : this.props.user.gender == 1 ? 'Pria' : 'Wanita'
+                              )
+                            ),
+                            _react2.default.createElement(
+                              _Table.TableRow,
+                              null,
+                              _react2.default.createElement(
+                                _Table.TableRowColumn,
+                                { style: { textAlign: 'right', verticalAlign: 'top', color: '#888' } },
+                                'Tempat / Tanggal Lahir'
+                              ),
+                              _react2.default.createElement(
+                                _Table.TableRowColumn,
+                                { className: 'bold' },
+                                this.state.isEdit ? _react2.default.createElement(
+                                  'div',
+                                  null,
+                                  _react2.default.createElement(
+                                    'div',
+                                    { className: 'col s12 m6', style: { paddingLeft: 0 } },
+                                    _react2.default.createElement(_reactMaterialUiFormValidator.TextValidator, {
+                                      style: { fontSize: '13px', lineHeight: '13px', height: 'auto' },
+                                      hintText: 'Tempat Lahir',
+                                      value: this.state.user.born_place,
+                                      fullWidth: true,
+                                      name: 'born_place',
+                                      onChange: this.onChangeHandler,
+                                      autoComplete: false,
+                                      validators: ['required'],
+                                      errorMessages: ['Tempat Lahir dibutuhkan']
+                                    })
+                                  ),
+                                  _react2.default.createElement(
+                                    'div',
+                                    { className: 'col s12 m6', style: { paddingRight: 0 } },
+                                    _react2.default.createElement(_reactMaterialUiFormValidator.DateValidator, {
+                                      hintText: 'Tanggal Lahir',
+                                      textFieldStyle: { fontSize: '13px', lineHeight: '13px', height: 'auto' },
+                                      value: this.state.user.born_date ? new Date(this.state.user.born_date) : {},
+                                      onChange: this.onChangeDateHandler('born_date'),
+                                      name: 'born_date',
+                                      autoOk: true,
+                                      fullWidth: true,
+                                      formatDate: new DateTimeFormat('id-ID', {
+                                        day: 'numeric',
+                                        month: 'long',
+                                        year: 'numeric'
+                                      }).format,
+                                      validators: ['required'],
+                                      errorMessages: ['Tanggal Lahir dibutuhkan']
+                                    })
+                                  )
+                                ) : _react2.default.createElement(
+                                  'span',
+                                  null,
+                                  this.props.user.born_place || '',
+                                  ', ',
+                                  _react2.default.createElement(_reactIntl.FormattedDate, { value: this.props.user.born_date, day: 'numeric', month: 'long', year: 'numeric' })
+                                )
+                              )
+                            ),
+                            _react2.default.createElement(
+                              _Table.TableRow,
+                              null,
+                              _react2.default.createElement(
+                                _Table.TableRowColumn,
+                                { style: { textAlign: 'right', verticalAlign: 'top', color: '#888' } },
+                                'Kota'
+                              ),
+                              _react2.default.createElement(
+                                _Table.TableRowColumn,
+                                { className: 'bold' },
+                                this.state.isEdit ? _react2.default.createElement(
+                                  _reactMaterialUiFormValidator.SelectValidator,
+                                  {
+                                    hintText: 'Kota',
+                                    style: { fontSize: '13px', lineHeight: '13px', height: 'auto' },
+                                    value: this.state.user.contact.city.id,
+                                    name: 'city',
+                                    fullWidth: true,
+                                    onChange: this.onSelectFieldChangeHandler('city'),
+                                    validators: ['required'],
+                                    errorMessages: ['Kota dibutuhkan']
+                                  },
+                                  this.menuItems(this.state.cityItem, this.state.user.contact.city.id)
+                                ) : this.props.user.contact ? this.props.user.contact.city.name : ''
+                              )
+                            ),
+                            _react2.default.createElement(
+                              _Table.TableRow,
+                              null,
+                              _react2.default.createElement(
+                                _Table.TableRowColumn,
+                                { style: { textAlign: 'right', verticalAlign: 'top', color: '#888' } },
+                                'Alamat'
+                              ),
+                              _react2.default.createElement(
+                                _Table.TableRowColumn,
+                                { className: 'bold' },
+                                this.state.isEdit ? _react2.default.createElement(_reactMaterialUiFormValidator.TextValidator, {
+                                  hintText: 'Alamat',
+                                  style: { fontSize: '13px', lineHeight: '13px', height: 'auto' },
+                                  value: this.state.user.contact.address,
+                                  fullWidth: true,
+                                  name: 'address',
+                                  onChange: this.onChangeHandler,
+                                  autoComplete: false,
+                                  multiLine: true,
+                                  rows: 2,
+                                  rowsMax: 4,
+                                  validators: ['required'],
+                                  errorMessages: ['Alamat dibutuhkan']
+                                }) : this.props.user.contact ? this.props.user.contact.address : ''
+                              )
+                            ),
+                            _react2.default.createElement(
+                              _Table.TableRow,
+                              null,
+                              _react2.default.createElement(
+                                _Table.TableRowColumn,
+                                { style: { textAlign: 'right', verticalAlign: 'top', color: '#888' } },
+                                'Agama'
+                              ),
+                              _react2.default.createElement(
+                                _Table.TableRowColumn,
+                                { className: 'bold' },
+                                this.state.isEdit ? _react2.default.createElement(
+                                  _reactMaterialUiFormValidator.SelectValidator,
+                                  {
+                                    hintText: 'Agama',
+                                    style: { fontSize: '13px', lineHeight: '13px', height: 'auto' },
+                                    value: this.state.user.religion,
+                                    name: 'religion',
+                                    fullWidth: true,
+                                    onChange: this.onSelectFieldChangeHandler('religion'),
+                                    validators: ['required'],
+                                    errorMessages: ['Agama dibutuhkan']
+                                  },
+                                  _react2.default.createElement(_MenuItem2.default, { value: 1, primaryText: 'Islam' }),
+                                  _react2.default.createElement(_MenuItem2.default, { value: 2, primaryText: 'Kristen Protestan' }),
+                                  _react2.default.createElement(_MenuItem2.default, { value: 3, primaryText: 'Kristen Katolik' }),
+                                  _react2.default.createElement(_MenuItem2.default, { value: 4, primaryText: 'Hindu' }),
+                                  _react2.default.createElement(_MenuItem2.default, { value: 5, primaryText: 'Buddha' }),
+                                  _react2.default.createElement(_MenuItem2.default, { value: 6, primaryText: 'Konghucu' }),
+                                  _react2.default.createElement(_MenuItem2.default, { value: 7, primaryText: 'Lainnya' })
+                                ) : this.props.user.religion == 1 ? 'Islam' : this.props.user.religion == 2 ? 'Kristen Protestan' : this.props.user.religion == 3 ? 'Kristen Katolik' : this.props.user.religion == 4 ? 'Hindu' : this.props.user.religion == 5 ? 'Buddha' : this.props.user.religion == 6 ? 'Konghucu' : 'Lainnya'
+                              )
+                            ),
+                            _react2.default.createElement(
+                              _Table.TableRow,
+                              null,
+                              _react2.default.createElement(
+                                _Table.TableRowColumn,
+                                { style: { textAlign: 'right', verticalAlign: 'top', color: '#888' } },
+                                'Suku'
+                              ),
+                              _react2.default.createElement(
+                                _Table.TableRowColumn,
+                                { className: 'bold' },
+                                this.state.isEdit ? _react2.default.createElement(_TextField2.default, {
+                                  hintText: 'Suku',
+                                  style: { fontSize: '13px', lineHeight: '13px', height: 'auto' },
+                                  fullWidth: true,
+                                  value: this.state.user.race,
+                                  name: 'race',
+                                  onChange: this.onChangeHandler,
+                                  autoComplete: false
+                                }) : this.props.user.race || '-'
+                              )
+                            ),
+                            this.props.user.role_id != 3 ? null : _react2.default.createElement(
+                              _Table.TableRow,
+                              null,
+                              _react2.default.createElement(
+                                _Table.TableRowColumn,
+                                { style: { textAlign: 'right', verticalAlign: 'top', color: '#888' } },
+                                'Bahasa yang Dikuasai'
+                              ),
+                              _react2.default.createElement(
+                                _Table.TableRowColumn,
+                                { className: 'bold' },
+                                this.state.isEdit ? _react2.default.createElement(
+                                  'div',
+                                  null,
+                                  this.checkItems('user_language', this.state.languageItem),
+                                  this.errorText('user_languageErrorText')
+                                ) : this.props.user.user_language && this.props.user.user_language.length > 0 ? _react2.default.createElement(
+                                  'ul',
+                                  { style: { margin: 0 } },
+                                  this.props.user.user_language.map(function (language, idx) {
+                                    return _react2.default.createElement(
+                                      'li',
+                                      { key: idx, style: { marginBottom: 5, borderLeft: '5px solid #64DD17' } },
+                                      '\xA0',
+                                      language.language.language,
+                                      _react2.default.createElement(_Divider2.default, { style: { marginTop: 5 } })
+                                    );
+                                  })
+                                ) : '-'
+                              )
+                            ),
+                            this.props.user.role_id != 3 ? null : _react2.default.createElement(
+                              _Table.TableRow,
+                              null,
+                              _react2.default.createElement(
+                                _Table.TableRowColumn,
+                                { style: { textAlign: 'right', verticalAlign: 'top', color: '#888' } },
+                                'Profesi'
+                              ),
+                              _react2.default.createElement(
+                                _Table.TableRowColumn,
+                                { className: 'bold' },
+                                this.state.isEdit ? _react2.default.createElement(
+                                  'div',
+                                  null,
+                                  this.checkItems('user_job', this.state.jobItem),
+                                  this.errorText('user_jobErrorText')
+                                ) : this.props.user.user_job && this.props.user.user_job.length > 0 ? _react2.default.createElement(
+                                  'ul',
+                                  { style: { margin: 0 } },
+                                  this.props.user.user_job.map(function (job, idx) {
+                                    return _react2.default.createElement(
+                                      'li',
+                                      { key: idx, style: { marginBottom: 5, borderLeft: '5px solid #64DD17' } },
+                                      '\xA0',
+                                      job.job.job,
+                                      _react2.default.createElement(_Divider2.default, { style: { marginTop: 5 } })
+                                    );
+                                  })
+                                ) : '-'
+                              )
+                            ),
+                            this.props.user.role_id != 3 ? null : _react2.default.createElement(
+                              _Table.TableRow,
+                              null,
+                              _react2.default.createElement(
+                                _Table.TableRowColumn,
+                                { style: { textAlign: 'right', verticalAlign: 'top', color: '#888' } },
+                                'Waktu Kerja'
+                              ),
+                              _react2.default.createElement(
+                                _Table.TableRowColumn,
+                                { className: 'bold' },
+                                this.state.isEdit ? _react2.default.createElement(
+                                  'div',
+                                  null,
+                                  this.checkItems('user_work_time', this.state.workTimeItem, true),
+                                  _react2.default.createElement('br', null),
+                                  this.errorText('user_work_timeErrorText')
+                                ) : this.props.user.user_work_time && this.props.user.user_work_time.length > 0 ? _react2.default.createElement(
+                                  _Table.Table,
+                                  {
+                                    selectable: false
+                                  },
+                                  _react2.default.createElement(
+                                    _Table.TableHeader,
+                                    {
+                                      displaySelectAll: false,
+                                      adjustForCheckbox: false
+                                    },
+                                    _react2.default.createElement(
+                                      _Table.TableRow,
+                                      null,
+                                      _react2.default.createElement(
+                                        _Table.TableHeaderColumn,
+                                        { tooltip: 'Waktu Kerja' },
+                                        'Waktu Kerja'
+                                      ),
+                                      _react2.default.createElement(
+                                        _Table.TableHeaderColumn,
+                                        { tooltip: 'Upah' },
+                                        'Upah'
+                                      )
+                                    )
+                                  ),
+                                  _react2.default.createElement(
+                                    _Table.TableBody,
+                                    {
+                                      displayRowCheckbox: false
+                                    },
+                                    this.props.user.user_work_time.map(function (work_time, idx) {
+                                      return _react2.default.createElement(
+                                        _Table.TableRow,
+                                        { key: idx },
+                                        _react2.default.createElement(
+                                          _Table.TableRowColumn,
+                                          null,
+                                          work_time.work_time.work_time
+                                        ),
+                                        _react2.default.createElement(
+                                          _Table.TableRowColumn,
+                                          null,
+                                          _react2.default.createElement(_reactNumberFormat2.default, { value: work_time.cost, displayType: 'text', thousandSeparator: true, prefix: 'Rp. ' })
+                                        )
+                                      );
+                                    })
+                                  )
+                                ) : '-'
+                              )
+                            ),
+                            this.props.user.role_id != 3 ? null : _react2.default.createElement(
+                              _Table.TableRow,
+                              null,
+                              _react2.default.createElement(
+                                _Table.TableRowColumn,
+                                { style: { textAlign: 'right', verticalAlign: 'top', color: '#888' } },
+                                'Informasi Tambahan'
+                              ),
+                              _react2.default.createElement(
+                                _Table.TableRowColumn,
+                                { className: 'bold' },
+                                this.state.isEdit ? this.checkItems('user_additional_info', this.state.additionalInfoItem) : this.props.user.user_additional_info && this.props.user.user_additional_info.length > 0 ? _react2.default.createElement(
+                                  'ul',
+                                  { style: { margin: 0 } },
+                                  this.props.user.user_additional_info.map(function (additional_info, idx) {
+                                    return _react2.default.createElement(
+                                      'li',
+                                      { key: idx, style: { marginBottom: 5, borderLeft: '5px solid #64DD17' } },
+                                      '\xA0',
+                                      additional_info.additional_info.info,
+                                      _react2.default.createElement(_Divider2.default, { style: { marginTop: 5 } })
+                                    );
+                                  })
+                                ) : '-'
+                              )
+                            )
+                          )
                         )
-                      ),
-                      _react2.default.createElement(
-                        'div',
-                        { className: 'col s12' },
-                        _react2.default.createElement(
-                          'fieldset',
-                          null,
-                          _react2.default.createElement(
-                            'legend',
-                            null,
-                            'Waktu Kerja'
-                          ),
-                          this.checkItems('user_work_time', this.state.workTimeItem, true),
-                          _react2.default.createElement('br', null),
-                          this.errorText('user_work_timeErrorText'),
-                          _react2.default.createElement('div', null)
-                        )
-                      ),
-                      _react2.default.createElement(
-                        'div',
-                        { className: 'col s12' },
-                        _react2.default.createElement(
-                          'fieldset',
-                          null,
-                          _react2.default.createElement(
-                            'legend',
-                            null,
-                            'Informasi Tambahan'
-                          ),
-                          this.checkItems('user_additional_info', this.state.additionalInfoItem)
-                        )
-                      ),
-                      _react2.default.createElement(
-                        'div',
-                        { className: 'input-field col hide-on-small-only m6' },
-                        '\xA0'
-                      ),
-                      _react2.default.createElement(
-                        'div',
-                        { className: 'input-field col s12 m6' },
-                        _react2.default.createElement(_RaisedButton2.default, {
-                          className: this.state.isEdit ? '' : ' hide',
-                          label: 'Simpan',
-                          fullWidth: true,
-                          type: 'submit' })
                       )
                     )
                   )
                 )
               ),
+              this.state.isEdit ? _react2.default.createElement(
+                'div',
+                null,
+                _react2.default.createElement(
+                  'div',
+                  { className: 'input-field col s12 m8 l10' },
+                  '\xA0'
+                ),
+                _react2.default.createElement(
+                  'div',
+                  { className: 'input-field col s12 m4 l2' },
+                  _react2.default.createElement(_RaisedButton2.default, {
+                    primary: true,
+                    label: 'Simpan',
+                    fullWidth: true,
+                    type: 'submit' })
+                )
+              ) : null,
               _react2.default.createElement('div', { className: 'clearfix' })
             )
           )
@@ -13136,7 +13531,6 @@ var ProfileDetail = function (_Component) {
 }(_react.Component);
 
 ProfileDetail.propTypes = {
-  id: _propTypes2.default.string.isRequired,
   getProfile: _propTypes2.default.func.isRequired
 };
 
@@ -14996,6 +15390,10 @@ var _Breadcrumbs = __webpack_require__(61);
 
 var _Breadcrumbs2 = _interopRequireDefault(_Breadcrumbs);
 
+var _TermMobile = __webpack_require__(445);
+
+var _TermMobile2 = _interopRequireDefault(_TermMobile);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -15014,19 +15412,6 @@ var Term = function (_Component) {
   }
 
   _createClass(Term, [{
-    key: 'componentDidMount',
-    value: function componentDidMount() {
-      // if (this.props.user && this.props.user.role_id == 2) {
-      //   this.props.getMyOffer(this.props.user.id)
-      //   this.props.getMyOrder(this.props.user.id)
-      // }
-      // else {
-      //   this.props.getUserLogin(this)
-      // }
-      // this.props.getArt()
-      // this.props.getOffer()
-    }
-  }, {
     key: 'render',
     value: function render() {
       return _react2.default.createElement(
@@ -15044,69 +15429,7 @@ var Term = function (_Component) {
               _react2.default.createElement(_Breadcrumbs2.default, { pathname: this.props.location.pathname })
             )
           ),
-          _react2.default.createElement(
-            _Paper2.default,
-            { className: 'col s12', zDepth: 1, style: { padding: '10px', marginTop: '10px' } },
-            _react2.default.createElement(
-              'h5',
-              null,
-              'SYARAT DAN KETENTUAN'
-            ),
-            _react2.default.createElement(
-              'p',
-              null,
-              'Pendahuluan Syarat dan Ketentuan ini merupakan suatu perjanjian sah antara anda dan Master Clean-Care berlaku ke situs dan semua afiliasi pengoperasian situs internet yang berhubungan dengan syarat dan ketentuan ini. Silakan membatalkan akun anda (jika anda telah mendaftar untuk Aplikasi) dan secara permanen menghapus aplikasi dari perangkat anda jika anda tidak setuju dengan syarat dan ketentuan yang berlaku. Master Clean-Care berhak menambah, mengubah, atau menghapus bagian dari syarat dan ketentuan setiap saat. Perubahan akan berlaku tanpa pemberitahuan secara khusus. Anda disarankan untuk memeriksa persyaratan dan ketentuan penggunaan sebelum melakukan pemesanan. Dengan mengunduh, memasang, dan/atau menggunakan Aplikasi Master Clean-Care, anda setuju bahwa anda telah membaca, memahami dan menerima serta menyetujui syarat dan ketentuan ini. Penggunaan Berikut adalah ketentuan penggunaan aplikasi Master Clean Care'
-            ),
-            _react2.default.createElement(
-              'ol',
-              null,
-              _react2.default.createElement(
-                'li',
-                null,
-                'Master Clean-Care hanya menyediakan sebuah platform pemesanan layanan Asisten Rumah Tangga (ART). Master Clean-Care tidak mempekerjakan para ART. Master Clean-Care hanya bertindak sebagai mediator antara ART dengan member.'
-              ),
-              _react2.default.createElement(
-                'li',
-                null,
-                'Setiap persetujuan yang dilakukan antara Anda dengan ART di luar dari layanan yang disediakan sistem, tidak menjadi tanggung jawab pihak Master Clean-Care.'
-              ),
-              _react2.default.createElement(
-                'li',
-                null,
-                'ART hanya dapat dipesan untuk bekerja dari jam 08.00 WIB - 17.00 WIB. Pemesanan Layanan ART per jam hanya dapat dipesan untuk jangka waktu 2 jam kedepan.'
-              ),
-              _react2.default.createElement(
-                'li',
-                null,
-                'Master Clean-Care memberikan layanan minimal pemesanan per 2 jam.'
-              ),
-              _react2.default.createElement(
-                'li',
-                null,
-                'Pembobotan waktu minimal untuk menyapu ialah 30 menit, untuk mengepel ialah 30 menit, untuk mencuci piring 1 jam, untuk menyetrika dan melipat yaitu 1 jam dengan estimasi 15 pakaian. Untuk menyapu dan mengepel dilakukan dengan pertimbangan luas tempat tinggal maksimal 60m2. Sehingga untuk luas lebih dari 60m2, Anda harus menaikkan estimasi waktu pengerjaan lebih dari 2 jam atau menambah jumlah ART yang dipesan sehingga pelayanan lebih maksimal. Jika Anda tetap memilih 2 jam, Anda harus menginformasikan pekerjaan yang harus diprioritaskan pembersihannya kepada ART.'
-              ),
-              _react2.default.createElement(
-                'li',
-                null,
-                'Anda wajib memberikan informasi yang diminta dengan lengkap, faktual dan benar. Kerugian karena Anda yang memberikan informasi kurang lengkap bukanlah bagian dari tanggung jawab pihak Master Clean Care. Jika Anda membatalkan pemesanan yang telah disetujui dengan ART maka akan tetap dikenakan biaya pembatalan sesuai dengan total biaya pemesanan.'
-              ),
-              _react2.default.createElement(
-                'li',
-                null,
-                'Refund wallet dilakukan apabila ART tidak datang untuk bekerja.'
-              ),
-              _react2.default.createElement(
-                'li',
-                null,
-                'Anda tetap harus berhati-hati terhadap keselamatan pribadi dan properti, sama seperti ketika berinteraksi dengan orang yang baru dikenal. (diharapkan adanya pengawasan selama layanan berlangsung)'
-              ),
-              _react2.default.createElement(
-                'li',
-                null,
-                'Master Clean-Care tidak bertanggung jawab atas kerusakan, pengeluaran, kerugian, tuntutan dan/atau kontoversi (secara kolektif,"kewajiban") yang timbul atau mungkin timbul, selama penggunaan layanan.'
-              )
-            )
-          )
+          _react2.default.createElement(_TermMobile2.default, null)
         )
       );
     }
@@ -15206,56 +15529,71 @@ var TermMobile = function (_Component) {
           'SYARAT DAN KETENTUAN'
         ),
         _react2.default.createElement(
-          'p',
-          null,
-          'Pendahuluan Syarat dan Ketentuan ini merupakan suatu perjanjian sah antara anda dan Master Clean-Care berlaku ke situs dan semua afiliasi pengoperasian situs internet yang berhubungan dengan syarat dan ketentuan ini. Silakan membatalkan akun anda (jika anda telah mendaftar untuk Aplikasi) dan secara permanen menghapus aplikasi dari perangkat anda jika anda tidak setuju dengan syarat dan ketentuan yang berlaku. Master Clean-Care berhak menambah, mengubah, atau menghapus bagian dari syarat dan ketentuan setiap saat. Perubahan akan berlaku tanpa pemberitahuan secara khusus. Anda disarankan untuk memeriksa persyaratan dan ketentuan penggunaan sebelum melakukan pemesanan. Dengan mengunduh, memasang, dan/atau menggunakan Aplikasi Master Clean-Care, anda setuju bahwa anda telah membaca, memahami dan menerima serta menyetujui syarat dan ketentuan ini. Penggunaan Berikut adalah ketentuan penggunaan aplikasi Master Clean Care'
-        ),
-        _react2.default.createElement(
           'ul',
-          null,
+          { className: 'collection with-header' },
           _react2.default.createElement(
             'li',
-            null,
+            { className: 'collection-header' },
+            _react2.default.createElement(
+              'h5',
+              null,
+              'Pendahuluan'
+            ),
+            'Syarat dan Ketentuan ini merupakan suatu perjanjian sah antara anda dan Master Clean-Care berlaku ke situs dan semua afiliasi pengoperasian situs internet yang berhubungan dengan syarat dan ketentuan ini. Silakan membatalkan akun anda (jika anda telah mendaftar untuk Aplikasi) dan secara permanen menghapus aplikasi dari perangkat anda jika anda tidak setuju dengan syarat dan ketentuan yang berlaku. Master Clean-Care berhak menambah, mengubah, atau menghapus bagian dari syarat dan ketentuan setiap saat. Perubahan akan berlaku tanpa pemberitahuan secara khusus. Anda disarankan untuk memeriksa persyaratan dan ketentuan penggunaan sebelum melakukan pemesanan. Dengan mengunduh, memasang, dan/atau menggunakan Aplikasi Master Clean-Care, anda setuju bahwa anda telah membaca, memahami dan menerima serta menyetujui syarat dan ketentuan ini.'
+          ),
+          _react2.default.createElement(
+            'li',
+            { className: 'collection-header' },
+            _react2.default.createElement(
+              'h5',
+              null,
+              'Penggunaan'
+            ),
+            'Berikut adalah ketentuan penggunaan aplikasi Master Clean & Care.'
+          ),
+          _react2.default.createElement(
+            'li',
+            { className: 'collection-item' },
             'Master Clean-Care hanya menyediakan sebuah platform pemesanan layanan Asisten Rumah Tangga (ART). Master Clean-Care tidak mempekerjakan para ART. Master Clean-Care hanya bertindak sebagai mediator antara ART dengan member.'
           ),
           _react2.default.createElement(
             'li',
-            null,
+            { className: 'collection-item' },
             'Setiap persetujuan yang dilakukan antara Anda dengan ART di luar dari layanan yang disediakan sistem, tidak menjadi tanggung jawab pihak Master Clean-Care.'
           ),
           _react2.default.createElement(
             'li',
-            null,
+            { className: 'collection-item' },
             'ART hanya dapat dipesan untuk bekerja dari jam 08.00 WIB - 17.00 WIB. Pemesanan Layanan ART per jam hanya dapat dipesan untuk jangka waktu 2 jam kedepan.'
           ),
           _react2.default.createElement(
             'li',
-            null,
+            { className: 'collection-item' },
             'Master Clean-Care memberikan layanan minimal pemesanan per 2 jam.'
           ),
           _react2.default.createElement(
             'li',
-            null,
+            { className: 'collection-item' },
             'Pembobotan waktu minimal untuk menyapu ialah 30 menit, untuk mengepel ialah 30 menit, untuk mencuci piring 1 jam, untuk menyetrika dan melipat yaitu 1 jam dengan estimasi 15 pakaian. Untuk menyapu dan mengepel dilakukan dengan pertimbangan luas tempat tinggal maksimal 60m2. Sehingga untuk luas lebih dari 60m2, Anda harus menaikkan estimasi waktu pengerjaan lebih dari 2 jam atau menambah jumlah ART yang dipesan sehingga pelayanan lebih maksimal. Jika Anda tetap memilih 2 jam, Anda harus menginformasikan pekerjaan yang harus diprioritaskan pembersihannya kepada ART.'
           ),
           _react2.default.createElement(
             'li',
-            null,
-            'Anda wajib memberikan informasi yang diminta dengan lengkap, faktual dan benar. Kerugian karena Anda yang memberikan informasi kurang lengkap bukanlah bagian dari tanggung jawab pihak Master Clean Care. Jika Anda membatalkan pemesanan yang telah disetujui dengan ART maka akan tetap dikenakan biaya pembatalan sesuai dengan total biaya pemesanan.'
+            { className: 'collection-item' },
+            'Anda wajib memberikan informasi yang diminta dengan lengkap, faktual dan benar. Kerugian karena Anda yang memberikan informasi kurang lengkap bukanlah bagian dari tanggung jawab pihak Master Clean & Care. Jika Anda membatalkan pemesanan yang telah disetujui dengan ART maka akan tetap dikenakan biaya pembatalan sesuai dengan total biaya pemesanan.'
           ),
           _react2.default.createElement(
             'li',
-            null,
+            { className: 'collection-item' },
             'Refund wallet dilakukan apabila ART tidak datang untuk bekerja.'
           ),
           _react2.default.createElement(
             'li',
-            null,
+            { className: 'collection-item' },
             'Anda tetap harus berhati-hati terhadap keselamatan pribadi dan properti, sama seperti ketika berinteraksi dengan orang yang baru dikenal. (diharapkan adanya pengawasan selama layanan berlangsung)'
           ),
           _react2.default.createElement(
             'li',
-            null,
+            { className: 'collection-item' },
             'Master Clean-Care tidak bertanggung jawab atas kerusakan, pengeluaran, kerugian, tuntutan dan/atau kontoversi (secara kolektif,"kewajiban") yang timbul atau mungkin timbul, selama penggunaan layanan.'
           )
         )
@@ -16160,7 +16498,7 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
           }));
         } else {
           self.props.history.push('/my_offer/' + queryString);
-          dispatch((0, _DefaultAction.fillOffer)(data.data));
+          dispatch((0, _DefaultAction.fillMyOffer)(data.data));
         }
       }, function (error) {
         dispatch((0, _DefaultAction.resetLoadingSpin)());
@@ -16179,7 +16517,7 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
             message: data.message
           }));
         } else {
-          dispatch((0, _DefaultAction.fillOffer)(data.data));
+          dispatch((0, _DefaultAction.fillMyOffer)(data.data));
         }
       }, function (error) {
         dispatch((0, _DefaultAction.updateSnack)({
@@ -16197,7 +16535,7 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
             message: data.message
           }));
         } else {
-          dispatch((0, _DefaultAction.fillOffer)(data.data));
+          dispatch((0, _DefaultAction.fillMyOffer)(data.data));
         }
       }, function (error) {
         dispatch((0, _DefaultAction.updateSnack)({
@@ -16785,9 +17123,40 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
         message: message
       }));
     },
-    getProfile: function getProfile(id, self) {
-      var art = {};
-      _ApiService2.default.onGet('/api/user/art', id, function (response) {
+    onUpdateProfile: function onUpdateProfile(self, data) {
+      dispatch((0, _DefaultAction.updateLoadingSpin)({
+        show: true
+      }));
+      _ApiService2.default.onPatch('/api/user', data.id, { data: data }, function (response) {
+        dispatch((0, _DefaultAction.resetLoadingSpin)());
+        var data = response.data;
+
+        if (data.status != 200) {
+          dispatch((0, _DefaultAction.updateSnack)({
+            open: true,
+            message: data.message
+          }));
+        } else {
+          dispatch((0, _DefaultAction.loginAuth)(data.user));
+          self.setState({
+            isEdit: false
+          });
+          dispatch((0, _DefaultAction.updateSnack)({
+            open: true,
+            message: 'Update profile berhasil.'
+          }));
+        }
+      }, function (error) {
+        dispatch((0, _DefaultAction.resetLoadingSpin)());
+        dispatch((0, _DefaultAction.updateSnack)({
+          open: true,
+          message: error.name + ": " + error.message
+        }));
+      });
+    },
+    getProfile: function getProfile(self) {
+      var user = {};
+      _ApiService2.default.onGet('/api/user/me', '', function (response) {
         var data = response;
 
         if (data.status != 200) {
@@ -16796,9 +17165,9 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
             message: data.message
           }));
         } else {
-          art = data.data;
-          var oldProfile = self.state.art;
-          self.setState({ art: Object.assign({}, oldProfile, art) });
+          user = data.data;
+          var oldProfile = self.state.user;
+          self.setState({ user: Object.assign({}, oldProfile, user) });
           self.loadInitialData();
         }
       }, function (error) {
@@ -16806,7 +17175,7 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
           open: true,
           message: error.name + ": " + error.message
         }));
-        this.setState(art);
+        this.setState(user);
       });
     },
     getPlace: function getPlace(self, type) {

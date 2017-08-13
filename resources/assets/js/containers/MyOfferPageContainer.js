@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { updateSnack, updateLoadingSpin, resetLoadingSpin, fillOffer } from '../actions/DefaultAction'
+import { updateSnack, updateLoadingSpin, resetLoadingSpin, fillMyOffer } from '../actions/DefaultAction'
 import MyOfferPage from '../components/MyOfferPage'
 import {
   withRouter,
@@ -64,7 +64,7 @@ const mapDispatchToProps = (dispatch) => {
           }
           else {
             self.props.history.push('/my_offer/' + queryString)
-            dispatch(fillOffer(data.data))
+            dispatch(fillMyOffer(data.data))
           }
         },
         function (error) {
@@ -89,7 +89,7 @@ const mapDispatchToProps = (dispatch) => {
             }))
           }
           else {
-            dispatch(fillOffer(data.data))
+            dispatch(fillMyOffer(data.data))
           }
         },
         function (error) {
@@ -113,7 +113,7 @@ const mapDispatchToProps = (dispatch) => {
             }))
           }
           else {
-            dispatch(fillOffer(data.data))
+            dispatch(fillMyOffer(data.data))
           }
         },
         function (error) {
