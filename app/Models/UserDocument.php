@@ -16,10 +16,8 @@ class UserDocument extends Model
      */
     protected $fillable = [
         'user_id',
-        'document_name',
         'document_path',
-        'document_type',
-        'experience',
+        'remark',
     ];
 
     /**

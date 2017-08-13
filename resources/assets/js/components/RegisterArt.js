@@ -596,9 +596,30 @@ class RegisterArt extends Component {
                   </fieldset>
                 </div>
                 <div className="col s12" style={{ marginTop: 10 }}>
+                  <fieldset>
+                    <legend>Dokumen Tambahan</legend>
+                    <RaisedButton
+                      containerElement='label'
+                      label='Lampirakan Dokumen Tambahan '>
+                        <input type="file" 
+                          style={{ display: 'none' }} 
+                          name="avatar"
+                          onChange={(e)=>this._handleImageChange(e)} />
+                    </RaisedButton>&nbsp;
+                    <FlatButton
+                      label='Hapus Lampiran'
+                      className={ avatarUrl ? '' : 'hide' }
+                      onClick={(e)=>this._handleClearImage(e)}
+                      />
+                    <div className="imgPreview">
+                      {$imagePreview}
+                    </div>  
+                  </fieldset>
+                </div>
+                <div className="col s12" style={{ marginTop: 10 }}>
                   <RaisedButton
                     containerElement='label'
-                    label='Tambah Foto Profile'>
+                    label='Unggah Foto Profile'>
                       <input type="file" 
                         style={{ display: 'none' }} 
                         name="avatar"
@@ -612,9 +633,6 @@ class RegisterArt extends Component {
                   <div className="imgPreview">
                     {$imagePreview}
                   </div>
-                </div>
-                <div className="col s12" style={{ marginTop: 10 }}>
-                  
                 </div>
                 <div className="input-field col s12 m6">
                   <FlatButton

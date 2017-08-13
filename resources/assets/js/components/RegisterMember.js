@@ -382,7 +382,7 @@ class RegisterMember extends Component {
                 <div className="col s12" >
                   <RaisedButton
                     containerElement='label'
-                    label='Tambah Foto Profile'>
+                    label='Unggah Foto Profile'>
                       <input type="file" 
                         style={{ display: 'none' }} 
                         name="avatar"

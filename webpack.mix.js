@@ -13,7 +13,21 @@ const { mix } = require('laravel-mix');
 
 mix.react('resources/assets/js/index.js', 'public/js')
   .extract([
-    'react'
+    'react',
+    'react-dom',
+    'react-intl',
+    'react-material-ui-form-validator',
+    'react-number-format',
+    'react-redux',
+    'react-redux-form',
+    'react-router',
+    'react-router-dom',
+    'react-router-redux',
+    'react-slick',
+    'react-tap-event-plugin',
+    'redux',
+    'redux-form',
+    'redux-thunk',
   ])
   .sass('resources/assets/sass/materialize.scss', 'public/css')
   .sass('resources/assets/sass/default.scss', 'public/css')
