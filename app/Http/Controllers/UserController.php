@@ -507,6 +507,7 @@ class UserController extends Controller
                 'user_work_time',
                 'contact',
             ])
+            ->sortByDesc('created_at')
             ->where('role_id', 3);
 
             $dateNow = Carbon::now();
