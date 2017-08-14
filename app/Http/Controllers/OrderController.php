@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Order;
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Helpers\Operators;
 use Exception;
@@ -165,6 +166,11 @@ class OrderController extends Controller
                 $order->orderTaskList()->createMany($data['orderTaskList']);
             }
 
+            if (array_key_exists('reviewOrder', $data)) {
+                $order->reviewOrder()->delete();
+                $order->reviewOrder()->createMany($data['reviewOrder']);
+            }
+
             $order->save();
 
             DB::commit();
@@ -177,6 +183,95 @@ class OrderController extends Controller
             
             return response()->json([ 'message' => $e->getMessage(), 
                                       'status' => 400 ]);
+        }
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Order  $order
+     * @return \Illuminate\Http\Response
+     */
+    public function updateWithFullReturn(Request $request, Order $order)
+    {
+        $data = $request->all();
+
+        try {
+            DB::beginTransaction();
+            
+            if (array_key_exists('data', $data)) {
+                $data = $data['data'];
+            }
+            if (array_key_exists('member_id', $data)) {
+                $order->member_id = $data['member_id'];
+            }
+            if (array_key_exists('art_id', $data)) {
+                $order->art_id = $data['art_id'];
+            }
+            if (array_key_exists('work_time_id', $data)) {
+                $order->work_time_id = $data['work_time_id'];
+            }
+            if (array_key_exists('job_id', $data)) {
+                $order->job_id = $data['job_id'];
+            }
+            if (array_key_exists('cost', $data)) {
+                $order->cost = $data['cost'];
+            }
+            if (array_key_exists('start_date', $data)) {
+                $order->start_date = $data['start_date'];
+            }
+            if (array_key_exists('end_date', $data)) {
+                $order->end_date = $data['end_date'];
+            }
+            if (array_key_exists('remark', $data)) {
+                $order->remark = $data['remark'];
+            }
+            if (array_key_exists('status', $data)) {
+                $order->status = $data['status'];
+            }
+            if (array_key_exists('status_member', $data)) {
+                $order->status_member = $data['status_member'];
+            }
+            if (array_key_exists('status_art', $data)) {
+                $order->status_art = $data['status_art'];
+            }
+
+            if (array_key_exists('contact', $data)) {
+                $order->contact()->delete();
+                $order->contact()->create($data['contact']);
+            }
+
+            if (array_key_exists('orderTaskList', $data)) {
+                $order->orderTaskList()->delete();
+                $order->orderTaskList()->createMany($data['orderTaskList']);
+            }
+
+            if (array_key_exists('reviewOrder', $data)) {
+                $order->reviewOrder()->delete();
+                $order->reviewOrder()->create($data['reviewOrder']);
+            }
+
+            $order->save();
+
+            DB::commit();
+
+            return response()->json([ 'data' => $order->load([
+                                                    'member.contact',
+                                                    'art.contact',
+                                                    'workTime',
+                                                    'contact',
+                                                    'orderTaskList',
+                                                    'reviewOrder',
+                                                    'job',
+                                                ]), 
+                                    'status' => 200]);
+        }
+        catch(Exception $e) {
+            DB::rollBack();
+            
+            return response()->json([ 'message' => $e->getMessage(), 
+                                    'status' => 400 ]);
         }
     }
 
@@ -431,6 +526,8 @@ class OrderController extends Controller
      */
     public function getOrderByMember($member)
     {
+        $userObj = User::find($member);
+
         $orders = Order::with([
                 'member.contact',
                 'art.contact',
@@ -439,11 +536,16 @@ class OrderController extends Controller
                 'orderTaskList',
                 'reviewOrder',
                 'job',
-            ])
-            ->where('member_id', $member)
-            ->paginate(10);
+            ]);
+        
+        if ($userObj->role_id == 2) {
+            $orders->where('member_id', $userObj->id);
+        }
+        else if ($userObj->role_id == 3) {
+            $orders->where('art_id', $userObj->id);
+        }
 
-        return $orders;
+        return $orders->paginate(10);
     }
 
     /**

@@ -56,6 +56,41 @@ class ReviewOrderController extends Controller
         }
     }
 
+    // /**
+    //  * Store a newly created resource in storage.
+    //  *
+    //  * @param  \Illuminate\Http\Request  $request
+    //  * @return \Illuminate\Http\Response
+    //  */
+    // public function addReview(Request $request)
+    // {
+    //     $data = $request->all();
+        
+    //     try {
+    //         if (array_key_exists('data', $data)) {
+    //             $data = $data['data'];
+    //         }
+
+    //         $reviewOrder = ReviewOrder::create($data);
+            
+    //         dd($reviewOrder->orderId()->get());
+    //         return response()->json([ 'data' => $reviewOrder->orderId()->get()->load([
+    //                                         'member.contact',
+    //                                         'art.contact',
+    //                                         'workTime',
+    //                                         'contact',
+    //                                         'orderTaskList',
+    //                                         'reviewOrder',
+    //                                         'job',
+    //                                     ]), 
+    //                                     'status' => 201]);
+    //     }
+    //     catch(Exception $e) {
+    //         return response()->json([ 'message' => $e->getMessage(), 
+    //                                 'status' => 400 ]);
+    //     }
+    // }
+
     /**
      * Display the specified resource.
      *

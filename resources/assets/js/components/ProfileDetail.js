@@ -382,7 +382,6 @@ class ProfileDetail extends Component {
   }
 
   onError(errors) {
-    console.log(errors)
     this.props.onUpdateSnack(true, "Telah terjadi " + errors.length + " kesalahan. Mohon periksa kembali form ini.")
   }
 

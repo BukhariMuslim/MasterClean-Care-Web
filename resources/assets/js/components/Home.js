@@ -62,7 +62,7 @@ class Home extends Component {
                   <i className="material-icons" style={{ fontSize: '7rem', color: '#00bcd4' }}>thumb_up</i>
                   <p>Mudah</p>
                   <p className="light center">
-                    Memesan dan mencari menjadi lebih mudah sesuai dengan pilihan dan spesifikasi yang Anda inginkan.
+                    Memesan dan mencari menjadi lebih mudah sesuai dengan pilihan dan kebutuhan yang Anda inginkan.
                   </p>
                 </div>
               </div>

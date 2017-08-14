@@ -36,7 +36,6 @@ const mapDispatchToProps = (dispatch) => {
           if (data.status === 200) {
             if (data.data) {
               data = data.data
-              console.log(data)
               self.props.getMyOrder(data.id)
               dispatch(loginAuth(data))
             }

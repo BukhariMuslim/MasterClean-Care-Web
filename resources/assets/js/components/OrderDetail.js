@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import { Card, CardActions, CardHeader, CardTitle, CardText } from 'material-ui/Card'
+import { ValidatorForm, TextValidator, SelectValidator, DateValidator } from 'react-material-ui-form-validator'
 import { FormattedDate, FormattedTime } from 'react-intl'
 import {
   Table,
@@ -11,7 +12,7 @@ import {
   TableRow,
   TableRowColumn,
 } from 'material-ui/Table'
-import FlatButton from 'material-ui/FlatButton'
+import RaisedButton from 'material-ui/RaisedButton'
 import NumberFormat from 'react-number-format'
 import App from './App'
 import StarComponent from './StarComponent'
@@ -21,16 +22,64 @@ class OrderDetail extends Component {
     super(props)
 
     this.state = {
-      order: {}
+      order: {},
+      initial_review_order: {
+        order_id: 0,
+        rate: 0,
+        remark: '',
+      },
     }
+
+    this.onChangeHandler = this.onChangeHandler.bind(this)
   }
 
   componentDidMount() {
     this.props.getOrder(this.props.id, this)
   }
 
+  starChange(value, state) {
+    const oldOrder = this.state.order
+    this.setState({
+      order: Object.assign({}, oldOrder, {
+        review_order: Object.assign({}, oldOrder.review_order, {
+          [state]: value
+        })
+       })
+    })
+  }
+
+  postHandler(e) {
+    e.preventDefault()
+
+    this.props.submitReview(
+      this,
+      {
+        order_id: this.state.order.id,
+        rate: this.state.order.review_order.rate,
+        remark: this.state.order.review_order.remark,
+      },
+    )
+  }
+
+  onChangeHandler(e) {
+    const target = e.target
+    const value = target.value
+    const name = target.name
+
+    let oldOrder = this.state.order
+    this.setState({ order: Object.assign({}, oldOrder, {
+      review_order: Object.assign({}, oldOrder.review_order, {
+        [name]: value,
+      })
+    }) })
+  }
+
+  onError(errors) {
+    this.props.onUpdateSnack(true, "Telah terjadi " + errors.length + " kesalahan. Mohon periksa kembali form ini.")
+  }
+
   render() {
-    const { order } = this.state;
+    const { order } = this.state
     return (
       <div>
         {
@@ -64,6 +113,20 @@ class OrderDetail extends Component {
                     <TableBody
                       displayRowCheckbox={false}
                     >
+                      <TableRow>
+                        <TableRowColumn style={{ textAlign: 'right', verticalAlign: 'top' }}>Status</TableRowColumn>
+                        <TableRowColumn>
+                          {
+                            order.status == 0 ?
+                            <b style={{ backgroundColor: '#FFEB3B', padding: '2px 5px', color: 'white' }}>Pending</b>
+                            :
+                            order.status == 1 ?
+                            <b style={{ backgroundColor: '#64DD17', padding: '2px 5px', color: 'white' }}>Selesai</b>
+                            :
+                            <b style={{ backgroundColor: '#F44336', padding: '2px 5px', color: 'white' }}>Dibatalkan</b>
+                          }
+                        </TableRowColumn>
+                      </TableRow>
                       <TableRow>
                         <TableRowColumn style={{ textAlign: 'right', verticalAlign: 'top' }}>Jenis Pekerja</TableRowColumn>
                         <TableRowColumn><b>{order.job ? order.job.job : '-'}</b></TableRowColumn>
@@ -208,19 +271,54 @@ class OrderDetail extends Component {
                   </Table>
                 </CardText>
                 {
-                  order.orderReview ?
+                  order.review_order.id ?
                   <Card className="col s12" style={{ marginTop: '10px', paddingBottom: '10px' }}>
-                    <CardTitle title="Review" subtitle={ <StarComponent rate={order.orderReview.rate} isShowRate={true} /> }/>
-                    <CardText>
-                      { order.orderReview.remark }
-                    </CardText>
+                    <CardHeader
+                      title={ <Link to={`/member/${order.member.id}`} >{order.member.name}</Link> }
+                      subtitle={ <StarComponent rate={order.review_order.rate} isShowRate={true} /> }
+                      avatar={'/image/small/' + order.member.avatar}
+                    />
+                    <CardTitle title={ order.review_order.remark } />
                   </Card>
+                  :
+                  order.status == 1 && this.props.user && order.member.id == this.props.user.id ?
+                  <ValidatorForm
+                    ref="form"
+                    onSubmit={(e) => this.postHandler(e)}
+                    onError={errors => this.onError(errors)}>
+                    <Card className="col s12" style={{ marginTop: '10px', paddingBottom: '10px' }}>
+                      <CardText>
+                        <h5>Review</h5>
+                        <StarComponent rate={this.state.order.review_order.rate} onChange={(val) => this.starChange(val, 'rate')} isShowRate={true} isInput={true} />
+                        <TextValidator
+                          floatingLabelText="Review"
+                          hintText="Review"
+                          value={this.state.order.review_order.remark}
+                          fullWidth={true}
+                          name="remark"
+                          onChange={this.onChangeHandler}
+                          autoComplete={false}
+                          multiLine={true}
+                          rows={2}
+                          rowsMax={4}
+                          validators={['required']}
+                          errorMessages={['Review dibutuhkan']}
+                        />
+                      </CardText>
+                      <CardActions className="right-align">
+                        <RaisedButton
+                          primary={true}
+                          label="Simpan"
+                          type="submit" />
+                      </CardActions>
+                    </Card>
+                  </ValidatorForm>
                   :
                   <Card className="col s12" style={{ marginTop: '10px', paddingBottom: '10px' }}>
                     <CardText>
                       <i>Belum Ada review</i>
                     </CardText>
-                  </Card>                  
+                  </Card>
                 }
               </Card>
             </div>

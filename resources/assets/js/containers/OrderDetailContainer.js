@@ -9,7 +9,9 @@ import App from '../components/App'
 import ApiService from '../modules/ApiService'
 
 const mapStateToProps = (state) => {
-  return {}
+  return {
+    user: state.UserLoginReducer,
+  }
 }
 
 const mapDispatchToProps = (dispatch) => {
@@ -36,7 +38,43 @@ const mapDispatchToProps = (dispatch) => {
           }
           else {
             order = data.data
+            if (!order.review_order) {
+              order.review_order = Object.assign({}, order.review_order, self.state.initial_review_order)
+            }
             self.setState({ order })
+          }
+        },
+        function (error) {
+          dispatch(updateSnack({
+            open: true,
+            message: error.name + ": " + error.message
+          }))
+          this.setState(order)
+        }
+      )
+    },
+    submitReview: (self, data) => {
+      let order = {}
+      ApiService.onPatch(
+        '/api/order/full',
+        data.order_id,
+        { reviewOrder: data },
+        function (response) {
+          let data = response
+
+          if (data.status != 201 && data.status != 200) {
+            dispatch(updateSnack({
+              open: true,
+              message: data.message
+            }))
+          }
+          else {
+            const order = data.data.data
+            self.setState({ order })
+            dispatch(updateSnack({
+              open: true,
+              message: 'Review Berhasil ditambahkan',
+            }))
           }
         },
         function (error) {

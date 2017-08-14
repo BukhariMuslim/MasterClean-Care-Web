@@ -57,6 +57,8 @@ Route::group(['prefix' => 'order', 'middleware' => ['api']], function () {
     Route::get('/status_art/{status}', 'OrderController@getByArtStatus')->where('status', '[0-9]+');
     
     Route::patch('/{order_id}', 'OrderController@update')->where('order_id', '[0-9]+');
+    
+    Route::patch('/full/{order_id}', 'OrderController@updateWithFullReturn')->where('order_id', '[0-9]+');
 
     Route::delete('/{order_id}', 'OrderController@destroy')->where('order_id', '[0-9]+');
 
