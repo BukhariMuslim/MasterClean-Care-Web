@@ -9,7 +9,9 @@ import App from '../components/App'
 import ApiService from '../modules/ApiService'
 
 const mapStateToProps = (state) => {
-  return {}
+  return {
+    user: state.UserLoginReducer,
+  }
 }
 
 const mapDispatchToProps = (dispatch) => {
@@ -45,6 +47,39 @@ const mapDispatchToProps = (dispatch) => {
             message: error.name + ": " + error.message
           }))
           this.setState(offer)
+        }
+      )
+    },
+    submitAccept: (self, data) => {
+      let order = {}
+      ApiService.onPatch(
+        '/api/offer/full',
+        data.order_id,
+        { offer_art: data },
+        function (response) {
+          let data = response
+
+          if (data.status != 201 && data.status != 200) {
+            dispatch(updateSnack({
+              open: true,
+              message: data.message
+            }))
+          }
+          else {
+            const order = data.data.data
+            self.setState({ order })
+            dispatch(updateSnack({
+              open: true,
+              message: 'Art Berhasil diterima',
+            }))
+          }
+        },
+        function (error) {
+          dispatch(updateSnack({
+            open: true,
+            message: error.name + ": " + error.message
+          }))
+          this.setState(order)
         }
       )
     },

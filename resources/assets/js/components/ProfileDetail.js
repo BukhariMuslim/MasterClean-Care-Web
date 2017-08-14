@@ -21,7 +21,6 @@ import DatePicker from 'material-ui/DatePicker'
 import TextField from 'material-ui/TextField'
 import MenuItem from 'material-ui/MenuItem'
 import StarComponent from './StarComponent'
-import FontIcon from 'material-ui/FontIcon'
 import IconButton from 'material-ui/IconButton'
 import NumberFormat from 'react-number-format'
 
@@ -435,11 +434,11 @@ class ProfileDetail extends Component {
                               {this.props.user.name || ''} <small>({age} thn)</small>
                               {
                                 this.state.isEdit ?
-                                <IconButton tooltip="Cancel" iconClassName="material-icons" className="right" onClick={this.onCancelEdit} >
+                                <IconButton tooltip="Batal" iconClassName="material-icons" className="right" onClick={this.onCancelEdit} >
                                   clear
                                 </IconButton>
                                 :
-                                <IconButton tooltip="Edit" iconClassName="material-icons" className="right" onClick={this.onEdit} >
+                                <IconButton tooltip="Ubah" iconClassName="material-icons" className="right" onClick={this.onEdit} >
                                   create
                                 </IconButton>
                               }

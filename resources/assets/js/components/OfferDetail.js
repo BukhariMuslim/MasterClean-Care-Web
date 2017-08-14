@@ -13,6 +13,7 @@ import {
 } from 'material-ui/Table'
 import FlatButton from 'material-ui/FlatButton'
 import NumberFormat from 'react-number-format'
+import IconButton from 'material-ui/IconButton'
 import App from './App'
 
 class OfferDetail extends Component {
@@ -22,6 +23,8 @@ class OfferDetail extends Component {
     this.state = {
       offer: {}
     }
+
+    this.onCancel = this.onCancel.bind(this)
   }
 
   componentDidMount() {
@@ -36,6 +39,41 @@ class OfferDetail extends Component {
         </li>
       )
     })
+  }
+
+  onAccept() {
+    this.props.submitAccept(
+      this,
+      {
+        // id: this.state.user.id,
+        // name: this.state.user.name,
+        // email: this.state.user.email,
+        // password: this.state.user.password,
+        // gender: this.state.user.gender,
+        // born_place: this.state.user.born_place,
+        // born_date: this.state.user.born_date,
+        // contact: {
+        //   address: this.state.user.contact.address,
+        //   location: this.state.user.contact.location,
+        //   emergency_numb: this.state.user.contact.emergency_numb,
+        //   location: this.state.user.contact.location,
+        //   phone: this.state.user.contact.phone,
+        //   city: this.state.user.contact.city.id,
+        // },
+        // religion: this.state.user.religion,
+        // race: this.state.user.race,
+        // user_type: this.state.user.user_type,
+        // status: this.state.user.status,
+        // user_language: this.state.user.user_language,
+        // user_job: this.state.user.user_job, 
+        // user_work_time: this.state.user.user_work_time,
+        // user_additional_info: this.state.user.user_additional_info,
+      },
+    )
+  }
+
+  onCancel() {
+    
   }
 
   render() {
@@ -223,7 +261,22 @@ class OfferDetail extends Component {
                               return (
                                 <TableRow key={id}>
                                   <TableRowColumn><Link to={'/art/' + art.art.id} >{art.art.name}</Link></TableRowColumn>
-                                  <TableRowColumn>{art.status != 0 ? art.status != 1 ? 'Ditolak' : 'Diterima' : 'Pending'}</TableRowColumn>
+                                  <TableRowColumn>
+                                    {
+                                      art.status != 0 ? 
+                                      art.status != 1 ? 'Ditolak' : 'Diterima' 
+                                      :
+                                      <div>
+                                        Pending
+                                        <IconButton tooltip="Tolak" iconClassName="material-icons text-green accent-4" className="right" onClick={this.onCancel} >
+                                          clear
+                                        </IconButton>
+                                        <IconButton tooltip="Terima" iconClassName="material-icons text-red darken-4" className="right" onClick={this.onAccept} >
+                                          done
+                                        </IconButton>
+                                      </div>
+                                    }
+                                  </TableRowColumn>
                                 </TableRow>
                               )
                             })
