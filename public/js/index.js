@@ -100,26 +100,32 @@ var StarComponent = function (_Component) {
     }
   }, {
     key: 'starComponent',
-    value: function starComponent(rate) {
+    value: function starComponent(rate, color) {
+      var style = iconStyles;
+
+      if (color) {
+        style = Object.assign({}, style, { color: color });
+      }
+
       var comp = [];
       var temp = rate;
       for (var i = 0; i < 5; i++) {
         if (temp - 1 >= 0) {
           comp.push(_react2.default.createElement(
             _FontIcon2.default,
-            { key: 'star' + i, className: 'material-icons', style: iconStyles },
+            { key: 'star' + i, className: 'material-icons', style: style },
             'star'
           ));
         } else if (temp - 0.5 >= 0) {
           comp.push(_react2.default.createElement(
             _FontIcon2.default,
-            { key: 'star' + i, className: 'material-icons', style: iconStyles },
+            { key: 'star' + i, className: 'material-icons', style: style },
             'star_half'
           ));
         } else {
           comp.push(_react2.default.createElement(
             _FontIcon2.default,
-            { key: 'star' + i, className: 'material-icons', style: iconStyles },
+            { key: 'star' + i, className: 'material-icons', style: style },
             'star_border'
           ));
         }
@@ -230,7 +236,7 @@ var StarComponent = function (_Component) {
         ) : _react2.default.createElement(
           'span',
           { title: rate },
-          this.starComponent(this.state.rate),
+          this.starComponent(this.state.rate, this.props.color),
           _react2.default.createElement(
             'span',
             { className: this.props.isShowRate ? 'material-icons' : 'hide', style: { fontFamily: 'Roboto, sans-serif' } },
@@ -322,6 +328,972 @@ __webpack_require__(392);
 __webpack_require__(393);
 module.exports = __webpack_require__(394);
 
+
+/***/ }),
+
+/***/ 1066:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(global) {
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _propTypes = __webpack_require__(1);
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+var _Paper = __webpack_require__(21);
+
+var _Paper2 = _interopRequireDefault(_Paper);
+
+var _Divider = __webpack_require__(29);
+
+var _Divider2 = _interopRequireDefault(_Divider);
+
+var _Card = __webpack_require__(35);
+
+var _reactMaterialUiFormValidator = __webpack_require__(46);
+
+var _Checkbox = __webpack_require__(56);
+
+var _Checkbox2 = _interopRequireDefault(_Checkbox);
+
+var _TextField = __webpack_require__(30);
+
+var _TextField2 = _interopRequireDefault(_TextField);
+
+var _FlatButton = __webpack_require__(22);
+
+var _FlatButton2 = _interopRequireDefault(_FlatButton);
+
+var _RaisedButton = __webpack_require__(44);
+
+var _RaisedButton2 = _interopRequireDefault(_RaisedButton);
+
+var _DatePicker = __webpack_require__(57);
+
+var _DatePicker2 = _interopRequireDefault(_DatePicker);
+
+var _SelectField = __webpack_require__(58);
+
+var _SelectField2 = _interopRequireDefault(_SelectField);
+
+var _MenuItem = __webpack_require__(36);
+
+var _MenuItem2 = _interopRequireDefault(_MenuItem);
+
+var _App = __webpack_require__(18);
+
+var _App2 = _interopRequireDefault(_App);
+
+var _OrderContainer = __webpack_require__(126);
+
+var _OrderContainer2 = _interopRequireDefault(_OrderContainer);
+
+var _OrderDetailContainer = __webpack_require__(455);
+
+var _OrderDetailContainer2 = _interopRequireDefault(_OrderDetailContainer);
+
+var _FontIcon = __webpack_require__(38);
+
+var _FontIcon2 = _interopRequireDefault(_FontIcon);
+
+var _IconButton = __webpack_require__(49);
+
+var _IconButton2 = _interopRequireDefault(_IconButton);
+
+var _Breadcrumbs = __webpack_require__(61);
+
+var _Breadcrumbs2 = _interopRequireDefault(_Breadcrumbs);
+
+var _Pager = __webpack_require__(127);
+
+var _Pager2 = _interopRequireDefault(_Pager);
+
+var _reactNumberFormat = __webpack_require__(37);
+
+var _reactNumberFormat2 = _interopRequireDefault(_reactNumberFormat);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var DateTimeFormat = global.Intl.DateTimeFormat;
+
+var OrderHistoryPage = function (_Component) {
+  _inherits(OrderHistoryPage, _Component);
+
+  function OrderHistoryPage(props) {
+    _classCallCheck(this, OrderHistoryPage);
+
+    var _this = _possibleConstructorReturn(this, (OrderHistoryPage.__proto__ || Object.getPrototypeOf(OrderHistoryPage)).call(this, props));
+
+    var minDate = new Date();
+    var maxDate = new Date();
+    minDate.setHours(0, 0, 0, 0);
+    maxDate.setDate(maxDate.getDate() + 7);
+    maxDate.setHours(0, 0, 0, 0);
+
+    _this.state = _defineProperty({
+      expanded: false,
+      criteria: '',
+      start_date: minDate,
+      end_date: maxDate,
+      name: '',
+      maxCost: 0,
+      city: 0,
+      job: 0,
+      work_time: 0
+    }, 'criteria', '');
+
+    _this.baseState = _this.state;
+
+    _this.handleToggle = _this.handleToggle.bind(_this);
+    _this.handlePageChanged = _this.handlePageChanged.bind(_this);
+    _this.onChangeHandler = _this.onChangeHandler.bind(_this);
+    _this.resetForm = _this.resetForm.bind(_this);
+    return _this;
+  }
+
+  _createClass(OrderHistoryPage, [{
+    key: 'loadInitialData',
+    value: function loadInitialData() {
+      this.props.getPlace(this, 'cityItem');
+    }
+  }, {
+    key: 'handleExpandChange',
+    value: function handleExpandChange(expanded) {
+      this.setState({ expanded: expanded });
+    }
+  }, {
+    key: 'handleToggle',
+    value: function handleToggle() {
+      var oldExpand = this.state.expanded;
+      this.setState({ expanded: !oldExpand });
+    }
+  }, {
+    key: 'onChangeHandler',
+    value: function onChangeHandler(e) {
+      var target = e.target;
+      var value = target.value;
+      var name = target.name;
+
+      this.setState(_defineProperty({}, name, value));
+    }
+  }, {
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      this.props.getUserLogin(this);
+      this.loadInitialData();
+    }
+  }, {
+    key: 'setParam',
+    value: function setParam(queryString) {
+      var _this2 = this;
+
+      if (queryString) {
+        var tempCriteria = [];
+        var params = queryString.substr(1).split('&');
+        params.map(function (param, idx) {
+          var p = param.split('=');
+
+          var val = decodeURIComponent(p[1]);
+          if (p[0] == 'start_date' || p[0] == 'end_date') {
+            _this2.setState(_defineProperty({}, p[0], new Date(val)));
+          } else {
+            _this2.setState(_defineProperty({}, p[0], val));
+          }
+          if (p[0] == 'name') {
+            tempCriteria.push("Nama " + ('"' + val + '"'));
+          } else if (p[0] == 'start_date') {
+            tempCriteria.push("Tanggal/Waktu Mulai " + ('"' + val + '"'));
+          } else if (p[0] == 'end_date') {
+            tempCriteria.push("Tanggal/Waktu Selesai " + ('"' + val + '"'));
+          } else if (p[0] == 'city') {
+            tempCriteria.push('Kota ' + ('"' + _this2.state.cityItem[_this2.state.cityItem.findIndex(function (x) {
+              return x.id == val;
+            })].name + '"'));
+          } else if (p[0] == 'work_time') {
+            tempCriteria.push('Kelompok Waktu Kerja ' + ('"' + _this2.state.workTimeItem[_this2.state.workTimeItem.findIndex(function (x) {
+              return x.id == val;
+            })].work_time + '"'));
+          } else if (p[0] == 'maxCost') {
+            tempCriteria.push("Upah maksimum " + ('"' + val + '"'));
+          }
+        });
+        if (tempCriteria.length > 0) {
+          this.setState({ criteria: ' dengan kriteria ' + tempCriteria.join(', ') });
+        }
+        this.props.onSubmit(this, queryString);
+      }
+    }
+  }, {
+    key: 'handlePageChanged',
+    value: function handlePageChanged(newPage) {
+      if (this.props.location.search) {
+        this.props.onSubmit(this, this.props.location.search + '&page=' + (newPage + 1));
+      } else {
+        this.props.getMyOrderHistory(this.props.user.id, newPage + 1);
+      }
+    }
+  }, {
+    key: 'onChangeDateHandler',
+    value: function onChangeDateHandler(name) {
+      var form = this;
+      return function (event, date) {
+        form.setState(_defineProperty({}, name, date));
+      };
+    }
+  }, {
+    key: 'menuItems',
+    value: function menuItems(collection, values) {
+      if (collection) {
+        return collection.map(function (obj, idx) {
+          return _react2.default.createElement(_MenuItem2.default, {
+            key: obj.id,
+            value: obj.id,
+            primaryText: obj.name || obj.job || obj.work_time
+          });
+        });
+      }
+    }
+  }, {
+    key: 'resetForm',
+    value: function resetForm() {
+      this.setState(this.baseState);
+      this.loadInitialData();
+      this.props.history.push('/order');
+    }
+  }, {
+    key: 'submitHandler',
+    value: function submitHandler(e) {
+      e.preventDefault();
+      var _state = this.state,
+          name = _state.name,
+          start_date = _state.start_date,
+          end_date = _state.end_date,
+          city = _state.city,
+          job = _state.job,
+          religion = _state.religion,
+          work_time = _state.work_time,
+          maxCost = _state.maxCost,
+          language = _state.language;
+
+      var queryString = [];
+      var tempCriteria = [];
+
+      if (job) {
+        queryString.push('job=' + encodeURIComponent(job));
+        tempCriteria.push('Profesi ' + ('"' + this.state.jobItem[this.state.jobItem.findIndex(function (x) {
+          return x.id == job;
+        })].job + '"'));
+      }
+
+      if (work_time) {
+        queryString.push('work_time=' + encodeURIComponent(work_time));
+        tempCriteria.push('Kelompok Waktu Kerja ' + ('"' + this.state.workTimeItem[this.state.workTimeItem.findIndex(function (x) {
+          return x.id == work_time;
+        })].work_time + '"'));
+      }
+
+      if (name) {
+        queryString.push('name=' + encodeURIComponent(name));
+        tempCriteria.push('Nama ' + ('"' + name + '"'));
+      }
+
+      if (city) {
+        queryString.push('city=' + encodeURIComponent(city));
+        tempCriteria.push('Kota ' + ('"' + this.state.cityItem[this.state.cityItem.findIndex(function (x) {
+          return x.place_id == city;
+        })].name + '"'));
+      }
+
+      if (start_date) {
+        queryString.push('start_date=' + encodeURIComponent(start_date));
+        tempCriteria.push('Tanggal/Waktu Mulai ' + ('"' + start_date + '"'));
+      }
+
+      if (end_date) {
+        queryString.push('end_date=' + encodeURIComponent(end_date));
+        tempCriteria.push('Tanggal/Waktu Selesai ' + ('"' + end_date + '"'));
+      }
+
+      if (maxCost) {
+        queryString.push('maxCost=' + encodeURIComponent(maxCost));
+        tempCriteria.push('Upah maksimum ' + ('"' + maxCost + '"'));
+      }
+
+      if (queryString.length > 0) {
+        if (tempCriteria.length > 0) {
+          this.setState({ criteria: ' dengan kriteria ' + tempCriteria.join(', ') });
+        }
+        this.props.onSubmit(this, '?' + queryString.join('&'));
+        this.setState({ expanded: false });
+      }
+    }
+  }, {
+    key: 'onChangeTextHandler',
+    value: function onChangeTextHandler(e, idx) {
+      var target = e.target;
+      var value = target.value;
+      var name = target.name;
+      var old = this.state[name];
+
+      if (idx > -1) {
+        old[idx].cost = target.value;
+      }
+      this.setState(_defineProperty({}, name, old));
+    }
+  }, {
+    key: 'onSelectFieldChangeHandler',
+    value: function onSelectFieldChangeHandler(name) {
+      var form = this;
+      return function (event, index, value) {
+        form.setState(_defineProperty({}, name, value));
+
+        if (name == 'work_time') {
+          if (value == 1) {
+            var startDate = new Date(form.state.start_date);
+            startDate.setHours(startDate.getHours() + 2);
+            var endDate = new Date(startDate);
+            endDate.setHours(endDate.getHours() + 2);
+            form.setState({
+              start_date: startDate,
+              end_date: endDate
+            });
+          } else {
+            var _startDate = new Date(form.state.start_date);
+            _startDate.setHours(0, 0, 0, 0);
+            var _endDate = new Date(_startDate);
+            _endDate.setDate(_endDate.getDate() + 7);
+            form.setState({
+              start_date: _startDate,
+              end_date: _endDate
+            });
+          }
+        }
+      };
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var _this3 = this;
+
+      var isMine = this.state.isMine;
+
+      return _react2.default.createElement(
+        _App2.default,
+        null,
+        _react2.default.createElement(
+          'div',
+          { className: 'row' },
+          _react2.default.createElement(
+            'nav',
+            { className: 'cyan breadcrumbsNav' },
+            _react2.default.createElement(
+              'div',
+              { className: 'nav-wrapper' },
+              _react2.default.createElement(_Breadcrumbs2.default, { pathname: this.props.location.pathname })
+            )
+          ),
+          this.props.match.params.orderId ? _react2.default.createElement(
+            _Paper2.default,
+            { className: 'col s12', zDepth: 1, style: { padding: 10, marginTop: 10 } },
+            _react2.default.createElement(_OrderDetailContainer2.default, { id: this.props.match.params.orderId })
+          ) : _react2.default.createElement(
+            _Paper2.default,
+            { className: 'col s12', zDepth: 1, style: { padding: 10, marginTop: 10 } },
+            _react2.default.createElement(
+              _Card.Card,
+              { expanded: this.state.expanded, onExpandChange: this.handleExpandChange, className: 'col s12', zDepth: 0 },
+              _react2.default.createElement(
+                _Card.CardTitle,
+                null,
+                _react2.default.createElement(
+                  'h5',
+                  { style: { marginTop: 35 } },
+                  'Riwayat Pemesanan',
+                  _react2.default.createElement(
+                    _IconButton2.default,
+                    { tooltip: 'Pencarian', className: 'right', onClick: this.handleToggle },
+                    _react2.default.createElement(
+                      _FontIcon2.default,
+                      { className: 'material-icons' },
+                      this.state.expanded ? 'clear' : 'search'
+                    )
+                  ),
+                  _react2.default.createElement('div', { className: 'clearfix' })
+                ),
+                _react2.default.createElement(_Divider2.default, null)
+              ),
+              _react2.default.createElement(
+                _Card.CardText,
+                { expandable: true },
+                _react2.default.createElement(
+                  _reactMaterialUiFormValidator.ValidatorForm,
+                  {
+                    className: 'grey lighten-4',
+                    ref: 'form',
+                    onSubmit: function onSubmit(e) {
+                      return _this3.submitHandler(e);
+                    } },
+                  _react2.default.createElement(
+                    'div',
+                    { className: 'col s12', style: { marginTop: 10 } },
+                    'Pencarian'
+                  ),
+                  _react2.default.createElement(
+                    'div',
+                    { className: 'col m6' },
+                    _react2.default.createElement(
+                      _reactMaterialUiFormValidator.SelectValidator,
+                      {
+                        floatingLabelText: 'Profesi',
+                        value: this.state.job,
+                        name: 'job',
+                        fullWidth: true,
+                        onChange: this.onSelectFieldChangeHandler('job')
+                      },
+                      _react2.default.createElement(_MenuItem2.default, {
+                        value: 0,
+                        primaryText: 'Semua'
+                      }),
+                      this.menuItems(this.state.jobItem, this.state.job)
+                    )
+                  ),
+                  _react2.default.createElement(
+                    'div',
+                    { className: 'col m6' },
+                    _react2.default.createElement(
+                      _reactMaterialUiFormValidator.SelectValidator,
+                      {
+                        floatingLabelText: 'Kelompok Waktu Kerja',
+                        value: this.state.work_time,
+                        name: 'work_time',
+                        fullWidth: true,
+                        onChange: this.onSelectFieldChangeHandler('work_time')
+                      },
+                      _react2.default.createElement(_MenuItem2.default, {
+                        value: 0,
+                        primaryText: 'Semua'
+                      }),
+                      this.menuItems(this.state.workTimeItem, this.state.work_time)
+                    )
+                  ),
+                  _react2.default.createElement(
+                    'div',
+                    { className: 'col m6' },
+                    _react2.default.createElement(_reactMaterialUiFormValidator.TextValidator, {
+                      hintText: 'Nama ART',
+                      floatingLabelText: 'Nama ART',
+                      value: this.state.name,
+                      fullWidth: true,
+                      name: 'name',
+                      onChange: this.onChangeHandler,
+                      autoComplete: false
+                    })
+                  ),
+                  _react2.default.createElement(
+                    'div',
+                    { className: 'col m6' },
+                    _react2.default.createElement(
+                      _reactMaterialUiFormValidator.SelectValidator,
+                      {
+                        floatingLabelText: 'Kota',
+                        value: this.state.city,
+                        name: 'city',
+                        fullWidth: true,
+                        onChange: this.onSelectFieldChangeHandler('city')
+                      },
+                      _react2.default.createElement(_MenuItem2.default, {
+                        value: 0,
+                        primaryText: 'Semua'
+                      }),
+                      this.menuItems(this.state.cityItem, this.state.city)
+                    )
+                  ),
+                  _react2.default.createElement(
+                    'div',
+                    { className: 'col ' + (this.state.work_time == 1 ? 's6 m3' : 'm6') },
+                    _react2.default.createElement(_reactMaterialUiFormValidator.DateValidator, {
+                      hintText: 'Tanggal Mulai',
+                      floatingLabelText: 'Tanggal Mulai',
+                      value: this.state.start_date,
+                      onChange: this.onChangeDateHandler('start_date'),
+                      name: 'start_date',
+                      autoOk: true,
+                      fullWidth: true,
+                      maxDate: this.state.end_date,
+                      formatDate: new DateTimeFormat('id-ID', {
+                        day: 'numeric',
+                        month: 'long',
+                        year: 'numeric'
+                      }).format
+                    })
+                  ),
+                  this.state.work_time == 1 ? _react2.default.createElement(
+                    'div',
+                    { className: 'col s6 m3' },
+                    _react2.default.createElement(_reactMaterialUiFormValidator.TimeValidator, {
+                      hintText: 'Waktu Mulai',
+                      format: '24hr',
+                      floatingLabelText: 'Waktu Mulai',
+                      value: this.state.start_date,
+                      onChange: this.onChangeDateHandler('start_date'),
+                      name: 'start_date',
+                      autoOk: true,
+                      fullWidth: true
+                    })
+                  ) : null,
+                  _react2.default.createElement(
+                    'div',
+                    { className: 'col ' + (this.state.work_time == 1 ? 's6 m3' : 'm6') },
+                    _react2.default.createElement(_reactMaterialUiFormValidator.DateValidator, {
+                      hintText: 'Tanggal Selesai',
+                      floatingLabelText: 'Tanggal Selesai',
+                      value: this.state.end_date,
+                      onChange: this.onChangeDateHandler('end_date'),
+                      name: 'end_date',
+                      disabled: this.state.work_time == 1,
+                      autoOk: true,
+                      fullWidth: true,
+                      minDate: this.state.start_date,
+                      formatDate: new DateTimeFormat('id-ID', {
+                        day: 'numeric',
+                        month: 'long',
+                        year: 'numeric'
+                      }).format
+                    })
+                  ),
+                  this.state.work_time == 1 ? _react2.default.createElement(
+                    'div',
+                    { className: 'col s6 m3' },
+                    _react2.default.createElement(_reactMaterialUiFormValidator.TimeValidator, {
+                      format: '24hr',
+                      hintText: 'Waktu Selesai',
+                      floatingLabelText: 'Waktu Selesai',
+                      value: this.state.end_date,
+                      onChange: this.onChangeDateHandler('end_date'),
+                      name: 'end_date',
+                      autoOk: true,
+                      fullWidth: true
+                    })
+                  ) : null,
+                  _react2.default.createElement(
+                    'div',
+                    { className: 'col m6' },
+                    _react2.default.createElement(_reactNumberFormat2.default, {
+                      hintText: 'Upah maksimum',
+                      floatingLabelText: 'Upah maksimum',
+                      thousandSeparator: true,
+                      prefix: 'Rp. ',
+                      value: this.state.maxCost,
+                      fullWidth: true,
+                      name: 'maxCost',
+                      onChange: this.onChangeHandler,
+                      customInput: _reactMaterialUiFormValidator.TextValidator
+                    })
+                  ),
+                  _react2.default.createElement(
+                    'div',
+                    { className: 'col s12' },
+                    _react2.default.createElement(
+                      'div',
+                      { className: 'col hide-on-med-and-down l6' },
+                      '\xA0'
+                    ),
+                    _react2.default.createElement(
+                      'div',
+                      { className: 'input-field col s12 m6 l3', style: { marginBottom: 10 } },
+                      _react2.default.createElement(_FlatButton2.default, {
+                        primary: true,
+                        label: 'Reset',
+                        fullWidth: true,
+                        onClick: this.resetForm
+                      })
+                    ),
+                    _react2.default.createElement(
+                      'div',
+                      { className: 'input-field col s12 m6 l3', style: { marginBottom: 10 } },
+                      _react2.default.createElement(_RaisedButton2.default, {
+                        primary: true,
+                        label: 'Cari',
+                        fullWidth: true,
+                        type: 'submit' })
+                    )
+                  ),
+                  _react2.default.createElement('div', { className: 'clearfix' })
+                )
+              ),
+              _react2.default.createElement(
+                _Card.CardText,
+                null,
+                _react2.default.createElement(
+                  'small',
+                  { style: { fontSize: 12 } },
+                  _react2.default.createElement(
+                    'i',
+                    null,
+                    this.props.ordersHistory.total ? _react2.default.createElement(
+                      'span',
+                      null,
+                      'Menampilkan ',
+                      _react2.default.createElement(
+                        'b',
+                        null,
+                        this.props.ordersHistory.from
+                      ),
+                      ' - ',
+                      _react2.default.createElement(
+                        'b',
+                        null,
+                        this.props.ordersHistory.to
+                      ),
+                      ' dari total ',
+                      _react2.default.createElement(
+                        'b',
+                        null,
+                        this.props.ordersHistory.total
+                      ),
+                      ' Pemesanan Saya',
+                      this.state.criteria ? this.state.criteria : null
+                    ) : _react2.default.createElement(
+                      'span',
+                      null,
+                      'Tidak ada Pemesanan ditemukan',
+                      this.state.criteria ? this.state.criteria : null
+                    )
+                  )
+                ),
+                _react2.default.createElement(_OrderContainer2.default, { orders: this.props.ordersHistory.data || [] }),
+                _react2.default.createElement(_Pager2.default, {
+                  total: this.props.ordersHistory.last_page || 1,
+                  current: this.props.ordersHistory.current_page ? this.props.ordersHistory.current_page - 1 : 1,
+                  visiblePages: 3,
+                  onPageChanged: this.handlePageChanged
+                })
+              )
+            )
+          )
+        )
+      );
+    }
+  }]);
+
+  return OrderHistoryPage;
+}(_react.Component);
+
+exports.default = OrderHistoryPage;
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(32)))
+
+/***/ }),
+
+/***/ 1067:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRedux = __webpack_require__(13);
+
+var _DefaultAction = __webpack_require__(16);
+
+var _OrderHistoryPage = __webpack_require__(1066);
+
+var _OrderHistoryPage2 = _interopRequireDefault(_OrderHistoryPage);
+
+var _reactRouterDom = __webpack_require__(11);
+
+var _App = __webpack_require__(18);
+
+var _App2 = _interopRequireDefault(_App);
+
+var _ApiService = __webpack_require__(23);
+
+var _ApiService2 = _interopRequireDefault(_ApiService);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+var mapStateToProps = function mapStateToProps(state) {
+  return {
+    user: state.UserLoginReducer,
+    ordersHistory: state.OrderHistoryReducer
+  };
+};
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {
+    onUpdateSnack: function onUpdateSnack(open, message) {
+      dispatch((0, _DefaultAction.updateSnack)({
+        open: true,
+        message: message
+      }));
+    },
+    getUserLogin: function getUserLogin(self) {
+      dispatch((0, _DefaultAction.updateLoadingSpin)({
+        show: true
+      }));
+
+      _ApiService2.default.onGet('/api/user/me', '', function (response) {
+        dispatch((0, _DefaultAction.resetLoadingSpin)());
+        var data = response;
+        if (data.status === 200) {
+          if (data.data) {
+            data = data.data;
+            self.props.getMyOrderHistory(data.id);
+            dispatch(loginAuth(data));
+          }
+        }
+      }, function (error) {
+        dispatch((0, _DefaultAction.resetLoadingSpin)());
+      });
+    },
+    onSubmit: function onSubmit(self, queryString) {
+      dispatch((0, _DefaultAction.updateLoadingSpin)({
+        show: true
+      }));
+
+      _ApiService2.default.onGet('/api/order/search', self.props.user.id + '/' + (queryString || '?') + '&page=1' + '&status=1,2', function (response) {
+        dispatch((0, _DefaultAction.resetLoadingSpin)());
+        var data = response;
+        if (data.status != 200) {
+          dispatch((0, _DefaultAction.updateSnack)({
+            open: true,
+            message: data.message
+          }));
+        } else {
+          self.props.history.push('/order/' + queryString);
+          dispatch((0, _DefaultAction.fillOrderHistory)(data.data));
+        }
+      }, function (error) {
+        dispatch((0, _DefaultAction.resetLoadingSpin)());
+        dispatch((0, _DefaultAction.updateSnack)({
+          open: true,
+          message: error.name + ": " + error.message
+        }));
+      });
+    },
+    getMyOrderHistory: function getMyOrderHistory(id, pageNumb) {
+      _ApiService2.default.onGet('/api/order/search', id + '/?page=' + (pageNumb || 1) + '&status=1,2', function (response) {
+        var data = response;
+        if (data.status != 200) {
+          dispatch((0, _DefaultAction.updateSnack)({
+            open: true,
+            message: data.message
+          }));
+        } else {
+          dispatch((0, _DefaultAction.fillOrderHistory)(data.data));
+        }
+      }, function (error) {
+        dispatch((0, _DefaultAction.updateSnack)({
+          open: true,
+          message: error.name + ": " + error.message
+        }));
+      });
+    },
+    getPlace: function getPlace(self, type) {
+      var dataPlace = [];
+      _ApiService2.default.onGet('/api/place', '', function (response) {
+        var data = response;
+        if (data.status !== 200) {
+          dispatch((0, _DefaultAction.updateSnack)({
+            open: true,
+            message: data.message
+          }));
+        } else {
+          dataPlace = data.data;
+        }
+        self.setState(_defineProperty({}, type, dataPlace));
+        self.props.getJob(self, 'jobItem');
+      }, function (error) {
+        dispatch((0, _DefaultAction.updateSnack)({
+          open: true,
+          message: error.name + ": " + error.message
+        }));
+        self.setState(_defineProperty({}, type, dataPlace));
+      });
+    },
+    getJob: function getJob(self, type) {
+      var dataJob = [];
+      _ApiService2.default.onGet('/api/job/', '', function (response) {
+        var data = response;
+        if (data.status !== 200) {
+          dispatch((0, _DefaultAction.updateSnack)({
+            open: true,
+            message: data.message
+          }));
+        } else {
+          dataJob = data.data;
+        }
+        self.setState(_defineProperty({}, type, dataJob));
+        self.props.getWorkTime(self, 'workTimeItem');
+      }, function (error) {
+        dispatch((0, _DefaultAction.updateSnack)({
+          open: true,
+          message: error.name + ": " + error.message
+        }));
+        self.setState(_defineProperty({}, type, dataJob));
+      });
+    },
+    getWorkTime: function getWorkTime(self, type) {
+      var dataWorkTime = [];
+      _ApiService2.default.onGet('/api/work_time/', '', function (response) {
+        var data = response;
+        if (data.status !== 200) {
+          dispatch((0, _DefaultAction.updateSnack)({
+            open: true,
+            message: data.message
+          }));
+        } else {
+          dataWorkTime = data.data;
+        }
+        self.setState(_defineProperty({}, type, dataWorkTime));
+        self.setParam(self.props.location.search);
+      }, function (error) {
+        dispatch((0, _DefaultAction.updateSnack)({
+          open: true,
+          message: error.name + ": " + error.message
+        }));
+        self.setState(_defineProperty({}, type, dataWorkTime));
+      });
+    }
+  };
+};
+
+var OrderHistoryPageContainer = (0, _reactRouterDom.withRouter)((0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_OrderHistoryPage2.default));
+
+exports.default = OrderHistoryPageContainer;
+
+/***/ }),
+
+/***/ 1068:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _DefaultAction = __webpack_require__(16);
+
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
+var getInitial = function getInitial() {
+    return {
+        current_page: 1,
+        data: [],
+        from: null,
+        last_page: 1,
+        next_page_url: null,
+        path: '',
+        per_page: 10,
+        prev_page_url: '',
+        to: null,
+        total: 0
+    };
+};
+
+var OrderHistoryReducer = function OrderHistoryReducer() {
+    var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+    var action = arguments[1];
+
+    switch (action.type) {
+        case _DefaultAction.FILL_ORDER_HISTORY:
+            return Object.assign([], state, action.data);
+        case _DefaultAction.ADD_ORDER_HISTORY:
+            var date = action.data.published_date;
+            var article = [];
+
+            if (Object.keys(date).length !== 0 || date.constructor !== Object) {
+                date = new Date(date);
+            }
+
+            article = [].concat(_toConsumableArray(state), [{
+                id: action.id,
+                title: action.data.name,
+                tag: action.data.tag,
+                content: action.data.desc,
+                published_date: date,
+                isEdit: false
+            }]);
+
+            return Object.assign([], state, article);
+        case _DefaultAction.UPDATE_ORDER_HISTORY:
+            date = action.data.published_date;
+            article = [];
+            if (Object.keys(date).length !== 0 || date.constructor !== Object) {
+                date = new Date(date);
+            }
+
+            idx = state.map(function (e) {
+                return e.id;
+            }).indexOf(action.data.id);
+            article = [].concat(_toConsumableArray(state.slice(0, idx)), [{
+                id: action.id,
+                title: action.data.name,
+                tag: action.data.tag,
+                content: action.data.desc,
+                published_date: date,
+                isEdit: false
+            }], _toConsumableArray(state.slice(idx + 1)));
+            return Object.assign([], state, article);
+        case _DefaultAction.EDIT_ORDER_HISTORY:
+            article = state.map(function (t) {
+                if (state.id !== action.data) {
+                    return state;
+                }
+
+                return Object.assign({}, state, {
+                    isEdit: !state.isEdit
+                });
+            });
+
+            return article;
+        case _DefaultAction.REMOVE_ORDER_HISTORY:
+            article = state.map(function (t) {
+                var idx = state.map(function (e) {
+                    return e.id;
+                }).indexOf(action.data);
+                if (idx > -1) {
+                    return [].concat(_toConsumableArray(state.slice(0, idx)), _toConsumableArray(state.slice(idx + 1)));
+                }
+                return state;
+            });
+
+            return article;
+        default:
+            return state;
+    }
+};
+
+exports.default = OrderHistoryReducer;
 
 /***/ }),
 
@@ -1345,6 +2317,11 @@ exports.addOrder = addOrder;
 exports.editOrder = editOrder;
 exports.updateOrder = updateOrder;
 exports.removeOrder = removeOrder;
+exports.fillOrderHistory = fillOrderHistory;
+exports.addOrderHistory = addOrderHistory;
+exports.editOrderHistory = editOrderHistory;
+exports.updateOrderHistory = updateOrderHistory;
+exports.removeOrderHistory = removeOrderHistory;
 /*
  *  Action Types
  */
@@ -1385,6 +2362,12 @@ var ADD_ORDER = exports.ADD_ORDER = 'ADD_ORDER';
 var EDIT_ORDER = exports.EDIT_ORDER = 'EDIT_ORDER';
 var UPDATE_ORDER = exports.UPDATE_ORDER = 'UPDATE_ORDER';
 var REMOVE_ORDER = exports.REMOVE_ORDER = 'REMOVE_ORDER';
+
+var FILL_ORDER_HISTORY = exports.FILL_ORDER_HISTORY = 'FILL_ORDER_HISTORY';
+var ADD_ORDER_HISTORY = exports.ADD_ORDER_HISTORY = 'ADD_ORDER_HISTORY';
+var EDIT_ORDER_HISTORY = exports.EDIT_ORDER_HISTORY = 'EDIT_ORDER_HISTORY';
+var UPDATE_ORDER_HISTORY = exports.UPDATE_ORDER_HISTORY = 'UPDATE_ORDER_HISTORY';
+var REMOVE_ORDER_HISTORY = exports.REMOVE_ORDER_HISTORY = 'REMOVE_ORDER_HISTORY';
 
 /*
  *  Action Creators
@@ -1538,6 +2521,26 @@ function updateOrder(data) {
 
 function removeOrder(index) {
     return { type: REMOVE_ORDER, data: index };
+}
+
+function fillOrderHistory(data) {
+    return { type: FILL_ORDER_HISTORY, data: data };
+}
+
+function addOrderHistory(data) {
+    return { type: ADD_ORDER_HISTORY, data: data };
+}
+
+function editOrderHistory(index) {
+    return { type: EDIT_ORDER_HISTORY, data: index };
+}
+
+function updateOrderHistory(data) {
+    return { type: UPDATE_ORDER_HISTORY, data: data };
+}
+
+function removeOrderHistory(index) {
+    return { type: REMOVE_ORDER_HISTORY, data: index };
 }
 
 /***/ }),
@@ -2887,7 +3890,7 @@ var DefaultMenuCollection = [{
   id: 3,
   label: 'Penawaran',
   link: '/offer',
-  iconLabel: 'business_center',
+  iconLabel: 'work',
   allowUser: [0, 1, 3]
 }, {
   id: 4,
@@ -2897,9 +3900,15 @@ var DefaultMenuCollection = [{
   allowUser: [2, 3]
 }, {
   id: 5,
-  label: 'Pemesanan',
+  label: 'Pemesanan Saya',
   link: '/order',
-  iconLabel: 'receipt',
+  iconLabel: 'event_note',
+  allowUser: [2, 3]
+}, {
+  id: 6,
+  label: 'Riwayat Pemesanan',
+  link: '/order_history',
+  iconLabel: 'query_builder',
   allowUser: [2, 3]
 }];
 
@@ -4957,7 +5966,7 @@ var Art = function (_Component) {
                 _react2.default.createElement(
                   'div',
                   null,
-                  _react2.default.createElement(_StarComponent2.default, { rate: obj.rate })
+                  _react2.default.createElement(_StarComponent2.default, { rate: obj.rate, color: '#fff' })
                 )
               ),
               titleStyle: styles.titleStyle,
@@ -5055,7 +6064,7 @@ var Art = function (_Component) {
                   _react2.default.createElement(
                     'div',
                     null,
-                    _react2.default.createElement(_StarComponent2.default, { rate: obj.rate })
+                    _react2.default.createElement(_StarComponent2.default, { rate: obj.rate, color: '#fff' })
                   )
                 )
               )
@@ -6440,7 +7449,6 @@ var ArtPage = function (_Component) {
     value: function render() {
       var _this5 = this;
 
-      console.log(this.props.arts);
       return _react2.default.createElement(
         _App2.default,
         null,
@@ -9904,7 +10912,21 @@ var Offer = function (_Component) {
                   { to: "/offer/" + obj.id },
                   obj.job ? obj.job.job : '-',
                   obj.work_time ? ' (' + obj.work_time.work_time + ') ' : '',
-                  obj.cost ? _react2.default.createElement(_reactNumberFormat2.default, { value: obj.cost, displayType: 'text', thousandSeparator: true, prefix: 'Rp. ' }) : '-'
+                  obj.cost ? _react2.default.createElement(_reactNumberFormat2.default, { value: obj.cost, displayType: 'text', thousandSeparator: true, prefix: 'Rp. ' }) : '-',
+                  '\xA0',
+                  obj.status == 0 ? _react2.default.createElement(
+                    'b',
+                    { style: { backgroundColor: '#FFEB3B', padding: '2px 5px', color: 'white' } },
+                    'Pending'
+                  ) : obj.status == 1 ? _react2.default.createElement(
+                    'b',
+                    { style: { backgroundColor: '#64DD17', padding: '2px 5px', color: 'white' } },
+                    'Selesai'
+                  ) : _react2.default.createElement(
+                    'b',
+                    { style: { backgroundColor: '#F44336', padding: '2px 5px', color: 'white' } },
+                    'Dibatalkan'
+                  )
                 ),
                 subtitle: obj.member.name + ' di ' + obj.member.contact.address,
                 avatar: '/image/small/' + obj.member.avatar
@@ -10281,6 +11303,32 @@ var OfferDetail = function (_Component) {
                   {
                     displayRowCheckbox: false
                   },
+                  _react2.default.createElement(
+                    _Table.TableRow,
+                    null,
+                    _react2.default.createElement(
+                      _Table.TableRowColumn,
+                      { style: { textAlign: 'right', verticalAlign: 'top' } },
+                      'Status'
+                    ),
+                    _react2.default.createElement(
+                      _Table.TableRowColumn,
+                      null,
+                      offer.status == 0 ? _react2.default.createElement(
+                        'b',
+                        { style: { backgroundColor: '#FFEB3B', padding: '2px 5px', color: 'white' } },
+                        'Pending'
+                      ) : offer.status == 1 ? _react2.default.createElement(
+                        'b',
+                        { style: { backgroundColor: '#64DD17', padding: '2px 5px', color: 'white' } },
+                        'Selesai'
+                      ) : _react2.default.createElement(
+                        'b',
+                        { style: { backgroundColor: '#F44336', padding: '2px 5px', color: 'white' } },
+                        'Dibatalkan'
+                      )
+                    )
+                  ),
                   _react2.default.createElement(
                     _Table.TableRow,
                     null,
@@ -11417,7 +12465,21 @@ var Order = function (_Component) {
                 { to: "/order/" + obj.id },
                 obj.job ? obj.job.job : '-',
                 obj.work_time ? ' (' + obj.work_time.work_time + ') ' : '',
-                obj.cost ? _react2.default.createElement(_reactNumberFormat2.default, { value: obj.cost, displayType: 'text', thousandSeparator: true, prefix: 'Rp. ' }) : '-'
+                obj.cost ? _react2.default.createElement(_reactNumberFormat2.default, { value: obj.cost, displayType: 'text', thousandSeparator: true, prefix: 'Rp. ' }) : '-',
+                '\xA0',
+                obj.status == 0 ? _react2.default.createElement(
+                  'b',
+                  { style: { backgroundColor: '#FFEB3B', padding: '2px 5px', color: 'white' } },
+                  'Pending'
+                ) : obj.status == 1 ? _react2.default.createElement(
+                  'b',
+                  { style: { backgroundColor: '#64DD17', padding: '2px 5px', color: 'white' } },
+                  'Selesai'
+                ) : _react2.default.createElement(
+                  'b',
+                  { style: { backgroundColor: '#F44336', padding: '2px 5px', color: 'white' } },
+                  'Dibatalkan'
+                )
               ),
               subtitle: obj.member.name + ' di ' + obj.member.contact.address,
               avatar: '/image/small/' + obj.member.avatar
@@ -16499,7 +17561,7 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
       });
     },
     getMyOffer: function getMyOffer(id, pageNumb) {
-      _ApiService2.default.onGet('/api/offer/full/user', id + '/?page=' + (pageNumb || 1), function (response) {
+      _ApiService2.default.onGet('/api/offer/search', id + '/?page=' + (pageNumb || 1), function (response) {
         var data = response;
         if (data.status != 200) {
           dispatch((0, _DefaultAction.updateSnack)({
@@ -16517,7 +17579,7 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
       });
     },
     getOffer: function getOffer(pageNumb) {
-      _ApiService2.default.onGet('/api/offer/full', '?page=' + (pageNumb || 1), function (response) {
+      _ApiService2.default.onGet('/api/offer/search', '?page=' + (pageNumb || 1) + '&status=0', function (response) {
         var data = response;
         if (data.status != 200) {
           dispatch((0, _DefaultAction.updateSnack)({
@@ -16535,7 +17597,7 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
       });
     },
     getMyOrder: function getMyOrder(id, pageNumb) {
-      _ApiService2.default.onGet('/api/order/full/user', id + '/?page=' + (pageNumb || 1), function (response) {
+      _ApiService2.default.onGet('/api/order/search', id + '/?page=' + (pageNumb || 1) + '&status=0', function (response) {
         var data = response;
         if (data.status != 200) {
           dispatch((0, _DefaultAction.updateSnack)({
@@ -16990,7 +18052,7 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
         show: true
       }));
 
-      _ApiService2.default.onGet('/api/offer/search', queryString, function (response) {
+      _ApiService2.default.onGet('/api/offer/search', (queryString ? queryString + '&' : '?') + 'status=0', function (response) {
         dispatch((0, _DefaultAction.resetLoadingSpin)());
         var data = response;
         if (data.status != 200) {
@@ -17011,7 +18073,7 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
       });
     },
     getOffer: function getOffer(pageNumb) {
-      _ApiService2.default.onGet('/api/offer/full', '?page=' + (pageNumb || 1), function (response) {
+      _ApiService2.default.onGet('/api/offer/search', '?page=' + (pageNumb || 1) + '&status=0', function (response) {
         var data = response;
         if (data.status != 200) {
           dispatch((0, _DefaultAction.updateSnack)({
@@ -17286,7 +18348,7 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
         show: true
       }));
 
-      _ApiService2.default.onGet('/api/order/search', self.props.user.id + '/' + queryString, function (response) {
+      _ApiService2.default.onGet('/api/order/search', self.props.user.id + '/' + (queryString || '?') + '&page=1' + '&status=0', function (response) {
         dispatch((0, _DefaultAction.resetLoadingSpin)());
         var data = response;
         if (data.status != 200) {
@@ -17307,7 +18369,7 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
       });
     },
     getMyOrder: function getMyOrder(id, pageNumb) {
-      _ApiService2.default.onGet('/api/order/full/user', id + '/?page=' + (pageNumb || 1), function (response) {
+      _ApiService2.default.onGet('/api/order/search', id + '/?page=' + (pageNumb || 1) + '&status=0', function (response) {
         var data = response;
         if (data.status != 200) {
           dispatch((0, _DefaultAction.updateSnack)({
@@ -18383,6 +19445,10 @@ var _OfferPageContainer = __webpack_require__(454);
 
 var _OfferPageContainer2 = _interopRequireDefault(_OfferPageContainer);
 
+var _OrderHistoryPageContainer = __webpack_require__(1067);
+
+var _OrderHistoryPageContainer2 = _interopRequireDefault(_OrderHistoryPageContainer);
+
 var _OrderPageContainer = __webpack_require__(456);
 
 var _OrderPageContainer2 = _interopRequireDefault(_OrderPageContainer);
@@ -18446,6 +19512,8 @@ var routesElement = function (_Component) {
         _react2.default.createElement(_reactRouter.Route, { path: '/offer', component: _OfferPageContainer2.default }),
         _react2.default.createElement(_reactRouter.Route, { path: '/order/:orderId', component: _OrderPageContainer2.default }),
         _react2.default.createElement(_reactRouter.Route, { path: '/order', component: _OrderPageContainer2.default }),
+        _react2.default.createElement(_reactRouter.Route, { path: '/order_history/:orderId', component: _OrderHistoryPageContainer2.default }),
+        _react2.default.createElement(_reactRouter.Route, { path: '/order_history', component: _OrderHistoryPageContainer2.default }),
         _react2.default.createElement(_reactRouter.Route, { path: '/term', component: _Term2.default }),
         _react2.default.createElement(_reactRouter.Route, { path: '/term_mobile', component: _TermMobile2.default }),
         _react2.default.createElement(_reactRouter.Route, { path: '/*', component: _NotFound2.default })
@@ -19121,6 +20189,10 @@ var _OrderReducer = __webpack_require__(470);
 
 var _OrderReducer2 = _interopRequireDefault(_OrderReducer);
 
+var _OrderHistoryReducer = __webpack_require__(1068);
+
+var _OrderHistoryReducer2 = _interopRequireDefault(_OrderHistoryReducer);
+
 var _MyOfferReducer = __webpack_require__(467);
 
 var _MyOfferReducer2 = _interopRequireDefault(_MyOfferReducer);
@@ -19141,6 +20213,7 @@ var mcc = (0, _redux.combineReducers)({
     LoadingSpinReducer: _LoadingSpinReducer2.default,
     ArtReducer: _ArtReducer2.default,
     OrderReducer: _OrderReducer2.default,
+    OrderHistoryReducer: _OrderHistoryReducer2.default,
     OfferReducer: _OfferReducer2.default,
     MyOfferReducer: _MyOfferReducer2.default,
     ArticleReducer: _ArticleReducer2.default
@@ -31276,7 +32349,8 @@ var Breadcrumbs = (0, _autoBreadcrumb2.default)({
     '/member': 'Member',
     '/offer': 'Penawaran',
     '/my_offer': 'Penawaran Saya',
-    '/order': 'Pemesanan',
+    '/order': 'Pemesanan Saya',
+    '/order_history': 'Riwayat Pemesanan',
     '/profile': 'Profile',
     '/term': 'Syarat & Ketentuan',
     '/term_mobile': 'Syarat & Ketentuan'
@@ -31286,6 +32360,7 @@ var Breadcrumbs = (0, _autoBreadcrumb2.default)({
     '/art/:artId': '{{artId}}',
     '/my_offer/:offerId': '{{offerId}}',
     '/offer/:offerId': '{{offerId}}',
+    '/order_history/:orderId': '{{orderId}}',
     '/order/:orderId': '{{orderId}}'
   },
   containerProps: {

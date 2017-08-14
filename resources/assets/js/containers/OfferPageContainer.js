@@ -52,7 +52,7 @@ const mapDispatchToProps = (dispatch) => {
       
       ApiService.onGet(
         '/api/offer/search',
-        queryString,
+        (queryString ? queryString + '&' : '?') + 'status=0',
         function (response) {
           dispatch(resetLoadingSpin())
           let data = response
@@ -78,8 +78,8 @@ const mapDispatchToProps = (dispatch) => {
     },
     getOffer: (pageNumb) => {
       ApiService.onGet(
-        '/api/offer/full',
-        '?page=' + (pageNumb || 1) ,
+        '/api/offer/search',
+        '?page=' + (pageNumb || 1) + '&status=0',
         function (response) {
           let data = response
           if (data.status != 200) {

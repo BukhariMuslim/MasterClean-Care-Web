@@ -13,6 +13,7 @@ import TermMobile from '../components/TermMobile'
 import ArtPageContainer from '../containers/ArtPageContainer'
 import MyOfferPageContainer from '../containers/MyOfferPageContainer'
 import OfferPageContainer from '../containers/OfferPageContainer'
+import OrderHistoryPageContainer from '../containers/OrderHistoryPageContainer'
 import OrderPageContainer from '../containers/OrderPageContainer'
 import NotFound from '../components/NotFound'
 import HomeContainer from '../containers/HomeContainer'
@@ -50,6 +51,8 @@ class routesElement extends Component {
         <Route path="/offer" component={OfferPageContainer} />
         <Route path="/order/:orderId" component={OrderPageContainer} />
         <Route path="/order" component={OrderPageContainer} />
+        <Route path="/order_history/:orderId" component={OrderHistoryPageContainer} />
+        <Route path="/order_history" component={OrderHistoryPageContainer} />
         <Route path="/term" component={Term} />
         <Route path="/term_mobile" component={TermMobile} />
         <Route path="/*" component={NotFound} />

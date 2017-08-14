@@ -6,6 +6,7 @@ use App\Models\Order;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Helpers\Operators;
+use Carbon\Carbon;
 use Exception;
 use DB;
 
@@ -567,7 +568,8 @@ class OrderController extends Controller
                 'orderTaskList',
                 'reviewOrder',
                 'job',
-            ]);
+            ])
+            ->sortByDesc('start_date');
 
             $dateNow = Carbon::now();
 
@@ -631,7 +633,8 @@ class OrderController extends Controller
                 'orderTaskList',
                 'reviewOrder',
                 'job',
-            ]);
+            ])
+            ->sortByDesc('start_date');
 
             if ($userObj->role_id == 2) {
                 $order->where('member_id', $user);
@@ -661,6 +664,10 @@ class OrderController extends Controller
                 else if ($key == 'city') {
                     $order = $order->where('contact.city', $input);
                 }
+                else if ($key == 'status') {
+                    $temp = explode(',', $input);
+                    $order = $order->whereIn('status', $temp);
+                }
                 else if ($key == 'name') {
                     $order = $order->whereHas('art', function($query) use ($input) {
                         $query->where('name', Operators::LIKE, '%'.$input.'%');
@@ -671,7 +678,7 @@ class OrderController extends Controller
                 // }
             }
             
-            return $offer->paginate(10);
+            return $order->paginate(10);
         }
         catch (Exception $e) {
             return response()->json([ 'message' => $e->getMessage(), 

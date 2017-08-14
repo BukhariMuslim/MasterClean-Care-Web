@@ -340,7 +340,8 @@ class OfferController extends Controller
                 'offer_art',
                 'offerTaskList',
                 'job',
-            ]);
+            ])
+            ->sortByDesc('start_date');
 
             $dateNow = Carbon::now();
 
@@ -362,6 +363,9 @@ class OfferController extends Controller
                 }
                 else if ($key == 'city') {
                     $offer = $offer->where('contact.city', $input);
+                }
+                else if ($key == 'status') {
+                    $offer = $offer->where('status', $input);
                 }
                 else if ($key == 'name') {
                     $offer = $offer->whereHas('member', function($query) use ($input) {
@@ -403,7 +407,8 @@ class OfferController extends Controller
                 'offer_art',
                 'offerTaskList',
                 'job',
-            ]);
+            ])
+            ->sortByDesc('start_date');
 
             if ($userObj->role_id == 2) {
                 $offer->where('member_id', $user);
@@ -434,6 +439,9 @@ class OfferController extends Controller
                 }
                 else if ($key == 'city') {
                     $offer = $offer->where('contact.city', $input);
+                }
+                else if ($key == 'status') {
+                    $offer = $offer->where('status', $input);
                 }
                 else if ($key == 'name') {
                     $offer = $offer->whereHas('member', function($query) use ($input) {

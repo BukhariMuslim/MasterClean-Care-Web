@@ -17,7 +17,7 @@ const DefaultMenuCollection = [
     id: 3,
     label: 'Penawaran',
     link: '/offer',
-    iconLabel: 'business_center',
+    iconLabel: 'work',
     allowUser: [0, 1, 3],
   },
   {
@@ -29,9 +29,16 @@ const DefaultMenuCollection = [
   },
   {
     id: 5,
-    label: 'Pemesanan',
+    label: 'Pemesanan Saya',
     link: '/order',
-    iconLabel: 'receipt',
+    iconLabel: 'event_note',
+    allowUser: [2, 3],
+  },
+  {
+    id: 6,
+    label: 'Riwayat Pemesanan',
+    link: '/order_history',
+    iconLabel: 'query_builder',
     allowUser: [2, 3],
   },
 ]

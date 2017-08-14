@@ -70,7 +70,7 @@ class Art extends Component {
           <GridTile
             key={idx}
             title={<span>{obj.name}</span>}
-            subtitle={<div><div><small>({age} thn)</small></div><div><StarComponent rate={obj.rate} /></div></div>}
+            subtitle={<div><div><small>({age} thn)</small></div><div><StarComponent rate={obj.rate} color="#fff"/></div></div>}
             titleStyle={styles.titleStyle}
             containerElement={<Link to={'/art/' + obj.id} />}
             cols={this.props.isFeatured && idx == 0 ? 2 : 1}
@@ -140,7 +140,7 @@ class Art extends Component {
                 >
                   <span>{obj.name}</span>
                   <div><small>({age} thn)</small></div>
-                  <div><StarComponent rate={obj.rate} /></div>
+                  <div><StarComponent rate={obj.rate} color="#fff"/></div>
                 </div>
               </div>
             </Link>

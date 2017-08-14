@@ -52,7 +52,7 @@ const mapDispatchToProps = (dispatch) => {
       
       ApiService.onGet(
         '/api/order/search',
-        self.props.user.id + '/' + queryString,
+        self.props.user.id + '/' + (queryString || '?') + '&page=1' + '&status=0',
         function (response) {
           dispatch(resetLoadingSpin())
           let data = response
@@ -78,8 +78,8 @@ const mapDispatchToProps = (dispatch) => {
     },
     getMyOrder: (id, pageNumb) => {
       ApiService.onGet(
-        '/api/order/full/user',
-        id + '/?page=' + (pageNumb || 1) ,
+        '/api/order/search',
+        id + '/?page=' + (pageNumb || 1) + '&status=0',
         function (response) {
           let data = response
           if (data.status != 200) {

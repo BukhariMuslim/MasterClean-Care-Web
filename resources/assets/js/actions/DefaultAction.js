@@ -39,6 +39,12 @@ export const EDIT_ORDER = 'EDIT_ORDER'
 export const UPDATE_ORDER = 'UPDATE_ORDER'
 export const REMOVE_ORDER = 'REMOVE_ORDER'
 
+export const FILL_ORDER_HISTORY = 'FILL_ORDER_HISTORY'
+export const ADD_ORDER_HISTORY = 'ADD_ORDER_HISTORY'
+export const EDIT_ORDER_HISTORY = 'EDIT_ORDER_HISTORY'
+export const UPDATE_ORDER_HISTORY = 'UPDATE_ORDER_HISTORY'
+export const REMOVE_ORDER_HISTORY = 'REMOVE_ORDER_HISTORY'
+
 /*
  *  Action Creators
  */
@@ -191,4 +197,24 @@ export function updateOrder(data) {
 
 export function removeOrder(index) {
     return { type: REMOVE_ORDER, data: index }
+}
+
+export function fillOrderHistory(data) {
+  return { type: FILL_ORDER_HISTORY, data: data }
+}
+
+export function addOrderHistory(data) {
+  return { type: ADD_ORDER_HISTORY, data: data }
+}
+
+export function editOrderHistory(index) {
+  return { type: EDIT_ORDER_HISTORY, data: index }
+}
+
+export function updateOrderHistory(data) {
+  return { type: UPDATE_ORDER_HISTORY, data: data }
+}
+
+export function removeOrderHistory(index) {
+  return { type: REMOVE_ORDER_HISTORY, data: index }
 }

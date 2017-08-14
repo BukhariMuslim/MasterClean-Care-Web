@@ -56,18 +56,24 @@ class StarComponent extends Component {
     })
   }
 
-  starComponent(rate) {
+  starComponent(rate, color) {
+    let style = iconStyles
+
+    if (color) {
+      style = Object.assign({}, style, { color })
+    }
+
     let comp = []
     let temp = rate
     for (let i = 0; i < 5; i++) {
       if (temp - 1 >= 0) {
-        comp.push(<FontIcon key={'star'+i} className="material-icons" style={iconStyles} >star</FontIcon>)
+        comp.push(<FontIcon key={'star'+i} className="material-icons" style={style} >star</FontIcon>)
       }
       else if (temp - 0.5 >= 0) {
-        comp.push(<FontIcon key={'star'+i} className="material-icons" style={iconStyles} >star_half</FontIcon>)
+        comp.push(<FontIcon key={'star'+i} className="material-icons" style={style} >star_half</FontIcon>)
       }
       else {
-        comp.push(<FontIcon key={'star'+i} className="material-icons" style={iconStyles} >star_border</FontIcon>)
+        comp.push(<FontIcon key={'star'+i} className="material-icons" style={style} >star_border</FontIcon>)
       }
 
       temp--
@@ -150,7 +156,7 @@ class StarComponent extends Component {
           </span>
           :
           <span title={rate}>
-            {this.starComponent(this.state.rate)} 
+            {this.starComponent(this.state.rate, this.props.color)} 
             <span className={this.props.isShowRate ? 'material-icons' : 'hide'} style={{ fontFamily: 'Roboto, sans-serif'}}>
               { rate }
             </span>

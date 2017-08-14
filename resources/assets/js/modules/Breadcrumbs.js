@@ -7,7 +7,8 @@ const Breadcrumbs = breadcrumbConfig({
     '/member': 'Member',
     '/offer': 'Penawaran',
     '/my_offer': 'Penawaran Saya',
-    '/order': 'Pemesanan',
+    '/order': 'Pemesanan Saya',
+    '/order_history': 'Riwayat Pemesanan',
     '/profile': 'Profile',
     '/term': 'Syarat & Ketentuan',
     '/term_mobile': 'Syarat & Ketentuan',
@@ -17,6 +18,7 @@ const Breadcrumbs = breadcrumbConfig({
     '/art/:artId': '{{artId}}',
     '/my_offer/:offerId': '{{offerId}}',
     '/offer/:offerId': '{{offerId}}',
+    '/order_history/:orderId': '{{orderId}}',
     '/order/:orderId': '{{orderId}}',
   },
   containerProps: {

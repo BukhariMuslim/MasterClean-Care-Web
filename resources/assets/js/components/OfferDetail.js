@@ -74,6 +74,20 @@ class OfferDetail extends Component {
                       displayRowCheckbox={false}
                     >
                       <TableRow>
+                        <TableRowColumn style={{ textAlign: 'right', verticalAlign: 'top' }}>Status</TableRowColumn>
+                        <TableRowColumn>
+                          {
+                            offer.status == 0 ?
+                            <b style={{ backgroundColor: '#FFEB3B', padding: '2px 5px', color: 'white' }}>Pending</b>
+                            :
+                            offer.status == 1 ?
+                            <b style={{ backgroundColor: '#64DD17', padding: '2px 5px', color: 'white' }}>Selesai</b>
+                            :
+                            <b style={{ backgroundColor: '#F44336', padding: '2px 5px', color: 'white' }}>Dibatalkan</b>
+                          }
+                        </TableRowColumn>
+                      </TableRow>
+                      <TableRow>
                         <TableRowColumn style={{ textAlign: 'right', verticalAlign: 'top' }}>Jenis Pekerja</TableRowColumn>
                         <TableRowColumn><b>{offer.job ? offer.job.job : '-'}</b></TableRowColumn>
                       </TableRow>

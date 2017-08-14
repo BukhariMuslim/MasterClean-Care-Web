@@ -80,8 +80,8 @@ const mapDispatchToProps = (dispatch) => {
     },
     getMyOffer: (id, pageNumb) => {
       ApiService.onGet(
-        '/api/offer/full/user',
-        id + '/?page=' + (pageNumb || 1) ,
+        '/api/offer/search',
+        id + '/?page=' + (pageNumb || 1),
         function (response) {
           let data = response
           if (data.status != 200) {
@@ -104,8 +104,8 @@ const mapDispatchToProps = (dispatch) => {
     },
     getOffer: (pageNumb) => {
       ApiService.onGet(
-        '/api/offer/full',
-        '?page=' + (pageNumb || 1) ,
+        '/api/offer/search',
+        '?page=' + (pageNumb || 1) + '&status=0',
         function (response) {
           let data = response
           if (data.status != 200) {
@@ -128,8 +128,8 @@ const mapDispatchToProps = (dispatch) => {
     },
     getMyOrder: (id, pageNumb) => {
       ApiService.onGet(
-        '/api/order/full/user',
-        id + '/?page=' + (pageNumb || 1) ,
+        '/api/order/search',
+        id + '/?page=' + (pageNumb || 1) + '&status=0' ,
         function (response) {
           let data = response
           if (data.status != 200) {

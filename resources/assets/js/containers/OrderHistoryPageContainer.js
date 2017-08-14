@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { updateSnack, updateLoadingSpin, resetLoadingSpin, fillMyOffer } from '../actions/DefaultAction'
-import MyOfferPage from '../components/MyOfferPage'
+import { updateSnack, updateLoadingSpin, resetLoadingSpin, fillOrderHistory } from '../actions/DefaultAction'
+import OrderHistoryPage from '../components/OrderHistoryPage'
 import {
   withRouter,
 } from 'react-router-dom'
@@ -11,7 +11,7 @@ import ApiService from '../modules/ApiService'
 const mapStateToProps = (state) => {
   return {
     user: state.UserLoginReducer,
-    offers: state.MyOfferReducer,
+    ordersHistory: state.OrderHistoryReducer,
   }
 }
 
@@ -33,13 +33,13 @@ const mapDispatchToProps = (dispatch) => {
         function (response) {
           dispatch(resetLoadingSpin())
           let data = response
-          if (data.data) {
+          if (data.status === 200) {
+            if (data.data) {
               data = data.data
-            }
-            if (data.status != 403) {
-              self.props.getMyOffer(data.id)
+              self.props.getMyOrderHistory(data.id)
               dispatch(loginAuth(data))
             }
+          }
         },
         function (error) {
           dispatch(resetLoadingSpin())
@@ -51,8 +51,8 @@ const mapDispatchToProps = (dispatch) => {
       }))
       
       ApiService.onGet(
-        '/api/offer/search',
-        self.props.user.id + '/' + queryString,
+        '/api/order/search',
+        self.props.user.id + '/' + (queryString || '?') + '&page=1' + '&status=1,2',
         function (response) {
           dispatch(resetLoadingSpin())
           let data = response
@@ -63,8 +63,8 @@ const mapDispatchToProps = (dispatch) => {
             }))
           }
           else {
-            self.props.history.push('/my_offer/' + queryString)
-            dispatch(fillMyOffer(data.data))
+            self.props.history.push('/order/' + queryString)
+            dispatch(fillOrderHistory(data.data))
           }
         },
         function (error) {
@@ -76,10 +76,10 @@ const mapDispatchToProps = (dispatch) => {
         }
       )
     },
-    getMyOffer: (id, pageNumb) => {
+    getMyOrderHistory: (id, pageNumb) => {
       ApiService.onGet(
-        '/api/offer/full/user',
-        id + '/?page=' + (pageNumb || 1),
+        '/api/order/search',
+        id + '/?page=' + (pageNumb || 1) + '&status=1,2',
         function (response) {
           let data = response
           if (data.status != 200) {
@@ -89,31 +89,7 @@ const mapDispatchToProps = (dispatch) => {
             }))
           }
           else {
-            dispatch(fillMyOffer(data.data))
-          }
-        },
-        function (error) {
-          dispatch(updateSnack({
-            open: true,
-            message: error.name + ": " + error.message
-          }))
-        }
-      )
-    },
-    getOffer: (pageNumb) => {
-      ApiService.onGet(
-        '/api/offer/full',
-        '?page=' + (pageNumb || 1) ,
-        function (response) {
-          let data = response
-          if (data.status != 200) {
-            dispatch(updateSnack({
-              open: true,
-              message: data.message
-            }))
-          }
-          else {
-            dispatch(fillMyOffer(data.data))
+            dispatch(fillOrderHistory(data.data))
           }
         },
         function (error) {
@@ -211,9 +187,9 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-const MyOfferPageContainer = withRouter(connect(
+const OrderHistoryPageContainer = withRouter(connect(
   mapStateToProps,
   mapDispatchToProps
-)(MyOfferPage))
+)(OrderHistoryPage))
 
-export default MyOfferPageContainer
+export default OrderHistoryPageContainer

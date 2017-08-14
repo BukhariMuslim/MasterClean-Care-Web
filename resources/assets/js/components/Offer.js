@@ -69,6 +69,16 @@ class Offer extends Component {
                   {obj.job ? obj.job.job : '-'}
                   {obj.work_time ? ' (' + obj.work_time.work_time + ') ' : ''}
                   {obj.cost ? <NumberFormat value={obj.cost} displayType={'text'} thousandSeparator={true} prefix={'Rp. '} /> : '-'}
+                  &nbsp;
+                  {
+                    obj.status == 0 ?
+                    <b style={{ backgroundColor: '#FFEB3B', padding: '2px 5px', color: 'white' }}>Pending</b>
+                    :
+                    obj.status == 1 ?
+                    <b style={{ backgroundColor: '#64DD17', padding: '2px 5px', color: 'white' }}>Selesai</b>
+                    :
+                    <b style={{ backgroundColor: '#F44336', padding: '2px 5px', color: 'white' }}>Dibatalkan</b>
+                  }
                 </Link>
                 }
                 subtitle={obj.member.name + ' di ' + obj.member.contact.address}
