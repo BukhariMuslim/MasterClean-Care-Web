@@ -5656,8 +5656,8 @@ var ArtDetail = function (_Component) {
       this.loadInitialData();
     }
   }, {
-    key: 'comments',
-    value: function comments(_comments) {
+    key: 'getReview',
+    value: function getReview(reviews) {
       var GetFormattedDate = function GetFormattedDate(date) {
         var dt = new Date(date);
         var mm = dt.getMonth() + 1;
@@ -5666,7 +5666,7 @@ var ArtDetail = function (_Component) {
         return [(dd > 9 ? '' : '0') + dd, (mm > 9 ? '' : '0') + mm, dt.getFullYear()].join('/');
       };
 
-      return _comments.map(function (comment, id) {
+      return reviews.map(function (review, id) {
         return _react2.default.createElement(
           _Card.Card,
           { className: 'col s12', style: id > 0 ? { marginTop: '10px' } : {}, key: id },
@@ -6105,6 +6105,16 @@ var ArtDetail = function (_Component) {
                 )
               ),
               _react2.default.createElement('div', { className: 'clearfix' })
+            ),
+            _react2.default.createElement(
+              _Card.CardText,
+              null,
+              _react2.default.createElement(
+                'h5',
+                null,
+                'Review'
+              ),
+              getReview()
             )
           )
         ) : _react2.default.createElement(
@@ -10546,7 +10556,7 @@ var OfferDetail = function (_Component) {
                     {
                       displayRowCheckbox: false
                     },
-                    offer.offer_art ? offer.offer_art.map(function (art, id) {
+                    offer.offer_art && offer.offer_art.length > 0 ? offer.offer_art.map(function (art, id) {
                       return _react2.default.createElement(
                         _Table.TableRow,
                         { key: id },
@@ -10584,8 +10594,8 @@ var OfferDetail = function (_Component) {
                       null,
                       _react2.default.createElement(
                         _Table.TableRowColumn,
-                        null,
-                        '\'Tidak ada art yg mendaftar.\''
+                        { colSpan: 2, style: { textAlign: 'center' } },
+                        'Tidak ada art yg mendaftar.'
                       )
                     )
                   )

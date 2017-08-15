@@ -271,7 +271,7 @@ class ArtDetail extends Component {
     this.loadInitialData()
   }
 
-  comments(comments) {
+  getReview(reviews) {
     const GetFormattedDate = date => {
       let dt = new Date(date)
       let mm = dt.getMonth() + 1
@@ -284,7 +284,7 @@ class ArtDetail extends Component {
       ].join('/')
     }
 
-    return comments.map((comment, id) => {
+    return reviews.map((review, id) => {
       return (
         <Card className="col s12" style={id > 0 ? { marginTop: '10px' } : {}} key={id}>
           <CardHeader
@@ -569,6 +569,10 @@ class ArtDetail extends Component {
                     </div>
                   </div>
                   <div className="clearfix"></div>
+                </CardText>
+                <CardText>
+                  <h5>Review</h5>
+                  { getReview() }
                 </CardText>
               </Card>
             </ValidatorForm>

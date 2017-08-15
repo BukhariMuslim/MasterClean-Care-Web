@@ -256,7 +256,7 @@ class OfferDetail extends Component {
                         displayRowCheckbox={false}
                       >
                         {
-                          offer.offer_art ?
+                          offer.offer_art && offer.offer_art.length > 0 ?
                             offer.offer_art.map((art, id) => {
                               return (
                                 <TableRow key={id}>
@@ -282,7 +282,7 @@ class OfferDetail extends Component {
                             })
                             :
                             <TableRow>
-                              <TableRowColumn>'Tidak ada art yg mendaftar.'</TableRowColumn>
+                              <TableRowColumn colSpan={2} style={{ textAlign: 'center' }} >Tidak ada art yg mendaftar.</TableRowColumn>
                             </TableRow>                            
                         }
                       </TableBody>
