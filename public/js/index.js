@@ -8100,7 +8100,6 @@ var Logout = function (_Component) {
 
             var actions = [_react2.default.createElement(_FlatButton2.default, {
                 label: 'Tidak',
-                primary: true,
                 onTouchTap: function onTouchTap() {
                     return _this2.handleClose();
                 }
@@ -10552,20 +10551,24 @@ var OfferDetail = function (_Component) {
                               { className: 'left', style: { backgroundColor: '#FFEB3B', padding: '2px 5px', marginTop: 12, color: 'white', verticalAlign: 'middle' } },
                               'Pending'
                             ),
-                            _react2.default.createElement(
-                              _IconButton2.default,
-                              { tooltip: 'Tolak', iconClassName: 'material-icons text-green accent-4', className: 'right', onClick: function onClick() {
-                                  return _this2.handleOpen(2);
-                                }, style: { verticalAlign: 'middle' } },
-                              'clear'
-                            ),
-                            _react2.default.createElement(
-                              _IconButton2.default,
-                              { tooltip: 'Terima', iconClassName: 'material-icons text-red darken-4', className: 'right', onClick: function onClick() {
-                                  return _this2.handleOpen(1);
-                                }, style: { verticalAlign: 'middle' } },
-                              'done'
-                            )
+                            _this2.props.user && _this2.props.user.role_id == 2 && _this2.props.user.id == offer.member_id ? _react2.default.createElement(
+                              'span',
+                              null,
+                              _react2.default.createElement(
+                                _IconButton2.default,
+                                { tooltip: 'Tolak', iconClassName: 'material-icons text-green accent-4', className: 'right', onClick: function onClick() {
+                                    return _this2.handleOpen(2);
+                                  }, style: { verticalAlign: 'middle' } },
+                                'clear'
+                              ),
+                              _react2.default.createElement(
+                                _IconButton2.default,
+                                { tooltip: 'Terima', iconClassName: 'material-icons text-red darken-4', className: 'right', onClick: function onClick() {
+                                    return _this2.handleOpen(1);
+                                  }, style: { verticalAlign: 'middle' } },
+                                'done'
+                              )
+                            ) : null
                           )
                         )
                       );
@@ -21301,7 +21304,7 @@ var alternativeProps = {
   order: 'msFlexOrder',
   flexGrow: 'msFlexPositive',
   flexShrink: 'msFlexNegative',
-  flexBasis: 'msFlexPreferredSize'
+  flexBasis: 'msPreferredSize'
 };
 
 function flexboxIE(property, value, style, _ref) {
@@ -21750,7 +21753,7 @@ var alternativeProps = {
   order: 'msFlexOrder',
   flexGrow: 'msFlexPositive',
   flexShrink: 'msFlexNegative',
-  flexBasis: 'msFlexPreferredSize'
+  flexBasis: 'msPreferredSize'
 };
 
 function flexboxIE(property, value, style) {
@@ -57088,7 +57091,8 @@ var Table = function (_Component) {
         onRowHover: this.onRowHover,
         onRowHoverExit: this.onRowHoverExit,
         onRowSelection: this.onRowSelection,
-        selectable: this.props.selectable
+        selectable: this.props.selectable,
+        style: (0, _simpleAssign2.default)({ height: this.props.height }, base.props.style)
       });
     }
   }, {

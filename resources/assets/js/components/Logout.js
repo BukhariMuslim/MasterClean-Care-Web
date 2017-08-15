@@ -29,7 +29,6 @@ class Logout extends Component {
         const actions = [
             <FlatButton
                 label="Tidak"
-                primary={true}
                 onTouchTap={() => this.handleClose()}
             />,
             <FlatButton

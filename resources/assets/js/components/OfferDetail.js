@@ -309,12 +309,19 @@ class OfferDetail extends Component {
                                         :
                                         <div>
                                           <b className="left" style={{ backgroundColor: '#FFEB3B', padding: '2px 5px', marginTop: 12, color: 'white', verticalAlign: 'middle' }}>Pending</b>
-                                          <IconButton tooltip="Tolak" iconClassName="material-icons text-green accent-4" className="right" onClick={() => this.handleOpen(2)} style={{ verticalAlign: 'middle' }} >
-                                            clear
-                                        </IconButton>
-                                          <IconButton tooltip="Terima" iconClassName="material-icons text-red darken-4" className="right" onClick={() => this.handleOpen(1)} style={{ verticalAlign: 'middle' }} >
-                                            done
-                                        </IconButton>
+                                          {
+                                            this.props.user && this.props.user.role_id == 2 && this.props.user.id == offer.member_id ?
+                                            <span>
+                                              <IconButton tooltip="Tolak" iconClassName="material-icons text-green accent-4" className="right" onClick={() => this.handleOpen(2)} style={{ verticalAlign: 'middle' }} >
+                                                clear
+                                              </IconButton>
+                                              <IconButton tooltip="Terima" iconClassName="material-icons text-red darken-4" className="right" onClick={() => this.handleOpen(1)} style={{ verticalAlign: 'middle' }} >
+                                                done
+                                              </IconButton>
+                                            </span>
+                                            :
+                                            null
+                                          }
                                         </div>
                                     }
                                   </TableRowColumn>
