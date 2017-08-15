@@ -7416,7 +7416,7 @@ var Header = function (_Component) {
               _react2.default.createElement(
                 _reactRouterDom.Link,
                 { to: '/profile' },
-                _react2.default.createElement(_Avatar2.default, { src: this.props.avatarImg, style: { margin: "8px", verticalAlign: "middle" } }),
+                _react2.default.createElement(_Avatar2.default, { src: this.props.avatarImg, style: { margin: "8px", verticalAlign: "middle", objectFit: 'cover' } }),
                 _react2.default.createElement(
                   'div',
                   { style: { padding: "8px", background: "linear-gradient(to bottom, rgba(0,0,0,0) 0%,rgba(0,0,0,0.65) 100%)" } },
