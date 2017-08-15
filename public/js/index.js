@@ -14862,7 +14862,7 @@ var RegisterArt = function (_Component) {
       avatarUrl: '',
       avatarFile: null,
       status: 1,
-      status_activation: 0,
+      activation: 0,
       userLanguage: [],
       userJob: [],
       userWorkTime: [],
@@ -15063,7 +15063,7 @@ var RegisterArt = function (_Component) {
           race: this.state.race,
           description: this.state.description,
           status: this.state.status,
-          status_activation: this.state.status_activation,
+          activation: this.state.activation,
           user_wallet: { amt: 0 },
           user_language: this.state.userLanguage,
           user_job: this.state.userJob,
@@ -15739,7 +15739,7 @@ var RegisterMember = function (_Component) {
       avatarFile: null,
       description: null,
       status: 1,
-      status_activation: 1,
+      activation: 1,
       cityItem: []
     };
     _this.baseState = _this.state;
@@ -15811,7 +15811,7 @@ var RegisterMember = function (_Component) {
         race: this.state.race,
         description: this.state.description,
         status: this.state.status,
-        status_activation: this.state.status_activation
+        activation: this.state.activation
       });
     }
   }, {
@@ -21299,7 +21299,7 @@ var alternativeProps = {
   order: 'msFlexOrder',
   flexGrow: 'msFlexPositive',
   flexShrink: 'msFlexNegative',
-  flexBasis: 'msPreferredSize'
+  flexBasis: 'msFlexPreferredSize'
 };
 
 function flexboxIE(property, value, style, _ref) {
@@ -21748,7 +21748,7 @@ var alternativeProps = {
   order: 'msFlexOrder',
   flexGrow: 'msFlexPositive',
   flexShrink: 'msFlexNegative',
-  flexBasis: 'msPreferredSize'
+  flexBasis: 'msFlexPreferredSize'
 };
 
 function flexboxIE(property, value, style) {
@@ -57086,8 +57086,7 @@ var Table = function (_Component) {
         onRowHover: this.onRowHover,
         onRowHoverExit: this.onRowHoverExit,
         onRowSelection: this.onRowSelection,
-        selectable: this.props.selectable,
-        style: (0, _simpleAssign2.default)({ height: this.props.height }, base.props.style)
+        selectable: this.props.selectable
       });
     }
   }, {

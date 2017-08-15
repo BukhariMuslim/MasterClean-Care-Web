@@ -46,7 +46,7 @@ class RegisterMember extends Component {
       avatarFile: null,
       description: null,
       status: 1,
-      status_activation: 1,
+      activation: 1,
       cityItem: [],
     }
     this.baseState = this.state
@@ -110,7 +110,7 @@ class RegisterMember extends Component {
         race: this.state.race,
         description: this.state.description,
         status: this.state.status,
-        status_activation: this.state.status_activation,
+        activation: this.state.activation,
       }
     )
   }
