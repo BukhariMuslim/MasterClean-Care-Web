@@ -15079,7 +15079,8 @@ var RegisterArt = function (_Component) {
           user_job: this.state.userJob,
           user_work_time: this.state.userWorkTime,
           user_additional_info: this.state.userAdditionalInfo,
-          user_document: this.state.userDocument
+          user_document: this.state.userDocument,
+          isWeb: true
         });
       }
     }
@@ -15821,7 +15822,8 @@ var RegisterMember = function (_Component) {
         race: this.state.race,
         description: this.state.description,
         status: this.state.status,
-        activation: this.state.activation
+        activation: this.state.activation,
+        isWeb: true
       });
     }
   }, {

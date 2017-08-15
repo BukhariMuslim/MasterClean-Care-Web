@@ -375,15 +375,28 @@ class UserController extends Controller
 
             DB::commit();
 
-            return response()->json(['user' => $user->load([
-                'user_additional_info.additionalInfo',
-                'user_document',
-                'user_language.language',
-                'user_job.job',
-                'user_wallet',
-                'user_work_time.workTime',
-                'contact.city',
-            ]), 'status' => 200]);
+            if (array_key_exists('isWeb', $data)) {
+                return response()->json(['user' => $user->load([
+                    'user_additional_info.additionalInfo',
+                    'user_document',
+                    'user_language.language',
+                    'user_job.job',
+                    'user_wallet',
+                    'user_work_time.workTime',
+                    'contact.city',
+                ]), 'status' => 200]);
+            }
+            else {
+                return response()->json(['user' => $user->load([
+                    'user_additional_info',
+                    'user_document',
+                    'user_language',
+                    'user_job',
+                    'user_wallet',
+                    'user_work_time',
+                    'contact',
+                ]), 'status' => 200]);
+            }
         }
         catch (Exception $e) {
             DB::rollBack();
