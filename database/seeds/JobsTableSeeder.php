@@ -16,13 +16,13 @@ class JobsTableSeeder extends Seeder
                 'job' => 'Asisten Rumah Tangga',
             ],
             [
-                'job' => 'Perawat Lansia',
-            ],
-            [
                 'job' => 'Babysitter',
             ],
             [
                 'job' => 'Perawat Balita',
+            ],
+            [
+                'job' => 'Perawat Lansia',
             ],
         ]);
     }
