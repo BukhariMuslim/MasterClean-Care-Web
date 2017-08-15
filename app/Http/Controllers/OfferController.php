@@ -340,8 +340,7 @@ class OfferController extends Controller
                 'offer_art',
                 'offerTaskList',
                 'job',
-            ])
-            ->sortByDesc('start_date');
+            ]);
 
             $dateNow = Carbon::now();
 
@@ -377,7 +376,7 @@ class OfferController extends Controller
                 // }
             }
             
-            return $offer->paginate(10);
+            return $offer->orderBy('start_date', 'DESC')->paginate(10);
         }
         catch (Exception $e) {
             return response()->json([ 'message' => $e->getMessage(), 
@@ -407,8 +406,7 @@ class OfferController extends Controller
                 'offer_art',
                 'offerTaskList',
                 'job',
-            ])
-            ->sortByDesc('start_date');
+            ]);
 
             if ($userObj->role_id == 2) {
                 $offer->where('member_id', $user);
@@ -453,7 +451,7 @@ class OfferController extends Controller
                 // }
             }
             
-            return $offer->paginate(10);
+            return $offer->orderBy('start_date', 'DESC')->paginate(10);
         }
         catch (Exception $e) {
             return response()->json([ 'message' => $e->getMessage(), 

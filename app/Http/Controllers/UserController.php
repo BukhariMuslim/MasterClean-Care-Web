@@ -507,7 +507,6 @@ class UserController extends Controller
                 'user_work_time',
                 'contact',
             ])
-            ->sortByDesc('created_at')
             ->where('role_id', 3);
 
             $dateNow = Carbon::now();
@@ -555,7 +554,7 @@ class UserController extends Controller
                 }
             }
             
-            return $user->paginate(10);
+            return $user->orderBy('created_at', 'DESC')->paginate(10);
         }
         catch (Exception $e) {
             return response()->json([ 'message' => $e->getMessage(), 

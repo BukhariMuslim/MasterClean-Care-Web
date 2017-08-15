@@ -391,7 +391,9 @@ class ProfileDetail extends Component {
   }
 
   onCancelEdit() {
+    const oldProfile = this.state.user
     this.setState({
+      user: Object.assign({}, oldProfile, this.props.user),
       isEdit: false,
     })
   }

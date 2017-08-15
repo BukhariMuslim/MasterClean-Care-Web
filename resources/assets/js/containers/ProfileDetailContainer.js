@@ -61,7 +61,7 @@ const mapDispatchToProps = (dispatch) => {
       )
     },
     getProfile: (self) => {
-      let user = {}
+      let user = self.state.user
       ApiService.onGet(
         '/api/user/me',
         '',
@@ -75,9 +75,8 @@ const mapDispatchToProps = (dispatch) => {
             }))
           }
           else {
-            user = data.data
-            const oldProfile = self.state.user
-            self.setState({ user: Object.assign({}, oldProfile, user) })
+            user = Object.assign({}, user, data.data)
+            self.setState({ user })
             self.loadInitialData()
           }
         },
@@ -86,7 +85,7 @@ const mapDispatchToProps = (dispatch) => {
             open: true,
             message: error.name + ": " + error.message
           }))
-          this.setState(user)
+          self.setState(user)
         }
       )
     },

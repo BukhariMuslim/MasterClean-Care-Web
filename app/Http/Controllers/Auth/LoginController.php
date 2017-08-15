@@ -118,13 +118,13 @@ class LoginController extends Controller
                     $token = Route::dispatch($tokenRequest)->getContent();
 
                     $user->load([
-                        'user_additional_info',
+                        'user_additional_info.additionalInfo',
                         'user_document',
-                        'user_language',
-                        'user_job',
+                        'user_language.language',
+                        'user_job.job',
                         'user_wallet',
-                        'user_work_time',
-                        'contact'
+                        'user_work_time.workTime',
+                        'contact.city',
                     ]);
                     
                     // if ($user->avatar) {

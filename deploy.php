@@ -43,8 +43,6 @@ set('shared_dirs', [
 ]);
 set('writable_dirs', ['storage', 'bootstrap/cache']);
 
-// add('shared_dirs', []);
-// add('writable_dirs', []);
 inventory('hosts.yml');
 
 task('upload:env', function () {
