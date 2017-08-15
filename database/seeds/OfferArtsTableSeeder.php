@@ -13,19 +13,19 @@ class OfferArtsTableSeeder extends Seeder
     {
         DB::table('offer_arts')->insert([
             [
-                'offer_id'=>1,
-                'art_id'=>1,
-                'status'=>1,
+                'offer_id'=>3,
+                'art_id'=>15,
+                'status'=>0,
             ],
             [
-                'offer_id'=>2,
-                'art_id'=>2,
-                'status'=>1,
+                'offer_id'=>3,
+                'art_id'=>16,
+                'status'=>0,
             ],
             [
-                'offer_id'=>2,
-                'art_id'=>3,
-                'status'=>1,
+                'offer_id'=>3,
+                'art_id'=>12,
+                'status'=>0,
             ],
         ]);
     }
