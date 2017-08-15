@@ -19,7 +19,7 @@ class Header extends Component {
           overlay={
             <div>
               <Link to="/profile">
-                <Avatar src={this.props.avatarImg} style={{ margin: "8px", verticalAlign: "middle" }} />
+                <Avatar src={this.props.avatarImg} style={{ margin: "8px", verticalAlign: "middle", objectFit: 'cover'  }} />
                 <div style={{ padding: "8px", background: "linear-gradient(to bottom, rgba(0,0,0,0) 0%,rgba(0,0,0,0.65) 100%)" }}>
                   <span style={{
                     fontSize: "1.15em",
