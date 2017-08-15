@@ -20,9 +20,9 @@ class ImageController extends Controller
             'status'    => 201,
             'image'     => "users/{$filename}.jpg",
             'links'     => [
-                'small'  => url('image/small', "{$filename}.jpg"),
-                'medium' => url('image/medium', "{$filename}.jpg"),
-                'large'  => url('image/large', "{$filename}.jpg"),
+                'small'  => url('image/small', "users/{$filename}.jpg"),
+                'medium' => url('image/medium', "users/{$filename}.jpg"),
+                'large'  => url('image/large', "users/{$filename}.jpg"),
             ],
             'message'   => null,
         ];
