@@ -5095,6 +5095,7 @@ var settings = {
   slidesToShow: 5,
   slidesToScroll: 5,
   pauseOnHover: true,
+  responsive: [{ breakpoint: 512, settings: { slidesToShow: 1, slidesToScroll: 1 } }, { breakpoint: 768, settings: { slidesToShow: 3, slidesToScroll: 3 } }],
   draggable: false
 };
 
@@ -5575,81 +5576,6 @@ var ArtDetail = function (_Component) {
       return null;
     }
   }, {
-    key: 'checkItems',
-    value: function checkItems(type, collection, isNeedTextBox) {
-      var _this2 = this;
-
-      if (collection && collection.length > 0) {
-        return collection.map(function (obj, idx) {
-          var values = _this2.state.art[type];
-          var curIdx = -1;
-          var costEnabled = false;
-          var name = '';
-          if (type === 'user_language') {
-            curIdx = values.findIndex(function (x) {
-              return x.language_id == obj.id;
-            });
-            name = 'language_id';
-          } else if (type === 'user_job') {
-            curIdx = values.findIndex(function (x) {
-              return x.job_id == obj.id;
-            });
-            name = 'job_id';
-          } else if (type === 'user_work_time') {
-            curIdx = values.findIndex(function (x) {
-              return x.work_time_id == obj.id;
-            });
-            costEnabled = curIdx > -1;
-            name = 'work_time_id';
-          } else if (type === 'user_additional_info') {
-            curIdx = values.findIndex(function (x) {
-              return x.info_id == obj.id;
-            });
-            name = 'info_id';
-          }
-          var checked = curIdx > -1;
-          return _react2.default.createElement(
-            'div',
-            { key: obj.id, className: 'col s12 valign-wrapper' },
-            _react2.default.createElement(
-              'div',
-              { className: "col" + (isNeedTextBox ? " s6" : " s12") },
-              _react2.default.createElement(_Checkbox2.default, {
-                labelStyle: disabledStyle,
-                checked: checked,
-                value: obj.id,
-                disabled: !_this2.state.isEdit,
-                name: name,
-                label: obj.language || obj.job || obj.work_time || obj.info,
-                onCheck: _this2.onCheckHandler(type, name, isNeedTextBox)
-              })
-            ),
-            isNeedTextBox ? _react2.default.createElement(
-              'div',
-              { className: 'col s6' },
-              _react2.default.createElement(_reactNumberFormat2.default, {
-                hintText: 'Gaji ' + obj.work_time,
-                inputStyle: disabledInputStyle,
-                thousandSeparator: true,
-                prefix: 'Rp. ',
-                value: costEnabled ? values[curIdx].cost : '',
-                disabled: !costEnabled || !_this2.state.isEdit,
-                underlineShow: _this2.state.isEdit,
-                fullWidth: true,
-                name: 'user_work_time',
-                onChange: function onChange(e) {
-                  return _this2.onChangeTextHandler(e, curIdx);
-                },
-                validators: [isNeedTextBox ? 'required' : ''],
-                errorMessages: [isNeedTextBox ? 'Gaji dibutuhkan' : ''],
-                customInput: _reactMaterialUiFormValidator.TextValidator
-              })
-            ) : null
-          );
-        });
-      }
-    }
-  }, {
     key: 'resetForm',
     value: function resetForm() {
       this.setState(this.baseState);
@@ -5750,7 +5676,7 @@ var ArtDetail = function (_Component) {
   }, {
     key: 'render',
     value: function render() {
-      var _this3 = this;
+      var _this2 = this;
 
       var calculateAge = function calculateAge(birthday) {
         birthday = new Date(birthday);
@@ -5767,10 +5693,10 @@ var ArtDetail = function (_Component) {
           {
             ref: 'form',
             onSubmit: function onSubmit(e) {
-              return _this3.postHandler(e);
+              return _this2.postHandler(e);
             },
             onError: function onError(errors) {
-              return _this3.onError(errors);
+              return _this2.onError(errors);
             } },
           _react2.default.createElement(
             _Card.Card,
@@ -8173,13 +8099,13 @@ var Logout = function (_Component) {
             var _this2 = this;
 
             var actions = [_react2.default.createElement(_FlatButton2.default, {
-                label: 'Cancel',
+                label: 'Tidak',
                 primary: true,
                 onTouchTap: function onTouchTap() {
                     return _this2.handleClose();
                 }
             }), _react2.default.createElement(_FlatButton2.default, {
-                label: 'Confirm',
+                label: 'Ya',
                 primary: true,
                 onTouchTap: function onTouchTap() {
                     return _this2.handleClose(true);
@@ -8202,12 +8128,12 @@ var Logout = function (_Component) {
                 _react2.default.createElement(
                     _Dialog2.default,
                     {
-                        title: 'Confirmation',
+                        title: 'Konfirmasi Logout',
                         actions: actions,
                         modal: true,
                         open: this.state.openModal
                     },
-                    'Are you sure you want to logout?'
+                    'Logout?'
                 )
             );
         }
@@ -10090,13 +10016,17 @@ var _FlatButton = __webpack_require__(22);
 
 var _FlatButton2 = _interopRequireDefault(_FlatButton);
 
-var _reactNumberFormat = __webpack_require__(35);
-
-var _reactNumberFormat2 = _interopRequireDefault(_reactNumberFormat);
-
 var _IconButton = __webpack_require__(38);
 
 var _IconButton2 = _interopRequireDefault(_IconButton);
+
+var _Dialog = __webpack_require__(144);
+
+var _Dialog2 = _interopRequireDefault(_Dialog);
+
+var _reactNumberFormat = __webpack_require__(35);
+
+var _reactNumberFormat2 = _interopRequireDefault(_reactNumberFormat);
 
 var _App = __webpack_require__(15);
 
@@ -10119,10 +10049,13 @@ var OfferDetail = function (_Component) {
     var _this = _possibleConstructorReturn(this, (OfferDetail.__proto__ || Object.getPrototypeOf(OfferDetail)).call(this, props));
 
     _this.state = {
-      offer: {}
+      offer: {},
+      openModal: false,
+      mode: 0
     };
 
     _this.onCancel = _this.onCancel.bind(_this);
+    _this.onAccept = _this.onAccept.bind(_this);
     return _this;
   }
 
@@ -10132,17 +10065,34 @@ var OfferDetail = function (_Component) {
       this.props.getOffer(this.props.id, this);
     }
   }, {
-    key: 'offer_arts',
-    value: function offer_arts(arts) {
-      return arts.map(function (art, id) {
-        return _react2.default.createElement(
-          'li',
-          { key: id },
-          art.art.name,
-          ' (',
-          art.status != 0 ? art.status != 1 ? 'Ditolak' : 'Diterima' : 'Pending',
-          ')'
-        );
+    key: 'handleOpen',
+    value: function handleOpen(mode) {
+      if (mode) {
+        this.setState({
+          openModal: true,
+          mode: mode
+        });
+      } else {
+        this.setState({
+          openModal: true,
+          mode: mode
+        });
+      }
+    }
+  }, {
+    key: 'handleClose',
+    value: function handleClose(confirmation) {
+      if (confirmation) {
+        if (mode == 1) {
+          this.onAccept();
+        } else if (mode == 2) {
+          this.onCancel();
+        }
+      }
+
+      this.setState({
+        openModal: false,
+        mode: 0
       });
     }
   }, {
@@ -10183,6 +10133,20 @@ var OfferDetail = function (_Component) {
       var _this2 = this;
 
       var offer = this.state.offer;
+
+      var actions = [_react2.default.createElement(_FlatButton2.default, {
+        label: 'Tidak',
+        primary: true,
+        onTouchTap: function onTouchTap() {
+          return _this2.handleClose();
+        }
+      }), _react2.default.createElement(_FlatButton2.default, {
+        label: 'Ya',
+        primary: true,
+        onTouchTap: function onTouchTap() {
+          return _this2.handleClose(true);
+        }
+      })];
 
       return _react2.default.createElement(
         'div',
@@ -10572,18 +10536,34 @@ var OfferDetail = function (_Component) {
                         _react2.default.createElement(
                           _Table.TableRowColumn,
                           null,
-                          art.status != 0 ? art.status != 1 ? 'Ditolak' : 'Diterima' : _react2.default.createElement(
+                          art.status != 0 ? art.status != 1 ? _react2.default.createElement(
+                            'b',
+                            { style: { backgroundColor: '#F44336', padding: '2px 5px', color: 'white' } },
+                            'Ditolak'
+                          ) : _react2.default.createElement(
+                            'b',
+                            { style: { backgroundColor: '#64DD17', padding: '2px 5px', color: 'white' } },
+                            'Diterima'
+                          ) : _react2.default.createElement(
                             'div',
                             null,
-                            'Pending',
+                            _react2.default.createElement(
+                              'b',
+                              { className: 'left', style: { backgroundColor: '#FFEB3B', padding: '2px 5px', marginTop: 12, color: 'white', verticalAlign: 'middle' } },
+                              'Pending'
+                            ),
                             _react2.default.createElement(
                               _IconButton2.default,
-                              { tooltip: 'Tolak', iconClassName: 'material-icons text-green accent-4', className: 'right', onClick: _this2.onCancel },
+                              { tooltip: 'Tolak', iconClassName: 'material-icons text-green accent-4', className: 'right', onClick: function onClick() {
+                                  return _this2.handleOpen(2);
+                                }, style: { verticalAlign: 'middle' } },
                               'clear'
                             ),
                             _react2.default.createElement(
                               _IconButton2.default,
-                              { tooltip: 'Terima', iconClassName: 'material-icons text-red darken-4', className: 'right', onClick: _this2.onAccept },
+                              { tooltip: 'Terima', iconClassName: 'material-icons text-red darken-4', className: 'right', onClick: function onClick() {
+                                  return _this2.handleOpen(1);
+                                }, style: { verticalAlign: 'middle' } },
                               'done'
                             )
                           )
@@ -10607,6 +10587,16 @@ var OfferDetail = function (_Component) {
           _Card.Card,
           { className: 'col s12' },
           _react2.default.createElement(_Card.CardHeader, { title: 'Penawaran tidak ditemukan' })
+        ),
+        _react2.default.createElement(
+          _Dialog2.default,
+          {
+            title: 'Konfirmasi ' + (this.state.mode == 1 ? 'Terima' : this.state.mode == 2 ? 'Tolak' : ''),
+            actions: actions,
+            modal: true,
+            open: this.state.openModal
+          },
+          this.state.mode == 1 ? 'Terima?' : this.state.mode == 2 ? 'Tolak?' : ''
         )
       );
     }
@@ -17268,7 +17258,7 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
             parent.setState({ open: false });
             dispatch((0, _DefaultAction.updateSnack)({
                 open: true,
-                message: 'Logout Success'
+                message: 'Logout Berhasil'
             }));
         }
     };

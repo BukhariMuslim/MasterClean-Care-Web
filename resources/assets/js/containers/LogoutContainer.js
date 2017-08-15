@@ -35,7 +35,7 @@ const mapDispatchToProps = (dispatch) => {
             parent.setState({open:false})
             dispatch(updateSnack({
                 open: true,
-                message: 'Logout Success'
+                message: 'Logout Berhasil'
             }))
         }
     }
