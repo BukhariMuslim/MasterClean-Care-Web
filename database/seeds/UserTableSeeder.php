@@ -15,11 +15,11 @@ class UserTableSeeder extends Seeder
     {
         DB::table('users')->insert([
             [
-                'name' => 'Mr. ABC',
+                'name' => 'Admin',
                 'role_id' => 1,
-                'email' => 'mrabc@mail.com',
+                'email' => 'admin@mail.com',
                 'avatar' => 'users/default.png',
-                'password' => Hash::make('mrabc'),
+                'password' => Hash::make('password'),
                 'gender' => 1,
                 'born_place' => 'Medan',
                 'born_date' => Carbon::create('1990', '2', '14'),
