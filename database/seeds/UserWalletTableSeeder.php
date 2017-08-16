@@ -30,7 +30,7 @@ class UserWalletTableSeeder extends Seeder
             ],
             [
                 'user_id' => 15,
-                'amt' => 1000000,
+                'amt' => 600000,
             ],
         ]);
     }
