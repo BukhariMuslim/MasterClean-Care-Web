@@ -81,6 +81,7 @@ class ArtDetail extends Component {
         user_work_timeErrorText: '',
         user_documentErrorText: '',
       },
+      reviewOrder: [],
       isEdit: false,
     }
 
@@ -123,6 +124,8 @@ class ArtDetail extends Component {
     this.props.getWorkTime(this, 'workTimeItem')
 
     this.props.getAdditionalInfo(this, 'additionalInfoItem')
+
+    this.props.getReviewOrder(this, this.state.art.id)
   }
 
   componentDidMount() {
@@ -206,27 +209,40 @@ class ArtDetail extends Component {
 
   getReview(reviews) {
     const GetFormattedDate = date => {
-      let dt = new Date(date)
-      let mm = dt.getMonth() + 1
-      let dd = dt.getDate()
+      if (date) {
+        let dt = new Date(date)
+        let mm = dt.getMonth() + 1
+        let dd = dt.getDate()
 
-      return [
-        (dd > 9 ? '' : '0') + dd,
-        (mm > 9 ? '' : '0') + mm,
-        dt.getFullYear()
-      ].join('/')
+        return [
+          (dd > 9 ? '' : '0') + dd,
+          (mm > 9 ? '' : '0') + mm,
+          dt.getFullYear()
+        ].join('/')
+      }
+      return ''
     }
 
     return reviews.map((review, id) => {
+      console.log(review)
       return (
         <Card className="col s12" style={id > 0 ? { marginTop: '10px' } : {}} key={id}>
           <CardHeader
-            title={comment.user_id.name}
-            subtitle={GetFormattedDate(comment.created_at)}
-            avatar={comment.user_id.avatar}
+            title={review.member.name}
+            subtitle={
+              <div>
+                <div>
+                  {GetFormattedDate(review.review_order.created_at)}
+                </div>
+                <div>
+                  <StarComponent rate={review.review_order.rate} isShowRate={true} />
+                </div>
+              </div>
+            }
+            avatar={'/image/medium/' + review.member.avatar}
           />
           <CardText>
-            {comment.comment}
+            {review.review_order.remark}
           </CardText>
         </Card>
       )
@@ -505,7 +521,12 @@ class ArtDetail extends Component {
                 </CardText>
                 <CardText>
                   <h5>Review</h5>
-                  { getReview() }
+                  { 
+                    this.state.reviewOrder && this.state.reviewOrder.length > 0 ?
+                    this.getReview(this.state.reviewOrder) 
+                    :
+                    `Belum ada review untuk ${this.state.art.name}.`
+                  }
                 </CardText>
               </Card>
             </ValidatorForm>

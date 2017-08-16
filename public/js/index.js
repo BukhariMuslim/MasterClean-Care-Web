@@ -766,7 +766,7 @@ module.exports = __webpack_require__(395);
 
 /***/ }),
 
-/***/ 125:
+/***/ 126:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -907,7 +907,7 @@ exports.default = ArtContainer;
 
 /***/ }),
 
-/***/ 126:
+/***/ 127:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -941,7 +941,7 @@ exports.default = LoadingSpinContainer;
 
 /***/ }),
 
-/***/ 127:
+/***/ 128:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1601,7 +1601,7 @@ var _SearchBarContainer2 = _interopRequireDefault(_SearchBarContainer);
 
 var _LoginContainer = __webpack_require__(171);
 
-var _NotificationContainer = __webpack_require__(127);
+var _NotificationContainer = __webpack_require__(128);
 
 var _NotificationContainer2 = _interopRequireDefault(_NotificationContainer);
 
@@ -1609,7 +1609,7 @@ var _AppDrawerContainer = __webpack_require__(448);
 
 var _AppDrawerContainer2 = _interopRequireDefault(_AppDrawerContainer);
 
-var _LoadingSpinContainer = __webpack_require__(126);
+var _LoadingSpinContainer = __webpack_require__(127);
 
 var _LoadingSpinContainer2 = _interopRequireDefault(_LoadingSpinContainer);
 
@@ -1760,7 +1760,7 @@ utils.forEach(['post', 'put', 'patch'], function forEachMethodWithData(method) {
 
 module.exports = defaults;
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(118)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(119)))
 
 /***/ }),
 
@@ -2694,7 +2694,7 @@ var _ArticleContainer = __webpack_require__(170);
 
 var _ArticleContainer2 = _interopRequireDefault(_ArticleContainer);
 
-var _ArtContainer = __webpack_require__(125);
+var _ArtContainer = __webpack_require__(126);
 
 var _ArtContainer2 = _interopRequireDefault(_ArtContainer);
 
@@ -3831,7 +3831,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.replaceParams = undefined;
 
-var _keys = __webpack_require__(128);
+var _keys = __webpack_require__(129);
 
 var _keys2 = _interopRequireDefault(_keys);
 
@@ -5458,6 +5458,7 @@ var ArtDetail = function (_Component) {
         user_work_timeErrorText: '',
         user_documentErrorText: ''
       },
+      reviewOrder: [],
       isEdit: false
     };
 
@@ -5506,6 +5507,8 @@ var ArtDetail = function (_Component) {
       this.props.getWorkTime(this, 'workTimeItem');
 
       this.props.getAdditionalInfo(this, 'additionalInfoItem');
+
+      this.props.getReviewOrder(this, this.state.art.id);
     }
   }, {
     key: 'componentDidMount',
@@ -5585,26 +5588,43 @@ var ArtDetail = function (_Component) {
     key: 'getReview',
     value: function getReview(reviews) {
       var GetFormattedDate = function GetFormattedDate(date) {
-        var dt = new Date(date);
-        var mm = dt.getMonth() + 1;
-        var dd = dt.getDate();
+        if (date) {
+          var dt = new Date(date);
+          var mm = dt.getMonth() + 1;
+          var dd = dt.getDate();
 
-        return [(dd > 9 ? '' : '0') + dd, (mm > 9 ? '' : '0') + mm, dt.getFullYear()].join('/');
+          return [(dd > 9 ? '' : '0') + dd, (mm > 9 ? '' : '0') + mm, dt.getFullYear()].join('/');
+        }
+        return '';
       };
 
       return reviews.map(function (review, id) {
+        console.log(review);
         return _react2.default.createElement(
           _Card.Card,
           { className: 'col s12', style: id > 0 ? { marginTop: '10px' } : {}, key: id },
           _react2.default.createElement(_Card.CardHeader, {
-            title: comment.user_id.name,
-            subtitle: GetFormattedDate(comment.created_at),
-            avatar: comment.user_id.avatar
+            title: review.member.name,
+            subtitle: _react2.default.createElement(
+              'div',
+              null,
+              _react2.default.createElement(
+                'div',
+                null,
+                GetFormattedDate(review.review_order.created_at)
+              ),
+              _react2.default.createElement(
+                'div',
+                null,
+                _react2.default.createElement(_StarComponent2.default, { rate: review.review_order.rate, isShowRate: true })
+              )
+            ),
+            avatar: '/image/medium/' + review.member.avatar
           }),
           _react2.default.createElement(
             _Card.CardText,
             null,
-            comment.comment
+            review.review_order.remark
           )
         );
       });
@@ -6040,7 +6060,7 @@ var ArtDetail = function (_Component) {
                 null,
                 'Review'
               ),
-              getReview()
+              this.state.reviewOrder && this.state.reviewOrder.length > 0 ? this.getReview(this.state.reviewOrder) : 'Belum ada review untuk ' + this.state.art.name + '.'
             )
           )
         ) : _react2.default.createElement(
@@ -6129,7 +6149,7 @@ var _App = __webpack_require__(15);
 
 var _App2 = _interopRequireDefault(_App);
 
-var _ArtContainer = __webpack_require__(125);
+var _ArtContainer = __webpack_require__(126);
 
 var _ArtContainer2 = _interopRequireDefault(_ArtContainer);
 
@@ -7423,7 +7443,7 @@ var _ArticleContainer = __webpack_require__(170);
 
 var _ArticleContainer2 = _interopRequireDefault(_ArticleContainer);
 
-var _ArtContainer = __webpack_require__(125);
+var _ArtContainer = __webpack_require__(126);
 
 var _ArtContainer2 = _interopRequireDefault(_ArtContainer);
 
@@ -7831,11 +7851,11 @@ var _clear = __webpack_require__(214);
 
 var _clear2 = _interopRequireDefault(_clear);
 
-var _NotificationContainer = __webpack_require__(127);
+var _NotificationContainer = __webpack_require__(128);
 
 var _NotificationContainer2 = _interopRequireDefault(_NotificationContainer);
 
-var _LoadingSpinContainer = __webpack_require__(126);
+var _LoadingSpinContainer = __webpack_require__(127);
 
 var _LoadingSpinContainer2 = _interopRequireDefault(_LoadingSpinContainer);
 
@@ -8054,7 +8074,7 @@ var _FlatButton = __webpack_require__(22);
 
 var _FlatButton2 = _interopRequireDefault(_FlatButton);
 
-var _Dialog = __webpack_require__(144);
+var _Dialog = __webpack_require__(116);
 
 var _Dialog2 = _interopRequireDefault(_Dialog);
 
@@ -10019,7 +10039,7 @@ var _IconButton = __webpack_require__(38);
 
 var _IconButton2 = _interopRequireDefault(_IconButton);
 
-var _Dialog = __webpack_require__(144);
+var _Dialog = __webpack_require__(116);
 
 var _Dialog2 = _interopRequireDefault(_Dialog);
 
@@ -14805,11 +14825,11 @@ var _clear = __webpack_require__(214);
 
 var _clear2 = _interopRequireDefault(_clear);
 
-var _NotificationContainer = __webpack_require__(127);
+var _NotificationContainer = __webpack_require__(128);
 
 var _NotificationContainer2 = _interopRequireDefault(_NotificationContainer);
 
-var _LoadingSpinContainer = __webpack_require__(126);
+var _LoadingSpinContainer = __webpack_require__(127);
 
 var _LoadingSpinContainer2 = _interopRequireDefault(_LoadingSpinContainer);
 
@@ -15689,11 +15709,11 @@ var _clear = __webpack_require__(214);
 
 var _clear2 = _interopRequireDefault(_clear);
 
-var _NotificationContainer = __webpack_require__(127);
+var _NotificationContainer = __webpack_require__(128);
 
 var _NotificationContainer2 = _interopRequireDefault(_NotificationContainer);
 
-var _LoadingSpinContainer = __webpack_require__(126);
+var _LoadingSpinContainer = __webpack_require__(127);
 
 var _LoadingSpinContainer2 = _interopRequireDefault(_LoadingSpinContainer);
 
@@ -16257,7 +16277,7 @@ var _RaisedButton = __webpack_require__(40);
 
 var _RaisedButton2 = _interopRequireDefault(_RaisedButton);
 
-var _Dialog = __webpack_require__(144);
+var _Dialog = __webpack_require__(116);
 
 var _Dialog2 = _interopRequireDefault(_Dialog);
 
@@ -16482,7 +16502,7 @@ var _ArticleContainer = __webpack_require__(170);
 
 var _ArticleContainer2 = _interopRequireDefault(_ArticleContainer);
 
-var _ArtContainer = __webpack_require__(125);
+var _ArtContainer = __webpack_require__(126);
 
 var _ArtContainer2 = _interopRequireDefault(_ArtContainer);
 
@@ -16804,6 +16824,27 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
           message: error.name + ": " + error.message
         }));
         self.setState(_defineProperty({}, type, dataAdditionalInfo));
+      });
+    },
+    getReviewOrder: function getReviewOrder(self, art_id) {
+      var reviewOrder = [];
+      _ApiService2.default.onGet('/api/order/review', art_id, function (response) {
+        var data = response;
+        if (data.status !== 200) {
+          dispatch((0, _DefaultAction.updateSnack)({
+            open: true,
+            message: data.message
+          }));
+        } else {
+          reviewOrder = data.data;
+        }
+        self.setState({ reviewOrder: reviewOrder });
+      }, function (error) {
+        dispatch((0, _DefaultAction.updateSnack)({
+          open: true,
+          message: error.name + ": " + error.message
+        }));
+        self.setState({ reviewOrder: reviewOrder });
       });
     }
   };
@@ -51783,7 +51824,7 @@ var _extends2 = __webpack_require__(8);
 
 var _extends3 = _interopRequireDefault(_extends2);
 
-var _keys = __webpack_require__(128);
+var _keys = __webpack_require__(129);
 
 var _keys2 = _interopRequireDefault(_keys);
 
@@ -55531,7 +55572,7 @@ var _Menu = __webpack_require__(146);
 
 var _Menu2 = _interopRequireDefault(_Menu);
 
-var _Popover = __webpack_require__(116);
+var _Popover = __webpack_require__(117);
 
 var _Popover2 = _interopRequireDefault(_Popover);
 
@@ -60151,7 +60192,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _keys = __webpack_require__(128);
+var _keys = __webpack_require__(129);
 
 var _keys2 = _interopRequireDefault(_keys);
 
