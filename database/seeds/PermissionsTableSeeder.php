@@ -54,5 +54,22 @@ class PermissionsTableSeeder extends Seeder
 
         Permission::generateFor('work_times');
 
+        Permission::where(['key' => 'add_critisms'])->delete();
+
+        Permission::where(['key' => 'edit_critisms'])->delete();
+
+        Permission::where(['key' => 'add_reports'])->delete();
+
+        Permission::where(['key' => 'edit_reports'])->delete();
+
+        Permission::where(['key' => 'add_emergency_calls'])->delete();
+
+        Permission::where(['key' => 'edit_emergency_calls'])->delete();
+
+        Permission::where(['key' => 'add_review_orders'])->delete();
+
+        Permission::where(['key' => 'edit_review_orders'])->delete();
+
+        Permission::where(['key' => 'add_wallet_transactions'])->delete();
     }
 }

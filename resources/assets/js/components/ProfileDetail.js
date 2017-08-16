@@ -243,7 +243,7 @@ class ProfileDetail extends Component {
               isNeedTextBox ?
                 <div className="col s6">
                   <NumberFormat
-                    hintText={'Gaji ' + obj.work_time}
+                    hintText={'Honor ' + obj.work_time}
                     thousandSeparator={true}
                     prefix={'Rp. '}
                     value={costEnabled ? values[curIdx].cost : ''}
@@ -253,7 +253,7 @@ class ProfileDetail extends Component {
                     name="user_work_time"
                     onChange={(e) => this.onChangeTextHandler(e, curIdx)}
                     validators={ isNeedTextBox && checked ? ['required'] : []}
-                    errorMessages={ isNeedTextBox && checked ? ['Gaji dibutuhkan'] : []}
+                    errorMessages={ isNeedTextBox && checked ? ['Honor dibutuhkan'] : []}
                     customInput={TextValidator}
                     />
                 </div>
@@ -758,7 +758,7 @@ class ProfileDetail extends Component {
                                           >
                                             <TableRow>
                                               <TableHeaderColumn tooltip="Waktu Kerja">Waktu Kerja</TableHeaderColumn>
-                                              <TableHeaderColumn tooltip="Upah">Upah</TableHeaderColumn>
+                                              <TableHeaderColumn tooltip="Honor">Honor</TableHeaderColumn>
                                             </TableRow>
                                           </TableHeader>
                                           <TableBody

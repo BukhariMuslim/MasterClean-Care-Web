@@ -39,6 +39,7 @@ class RegisterArt extends Component {
       born_date: null,
       phone: '',
       emergency_numb: '',
+      acc_no: '',
       city: '',
       address: '',
       location: '',
@@ -161,7 +162,7 @@ class RegisterArt extends Component {
             isNeedTextBox ?
               <div className="col s6">
                 <NumberFormat
-                  hintText={'Gaji ' + obj.work_time}
+                  hintText={'Honor ' + obj.work_time}
                   thousandSeparator={true}
                   prefix={'Rp. '}
                   value={enabled ? values[curIdx].cost : ''}
@@ -170,7 +171,7 @@ class RegisterArt extends Component {
                   name="userWorkTime"
                   onChange={(e) => this.onChangeTextHandler(e, curIdx)}
                   validators={[isNeedTextBox ? ('required') : '']}
-                  errorMessages={[isNeedTextBox ? ('Gaji dibutuhkan') : '']}
+                  errorMessages={[isNeedTextBox ? ('Honor dibutuhkan') : '']}
                   customInput={TextValidator}
                   />
               </div>
@@ -224,6 +225,7 @@ class RegisterArt extends Component {
           contact: {
             phone: this.state.phone,
             emergency_numb: this.state.emergency_numb,
+            acc_no: this.state.acc_no,
             city: this.state.city,
             address: this.state.address,
             location: this.state.location,
@@ -501,6 +503,19 @@ class RegisterArt extends Component {
                     autoComplete={false}
                     validators={['required', 'matchRegexp:^[0-9]*$']}
                     errorMessages={['No. Telepon Darurat dibutuhkan', 'Input harus angka']}
+                  />
+                </div>
+                <div className="col s12">
+                  <TextValidator
+                    hintText="No. Rekening"
+                    floatingLabelText="No. Rekening"
+                    value={this.state.acc_no}
+                    fullWidth={true}
+                    name="acc_no"
+                    onChange={this.onChangeHandler}
+                    autoComplete={false}
+                    validators={['required', 'matchRegexp:^[0-9]*$']}
+                    errorMessages={['No. Telepon dibutuhkan', 'Input harus angka']}
                   />
                 </div>
                 <div className="col s12">

@@ -38,7 +38,9 @@
                                 <label for="name">Name</label>
                                 <input type="text" class="form-control" name="name"
                                     placeholder="Name" id="name"
-                                    disabled="true"
+                                    @if(!(isset($dataTypeContent->role_id) && $dataTypeContent->role_id == 1))
+                                    disabled
+                                    @endif
                                     value="@if(isset($dataTypeContent->name)){{ old('name', $dataTypeContent->name) }}@else{{old('name')}}@endif">
                             </div>
 
@@ -46,7 +48,9 @@
                                 <label for="name">Email</label>
                                 <input type="text" class="form-control" name="email"
                                        placeholder="Email" id="email"
-                                       disabled="true"
+                                       @if(!(isset($dataTypeContent->role_id) && $dataTypeContent->role_id == 1))
+                                        disabled
+                                        @endif
                                        value="@if(isset($dataTypeContent->email)){{ old('email', $dataTypeContent->email) }}@else{{old('email')}}@endif">
                             </div>
 
@@ -58,7 +62,9 @@
                                 @endif
                                 <input type="password" class="form-control" name="password"
                                        placeholder="Password" id="password"
-                                       disabled="true"
+                                       @if(!(isset($dataTypeContent->role_id) && $dataTypeContent->role_id == 1))
+                                        disabled
+                                        @endif
                                        value="">
                             </div>
 
@@ -68,7 +74,9 @@
                                     <img src="{{ Voyager::image( $dataTypeContent->avatar ) }}"
                                          style="width:200px; height:auto; clear:both; display:block; padding:2px; border:1px solid #ddd; margin-bottom:10px;">
                                 @endif
-                                <input type="file" name="avatar" disabled="true">
+                                <input type="file" name="avatar" @if(!(isset($dataTypeContent->role_id) && $dataTypeContent->role_id == 1))
+                                    disabled
+                                    @endif>
                             </div>
 
                             <div class="form-group">

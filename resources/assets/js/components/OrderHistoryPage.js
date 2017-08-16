@@ -109,7 +109,7 @@ class OrderHistoryPage extends Component {
           tempCriteria.push('Kelompok Waktu Kerja ' + `"${this.state.workTimeItem[this.state.workTimeItem.findIndex(x => x.id == val)].work_time}"`)
         }
         else if (p[0] == 'maxCost') {
-          tempCriteria.push("Upah maksimum " + `"${val}"`)
+          tempCriteria.push("Honor maksimum " + `"${val}"`)
         }
       })
       if (tempCriteria.length > 0) {
@@ -191,7 +191,7 @@ class OrderHistoryPage extends Component {
 
     if (maxCost) {
       queryString.push('maxCost=' + encodeURIComponent(maxCost))
-      tempCriteria.push('Upah maksimum ' + `"${maxCost}"`)
+      tempCriteria.push('Honor maksimum ' + `"${maxCost}"`)
     }
 
     if (queryString.length > 0) {
@@ -414,8 +414,8 @@ class OrderHistoryPage extends Component {
                       }
                       <div className="col m6">
                         <NumberFormat
-                          hintText="Upah maksimum"
-                          floatingLabelText="Upah maksimum"
+                          hintText="Honor maksimum"
+                          floatingLabelText="Honor maksimum"
                           thousandSeparator={true}
                           prefix={'Rp. '}
                           value={this.state.maxCost}

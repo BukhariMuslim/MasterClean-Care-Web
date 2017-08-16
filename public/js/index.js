@@ -5987,8 +5987,8 @@ var ArtDetail = function (_Component) {
                                       ),
                                       _react2.default.createElement(
                                         _Table.TableHeaderColumn,
-                                        { tooltip: 'Upah' },
-                                        'Upah'
+                                        { tooltip: 'Honor' },
+                                        'Honor'
                                       )
                                     )
                                   ),
@@ -6319,7 +6319,7 @@ var ArtPage = function (_Component) {
                 return x.id == val;
               })].work_time + '"'));
             } else if (p[0] == 'maxCost') {
-              tempCriteria.push("Upah maksimum " + ('"' + val + '"'));
+              tempCriteria.push("Honor maksimum " + ('"' + val + '"'));
             }
           }
         });
@@ -6403,7 +6403,7 @@ var ArtPage = function (_Component) {
               'div',
               { className: 'col s6' },
               _react2.default.createElement(_reactNumberFormat2.default, {
-                hintText: 'Gaji ' + obj.work_time,
+                hintText: 'Honor ' + obj.work_time,
                 thousandSeparator: true,
                 prefix: 'Rp. ',
                 value: enabled ? values[curIdx].cost : '',
@@ -6414,7 +6414,7 @@ var ArtPage = function (_Component) {
                   return _this3.onChangeTextHandler(e, curIdx);
                 },
                 validators: [isNeedTextBox ? 'required' : ''],
-                errorMessages: [isNeedTextBox ? 'Gaji dibutuhkan' : ''],
+                errorMessages: [isNeedTextBox ? 'Honor dibutuhkan' : ''],
                 customInput: _reactMaterialUiFormValidator.TextValidator
               })
             ) : null
@@ -6522,7 +6522,7 @@ var ArtPage = function (_Component) {
 
       if (maxCost) {
         queryString.push('maxCost=' + encodeURIComponent(maxCost));
-        tempCriteria.push('Upah maksimum ' + ('"' + maxCost + '"'));
+        tempCriteria.push('Honor maksimum ' + ('"' + maxCost + '"'));
       }
 
       if (queryString.length > 0) {
@@ -6812,8 +6812,8 @@ var ArtPage = function (_Component) {
                     'div',
                     { className: 'col m6' },
                     _react2.default.createElement(_reactNumberFormat2.default, {
-                      hintText: 'Upah maksimum',
-                      floatingLabelText: 'Upah maksimum',
+                      hintText: 'Honor maksimum',
+                      floatingLabelText: 'Honor maksimum',
                       thousandSeparator: true,
                       prefix: 'Rp. ',
                       value: this.state.maxCost,
@@ -8472,7 +8472,7 @@ var MemberDetail = function (_Component) {
               'div',
               { className: 'col s6' },
               _react2.default.createElement(_reactNumberFormat2.default, {
-                hintText: 'Gaji ' + obj.work_time,
+                hintText: 'Honor ' + obj.work_time,
                 inputStyle: disabledInputStyle,
                 thousandSeparator: true,
                 prefix: 'Rp. ',
@@ -8485,7 +8485,7 @@ var MemberDetail = function (_Component) {
                   return _this2.onChangeTextHandler(e, curIdx);
                 },
                 validators: [isNeedTextBox ? 'required' : ''],
-                errorMessages: [isNeedTextBox ? 'Gaji dibutuhkan' : ''],
+                errorMessages: [isNeedTextBox ? 'Honor dibutuhkan' : ''],
                 customInput: _reactMaterialUiFormValidator.TextValidator
               })
             ) : null
@@ -9032,7 +9032,7 @@ var MyOfferPage = function (_Component) {
               return x.id == val;
             })].work_time + '"'));
           } else if (p[0] == 'maxCost') {
-            tempCriteria.push("Upah maksimum " + ('"' + val + '"'));
+            tempCriteria.push("Honor maksimum " + ('"' + val + '"'));
           }
         });
         if (tempCriteria.length > 0) {
@@ -9134,7 +9134,7 @@ var MyOfferPage = function (_Component) {
 
       if (maxCost) {
         queryString.push('maxCost=' + encodeURIComponent(maxCost));
-        tempCriteria.push('Upah maksimum ' + ('"' + maxCost + '"'));
+        tempCriteria.push('Honor maksimum ' + ('"' + maxCost + '"'));
       }
 
       if (queryString.length > 0) {
@@ -9397,8 +9397,8 @@ var MyOfferPage = function (_Component) {
                     'div',
                     { className: 'col m6' },
                     _react2.default.createElement(_reactNumberFormat2.default, {
-                      hintText: 'Upah maksimum',
-                      floatingLabelText: 'Upah maksimum',
+                      hintText: 'Honor maksimum',
+                      floatingLabelText: 'Honor maksimum',
                       thousandSeparator: true,
                       prefix: 'Rp. ',
                       value: this.state.maxCost,
@@ -9893,7 +9893,7 @@ var Offer = function (_Component) {
                       _react2.default.createElement(
                         _Table.TableRowColumn,
                         { style: { textAlign: 'right', verticalAlign: 'top' } },
-                        'Upah yang ditawarkan'
+                        'Honor yang ditawarkan'
                       ),
                       _react2.default.createElement(
                         _Table.TableRowColumn,
@@ -10340,7 +10340,7 @@ var OfferDetail = function (_Component) {
                     _react2.default.createElement(
                       _Table.TableRowColumn,
                       { style: { textAlign: 'right', verticalAlign: 'top' } },
-                      'Upah yang ditawarkan'
+                      'Honor yang ditawarkan'
                     ),
                     _react2.default.createElement(
                       _Table.TableRowColumn,
@@ -10839,7 +10839,7 @@ var OfferPage = function (_Component) {
               return x.id == val;
             })].work_time + '"'));
           } else if (p[0] == 'maxCost') {
-            tempCriteria.push("Upah maksimum " + ('"' + val + '"'));
+            tempCriteria.push("Honor maksimum " + ('"' + val + '"'));
           }
         });
         if (tempCriteria.length > 0) {
@@ -10942,7 +10942,7 @@ var OfferPage = function (_Component) {
 
       if (maxCost) {
         queryString.push('maxCost=' + encodeURIComponent(maxCost));
-        tempCriteria.push('Upah maksimum ' + ('"' + maxCost + '"'));
+        tempCriteria.push('Honor maksimum ' + ('"' + maxCost + '"'));
       }
 
       if (queryString.length > 0) {
@@ -11203,8 +11203,8 @@ var OfferPage = function (_Component) {
                     'div',
                     { className: 'col m6' },
                     _react2.default.createElement(_reactNumberFormat2.default, {
-                      hintText: 'Upah maksimum',
-                      floatingLabelText: 'Upah maksimum',
+                      hintText: 'Honor maksimum',
+                      floatingLabelText: 'Honor maksimum',
                       thousandSeparator: true,
                       prefix: 'Rp. ',
                       value: this.state.maxCost,
@@ -11568,7 +11568,7 @@ var Order = function (_Component) {
                     _react2.default.createElement(
                       _Table.TableRowColumn,
                       { style: { textAlign: 'right', verticalAlign: 'top' } },
-                      'Upah yang ditawarkan'
+                      'Honor yang ditawarkan'
                     ),
                     _react2.default.createElement(
                       _Table.TableRowColumn,
@@ -11995,7 +11995,7 @@ var OrderDetail = function (_Component) {
                     _react2.default.createElement(
                       _Table.TableRowColumn,
                       { style: { textAlign: 'right', verticalAlign: 'top' } },
-                      'Upah yang ditawarkan'
+                      'Honor yang ditawarkan'
                     ),
                     _react2.default.createElement(
                       _Table.TableRowColumn,
@@ -12505,7 +12505,7 @@ var OrderHistoryPage = function (_Component) {
               return x.id == val;
             })].work_time + '"'));
           } else if (p[0] == 'maxCost') {
-            tempCriteria.push("Upah maksimum " + ('"' + val + '"'));
+            tempCriteria.push("Honor maksimum " + ('"' + val + '"'));
           }
         });
         if (tempCriteria.length > 0) {
@@ -12607,7 +12607,7 @@ var OrderHistoryPage = function (_Component) {
 
       if (maxCost) {
         queryString.push('maxCost=' + encodeURIComponent(maxCost));
-        tempCriteria.push('Upah maksimum ' + ('"' + maxCost + '"'));
+        tempCriteria.push('Honor maksimum ' + ('"' + maxCost + '"'));
       }
 
       if (queryString.length > 0) {
@@ -12870,8 +12870,8 @@ var OrderHistoryPage = function (_Component) {
                     'div',
                     { className: 'col m6' },
                     _react2.default.createElement(_reactNumberFormat2.default, {
-                      hintText: 'Upah maksimum',
-                      floatingLabelText: 'Upah maksimum',
+                      hintText: 'Honor maksimum',
+                      floatingLabelText: 'Honor maksimum',
                       thousandSeparator: true,
                       prefix: 'Rp. ',
                       value: this.state.maxCost,
@@ -13177,7 +13177,7 @@ var OrderPage = function (_Component) {
               return x.id == val;
             })].work_time + '"'));
           } else if (p[0] == 'maxCost') {
-            tempCriteria.push("Upah maksimum " + ('"' + val + '"'));
+            tempCriteria.push("Honor maksimum " + ('"' + val + '"'));
           }
         });
         if (tempCriteria.length > 0) {
@@ -13279,7 +13279,7 @@ var OrderPage = function (_Component) {
 
       if (maxCost) {
         queryString.push('maxCost=' + encodeURIComponent(maxCost));
-        tempCriteria.push('Upah maksimum ' + ('"' + maxCost + '"'));
+        tempCriteria.push('Honor maksimum ' + ('"' + maxCost + '"'));
       }
 
       if (queryString.length > 0) {
@@ -13542,8 +13542,8 @@ var OrderPage = function (_Component) {
                     'div',
                     { className: 'col m6' },
                     _react2.default.createElement(_reactNumberFormat2.default, {
-                      hintText: 'Upah maksimum',
-                      floatingLabelText: 'Upah maksimum',
+                      hintText: 'Honor maksimum',
+                      floatingLabelText: 'Honor maksimum',
                       thousandSeparator: true,
                       prefix: 'Rp. ',
                       value: this.state.maxCost,
@@ -13967,7 +13967,7 @@ var ProfileDetail = function (_Component) {
               'div',
               { className: 'col s6' },
               _react2.default.createElement(_reactNumberFormat2.default, {
-                hintText: 'Gaji ' + obj.work_time,
+                hintText: 'Honor ' + obj.work_time,
                 thousandSeparator: true,
                 prefix: 'Rp. ',
                 value: costEnabled ? values[curIdx].cost : '',
@@ -13979,7 +13979,7 @@ var ProfileDetail = function (_Component) {
                   return _this2.onChangeTextHandler(e, curIdx);
                 },
                 validators: isNeedTextBox && checked ? ['required'] : [],
-                errorMessages: isNeedTextBox && checked ? ['Gaji dibutuhkan'] : [],
+                errorMessages: isNeedTextBox && checked ? ['Honor dibutuhkan'] : [],
                 customInput: _reactMaterialUiFormValidator.TextValidator
               })
             ) : null
@@ -14564,8 +14564,8 @@ var ProfileDetail = function (_Component) {
                                       ),
                                       _react2.default.createElement(
                                         _Table.TableHeaderColumn,
-                                        { tooltip: 'Upah' },
-                                        'Upah'
+                                        { tooltip: 'Honor' },
+                                        'Honor'
                                       )
                                     )
                                   ),
@@ -14875,6 +14875,7 @@ var RegisterArt = function (_Component) {
       born_date: null,
       phone: '',
       emergency_numb: '',
+      acc_no: '',
       city: '',
       address: '',
       location: '',
@@ -15017,7 +15018,7 @@ var RegisterArt = function (_Component) {
             'div',
             { className: 'col s6' },
             _react2.default.createElement(_reactNumberFormat2.default, {
-              hintText: 'Gaji ' + obj.work_time,
+              hintText: 'Honor ' + obj.work_time,
               thousandSeparator: true,
               prefix: 'Rp. ',
               value: enabled ? values[curIdx].cost : '',
@@ -15028,7 +15029,7 @@ var RegisterArt = function (_Component) {
                 return _this3.onChangeTextHandler(e, curIdx);
               },
               validators: [isNeedTextBox ? 'required' : ''],
-              errorMessages: [isNeedTextBox ? 'Gaji dibutuhkan' : ''],
+              errorMessages: [isNeedTextBox ? 'Honor dibutuhkan' : ''],
               customInput: _reactMaterialUiFormValidator.TextValidator
             })
           ) : null
@@ -15078,6 +15079,7 @@ var RegisterArt = function (_Component) {
           contact: {
             phone: this.state.phone,
             emergency_numb: this.state.emergency_numb,
+            acc_no: this.state.acc_no,
             city: this.state.city,
             address: this.state.address,
             location: this.state.location
@@ -15404,6 +15406,21 @@ var RegisterArt = function (_Component) {
                     autoComplete: false,
                     validators: ['required', 'matchRegexp:^[0-9]*$'],
                     errorMessages: ['No. Telepon Darurat dibutuhkan', 'Input harus angka']
+                  })
+                ),
+                _react2.default.createElement(
+                  'div',
+                  { className: 'col s12' },
+                  _react2.default.createElement(_reactMaterialUiFormValidator.TextValidator, {
+                    hintText: 'No. Rekening',
+                    floatingLabelText: 'No. Rekening',
+                    value: this.state.acc_no,
+                    fullWidth: true,
+                    name: 'acc_no',
+                    onChange: this.onChangeHandler,
+                    autoComplete: false,
+                    validators: ['required', 'matchRegexp:^[0-9]*$'],
+                    errorMessages: ['No. Telepon dibutuhkan', 'Input harus angka']
                   })
                 ),
                 _react2.default.createElement(
@@ -15753,6 +15770,7 @@ var RegisterMember = function (_Component) {
       born_date: null,
       emergency_numb: '',
       phone: '',
+      acc_no: '',
       city: '',
       address: '',
       location: '',
@@ -15827,6 +15845,7 @@ var RegisterMember = function (_Component) {
         contact: {
           emergency_numb: this.state.emergency_numb,
           phone: this.state.phone,
+          acc_no: this.state.acc_no,
           city: this.state.city,
           address: this.state.address,
           location: this.state.location

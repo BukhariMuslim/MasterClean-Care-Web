@@ -548,7 +548,9 @@ class UserController extends Controller
 
             foreach($inputs as $key => $input) {
                 if ($key == 'user_job' || $key == 'job') {
-                    $user = $user->has('user_job', $input);
+                    $user = $user->whereHas('user_job', function($query) use ($input) {
+                        $query->where('job_id', $input);
+                    });
                 }
                 else if ($key == 'user_language') {
                     $user = $user->has('user_language', $input);
@@ -560,7 +562,9 @@ class UserController extends Controller
                     });
                 }
                 else if ($key == 'user_work_time' || $key == 'work_time') {
-                    $user = $user->has('user_work_time', $input);
+                    $user = $user->whereHas('user_work_time', function($query) use ($input) {
+                        $query->where('work_time_id', $input);
+                    });
                 }
                 else if ($key == 'minAge') {
                     $user = $user->where('born_date', Operators::LESS_THAN_EQUAL, $dateNow->copy()->addYear($input * -1));

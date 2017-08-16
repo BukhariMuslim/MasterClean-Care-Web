@@ -469,7 +469,7 @@ class ArtDetail extends Component {
                                         >
                                           <TableRow>
                                             <TableHeaderColumn tooltip="Waktu Kerja">Waktu Kerja</TableHeaderColumn>
-                                            <TableHeaderColumn tooltip="Upah">Upah</TableHeaderColumn>
+                                            <TableHeaderColumn tooltip="Honor">Honor</TableHeaderColumn>
                                           </TableRow>
                                         </TableHeader>
                                         <TableBody

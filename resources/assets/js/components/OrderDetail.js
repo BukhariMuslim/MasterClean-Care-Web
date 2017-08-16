@@ -178,7 +178,7 @@ class OrderDetail extends Component {
                         </TableRowColumn>
                       </TableRow>
                       <TableRow>
-                        <TableRowColumn style={{ textAlign: 'right', verticalAlign: 'top' }}>Upah yang ditawarkan</TableRowColumn>
+                        <TableRowColumn style={{ textAlign: 'right', verticalAlign: 'top' }}>Honor yang ditawarkan</TableRowColumn>
                         <TableRowColumn><b>{order.cost ? <NumberFormat value={order.cost} displayType={'text'} thousandSeparator={true} prefix={'Rp. '} /> : '-'}</b></TableRowColumn>
                       </TableRow>
                       <TableRow>
