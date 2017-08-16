@@ -28,12 +28,11 @@ class Logout extends Component {
     render() {
         const actions = [
             <FlatButton
-                label="Cancel"
-                primary={true}
+                label="Tidak"
                 onTouchTap={() => this.handleClose()}
             />,
             <FlatButton
-                label="Confirm"
+                label="Ya"
                 primary={true}
                 onTouchTap={() => this.handleClose(true)}
             />
@@ -46,12 +45,12 @@ class Logout extends Component {
                     rightIcon={<FontIcon className="material-icons">power_settings_new</FontIcon>}
                     onClick={ () => this.handleOpen() }/>
                 <Dialog
-                        title="Confirmation"
+                        title="Konfirmasi Logout"
                         actions={ actions }
                         modal={ true }
                         open={ this.state.openModal }
                     >
-                    Are you sure you want to logout?
+                    Logout?
                 </Dialog>
             </div>
         )

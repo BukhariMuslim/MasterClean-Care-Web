@@ -186,6 +186,33 @@ const mapDispatchToProps = (dispatch) => {
         }
       )
     },
+    getReviewOrder: (self, art_id) => {
+      let reviewOrder = []
+      ApiService.onGet(
+        '/api/order/review',
+        art_id,
+        function (response) {
+          let data = response
+          if (data.status !== 200) {
+            dispatch(updateSnack({
+              open: true,
+              message: data.message
+            }))
+          }
+          else {
+            reviewOrder = data.data
+          }
+          self.setState({ reviewOrder })
+        },
+        function (error) {
+          dispatch(updateSnack({
+            open: true,
+            message: error.name + ": " + error.message
+          }))
+          self.setState({ reviewOrder })
+        }
+      )
+    },
   }
 }
 

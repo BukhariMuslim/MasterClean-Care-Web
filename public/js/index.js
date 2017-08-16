@@ -766,7 +766,7 @@ module.exports = __webpack_require__(395);
 
 /***/ }),
 
-/***/ 125:
+/***/ 126:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -907,7 +907,7 @@ exports.default = ArtContainer;
 
 /***/ }),
 
-/***/ 126:
+/***/ 127:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -941,7 +941,7 @@ exports.default = LoadingSpinContainer;
 
 /***/ }),
 
-/***/ 127:
+/***/ 128:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1601,7 +1601,7 @@ var _SearchBarContainer2 = _interopRequireDefault(_SearchBarContainer);
 
 var _LoginContainer = __webpack_require__(171);
 
-var _NotificationContainer = __webpack_require__(127);
+var _NotificationContainer = __webpack_require__(128);
 
 var _NotificationContainer2 = _interopRequireDefault(_NotificationContainer);
 
@@ -1609,7 +1609,7 @@ var _AppDrawerContainer = __webpack_require__(448);
 
 var _AppDrawerContainer2 = _interopRequireDefault(_AppDrawerContainer);
 
-var _LoadingSpinContainer = __webpack_require__(126);
+var _LoadingSpinContainer = __webpack_require__(127);
 
 var _LoadingSpinContainer2 = _interopRequireDefault(_LoadingSpinContainer);
 
@@ -1760,7 +1760,7 @@ utils.forEach(['post', 'put', 'patch'], function forEachMethodWithData(method) {
 
 module.exports = defaults;
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(118)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(119)))
 
 /***/ }),
 
@@ -2694,7 +2694,7 @@ var _ArticleContainer = __webpack_require__(170);
 
 var _ArticleContainer2 = _interopRequireDefault(_ArticleContainer);
 
-var _ArtContainer = __webpack_require__(125);
+var _ArtContainer = __webpack_require__(126);
 
 var _ArtContainer2 = _interopRequireDefault(_ArtContainer);
 
@@ -3831,7 +3831,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.replaceParams = undefined;
 
-var _keys = __webpack_require__(128);
+var _keys = __webpack_require__(129);
 
 var _keys2 = _interopRequireDefault(_keys);
 
@@ -5095,6 +5095,7 @@ var settings = {
   slidesToShow: 5,
   slidesToScroll: 5,
   pauseOnHover: true,
+  responsive: [{ breakpoint: 512, settings: { slidesToShow: 1, slidesToScroll: 1 } }, { breakpoint: 768, settings: { slidesToShow: 3, slidesToScroll: 3 } }],
   draggable: false
 };
 
@@ -5457,6 +5458,7 @@ var ArtDetail = function (_Component) {
         user_work_timeErrorText: '',
         user_documentErrorText: ''
       },
+      reviewOrder: [],
       isEdit: false
     };
 
@@ -5505,6 +5507,8 @@ var ArtDetail = function (_Component) {
       this.props.getWorkTime(this, 'workTimeItem');
 
       this.props.getAdditionalInfo(this, 'additionalInfoItem');
+
+      this.props.getReviewOrder(this, this.state.art.id);
     }
   }, {
     key: 'componentDidMount',
@@ -5575,110 +5579,52 @@ var ArtDetail = function (_Component) {
       return null;
     }
   }, {
-    key: 'checkItems',
-    value: function checkItems(type, collection, isNeedTextBox) {
-      var _this2 = this;
-
-      if (collection && collection.length > 0) {
-        return collection.map(function (obj, idx) {
-          var values = _this2.state.art[type];
-          var curIdx = -1;
-          var costEnabled = false;
-          var name = '';
-          if (type === 'user_language') {
-            curIdx = values.findIndex(function (x) {
-              return x.language_id == obj.id;
-            });
-            name = 'language_id';
-          } else if (type === 'user_job') {
-            curIdx = values.findIndex(function (x) {
-              return x.job_id == obj.id;
-            });
-            name = 'job_id';
-          } else if (type === 'user_work_time') {
-            curIdx = values.findIndex(function (x) {
-              return x.work_time_id == obj.id;
-            });
-            costEnabled = curIdx > -1;
-            name = 'work_time_id';
-          } else if (type === 'user_additional_info') {
-            curIdx = values.findIndex(function (x) {
-              return x.info_id == obj.id;
-            });
-            name = 'info_id';
-          }
-          var checked = curIdx > -1;
-          return _react2.default.createElement(
-            'div',
-            { key: obj.id, className: 'col s12 valign-wrapper' },
-            _react2.default.createElement(
-              'div',
-              { className: "col" + (isNeedTextBox ? " s6" : " s12") },
-              _react2.default.createElement(_Checkbox2.default, {
-                labelStyle: disabledStyle,
-                checked: checked,
-                value: obj.id,
-                disabled: !_this2.state.isEdit,
-                name: name,
-                label: obj.language || obj.job || obj.work_time || obj.info,
-                onCheck: _this2.onCheckHandler(type, name, isNeedTextBox)
-              })
-            ),
-            isNeedTextBox ? _react2.default.createElement(
-              'div',
-              { className: 'col s6' },
-              _react2.default.createElement(_reactNumberFormat2.default, {
-                hintText: 'Gaji ' + obj.work_time,
-                inputStyle: disabledInputStyle,
-                thousandSeparator: true,
-                prefix: 'Rp. ',
-                value: costEnabled ? values[curIdx].cost : '',
-                disabled: !costEnabled || !_this2.state.isEdit,
-                underlineShow: _this2.state.isEdit,
-                fullWidth: true,
-                name: 'user_work_time',
-                onChange: function onChange(e) {
-                  return _this2.onChangeTextHandler(e, curIdx);
-                },
-                validators: [isNeedTextBox ? 'required' : ''],
-                errorMessages: [isNeedTextBox ? 'Gaji dibutuhkan' : ''],
-                customInput: _reactMaterialUiFormValidator.TextValidator
-              })
-            ) : null
-          );
-        });
-      }
-    }
-  }, {
     key: 'resetForm',
     value: function resetForm() {
       this.setState(this.baseState);
       this.loadInitialData();
     }
   }, {
-    key: 'comments',
-    value: function comments(_comments) {
+    key: 'getReview',
+    value: function getReview(reviews) {
       var GetFormattedDate = function GetFormattedDate(date) {
-        var dt = new Date(date);
-        var mm = dt.getMonth() + 1;
-        var dd = dt.getDate();
+        if (date) {
+          var dt = new Date(date);
+          var mm = dt.getMonth() + 1;
+          var dd = dt.getDate();
 
-        return [(dd > 9 ? '' : '0') + dd, (mm > 9 ? '' : '0') + mm, dt.getFullYear()].join('/');
+          return [(dd > 9 ? '' : '0') + dd, (mm > 9 ? '' : '0') + mm, dt.getFullYear()].join('/');
+        }
+        return '';
       };
 
-      return _comments.map(function (comment, id) {
+      return reviews.map(function (review, id) {
+        console.log(review);
         return _react2.default.createElement(
           _Card.Card,
           { className: 'col s12', style: id > 0 ? { marginTop: '10px' } : {}, key: id },
           _react2.default.createElement(_Card.CardHeader, {
-            title: comment.user_id.name,
-            subtitle: GetFormattedDate(comment.created_at),
-            avatar: comment.user_id.avatar
+            title: review.member.name,
+            subtitle: _react2.default.createElement(
+              'div',
+              null,
+              _react2.default.createElement(
+                'div',
+                null,
+                GetFormattedDate(review.review_order.created_at)
+              ),
+              _react2.default.createElement(
+                'div',
+                null,
+                _react2.default.createElement(_StarComponent2.default, { rate: review.review_order.rate, isShowRate: true })
+              )
+            ),
+            avatar: '/image/medium/' + review.member.avatar
           }),
           _react2.default.createElement(
             _Card.CardText,
             null,
-            comment.comment
+            review.review_order.remark
           )
         );
       });
@@ -5750,7 +5696,7 @@ var ArtDetail = function (_Component) {
   }, {
     key: 'render',
     value: function render() {
-      var _this3 = this;
+      var _this2 = this;
 
       var calculateAge = function calculateAge(birthday) {
         birthday = new Date(birthday);
@@ -5767,10 +5713,10 @@ var ArtDetail = function (_Component) {
           {
             ref: 'form',
             onSubmit: function onSubmit(e) {
-              return _this3.postHandler(e);
+              return _this2.postHandler(e);
             },
             onError: function onError(errors) {
-              return _this3.onError(errors);
+              return _this2.onError(errors);
             } },
           _react2.default.createElement(
             _Card.Card,
@@ -6105,6 +6051,16 @@ var ArtDetail = function (_Component) {
                 )
               ),
               _react2.default.createElement('div', { className: 'clearfix' })
+            ),
+            _react2.default.createElement(
+              _Card.CardText,
+              null,
+              _react2.default.createElement(
+                'h5',
+                null,
+                'Review'
+              ),
+              this.state.reviewOrder && this.state.reviewOrder.length > 0 ? this.getReview(this.state.reviewOrder) : 'Belum ada review untuk ' + this.state.art.name + '.'
             )
           )
         ) : _react2.default.createElement(
@@ -6193,7 +6149,7 @@ var _App = __webpack_require__(15);
 
 var _App2 = _interopRequireDefault(_App);
 
-var _ArtContainer = __webpack_require__(125);
+var _ArtContainer = __webpack_require__(126);
 
 var _ArtContainer2 = _interopRequireDefault(_ArtContainer);
 
@@ -7487,7 +7443,7 @@ var _ArticleContainer = __webpack_require__(170);
 
 var _ArticleContainer2 = _interopRequireDefault(_ArticleContainer);
 
-var _ArtContainer = __webpack_require__(125);
+var _ArtContainer = __webpack_require__(126);
 
 var _ArtContainer2 = _interopRequireDefault(_ArtContainer);
 
@@ -7895,11 +7851,11 @@ var _clear = __webpack_require__(214);
 
 var _clear2 = _interopRequireDefault(_clear);
 
-var _NotificationContainer = __webpack_require__(127);
+var _NotificationContainer = __webpack_require__(128);
 
 var _NotificationContainer2 = _interopRequireDefault(_NotificationContainer);
 
-var _LoadingSpinContainer = __webpack_require__(126);
+var _LoadingSpinContainer = __webpack_require__(127);
 
 var _LoadingSpinContainer2 = _interopRequireDefault(_LoadingSpinContainer);
 
@@ -8118,7 +8074,7 @@ var _FlatButton = __webpack_require__(22);
 
 var _FlatButton2 = _interopRequireDefault(_FlatButton);
 
-var _Dialog = __webpack_require__(144);
+var _Dialog = __webpack_require__(116);
 
 var _Dialog2 = _interopRequireDefault(_Dialog);
 
@@ -8163,13 +8119,12 @@ var Logout = function (_Component) {
             var _this2 = this;
 
             var actions = [_react2.default.createElement(_FlatButton2.default, {
-                label: 'Cancel',
-                primary: true,
+                label: 'Tidak',
                 onTouchTap: function onTouchTap() {
                     return _this2.handleClose();
                 }
             }), _react2.default.createElement(_FlatButton2.default, {
-                label: 'Confirm',
+                label: 'Ya',
                 primary: true,
                 onTouchTap: function onTouchTap() {
                     return _this2.handleClose(true);
@@ -8192,12 +8147,12 @@ var Logout = function (_Component) {
                 _react2.default.createElement(
                     _Dialog2.default,
                     {
-                        title: 'Confirmation',
+                        title: 'Konfirmasi Logout',
                         actions: actions,
                         modal: true,
                         open: this.state.openModal
                     },
-                    'Are you sure you want to logout?'
+                    'Logout?'
                 )
             );
         }
@@ -10080,13 +10035,17 @@ var _FlatButton = __webpack_require__(22);
 
 var _FlatButton2 = _interopRequireDefault(_FlatButton);
 
-var _reactNumberFormat = __webpack_require__(35);
-
-var _reactNumberFormat2 = _interopRequireDefault(_reactNumberFormat);
-
 var _IconButton = __webpack_require__(38);
 
 var _IconButton2 = _interopRequireDefault(_IconButton);
+
+var _Dialog = __webpack_require__(116);
+
+var _Dialog2 = _interopRequireDefault(_Dialog);
+
+var _reactNumberFormat = __webpack_require__(35);
+
+var _reactNumberFormat2 = _interopRequireDefault(_reactNumberFormat);
 
 var _App = __webpack_require__(15);
 
@@ -10109,10 +10068,13 @@ var OfferDetail = function (_Component) {
     var _this = _possibleConstructorReturn(this, (OfferDetail.__proto__ || Object.getPrototypeOf(OfferDetail)).call(this, props));
 
     _this.state = {
-      offer: {}
+      offer: {},
+      openModal: false,
+      mode: 0
     };
 
     _this.onCancel = _this.onCancel.bind(_this);
+    _this.onAccept = _this.onAccept.bind(_this);
     return _this;
   }
 
@@ -10122,17 +10084,34 @@ var OfferDetail = function (_Component) {
       this.props.getOffer(this.props.id, this);
     }
   }, {
-    key: 'offer_arts',
-    value: function offer_arts(arts) {
-      return arts.map(function (art, id) {
-        return _react2.default.createElement(
-          'li',
-          { key: id },
-          art.art.name,
-          ' (',
-          art.status != 0 ? art.status != 1 ? 'Ditolak' : 'Diterima' : 'Pending',
-          ')'
-        );
+    key: 'handleOpen',
+    value: function handleOpen(mode) {
+      if (mode) {
+        this.setState({
+          openModal: true,
+          mode: mode
+        });
+      } else {
+        this.setState({
+          openModal: true,
+          mode: mode
+        });
+      }
+    }
+  }, {
+    key: 'handleClose',
+    value: function handleClose(confirmation) {
+      if (confirmation) {
+        if (mode == 1) {
+          this.onAccept();
+        } else if (mode == 2) {
+          this.onCancel();
+        }
+      }
+
+      this.setState({
+        openModal: false,
+        mode: 0
       });
     }
   }, {
@@ -10173,6 +10152,20 @@ var OfferDetail = function (_Component) {
       var _this2 = this;
 
       var offer = this.state.offer;
+
+      var actions = [_react2.default.createElement(_FlatButton2.default, {
+        label: 'Tidak',
+        primary: true,
+        onTouchTap: function onTouchTap() {
+          return _this2.handleClose();
+        }
+      }), _react2.default.createElement(_FlatButton2.default, {
+        label: 'Ya',
+        primary: true,
+        onTouchTap: function onTouchTap() {
+          return _this2.handleClose(true);
+        }
+      })];
 
       return _react2.default.createElement(
         'div',
@@ -10546,7 +10539,7 @@ var OfferDetail = function (_Component) {
                     {
                       displayRowCheckbox: false
                     },
-                    offer.offer_art ? offer.offer_art.map(function (art, id) {
+                    offer.offer_art && offer.offer_art.length > 0 ? offer.offer_art.map(function (art, id) {
                       return _react2.default.createElement(
                         _Table.TableRow,
                         { key: id },
@@ -10562,20 +10555,40 @@ var OfferDetail = function (_Component) {
                         _react2.default.createElement(
                           _Table.TableRowColumn,
                           null,
-                          art.status != 0 ? art.status != 1 ? 'Ditolak' : 'Diterima' : _react2.default.createElement(
+                          art.status != 0 ? art.status != 1 ? _react2.default.createElement(
+                            'b',
+                            { style: { backgroundColor: '#F44336', padding: '2px 5px', color: 'white' } },
+                            'Ditolak'
+                          ) : _react2.default.createElement(
+                            'b',
+                            { style: { backgroundColor: '#64DD17', padding: '2px 5px', color: 'white' } },
+                            'Diterima'
+                          ) : _react2.default.createElement(
                             'div',
                             null,
-                            'Pending',
                             _react2.default.createElement(
-                              _IconButton2.default,
-                              { tooltip: 'Tolak', iconClassName: 'material-icons text-green accent-4', className: 'right', onClick: _this2.onCancel },
-                              'clear'
+                              'b',
+                              { className: 'left', style: { backgroundColor: '#FFEB3B', padding: '2px 5px', marginTop: 12, color: 'white', verticalAlign: 'middle' } },
+                              'Pending'
                             ),
-                            _react2.default.createElement(
-                              _IconButton2.default,
-                              { tooltip: 'Terima', iconClassName: 'material-icons text-red darken-4', className: 'right', onClick: _this2.onAccept },
-                              'done'
-                            )
+                            _this2.props.user && _this2.props.user.role_id == 2 && _this2.props.user.id == offer.member_id ? _react2.default.createElement(
+                              'span',
+                              null,
+                              _react2.default.createElement(
+                                _IconButton2.default,
+                                { tooltip: 'Tolak', iconClassName: 'material-icons text-green accent-4', className: 'right', onClick: function onClick() {
+                                    return _this2.handleOpen(2);
+                                  }, style: { verticalAlign: 'middle' } },
+                                'clear'
+                              ),
+                              _react2.default.createElement(
+                                _IconButton2.default,
+                                { tooltip: 'Terima', iconClassName: 'material-icons text-red darken-4', className: 'right', onClick: function onClick() {
+                                    return _this2.handleOpen(1);
+                                  }, style: { verticalAlign: 'middle' } },
+                                'done'
+                              )
+                            ) : null
                           )
                         )
                       );
@@ -10584,8 +10597,8 @@ var OfferDetail = function (_Component) {
                       null,
                       _react2.default.createElement(
                         _Table.TableRowColumn,
-                        null,
-                        '\'Tidak ada art yg mendaftar.\''
+                        { colSpan: 2, style: { textAlign: 'center' } },
+                        'Tidak ada art yg mendaftar.'
                       )
                     )
                   )
@@ -10597,6 +10610,16 @@ var OfferDetail = function (_Component) {
           _Card.Card,
           { className: 'col s12' },
           _react2.default.createElement(_Card.CardHeader, { title: 'Penawaran tidak ditemukan' })
+        ),
+        _react2.default.createElement(
+          _Dialog2.default,
+          {
+            title: 'Konfirmasi ' + (this.state.mode == 1 ? 'Terima' : this.state.mode == 2 ? 'Tolak' : ''),
+            actions: actions,
+            modal: true,
+            open: this.state.openModal
+          },
+          this.state.mode == 1 ? 'Terima?' : this.state.mode == 2 ? 'Tolak?' : ''
         )
       );
     }
@@ -14802,11 +14825,11 @@ var _clear = __webpack_require__(214);
 
 var _clear2 = _interopRequireDefault(_clear);
 
-var _NotificationContainer = __webpack_require__(127);
+var _NotificationContainer = __webpack_require__(128);
 
 var _NotificationContainer2 = _interopRequireDefault(_NotificationContainer);
 
-var _LoadingSpinContainer = __webpack_require__(126);
+var _LoadingSpinContainer = __webpack_require__(127);
 
 var _LoadingSpinContainer2 = _interopRequireDefault(_LoadingSpinContainer);
 
@@ -15069,7 +15092,8 @@ var RegisterArt = function (_Component) {
           user_job: this.state.userJob,
           user_work_time: this.state.userWorkTime,
           user_additional_info: this.state.userAdditionalInfo,
-          user_document: this.state.userDocument
+          user_document: this.state.userDocument,
+          isWeb: true
         });
       }
     }
@@ -15685,11 +15709,11 @@ var _clear = __webpack_require__(214);
 
 var _clear2 = _interopRequireDefault(_clear);
 
-var _NotificationContainer = __webpack_require__(127);
+var _NotificationContainer = __webpack_require__(128);
 
 var _NotificationContainer2 = _interopRequireDefault(_NotificationContainer);
 
-var _LoadingSpinContainer = __webpack_require__(126);
+var _LoadingSpinContainer = __webpack_require__(127);
 
 var _LoadingSpinContainer2 = _interopRequireDefault(_LoadingSpinContainer);
 
@@ -15811,7 +15835,8 @@ var RegisterMember = function (_Component) {
         race: this.state.race,
         description: this.state.description,
         status: this.state.status,
-        activation: this.state.activation
+        activation: this.state.activation,
+        isWeb: true
       });
     }
   }, {
@@ -16252,7 +16277,7 @@ var _RaisedButton = __webpack_require__(40);
 
 var _RaisedButton2 = _interopRequireDefault(_RaisedButton);
 
-var _Dialog = __webpack_require__(144);
+var _Dialog = __webpack_require__(116);
 
 var _Dialog2 = _interopRequireDefault(_Dialog);
 
@@ -16477,7 +16502,7 @@ var _ArticleContainer = __webpack_require__(170);
 
 var _ArticleContainer2 = _interopRequireDefault(_ArticleContainer);
 
-var _ArtContainer = __webpack_require__(125);
+var _ArtContainer = __webpack_require__(126);
 
 var _ArtContainer2 = _interopRequireDefault(_ArtContainer);
 
@@ -16799,6 +16824,27 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
           message: error.name + ": " + error.message
         }));
         self.setState(_defineProperty({}, type, dataAdditionalInfo));
+      });
+    },
+    getReviewOrder: function getReviewOrder(self, art_id) {
+      var reviewOrder = [];
+      _ApiService2.default.onGet('/api/order/review', art_id, function (response) {
+        var data = response;
+        if (data.status !== 200) {
+          dispatch((0, _DefaultAction.updateSnack)({
+            open: true,
+            message: data.message
+          }));
+        } else {
+          reviewOrder = data.data;
+        }
+        self.setState({ reviewOrder: reviewOrder });
+      }, function (error) {
+        dispatch((0, _DefaultAction.updateSnack)({
+          open: true,
+          message: error.name + ": " + error.message
+        }));
+        self.setState({ reviewOrder: reviewOrder });
       });
     }
   };
@@ -17256,7 +17302,7 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
             parent.setState({ open: false });
             dispatch((0, _DefaultAction.updateSnack)({
                 open: true,
-                message: 'Logout Success'
+                message: 'Logout Berhasil'
             }));
         }
     };
@@ -21299,7 +21345,7 @@ var alternativeProps = {
   order: 'msFlexOrder',
   flexGrow: 'msFlexPositive',
   flexShrink: 'msFlexNegative',
-  flexBasis: 'msFlexPreferredSize'
+  flexBasis: 'msPreferredSize'
 };
 
 function flexboxIE(property, value, style, _ref) {
@@ -21748,7 +21794,7 @@ var alternativeProps = {
   order: 'msFlexOrder',
   flexGrow: 'msFlexPositive',
   flexShrink: 'msFlexNegative',
-  flexBasis: 'msFlexPreferredSize'
+  flexBasis: 'msPreferredSize'
 };
 
 function flexboxIE(property, value, style) {
@@ -51778,7 +51824,7 @@ var _extends2 = __webpack_require__(8);
 
 var _extends3 = _interopRequireDefault(_extends2);
 
-var _keys = __webpack_require__(128);
+var _keys = __webpack_require__(129);
 
 var _keys2 = _interopRequireDefault(_keys);
 
@@ -55526,7 +55572,7 @@ var _Menu = __webpack_require__(146);
 
 var _Menu2 = _interopRequireDefault(_Menu);
 
-var _Popover = __webpack_require__(116);
+var _Popover = __webpack_require__(117);
 
 var _Popover2 = _interopRequireDefault(_Popover);
 
@@ -57086,7 +57132,8 @@ var Table = function (_Component) {
         onRowHover: this.onRowHover,
         onRowHoverExit: this.onRowHoverExit,
         onRowSelection: this.onRowSelection,
-        selectable: this.props.selectable
+        selectable: this.props.selectable,
+        style: (0, _simpleAssign2.default)({ height: this.props.height }, base.props.style)
       });
     }
   }, {
@@ -60145,7 +60192,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _keys = __webpack_require__(128);
+var _keys = __webpack_require__(129);
 
 var _keys2 = _interopRequireDefault(_keys);
 

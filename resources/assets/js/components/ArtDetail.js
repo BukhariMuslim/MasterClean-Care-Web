@@ -81,6 +81,7 @@ class ArtDetail extends Component {
         user_work_timeErrorText: '',
         user_documentErrorText: '',
       },
+      reviewOrder: [],
       isEdit: false,
     }
 
@@ -123,6 +124,8 @@ class ArtDetail extends Component {
     this.props.getWorkTime(this, 'workTimeItem')
 
     this.props.getAdditionalInfo(this, 'additionalInfoItem')
+
+    this.props.getReviewOrder(this, this.state.art.id)
   }
 
   componentDidMount() {
@@ -199,101 +202,47 @@ class ArtDetail extends Component {
     return null
   }
 
-  checkItems(type, collection, isNeedTextBox) {
-    if (collection && collection.length > 0) {
-      return collection.map((obj, idx) => {
-        const values = this.state.art[type]
-        let curIdx = -1
-        let costEnabled = false
-        let name = ''
-        if (type === 'user_language') {
-          curIdx = values.findIndex(x => x.language_id == obj.id)
-          name = 'language_id'
-        }
-        else if (type === 'user_job') {
-          curIdx = values.findIndex(x => x.job_id == obj.id)
-          name = 'job_id'
-        }
-        else if (type === 'user_work_time') {
-          curIdx = values.findIndex(x => x.work_time_id == obj.id)
-          costEnabled = curIdx > -1
-          name = 'work_time_id'
-        }
-        else if (type === 'user_additional_info') {
-          curIdx = values.findIndex(x => x.info_id == obj.id)
-          name = 'info_id'
-        }
-        const checked = curIdx > -1
-        return (
-          <div key={obj.id} className="col s12 valign-wrapper">
-            <div className={"col" + (isNeedTextBox ? " s6" : " s12")}>
-              <Checkbox
-                labelStyle={disabledStyle}
-                checked={checked}
-                value={obj.id}
-                disabled={!this.state.isEdit}
-                name={name}
-                label={obj.language || obj.job || obj.work_time || obj.info}
-                onCheck={this.onCheckHandler(type, name, isNeedTextBox)}
-              />
-            </div>
-            {
-              isNeedTextBox ?
-                <div className="col s6">
-                  <NumberFormat
-                    hintText={'Gaji ' + obj.work_time}
-                    inputStyle={disabledInputStyle}
-                    thousandSeparator={true}
-                    prefix={'Rp. '}
-                    value={costEnabled ? values[curIdx].cost : ''}
-                    disabled={!costEnabled || !this.state.isEdit}
-                    underlineShow={this.state.isEdit}
-                    fullWidth={true}
-                    name="user_work_time"
-                    onChange={(e) => this.onChangeTextHandler(e, curIdx)}
-                    validators={[isNeedTextBox ? ('required') : '']}
-                    errorMessages={[isNeedTextBox ? ('Gaji dibutuhkan') : '']}
-                    customInput={TextValidator}
-                    />
-                </div>
-                :
-                null
-            }
-          </div>
-        )
-      })
-    }
-
-  }
-
   resetForm() {
     this.setState(this.baseState)
     this.loadInitialData()
   }
 
-  comments(comments) {
+  getReview(reviews) {
     const GetFormattedDate = date => {
-      let dt = new Date(date)
-      let mm = dt.getMonth() + 1
-      let dd = dt.getDate()
+      if (date) {
+        let dt = new Date(date)
+        let mm = dt.getMonth() + 1
+        let dd = dt.getDate()
 
-      return [
-        (dd > 9 ? '' : '0') + dd,
-        (mm > 9 ? '' : '0') + mm,
-        dt.getFullYear()
-      ].join('/')
+        return [
+          (dd > 9 ? '' : '0') + dd,
+          (mm > 9 ? '' : '0') + mm,
+          dt.getFullYear()
+        ].join('/')
+      }
+      return ''
     }
 
-    return comments.map((comment, id) => {
+    return reviews.map((review, id) => {
+      console.log(review)
       return (
         <Card className="col s12" style={id > 0 ? { marginTop: '10px' } : {}} key={id}>
           <CardHeader
-            title={comment.user_id.name}
-            subtitle={GetFormattedDate(comment.created_at)}
-            avatar={comment.user_id.avatar}
+            title={review.member.name}
+            subtitle={
+              <div>
+                <div>
+                  {GetFormattedDate(review.review_order.created_at)}
+                </div>
+                <div>
+                  <StarComponent rate={review.review_order.rate} isShowRate={true} />
+                </div>
+              </div>
+            }
+            avatar={'/image/medium/' + review.member.avatar}
           />
           <CardText>
-            {comment.comment}
+            {review.review_order.remark}
           </CardText>
         </Card>
       )
@@ -569,6 +518,15 @@ class ArtDetail extends Component {
                     </div>
                   </div>
                   <div className="clearfix"></div>
+                </CardText>
+                <CardText>
+                  <h5>Review</h5>
+                  { 
+                    this.state.reviewOrder && this.state.reviewOrder.length > 0 ?
+                    this.getReview(this.state.reviewOrder) 
+                    :
+                    `Belum ada review untuk ${this.state.art.name}.`
+                  }
                 </CardText>
               </Card>
             </ValidatorForm>

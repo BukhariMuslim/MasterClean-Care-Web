@@ -12,8 +12,9 @@ import {
   TableRowColumn,
 } from 'material-ui/Table'
 import FlatButton from 'material-ui/FlatButton'
-import NumberFormat from 'react-number-format'
 import IconButton from 'material-ui/IconButton'
+import Dialog from 'material-ui/Dialog'
+import NumberFormat from 'react-number-format'
 import App from './App'
 
 class OfferDetail extends Component {
@@ -21,24 +22,48 @@ class OfferDetail extends Component {
     super(props)
 
     this.state = {
-      offer: {}
+      offer: {},
+      openModal: false,
+      mode: 0,
     }
 
     this.onCancel = this.onCancel.bind(this)
+    this.onAccept = this.onAccept.bind(this)
   }
 
   componentDidMount() {
     this.props.getOffer(this.props.id, this)
   }
 
-  offer_arts(arts) {
-    return arts.map((art, id) => {
-      return (
-        <li key={id}>
-          {art.art.name} ({art.status != 0 ? art.status != 1 ? 'Ditolak' : 'Diterima' : 'Pending'})
-        </li>
-      )
-    })
+  handleOpen(mode) {
+    if (mode) {
+      this.setState({
+        openModal: true,
+        mode,
+      });
+    }
+    else {
+      this.setState({
+        openModal: true,
+        mode,
+      });
+    }
+  }
+
+  handleClose(confirmation) {
+    if (confirmation) {
+      if (mode == 1) {
+        this.onAccept()
+      }
+      else if (mode == 2) {
+        this.onCancel()
+      }
+    }
+
+    this.setState({
+      openModal: false,
+      mode: 0,
+    });
   }
 
   onAccept() {
@@ -73,11 +98,24 @@ class OfferDetail extends Component {
   }
 
   onCancel() {
-    
+
   }
 
   render() {
     const { offer } = this.state;
+    const actions = [
+      <FlatButton
+        label="Tidak"
+        primary={true}
+        onTouchTap={() => this.handleClose()}
+      />,
+      <FlatButton
+        label="Ya"
+        primary={true}
+        onTouchTap={() => this.handleClose(true)}
+      />
+    ]
+
     return (
       <div>
         {
@@ -103,7 +141,7 @@ class OfferDetail extends Component {
                       adjustForCheckbox={false}
                     >
                       <TableRow>
-                        <TableHeaderColumn colSpan="2" style={{textAlign: 'center'}}>
+                        <TableHeaderColumn colSpan="2" style={{ textAlign: 'center' }}>
                           Informasi Penawaran
                         </TableHeaderColumn>
                       </TableRow>
@@ -116,12 +154,12 @@ class OfferDetail extends Component {
                         <TableRowColumn>
                           {
                             offer.status == 0 ?
-                            <b style={{ backgroundColor: '#FFEB3B', padding: '2px 5px', color: 'white' }}>Pending</b>
-                            :
-                            offer.status == 1 ?
-                            <b style={{ backgroundColor: '#64DD17', padding: '2px 5px', color: 'white' }}>Selesai</b>
-                            :
-                            <b style={{ backgroundColor: '#F44336', padding: '2px 5px', color: 'white' }}>Dibatalkan</b>
+                              <b style={{ backgroundColor: '#FFEB3B', padding: '2px 5px', color: 'white' }}>Pending</b>
+                              :
+                              offer.status == 1 ?
+                                <b style={{ backgroundColor: '#64DD17', padding: '2px 5px', color: 'white' }}>Selesai</b>
+                                :
+                                <b style={{ backgroundColor: '#F44336', padding: '2px 5px', color: 'white' }}>Dibatalkan</b>
                           }
                         </TableRowColumn>
                       </TableRow>
@@ -139,7 +177,7 @@ class OfferDetail extends Component {
                           {
                             offer.work_time ?
                               <b>
-                                <FormattedDate value={offer.start_date} day="numeric" month="long" year="numeric"/>
+                                <FormattedDate value={offer.start_date} day="numeric" month="long" year="numeric" />
                                 {
                                   offer.work_time_id === 1 ?
                                     <span>
@@ -160,7 +198,7 @@ class OfferDetail extends Component {
                           {
                             offer.work_time ?
                               <b>
-                                <FormattedDate value={offer.end_date} day="numeric" month="long" year="numeric"/>
+                                <FormattedDate value={offer.end_date} day="numeric" month="long" year="numeric" />
                                 {
                                   offer.work_time_id === 1 ?
                                     <span>
@@ -228,7 +266,7 @@ class OfferDetail extends Component {
                       </TableRow>
                       <TableRow>
                         <TableRowColumn style={{ textAlign: 'right', verticalAlign: 'top' }}>Catatan</TableRowColumn>
-                        <TableRowColumn><b>{ offer.remark || '-' }</b></TableRowColumn>
+                        <TableRowColumn><b>{offer.remark || '-'}</b></TableRowColumn>
                       </TableRow>
                     </TableBody>
                   </Table>
@@ -243,7 +281,7 @@ class OfferDetail extends Component {
                         adjustForCheckbox={false}
                       >
                         <TableRow>
-                          <TableHeaderColumn colSpan="2" style={{textAlign: 'center'}}>
+                          <TableHeaderColumn colSpan="2" style={{ textAlign: 'center' }}>
                             Daftar ART
                           </TableHeaderColumn>
                         </TableRow>
@@ -256,25 +294,35 @@ class OfferDetail extends Component {
                         displayRowCheckbox={false}
                       >
                         {
-                          offer.offer_art ?
+                          offer.offer_art && offer.offer_art.length > 0 ?
                             offer.offer_art.map((art, id) => {
                               return (
                                 <TableRow key={id}>
                                   <TableRowColumn><Link to={'/art/' + art.art.id} >{art.art.name}</Link></TableRowColumn>
                                   <TableRowColumn>
                                     {
-                                      art.status != 0 ? 
-                                      art.status != 1 ? 'Ditolak' : 'Diterima' 
-                                      :
-                                      <div>
-                                        Pending
-                                        <IconButton tooltip="Tolak" iconClassName="material-icons text-green accent-4" className="right" onClick={this.onCancel} >
-                                          clear
-                                        </IconButton>
-                                        <IconButton tooltip="Terima" iconClassName="material-icons text-red darken-4" className="right" onClick={this.onAccept} >
-                                          done
-                                        </IconButton>
-                                      </div>
+                                      art.status != 0 ?
+                                        art.status != 1 ?
+                                          <b style={{ backgroundColor: '#F44336', padding: '2px 5px', color: 'white' }}>Ditolak</b>
+                                          :
+                                          <b style={{ backgroundColor: '#64DD17', padding: '2px 5px', color: 'white' }}>Diterima</b>
+                                        :
+                                        <div>
+                                          <b className="left" style={{ backgroundColor: '#FFEB3B', padding: '2px 5px', marginTop: 12, color: 'white', verticalAlign: 'middle' }}>Pending</b>
+                                          {
+                                            this.props.user && this.props.user.role_id == 2 && this.props.user.id == offer.member_id ?
+                                            <span>
+                                              <IconButton tooltip="Tolak" iconClassName="material-icons text-green accent-4" className="right" onClick={() => this.handleOpen(2)} style={{ verticalAlign: 'middle' }} >
+                                                clear
+                                              </IconButton>
+                                              <IconButton tooltip="Terima" iconClassName="material-icons text-red darken-4" className="right" onClick={() => this.handleOpen(1)} style={{ verticalAlign: 'middle' }} >
+                                                done
+                                              </IconButton>
+                                            </span>
+                                            :
+                                            null
+                                          }
+                                        </div>
                                     }
                                   </TableRowColumn>
                                 </TableRow>
@@ -282,8 +330,8 @@ class OfferDetail extends Component {
                             })
                             :
                             <TableRow>
-                              <TableRowColumn>'Tidak ada art yg mendaftar.'</TableRowColumn>
-                            </TableRow>                            
+                              <TableRowColumn colSpan={2} style={{ textAlign: 'center' }} >Tidak ada art yg mendaftar.</TableRowColumn>
+                            </TableRow>
                         }
                       </TableBody>
                     </Table>
@@ -296,6 +344,22 @@ class OfferDetail extends Component {
               <CardHeader title="Penawaran tidak ditemukan" />
             </Card>
         }
+        <Dialog
+          title={ `Konfirmasi ${ this.state.mode == 1 ? 'Terima' :  this.state.mode == 2 ? 'Tolak' : ''}` }
+          actions={actions}
+          modal={true}
+          open={this.state.openModal}
+        >
+          {
+            this.state.mode == 1 ?
+            'Terima?'
+            :
+            this.state.mode == 2 ?
+            'Tolak?'
+            :
+            ''
+          }
+        </Dialog>
       </div>
     )
   }

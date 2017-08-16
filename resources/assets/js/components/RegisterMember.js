@@ -111,6 +111,7 @@ class RegisterMember extends Component {
         description: this.state.description,
         status: this.state.status,
         activation: this.state.activation,
+        isWeb: true,
       }
     )
   }

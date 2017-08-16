@@ -117,16 +117,28 @@ class LoginController extends Controller
                 try {
                     $token = Route::dispatch($tokenRequest)->getContent();
 
-                    $user->load([
-                        'user_additional_info.additionalInfo',
-                        'user_document',
-                        'user_language.language',
-                        'user_job.job',
-                        'user_wallet',
-                        'user_work_time.workTime',
-                        'contact.city',
-                    ]);
-                    
+                    if ($role_id != 0) {
+                        $user->load([
+                            'user_additional_info',
+                            'user_document',
+                            'user_language',
+                            'user_job',
+                            'user_wallet',
+                            'user_work_time',
+                            'contact'
+                        ]);
+                    }
+                    else {
+                        $user->load([
+                            'user_additional_info.additionalInfo',
+                            'user_document',
+                            'user_language.language',
+                            'user_job.job',
+                            'user_wallet',
+                            'user_work_time.workTime',
+                            'contact.city',
+                        ]);
+                    }
                     // if ($user->avatar) {
                     //     $user->avatar = $this->generateUserPictureLinks($user->avatar);
                     // }

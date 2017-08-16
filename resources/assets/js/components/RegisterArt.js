@@ -239,6 +239,7 @@ class RegisterArt extends Component {
           user_work_time: this.state.userWorkTime,
           user_additional_info: this.state.userAdditionalInfo,
           user_document: this.state.userDocument,
+          isWeb: true,
         }
       )
     }

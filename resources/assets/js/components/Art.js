@@ -36,6 +36,10 @@ const settings = {
   slidesToShow: 5,
   slidesToScroll: 5,
   pauseOnHover: true,
+  responsive: [ 
+    { breakpoint: 512, settings: { slidesToShow: 1, slidesToScroll: 1} }, 
+    { breakpoint: 768, settings: { slidesToShow: 3, slidesToScroll: 3 } }, 
+  ],
   draggable: false,
 }
 
