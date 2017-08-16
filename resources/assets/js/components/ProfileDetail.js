@@ -446,9 +446,14 @@ class ProfileDetail extends Component {
                               }
                             </h5>
                           </div>
-                          <div className={ `col s12${ this.state.isEdit ? ' grey-text' : '' }` }>
-                            <StarComponent rate={this.props.user.rate} isShowRate={true} />
-                          </div>
+                          {
+                            this.props.user.role_id == 3 ?
+                            <div className={ `col s12${ this.state.isEdit ? ' grey-text' : '' }` }>
+                              <StarComponent rate={this.props.user.rate} isShowRate={true} />
+                            </div>
+                            :
+                            null
+                          }
                           <div className={ `col s12${ this.state.isEdit ? ' grey-text' : '' }` }>
                             <small>
                               { this.props.user.description || ''}
@@ -464,7 +469,7 @@ class ProfileDetail extends Component {
                               >
                                 <TableRow>
                                   <TableHeaderColumn colSpan="2" style={{textAlign: 'center'}}>
-                                    Informasi ART
+                                    Informasi Detail
                                   </TableHeaderColumn>
                                 </TableRow>
                               </TableHeader>
@@ -831,7 +836,7 @@ class ProfileDetail extends Component {
             </ValidatorForm>
             :
             <Card className="col s12" >
-              <CardHeader title="Profile tidak ditemukan" />
+              <CardHeader title="Profil tidak ditemukan" />
             </Card>
         }
       </div>

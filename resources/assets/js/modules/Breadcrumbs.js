@@ -9,7 +9,7 @@ const Breadcrumbs = breadcrumbConfig({
     '/my_offer': 'Penawaran Saya',
     '/order': 'Pemesanan Saya',
     '/order_history': 'Riwayat Pemesanan',
-    '/profile': 'Profile',
+    '/profile': 'Profil',
     '/term': 'Syarat & Ketentuan',
     '/term_mobile': 'Syarat & Ketentuan',
   },

@@ -80,6 +80,21 @@ class MenuItemsTableSeeder extends Seeder
 
             $menuItem = MenuItem::firstOrNew([
                 'menu_id'    => $menu->id,
+                'title'      => 'Task List',
+                'url'        => '/admin/task-lists',
+            ]);
+            if (!$menuItem->exists) {
+                $menuItem->fill([
+                    'target'     => '_self',
+                    'icon_class' => 'voyager-list',
+                    'color'      => null,
+                    'parent_id'  => $basicMenuItem->id,
+                    'order'      => 3,
+                ])->save();
+            }
+
+            $menuItem = MenuItem::firstOrNew([
+                'menu_id'    => $menu->id,
                 'title'      => 'Languages',
                 'url'        => '/admin/languages',
             ]);
@@ -89,7 +104,7 @@ class MenuItemsTableSeeder extends Seeder
                     'icon_class' => 'voyager-world',
                     'color'      => null,
                     'parent_id'  => $basicMenuItem->id,
-                    'order'      => 3,
+                    'order'      => 4,
                 ])->save();
             }
 
@@ -104,7 +119,7 @@ class MenuItemsTableSeeder extends Seeder
                     'icon_class' => 'voyager-location',
                     'color'      => null,
                     'parent_id'  => $basicMenuItem->id,
-                    'order'      => 4,
+                    'order'      => 5,
                 ])->save();
             }
 
@@ -119,7 +134,7 @@ class MenuItemsTableSeeder extends Seeder
                     'icon_class' => 'voyager-wallet',
                     'color'      => null,
                     'parent_id'  => $basicMenuItem->id,
-                    'order'      => 5,
+                    'order'      => 6,
                 ])->save();
             }
 
@@ -134,7 +149,7 @@ class MenuItemsTableSeeder extends Seeder
                     'icon_class' => 'voyager-alarm-clock',
                     'color'      => null,
                     'parent_id'  => $basicMenuItem->id,
-                    'order'      => 6,
+                    'order'      => 7,
                 ])->save();
             }
 
@@ -200,6 +215,51 @@ class MenuItemsTableSeeder extends Seeder
 
             $menuItem = MenuItem::firstOrNew([
                 'menu_id'    => $menu->id,
+                'title'      => 'Reports',
+                'url'        => '/admin/reports',
+            ]);
+            if (!$menuItem->exists) {
+                $menuItem->fill([
+                    'target'     => '_self',
+                    'icon_class' => 'voyager-exclamation',
+                    'color'      => null,
+                    'parent_id'  => $managementMenuItem->id,
+                    'order'      => 4,
+                ])->save();
+            }
+
+            $menuItem = MenuItem::firstOrNew([
+                'menu_id'    => $menu->id,
+                'title'      => 'Critism',
+                'url'        => '/admin/critisms',
+            ]);
+            if (!$menuItem->exists) {
+                $menuItem->fill([
+                    'target'     => '_self',
+                    'icon_class' => 'voyager-bulb',
+                    'color'      => null,
+                    'parent_id'  => $managementMenuItem->id,
+                    'order'      => 5,
+                ])->save();
+            }
+
+            $menuItem = MenuItem::firstOrNew([
+                'menu_id'    => $menu->id,
+                'title'      => 'Emergency Call',
+                'url'        => '/admin/emergency-calls',
+            ]);
+            if (!$menuItem->exists) {
+                $menuItem->fill([
+                    'target'     => '_self',
+                    'icon_class' => 'voyager-bell',
+                    'color'      => null,
+                    'parent_id'  => $managementMenuItem->id,
+                    'order'      => 6,
+                ])->save();
+            }
+
+            $menuItem = MenuItem::firstOrNew([
+                'menu_id'    => $menu->id,
                 'title'      => 'Review Orders',
                 'url'        => '/admin/review-orders',
             ]);
@@ -209,7 +269,7 @@ class MenuItemsTableSeeder extends Seeder
                     'icon_class' => 'voyager-check',
                     'color'      => null,
                     'parent_id'  => $managementMenuItem->id,
-                    'order'      => 4,
+                    'order'      => 7,
                 ])->save();
             }
 
@@ -224,7 +284,7 @@ class MenuItemsTableSeeder extends Seeder
                     'icon_class' => 'voyager-dollar',
                     'color'      => null,
                     'parent_id'  => $managementMenuItem->id,
-                    'order'      => 5,
+                    'order'      => 8,
                 ])->save();
             }
 

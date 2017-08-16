@@ -38,6 +38,7 @@
                                 <label for="name">Name</label>
                                 <input type="text" class="form-control" name="name"
                                     placeholder="Name" id="name"
+                                    disabled="true"
                                     value="@if(isset($dataTypeContent->name)){{ old('name', $dataTypeContent->name) }}@else{{old('name')}}@endif">
                             </div>
 
@@ -45,6 +46,7 @@
                                 <label for="name">Email</label>
                                 <input type="text" class="form-control" name="email"
                                        placeholder="Email" id="email"
+                                       disabled="true"
                                        value="@if(isset($dataTypeContent->email)){{ old('email', $dataTypeContent->email) }}@else{{old('email')}}@endif">
                             </div>
 
@@ -56,6 +58,7 @@
                                 @endif
                                 <input type="password" class="form-control" name="password"
                                        placeholder="Password" id="password"
+                                       disabled="true"
                                        value="">
                             </div>
 
@@ -65,7 +68,7 @@
                                     <img src="{{ Voyager::image( $dataTypeContent->avatar ) }}"
                                          style="width:200px; height:auto; clear:both; display:block; padding:2px; border:1px solid #ddd; margin-bottom:10px;">
                                 @endif
-                                <input type="file" name="avatar">
+                                <input type="file" name="avatar" disabled="true">
                             </div>
 
                             <div class="form-group">
@@ -78,11 +81,11 @@
                                 </select>
                             </div>
 
-                             <div class="form-group">
-                                <label for="status">Status</label>
-                                <select name="status" id="status" class="form-control">
-                                    <option value="0" @if(isset($dataTypeContent) && $dataTypeContent->status == 0) selected @endif>Inactive</option>
-                                    <option value="1" @if(isset($dataTypeContent) && $dataTypeContent->status == 1) selected @endif>Active</option>
+                            <div class="form-group">
+                                <label for="activation">Activation</label>
+                                <select name="activation" id="activation" class="form-control">
+                                    <option value="0" @if(isset($dataTypeContent) && $dataTypeContent->activation == 0) selected @endif>Inactive</option>
+                                    <option value="1" @if(isset($dataTypeContent) && $dataTypeContent->activation == 1) selected @endif>Active</option>
                                 </select>
                             </div>
 

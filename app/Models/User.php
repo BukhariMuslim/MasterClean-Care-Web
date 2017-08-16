@@ -5,6 +5,7 @@ namespace App\Models;
 use Laravel\Passport\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use TCG\Voyager\Models\Role;
 
 class User extends Authenticatable
 {
@@ -230,5 +231,13 @@ class User extends Authenticatable
     public function getRateAttribute()
     {
         return $this->order_rate()->avg('rate');
+    }
+
+    /**
+     * Get the order rate associated with the user.
+     */
+    public function role()
+    {
+        return $this->belongsTo(Role::class);
     }
 }

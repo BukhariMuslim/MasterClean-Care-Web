@@ -2366,7 +2366,7 @@ var onLogin = function onLogin(data, onSuccess, onFail) {
 };
 
 var onLogout = function onLogout() {
-  document.cookie = 'laravel_token=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+  document.cookie = 'laravel_token=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
 };
 
 var ApiService = {
@@ -14202,11 +14202,11 @@ var ProfileDetail = function (_Component) {
                           )
                         )
                       ),
-                      _react2.default.createElement(
+                      this.props.user.role_id == 3 ? _react2.default.createElement(
                         'div',
                         { className: 'col s12' + (this.state.isEdit ? ' grey-text' : '') },
                         _react2.default.createElement(_StarComponent2.default, { rate: this.props.user.rate, isShowRate: true })
-                      ),
+                      ) : null,
                       _react2.default.createElement(
                         'div',
                         { className: 'col s12' + (this.state.isEdit ? ' grey-text' : '') },
@@ -14236,7 +14236,7 @@ var ProfileDetail = function (_Component) {
                               _react2.default.createElement(
                                 _Table.TableHeaderColumn,
                                 { colSpan: '2', style: { textAlign: 'center' } },
-                                'Informasi ART'
+                                'Informasi Detail'
                               )
                             )
                           ),
@@ -14651,7 +14651,7 @@ var ProfileDetail = function (_Component) {
         ) : _react2.default.createElement(
           _Card.Card,
           { className: 'col s12' },
-          _react2.default.createElement(_Card.CardHeader, { title: 'Profile tidak ditemukan' })
+          _react2.default.createElement(_Card.CardHeader, { title: 'Profil tidak ditemukan' })
         )
       );
     }
@@ -17259,7 +17259,7 @@ exports.default = HomeContainer;
 
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
 
 var _react = __webpack_require__(0);
@@ -17283,39 +17283,39 @@ var _ApiService2 = _interopRequireDefault(_ApiService);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var mapStateToProps = function mapStateToProps(state) {
-    return {
-        user: state.UserLoginReducer
-    };
+  return {
+    user: state.UserLoginReducer
+  };
 };
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
-    return {
-        onLogout: function onLogout(history, parent) {
-            dispatch((0, _DefaultAction.updateLoadingSpin)({
-                show: true
-            }));
+  return {
+    onLogout: function onLogout(history, parent) {
+      dispatch((0, _DefaultAction.updateLoadingSpin)({
+        show: true
+      }));
 
-            _ApiService2.default.onLogout();
-            dispatch((0, _DefaultAction.logoutUser)());
-            dispatch((0, _DefaultAction.resetLoadingSpin)());
-            history.push('/');
-            parent.setState({ open: false });
-            dispatch((0, _DefaultAction.updateSnack)({
-                open: true,
-                message: 'Logout Berhasil'
-            }));
-        }
-    };
+      _ApiService2.default.onLogout();
+      dispatch((0, _DefaultAction.logoutUser)());
+      dispatch((0, _DefaultAction.resetLoadingSpin)());
+      history.push('/');
+      parent.setState({ open: false });
+      dispatch((0, _DefaultAction.updateSnack)({
+        open: true,
+        message: 'Logout Berhasil'
+      }));
+    }
+  };
 };
 
 var LogoutContainer = (0, _reactRouterDom.withRouter)((0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(function (_ref) {
-    var history = _ref.history,
-        onLogout = _ref.onLogout,
-        user = _ref.user,
-        parent = _ref.parent;
-    return _react2.default.createElement(_Logout2.default, { onClick: function onClick() {
-            return onLogout(history, parent);
-        } });
+  var history = _ref.history,
+      onLogout = _ref.onLogout,
+      user = _ref.user,
+      parent = _ref.parent;
+  return _react2.default.createElement(_Logout2.default, { onClick: function onClick() {
+      return onLogout(history, parent);
+    } });
 }));
 
 exports.default = LogoutContainer;
@@ -21345,7 +21345,7 @@ var alternativeProps = {
   order: 'msFlexOrder',
   flexGrow: 'msFlexPositive',
   flexShrink: 'msFlexNegative',
-  flexBasis: 'msPreferredSize'
+  flexBasis: 'msFlexPreferredSize'
 };
 
 function flexboxIE(property, value, style, _ref) {
@@ -21398,7 +21398,7 @@ var Breadcrumbs = (0, _autoBreadcrumb2.default)({
     '/my_offer': 'Penawaran Saya',
     '/order': 'Pemesanan Saya',
     '/order_history': 'Riwayat Pemesanan',
-    '/profile': 'Profile',
+    '/profile': 'Profil',
     '/term': 'Syarat & Ketentuan',
     '/term_mobile': 'Syarat & Ketentuan'
   },
@@ -21794,7 +21794,7 @@ var alternativeProps = {
   order: 'msFlexOrder',
   flexGrow: 'msFlexPositive',
   flexShrink: 'msFlexNegative',
-  flexBasis: 'msPreferredSize'
+  flexBasis: 'msFlexPreferredSize'
 };
 
 function flexboxIE(property, value, style) {
@@ -57132,8 +57132,7 @@ var Table = function (_Component) {
         onRowHover: this.onRowHover,
         onRowHoverExit: this.onRowHoverExit,
         onRowSelection: this.onRowSelection,
-        selectable: this.props.selectable,
-        style: (0, _simpleAssign2.default)({ height: this.props.height }, base.props.style)
+        selectable: this.props.selectable
       });
     }
   }, {
