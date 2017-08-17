@@ -23,12 +23,12 @@ class UserContactTableSeeder extends Seeder
             ],
             [
                 'user_id' => 2,
-                'phone' => '081234123412',
-                'emergency_numb' => '081234567890',
+                'phone' => '082168360303',
+                'emergency_numb' => '082279900604',
                 'city' => 2,
-                'address' => 'Jl. Satu',
+                'address' => 'Jl.Denai no47c',
                 'location' => '3.595237, 98.652423',
-		'acc_no' => '1004820989'
+		'acc_no' => '1004874201'
             ],
             [
                 'user_id' => 3,

@@ -13,20 +13,12 @@ class UserLanguageTableSeeder extends Seeder
     {
         DB::table('user_languages')->insert([
             [
-                'user_id' => 2,
+                'user_id' => 6,
                 'language_id' => 1,
             ],
             [
-                'user_id' => 2,
+                'user_id' => 6,
                 'language_id' => 2,
-            ],
-            [
-                'user_id' => 3,
-                'language_id' => 1,
-            ],
-            [
-                'user_id' => 4,
-                'language_id' => 1,
             ],
             [
                 'user_id' => 7,
@@ -38,6 +30,22 @@ class UserLanguageTableSeeder extends Seeder
             ],
             [
                 'user_id' => 8,
+                'language_id' => 1,
+            ],
+            [
+                'user_id' => 9,
+                'language_id' => 1,
+            ],
+            [
+                'user_id' => 9,
+                'language_id' => 2,
+            ],
+            [
+                'user_id' => 10,
+                'language_id' => 1,
+            ],
+            [
+                'user_id' => 10,
                 'language_id' => 2,
             ],
             [
