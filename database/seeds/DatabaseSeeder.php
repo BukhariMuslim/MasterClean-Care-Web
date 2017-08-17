@@ -47,5 +47,7 @@ class DatabaseSeeder extends Seeder
         $this->call(WalletTransactionsTableSeeder::class);
         $this->call(MessageTableSeeder::class);
         $this->call(EmergencyCallsSeeder::class);
+        $this->call(CritismsSeeder::class);
+        $this->call(ReportsSeeder::class);
     }
 }

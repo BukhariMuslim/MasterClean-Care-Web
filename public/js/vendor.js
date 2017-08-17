@@ -1237,28 +1237,7 @@ module.exports = g;
 
 
 /***/ }),
-/* 33 */,
-/* 34 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = undefined;
-
-var _MenuItem = __webpack_require__(210);
-
-var _MenuItem2 = _interopRequireDefault(_MenuItem);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = _MenuItem2.default;
-
-/***/ }),
-/* 35 */
+/* 33 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1877,6 +1856,27 @@ NumberFormat.defaultProps = defaultProps;
 
 module.exports = NumberFormat;
 
+
+/***/ }),
+/* 34 */,
+/* 35 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = undefined;
+
+var _MenuItem = __webpack_require__(210);
+
+var _MenuItem2 = _interopRequireDefault(_MenuItem);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = _MenuItem2.default;
 
 /***/ }),
 /* 36 */
@@ -42717,7 +42717,7 @@ var _Menu = __webpack_require__(737);
 
 var _Menu2 = _interopRequireDefault(_Menu);
 
-var _MenuItem = __webpack_require__(34);
+var _MenuItem = __webpack_require__(35);
 
 var _MenuItem2 = _interopRequireDefault(_MenuItem);
 
@@ -48988,7 +48988,7 @@ var _Menu2 = __webpack_require__(146);
 
 var _Menu3 = _interopRequireDefault(_Menu2);
 
-var _MenuItem2 = __webpack_require__(34);
+var _MenuItem2 = __webpack_require__(35);
 
 var _MenuItem3 = _interopRequireDefault(_MenuItem2);
 
@@ -76312,7 +76312,7 @@ __webpack_require__(0);
 __webpack_require__(21);
 __webpack_require__(54);
 __webpack_require__(45);
-__webpack_require__(35);
+__webpack_require__(33);
 __webpack_require__(13);
 __webpack_require__(396);
 __webpack_require__(36);
