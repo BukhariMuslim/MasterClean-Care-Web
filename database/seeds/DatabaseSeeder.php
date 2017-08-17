@@ -46,9 +46,8 @@ class DatabaseSeeder extends Seeder
         $this->call(PasswordResetsTableSeeder::class);
         $this->call(WalletTransactionsTableSeeder::class);
         $this->call(MessageTableSeeder::class);
-        $this->call(EmergencyCallsSeeder::class);
-
+        $this->call(EmergencyCallsTableSeeder::class);
+        $this->call(CritismsTableSeeder::class);
         $this->call(ReportsTableSeeder::class);
-        $this->call(KritikdanSaranTableSeeder::class);
     }
 }

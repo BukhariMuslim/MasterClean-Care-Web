@@ -3,7 +3,7 @@
 use Illuminate\Database\Seeder;
 use Carbon\Carbon;
 
-class EmergencyCallsSeeder extends Seeder
+class EmergencyCallsTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.

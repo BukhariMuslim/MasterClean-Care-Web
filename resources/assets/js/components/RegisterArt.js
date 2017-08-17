@@ -7,6 +7,7 @@ import Checkbox from 'material-ui/Checkbox';
 import TextField from 'material-ui/TextField'
 import FlatButton from 'material-ui/FlatButton'
 import RaisedButton from 'material-ui/RaisedButton'
+import IconButton from 'material-ui/IconButton'
 import Divider from 'material-ui/Divider'
 import DatePicker from 'material-ui/DatePicker'
 import SelectField from 'material-ui/SelectField'
@@ -170,8 +171,8 @@ class RegisterArt extends Component {
                   fullWidth={true}
                   name="userWorkTime"
                   onChange={(e) => this.onChangeTextHandler(e, curIdx)}
-                  validators={[isNeedTextBox ? ('required') : '']}
-                  errorMessages={[isNeedTextBox ? ('Honor dibutuhkan') : '']}
+                  validators={ isNeedTextBox && checked ? ['required'] : []}
+                  errorMessages={ isNeedTextBox && checked ? ['Honor dibutuhkan'] : []}
                   customInput={TextValidator}
                   />
               </div>
@@ -211,6 +212,15 @@ class RegisterArt extends Component {
     }
 
     if (isValid) {
+      let userWorkTime = []
+      if (this.state.userWorkTime && this.state.userWorkTime.length > 0) {
+        this.state.userWorkTime.map(workTime => (
+          userWorkTime.push({
+            work_time_id: workTime.work_time_id,
+            cost: workTime.cost.replace('Rp. ', '').split(',').join(''),
+          })
+        ))
+      }
       this.props.onRegister(
         this,
         {
@@ -235,10 +245,9 @@ class RegisterArt extends Component {
           description: this.state.description,
           status: this.state.status,
           activation: this.state.activation,
-          user_wallet: { amt: 0 },
           user_language: this.state.userLanguage,
           user_job: this.state.userJob,
-          user_work_time: this.state.userWorkTime,
+          user_work_time: userWorkTime,
           user_additional_info: this.state.userAdditionalInfo,
           user_document: this.state.userDocument,
           isWeb: true,
@@ -324,7 +333,57 @@ class RegisterArt extends Component {
     }
   }
 
+  imagePreview(imgUrl) {
+    return (
+      <Paper 
+        className="col s12" 
+        zDepth={1} 
+        style={{ marginTop: 15, padding: 15 }}
+      >
+        <img src={imgUrl ? `/image/small/${imgUrl}`: ''} className="responsive-img"/>
+      </Paper>
+    )
+  }
+
+  multipleImage(collections) {
+    return (
+      <div>
+        <div className="col s12">
+          <RaisedButton
+            containerElement='label'
+            label='Lampirakan Dokumen Tambahan'>
+              <input type="file" 
+                style={{ display: 'none' }} 
+                name="document"
+                onChange={(e)=>this._handleImageDocumentChange(e)} />
+          </RaisedButton>
+        </div>
+        <div>
+          {
+            collections.map((collection, idx) => (
+              <div key={`document${idx}`} className="col s12">
+                <div className="imgPreview" style={{ width: 'calc(100% - 48px)'}}>
+                  { this.imagePreview(collection.document_path) }
+                </div>
+                <IconButton
+                  iconClassName="material-icons"
+                  tooltip="Hapus Lampiran"
+                  onClick={(e)=>this._handleClearDocumentImage(e, idx)}
+                >
+                  clear
+                </IconButton>
+                <div className="clearfix" style={{ marginBottom: 10 }} />
+                <Divider />
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    )
+  }
+
   onError(errors) {
+    console.log(errors)
     this.props.onUpdateSnack(true, "Telah terjadi " + errors.length + " kesalahan. Mohon periksa kembali form ini.")
   }
 
@@ -337,6 +396,15 @@ class RegisterArt extends Component {
     this.props.onUploadImage(this, avatar)
   }
 
+  _handleImageDocumentChange(e) {
+    e.preventDefault();
+
+    let userDocument = e.target.files[0];
+    e.target.value = ''
+
+    this.props.onUploadDocumentImage(this, userDocument)
+  }
+
   _handleClearImage(e) {
     e.preventDefault();
 
@@ -344,6 +412,20 @@ class RegisterArt extends Component {
       avatar: [],
       avatarUrl: '',
     });
+  }
+
+  _handleClearDocumentImage(e, idx) {
+    e.preventDefault();
+
+    const oldDocuments = this.state.userDocument
+    if (idx > -1) {
+      this.setState({
+        userDocument: [ 
+            ...oldDocuments.slice(0, idx),
+            ...oldDocuments.slice(idx + 1)
+        ],
+      })
+    }
   }
 
   render() {
@@ -614,22 +696,9 @@ class RegisterArt extends Component {
                 <div className="col s12" style={{ marginTop: 10 }}>
                   <fieldset>
                     <legend>Dokumen Tambahan</legend>
-                    <RaisedButton
-                      containerElement='label'
-                      label='Lampirakan Dokumen Tambahan '>
-                        <input type="file" 
-                          style={{ display: 'none' }} 
-                          name="avatar"
-                          onChange={(e)=>this._handleImageChange(e)} />
-                    </RaisedButton>&nbsp;
-                    <FlatButton
-                      label='Hapus Lampiran'
-                      className={ avatarUrl ? '' : 'hide' }
-                      onClick={(e)=>this._handleClearImage(e)}
-                      />
-                    <div className="imgPreview">
-                      {$imagePreview}
-                    </div>  
+                    {
+                      this.multipleImage(this.state.userDocument)
+                    }
                   </fieldset>
                 </div>
                 <div className="col s12" style={{ marginTop: 10 }}>

@@ -117,13 +117,6 @@ class OrderContactsTableSeeder extends Seeder
                 'address' => 'Jl.Denai no47c',
                 'location' => '3.595237, 98.652423'
             ],
-            [
-                'order_id'=>16,
-                'phone' => '082168360303',
-                'city' => 2,
-                'address' => 'Jl.Denai no47c',
-                'location' => '3.595237, 98.652423'
-            ],
         ]);
     }
 }
