@@ -239,7 +239,7 @@ class UserTableSeeder extends Seeder
                 'created_at' => new Carbon(),
             ],
             [
-                'name' => 'gina',
+                'name' => 'Gina Montana',
                 'role_id' => 3,
                 'email' => 'gina123@mail.com',
                 'avatar' => 'users/profile2.jpg',
