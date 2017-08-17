@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Card, CardActions, CardHeader, CardMedia, CardTitle, CardText } from 'material-ui/Card'
 import Avatar from 'material-ui/Avatar'
 import { Link } from 'react-router-dom'
+import NumberFormat from 'react-number-format'
 
 class Header extends Component {
   constructor(props) {
@@ -29,7 +30,13 @@ class Header extends Component {
                     verticalAlign: "middle",
                   }}
                   >
-                    {this.props.username}
+                    {this.props.username}<br/>
+                    {
+                      this.props.wallet ?
+                      <NumberFormat value={this.props.wallet.amt} displayType={'text'} thousandSeparator={true} prefix={'Rp. '} />
+                      :
+                      ''
+                    }
                   </span>
                 </div>
               </Link>

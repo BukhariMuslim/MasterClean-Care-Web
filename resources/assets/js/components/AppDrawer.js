@@ -92,7 +92,7 @@ class AppDrawer extends Component {
         >
           {
             isLoggedIn ?
-              <Header username={this.props.user.name} avatarImg={(this.props.user.avatar ? '/image/small/' + this.props.user.avatar : '') || LockImg} bgImg={BgImg} />
+              <Header username={this.props.user.name} wallet={this.props.user.user_wallet} avatarImg={(this.props.user.avatar ? '/image/small/' + this.props.user.avatar : '') || LockImg} bgImg={BgImg} />
               :
               <MenuItem primaryText="Login"
                 containerElement={<Link to="/login" />}

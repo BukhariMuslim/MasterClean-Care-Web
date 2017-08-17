@@ -3525,7 +3525,7 @@ exports.default = TableHeaderColumn;
 
 /***/ }),
 
-/***/ 33:
+/***/ 34:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4848,7 +4848,7 @@ var _IconButton = __webpack_require__(38);
 
 var _IconButton2 = _interopRequireDefault(_IconButton);
 
-var _MenuItem = __webpack_require__(34);
+var _MenuItem = __webpack_require__(35);
 
 var _MenuItem2 = _interopRequireDefault(_MenuItem);
 
@@ -4997,7 +4997,7 @@ var AppDrawer = function (_Component) {
               return _this3.setState({ open: open });
             }
           },
-          isLoggedIn ? _react2.default.createElement(_Header2.default, { username: this.props.user.name, avatarImg: (this.props.user.avatar ? '/image/small/' + this.props.user.avatar : '') || LockImg, bgImg: BgImg }) : _react2.default.createElement(_MenuItem2.default, { primaryText: 'Login',
+          isLoggedIn ? _react2.default.createElement(_Header2.default, { username: this.props.user.name, wallet: this.props.user.user_wallet, avatarImg: (this.props.user.avatar ? '/image/small/' + this.props.user.avatar : '') || LockImg, bgImg: BgImg }) : _react2.default.createElement(_MenuItem2.default, { primaryText: 'Login',
             containerElement: _react2.default.createElement(_reactRouterDom.Link, { to: '/login' }),
             rightIcon: _react2.default.createElement(
               _FontIcon2.default,
@@ -5045,7 +5045,7 @@ var _propTypes2 = _interopRequireDefault(_propTypes);
 
 var _reactRouterDom = __webpack_require__(10);
 
-var _Card = __webpack_require__(33);
+var _Card = __webpack_require__(34);
 
 var _GridList = __webpack_require__(145);
 
@@ -5334,7 +5334,7 @@ var _propTypes = __webpack_require__(1);
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
-var _Card = __webpack_require__(33);
+var _Card = __webpack_require__(34);
 
 var _reactMaterialUiFormValidator = __webpack_require__(45);
 
@@ -5374,7 +5374,7 @@ var _TextField = __webpack_require__(30);
 
 var _TextField2 = _interopRequireDefault(_TextField);
 
-var _MenuItem = __webpack_require__(34);
+var _MenuItem = __webpack_require__(35);
 
 var _MenuItem2 = _interopRequireDefault(_MenuItem);
 
@@ -5382,7 +5382,7 @@ var _StarComponent = __webpack_require__(102);
 
 var _StarComponent2 = _interopRequireDefault(_StarComponent);
 
-var _reactNumberFormat = __webpack_require__(35);
+var _reactNumberFormat = __webpack_require__(33);
 
 var _reactNumberFormat2 = _interopRequireDefault(_reactNumberFormat);
 
@@ -6113,7 +6113,7 @@ var _Divider = __webpack_require__(28);
 
 var _Divider2 = _interopRequireDefault(_Divider);
 
-var _Card = __webpack_require__(33);
+var _Card = __webpack_require__(34);
 
 var _reactMaterialUiFormValidator = __webpack_require__(45);
 
@@ -6141,7 +6141,7 @@ var _SelectField = __webpack_require__(52);
 
 var _SelectField2 = _interopRequireDefault(_SelectField);
 
-var _MenuItem = __webpack_require__(34);
+var _MenuItem = __webpack_require__(35);
 
 var _MenuItem2 = _interopRequireDefault(_MenuItem);
 
@@ -6173,7 +6173,7 @@ var _Pager = __webpack_require__(105);
 
 var _Pager2 = _interopRequireDefault(_Pager);
 
-var _reactNumberFormat = __webpack_require__(35);
+var _reactNumberFormat = __webpack_require__(33);
 
 var _reactNumberFormat2 = _interopRequireDefault(_reactNumberFormat);
 
@@ -6938,7 +6938,7 @@ var _propTypes2 = _interopRequireDefault(_propTypes);
 
 var _reactRouterDom = __webpack_require__(10);
 
-var _Card = __webpack_require__(33);
+var _Card = __webpack_require__(34);
 
 var _GridList = __webpack_require__(145);
 
@@ -7328,13 +7328,17 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _Card = __webpack_require__(33);
+var _Card = __webpack_require__(34);
 
 var _Avatar = __webpack_require__(312);
 
 var _Avatar2 = _interopRequireDefault(_Avatar);
 
 var _reactRouterDom = __webpack_require__(10);
+
+var _reactNumberFormat = __webpack_require__(33);
+
+var _reactNumberFormat2 = _interopRequireDefault(_reactNumberFormat);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -7386,7 +7390,9 @@ var Header = function (_Component) {
                         verticalAlign: "middle"
                       }
                     },
-                    this.props.username
+                    this.props.username,
+                    _react2.default.createElement('br', null),
+                    this.props.wallet ? _react2.default.createElement(_reactNumberFormat2.default, { value: this.props.wallet.amt, displayType: 'text', thousandSeparator: true, prefix: 'Rp. ' }) : ''
                   )
                 )
               )
@@ -8062,7 +8068,7 @@ var _propTypes = __webpack_require__(1);
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
-var _MenuItem = __webpack_require__(34);
+var _MenuItem = __webpack_require__(35);
 
 var _MenuItem2 = _interopRequireDefault(_MenuItem);
 
@@ -8195,7 +8201,7 @@ var _propTypes = __webpack_require__(1);
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
-var _Card = __webpack_require__(33);
+var _Card = __webpack_require__(34);
 
 var _reactMaterialUiFormValidator = __webpack_require__(45);
 
@@ -8235,7 +8241,7 @@ var _TextField = __webpack_require__(30);
 
 var _TextField2 = _interopRequireDefault(_TextField);
 
-var _MenuItem = __webpack_require__(34);
+var _MenuItem = __webpack_require__(35);
 
 var _MenuItem2 = _interopRequireDefault(_MenuItem);
 
@@ -8247,7 +8253,7 @@ var _Breadcrumbs = __webpack_require__(56);
 
 var _Breadcrumbs2 = _interopRequireDefault(_Breadcrumbs);
 
-var _reactNumberFormat = __webpack_require__(35);
+var _reactNumberFormat = __webpack_require__(33);
 
 var _reactNumberFormat2 = _interopRequireDefault(_reactNumberFormat);
 
@@ -8858,7 +8864,7 @@ var _Divider = __webpack_require__(28);
 
 var _Divider2 = _interopRequireDefault(_Divider);
 
-var _Card = __webpack_require__(33);
+var _Card = __webpack_require__(34);
 
 var _reactMaterialUiFormValidator = __webpack_require__(45);
 
@@ -8886,7 +8892,7 @@ var _SelectField = __webpack_require__(52);
 
 var _SelectField2 = _interopRequireDefault(_SelectField);
 
-var _MenuItem = __webpack_require__(34);
+var _MenuItem = __webpack_require__(35);
 
 var _MenuItem2 = _interopRequireDefault(_MenuItem);
 
@@ -8918,7 +8924,7 @@ var _Pager = __webpack_require__(105);
 
 var _Pager2 = _interopRequireDefault(_Pager);
 
-var _reactNumberFormat = __webpack_require__(35);
+var _reactNumberFormat = __webpack_require__(33);
 
 var _reactNumberFormat2 = _interopRequireDefault(_reactNumberFormat);
 
@@ -9652,7 +9658,7 @@ var _propTypes2 = _interopRequireDefault(_propTypes);
 
 var _reactRouterDom = __webpack_require__(10);
 
-var _Card = __webpack_require__(33);
+var _Card = __webpack_require__(34);
 
 var _GridList = __webpack_require__(145);
 
@@ -9668,7 +9674,7 @@ var _Divider = __webpack_require__(28);
 
 var _Divider2 = _interopRequireDefault(_Divider);
 
-var _reactNumberFormat = __webpack_require__(35);
+var _reactNumberFormat = __webpack_require__(33);
 
 var _reactNumberFormat2 = _interopRequireDefault(_reactNumberFormat);
 
@@ -10025,7 +10031,7 @@ var _propTypes2 = _interopRequireDefault(_propTypes);
 
 var _reactRouterDom = __webpack_require__(10);
 
-var _Card = __webpack_require__(33);
+var _Card = __webpack_require__(34);
 
 var _reactIntl = __webpack_require__(54);
 
@@ -10043,7 +10049,7 @@ var _Dialog = __webpack_require__(116);
 
 var _Dialog2 = _interopRequireDefault(_Dialog);
 
-var _reactNumberFormat = __webpack_require__(35);
+var _reactNumberFormat = __webpack_require__(33);
 
 var _reactNumberFormat2 = _interopRequireDefault(_reactNumberFormat);
 
@@ -10665,7 +10671,7 @@ var _Divider = __webpack_require__(28);
 
 var _Divider2 = _interopRequireDefault(_Divider);
 
-var _Card = __webpack_require__(33);
+var _Card = __webpack_require__(34);
 
 var _reactMaterialUiFormValidator = __webpack_require__(45);
 
@@ -10693,7 +10699,7 @@ var _SelectField = __webpack_require__(52);
 
 var _SelectField2 = _interopRequireDefault(_SelectField);
 
-var _MenuItem = __webpack_require__(34);
+var _MenuItem = __webpack_require__(35);
 
 var _MenuItem2 = _interopRequireDefault(_MenuItem);
 
@@ -10725,7 +10731,7 @@ var _Pager = __webpack_require__(105);
 
 var _Pager2 = _interopRequireDefault(_Pager);
 
-var _reactNumberFormat = __webpack_require__(35);
+var _reactNumberFormat = __webpack_require__(33);
 
 var _reactNumberFormat2 = _interopRequireDefault(_reactNumberFormat);
 
@@ -11330,7 +11336,7 @@ var _propTypes2 = _interopRequireDefault(_propTypes);
 
 var _reactRouterDom = __webpack_require__(10);
 
-var _Card = __webpack_require__(33);
+var _Card = __webpack_require__(34);
 
 var _GridList = __webpack_require__(145);
 
@@ -11346,7 +11352,7 @@ var _Divider = __webpack_require__(28);
 
 var _Divider2 = _interopRequireDefault(_Divider);
 
-var _reactNumberFormat = __webpack_require__(35);
+var _reactNumberFormat = __webpack_require__(33);
 
 var _reactNumberFormat2 = _interopRequireDefault(_reactNumberFormat);
 
@@ -11717,7 +11723,7 @@ var _propTypes2 = _interopRequireDefault(_propTypes);
 
 var _reactRouterDom = __webpack_require__(10);
 
-var _Card = __webpack_require__(33);
+var _Card = __webpack_require__(34);
 
 var _reactMaterialUiFormValidator = __webpack_require__(45);
 
@@ -11729,7 +11735,7 @@ var _RaisedButton = __webpack_require__(40);
 
 var _RaisedButton2 = _interopRequireDefault(_RaisedButton);
 
-var _reactNumberFormat = __webpack_require__(35);
+var _reactNumberFormat = __webpack_require__(33);
 
 var _reactNumberFormat2 = _interopRequireDefault(_reactNumberFormat);
 
@@ -12331,7 +12337,7 @@ var _Divider = __webpack_require__(28);
 
 var _Divider2 = _interopRequireDefault(_Divider);
 
-var _Card = __webpack_require__(33);
+var _Card = __webpack_require__(34);
 
 var _reactMaterialUiFormValidator = __webpack_require__(45);
 
@@ -12359,7 +12365,7 @@ var _SelectField = __webpack_require__(52);
 
 var _SelectField2 = _interopRequireDefault(_SelectField);
 
-var _MenuItem = __webpack_require__(34);
+var _MenuItem = __webpack_require__(35);
 
 var _MenuItem2 = _interopRequireDefault(_MenuItem);
 
@@ -12391,7 +12397,7 @@ var _Pager = __webpack_require__(105);
 
 var _Pager2 = _interopRequireDefault(_Pager);
 
-var _reactNumberFormat = __webpack_require__(35);
+var _reactNumberFormat = __webpack_require__(33);
 
 var _reactNumberFormat2 = _interopRequireDefault(_reactNumberFormat);
 
@@ -13003,7 +13009,7 @@ var _Divider = __webpack_require__(28);
 
 var _Divider2 = _interopRequireDefault(_Divider);
 
-var _Card = __webpack_require__(33);
+var _Card = __webpack_require__(34);
 
 var _reactMaterialUiFormValidator = __webpack_require__(45);
 
@@ -13031,7 +13037,7 @@ var _SelectField = __webpack_require__(52);
 
 var _SelectField2 = _interopRequireDefault(_SelectField);
 
-var _MenuItem = __webpack_require__(34);
+var _MenuItem = __webpack_require__(35);
 
 var _MenuItem2 = _interopRequireDefault(_MenuItem);
 
@@ -13063,7 +13069,7 @@ var _Pager = __webpack_require__(105);
 
 var _Pager2 = _interopRequireDefault(_Pager);
 
-var _reactNumberFormat = __webpack_require__(35);
+var _reactNumberFormat = __webpack_require__(33);
 
 var _reactNumberFormat2 = _interopRequireDefault(_reactNumberFormat);
 
@@ -13667,7 +13673,7 @@ var _propTypes = __webpack_require__(1);
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
-var _Card = __webpack_require__(33);
+var _Card = __webpack_require__(34);
 
 var _reactMaterialUiFormValidator = __webpack_require__(45);
 
@@ -13707,7 +13713,7 @@ var _TextField = __webpack_require__(30);
 
 var _TextField2 = _interopRequireDefault(_TextField);
 
-var _MenuItem = __webpack_require__(34);
+var _MenuItem = __webpack_require__(35);
 
 var _MenuItem2 = _interopRequireDefault(_MenuItem);
 
@@ -13719,7 +13725,7 @@ var _IconButton = __webpack_require__(38);
 
 var _IconButton2 = _interopRequireDefault(_IconButton);
 
-var _reactNumberFormat = __webpack_require__(35);
+var _reactNumberFormat = __webpack_require__(33);
 
 var _reactNumberFormat2 = _interopRequireDefault(_reactNumberFormat);
 
@@ -14819,7 +14825,7 @@ var _SelectField = __webpack_require__(52);
 
 var _SelectField2 = _interopRequireDefault(_SelectField);
 
-var _MenuItem = __webpack_require__(34);
+var _MenuItem = __webpack_require__(35);
 
 var _MenuItem2 = _interopRequireDefault(_MenuItem);
 
@@ -14839,7 +14845,7 @@ var _LoadingSpinContainer = __webpack_require__(127);
 
 var _LoadingSpinContainer2 = _interopRequireDefault(_LoadingSpinContainer);
 
-var _reactNumberFormat = __webpack_require__(35);
+var _reactNumberFormat = __webpack_require__(33);
 
 var _reactNumberFormat2 = _interopRequireDefault(_reactNumberFormat);
 
@@ -15720,7 +15726,7 @@ var _SelectField = __webpack_require__(52);
 
 var _SelectField2 = _interopRequireDefault(_SelectField);
 
-var _MenuItem = __webpack_require__(34);
+var _MenuItem = __webpack_require__(35);
 
 var _MenuItem2 = _interopRequireDefault(_MenuItem);
 
@@ -16286,7 +16292,7 @@ var _propTypes = __webpack_require__(1);
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
-var _MenuItem = __webpack_require__(34);
+var _MenuItem = __webpack_require__(35);
 
 var _MenuItem2 = _interopRequireDefault(_MenuItem);
 

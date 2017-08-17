@@ -48,7 +48,7 @@ class DatabaseSeeder extends Seeder
         $this->call(MessageTableSeeder::class);
         $this->call(EmergencyCallsSeeder::class);
 
-        $this->call(ReportTableSeeder::class);
-        $this->call(KritikdanSaranSeeder::class);
+        $this->call(ReportsTableSeeder::class);
+        $this->call(KritikdanSaranTableSeeder::class);
     }
 }
