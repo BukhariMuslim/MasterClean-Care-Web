@@ -94,7 +94,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         }
       )
     },
-    onUploadImage: (self, data, history) => {
+    onUploadImage: (self, data) => {
       let formData = new FormData()
       formData.append('image', data)
       ApiService.onPost(
@@ -125,10 +125,61 @@ const mapDispatchToProps = (dispatch, ownProps) => {
           }
         },
         function (error) {
-          self.setState({
-            avatar: '',
+          dispatch(updateSnack({
+            open: true,
             message: error.name + ": " + error.message
-          })
+          }))
+        }
+      )
+    },
+    onUploadDocumentImage: (self, data) => {
+      let formData = new FormData()
+      formData.append('image', data)
+      ApiService.onPost(
+        '/api/image',
+        formData,
+        function (response) {
+          let responseData = response.data
+          
+          if (responseData.status != 201) {
+            dispatch(updateSnack({
+              open: true,
+              message: responseData.message
+            }))
+          }
+          else {
+            let oldDocument = self.state.userDocument
+            
+            let userDocument = [] 
+            if(oldDocument) {
+              userDocument = [
+                ...oldDocument,
+                {
+                  'document_path': responseData.image,
+                  'remark': '',
+                }
+              ]
+            }
+            else {
+              userDocument.push({
+                'document_path': responseData.image,
+                'remark': '',
+              })
+            }
+            self.setState({
+              userDocument
+            })
+            dispatch(updateSnack({
+              open: true,
+              message: 'Upload Gambar Berhasil'
+            }))
+          }
+        },
+        function (error) {
+          dispatch(updateSnack({
+            open: true,
+            message: error.name + ": " + error.message
+          }))
         }
       )
     },
@@ -273,12 +324,13 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 const RegisterArtContainer = withRouter(connect(
   mapStateToProps,
   mapDispatchToProps
-)(({ history, onUpdateSnack, onRegister, getUserLogin, onUploadImage, getPlace, getLanguage, getJob, getWorkTime, getAdditionalInfo, status }) => (
+)(({ history, onUpdateSnack, onRegister, getUserLogin, onUploadImage, onUploadDocumentImage, getPlace, getLanguage, getJob, getWorkTime, getAdditionalInfo, status }) => (
   <div className="container">
     <RegisterArt onRegister={(self, data) => onRegister(self, data, history)}
       onUpdateSnack={onUpdateSnack}
       getUserLogin={(self) => getUserLogin(self, history)}
-      onUploadImage={(self, data) => onUploadImage(self, data, history)}
+      onUploadImage={onUploadImage}
+      onUploadDocumentImage={onUploadDocumentImage}
       getPlace={getPlace}
       getLanguage={getLanguage}
       getJob={getJob}

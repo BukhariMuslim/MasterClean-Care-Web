@@ -14813,6 +14813,10 @@ var _RaisedButton = __webpack_require__(40);
 
 var _RaisedButton2 = _interopRequireDefault(_RaisedButton);
 
+var _IconButton = __webpack_require__(38);
+
+var _IconButton2 = _interopRequireDefault(_IconButton);
+
 var _Divider = __webpack_require__(28);
 
 var _Divider2 = _interopRequireDefault(_Divider);
@@ -14852,6 +14856,8 @@ var _reactNumberFormat2 = _interopRequireDefault(_reactNumberFormat);
 var _colors = __webpack_require__(147);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
@@ -15040,8 +15046,8 @@ var RegisterArt = function (_Component) {
               onChange: function onChange(e) {
                 return _this3.onChangeTextHandler(e, curIdx);
               },
-              validators: [isNeedTextBox ? 'required' : ''],
-              errorMessages: [isNeedTextBox ? 'Honor dibutuhkan' : ''],
+              validators: isNeedTextBox && checked ? ['required'] : [],
+              errorMessages: isNeedTextBox && checked ? ['Honor dibutuhkan'] : [],
               customInput: _reactMaterialUiFormValidator.TextValidator
             })
           ) : null
@@ -15079,6 +15085,15 @@ var RegisterArt = function (_Component) {
       }
 
       if (isValid) {
+        var userWorkTime = [];
+        if (this.state.userWorkTime && this.state.userWorkTime.length > 0) {
+          this.state.userWorkTime.map(function (workTime) {
+            return userWorkTime.push({
+              work_time_id: workTime.work_time_id,
+              cost: workTime.cost.replace('Rp. ', '').split(',').join('')
+            });
+          });
+        }
         this.props.onRegister(this, {
           name: this.state.name,
           role_id: this.state.role_id,
@@ -15101,10 +15116,9 @@ var RegisterArt = function (_Component) {
           description: this.state.description,
           status: this.state.status,
           activation: this.state.activation,
-          user_wallet: { amt: 0 },
           user_language: this.state.userLanguage,
           user_job: this.state.userJob,
-          user_work_time: this.state.userWorkTime,
+          user_work_time: userWorkTime,
           user_additional_info: this.state.userAdditionalInfo,
           user_document: this.state.userDocument,
           isWeb: true
@@ -15187,8 +15201,76 @@ var RegisterArt = function (_Component) {
       };
     }
   }, {
+    key: 'imagePreview',
+    value: function imagePreview(imgUrl) {
+      return _react2.default.createElement(
+        _Paper2.default,
+        {
+          className: 'col s12',
+          zDepth: 1,
+          style: { marginTop: 15, padding: 15 }
+        },
+        _react2.default.createElement('img', { src: imgUrl ? '/image/small/' + imgUrl : '', className: 'responsive-img' })
+      );
+    }
+  }, {
+    key: 'multipleImage',
+    value: function multipleImage(collections) {
+      var _this4 = this;
+
+      return _react2.default.createElement(
+        'div',
+        null,
+        _react2.default.createElement(
+          'div',
+          { className: 'col s12' },
+          _react2.default.createElement(
+            _RaisedButton2.default,
+            {
+              containerElement: 'label',
+              label: 'Lampirakan Dokumen Tambahan' },
+            _react2.default.createElement('input', { type: 'file',
+              style: { display: 'none' },
+              name: 'document',
+              onChange: function onChange(e) {
+                return _this4._handleImageDocumentChange(e);
+              } })
+          )
+        ),
+        _react2.default.createElement(
+          'div',
+          null,
+          collections.map(function (collection, idx) {
+            return _react2.default.createElement(
+              'div',
+              { key: 'document' + idx, className: 'col s12' },
+              _react2.default.createElement(
+                'div',
+                { className: 'imgPreview', style: { width: 'calc(100% - 48px)' } },
+                _this4.imagePreview(collection.document_path)
+              ),
+              _react2.default.createElement(
+                _IconButton2.default,
+                {
+                  iconClassName: 'material-icons',
+                  tooltip: 'Hapus Lampiran',
+                  onClick: function onClick(e) {
+                    return _this4._handleClearDocumentImage(e, idx);
+                  }
+                },
+                'clear'
+              ),
+              _react2.default.createElement('div', { className: 'clearfix', style: { marginBottom: 10 } }),
+              _react2.default.createElement(_Divider2.default, null)
+            );
+          })
+        )
+      );
+    }
+  }, {
     key: 'onError',
     value: function onError(errors) {
+      console.log(errors);
       this.props.onUpdateSnack(true, "Telah terjadi " + errors.length + " kesalahan. Mohon periksa kembali form ini.");
     }
   }, {
@@ -15202,6 +15284,16 @@ var RegisterArt = function (_Component) {
       this.props.onUploadImage(this, avatar);
     }
   }, {
+    key: '_handleImageDocumentChange',
+    value: function _handleImageDocumentChange(e) {
+      e.preventDefault();
+
+      var userDocument = e.target.files[0];
+      e.target.value = '';
+
+      this.props.onUploadDocumentImage(this, userDocument);
+    }
+  }, {
     key: '_handleClearImage',
     value: function _handleClearImage(e) {
       e.preventDefault();
@@ -15212,9 +15304,21 @@ var RegisterArt = function (_Component) {
       });
     }
   }, {
+    key: '_handleClearDocumentImage',
+    value: function _handleClearDocumentImage(e, idx) {
+      e.preventDefault();
+
+      var oldDocuments = this.state.userDocument;
+      if (idx > -1) {
+        this.setState({
+          userDocument: [].concat(_toConsumableArray(oldDocuments.slice(0, idx)), _toConsumableArray(oldDocuments.slice(idx + 1)))
+        });
+      }
+    }
+  }, {
     key: 'render',
     value: function render() {
-      var _this4 = this;
+      var _this5 = this;
 
       var avatarUrl = this.state.avatarUrl;
 
@@ -15261,10 +15365,10 @@ var RegisterArt = function (_Component) {
               {
                 ref: 'form',
                 onSubmit: function onSubmit(e) {
-                  return _this4.registerHandler(e);
+                  return _this5.registerHandler(e);
                 },
                 onError: function onError(errors) {
-                  return _this4.onError(errors);
+                  return _this5.onError(errors);
                 } },
               _react2.default.createElement(
                 'div',
@@ -15578,31 +15682,7 @@ var RegisterArt = function (_Component) {
                       null,
                       'Dokumen Tambahan'
                     ),
-                    _react2.default.createElement(
-                      _RaisedButton2.default,
-                      {
-                        containerElement: 'label',
-                        label: 'Lampirakan Dokumen Tambahan ' },
-                      _react2.default.createElement('input', { type: 'file',
-                        style: { display: 'none' },
-                        name: 'avatar',
-                        onChange: function onChange(e) {
-                          return _this4._handleImageChange(e);
-                        } })
-                    ),
-                    '\xA0',
-                    _react2.default.createElement(_FlatButton2.default, {
-                      label: 'Hapus Lampiran',
-                      className: avatarUrl ? '' : 'hide',
-                      onClick: function onClick(e) {
-                        return _this4._handleClearImage(e);
-                      }
-                    }),
-                    _react2.default.createElement(
-                      'div',
-                      { className: 'imgPreview' },
-                      $imagePreview
-                    )
+                    this.multipleImage(this.state.userDocument)
                   )
                 ),
                 _react2.default.createElement(
@@ -15617,7 +15697,7 @@ var RegisterArt = function (_Component) {
                       style: { display: 'none' },
                       name: 'avatar',
                       onChange: function onChange(e) {
-                        return _this4._handleImageChange(e);
+                        return _this5._handleImageChange(e);
                       } })
                   ),
                   '\xA0',
@@ -15625,7 +15705,7 @@ var RegisterArt = function (_Component) {
                     label: 'Hapus Foto',
                     className: avatarUrl ? '' : 'hide',
                     onClick: function onClick(e) {
-                      return _this4._handleClearImage(e);
+                      return _this5._handleClearImage(e);
                     }
                   }),
                   _react2.default.createElement(
@@ -18762,6 +18842,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
 var mapStateToProps = function mapStateToProps(state) {
   return {
     status: state.notif
@@ -18833,7 +18915,7 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch, ownProps) {
         // }))
       });
     },
-    onUploadImage: function onUploadImage(self, data, history) {
+    onUploadImage: function onUploadImage(self, data) {
       var formData = new FormData();
       formData.append('image', data);
       _ApiService2.default.onPost('/api/image', formData, function (response) {
@@ -18859,10 +18941,51 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch, ownProps) {
           }));
         }
       }, function (error) {
-        self.setState({
-          avatar: '',
+        dispatch((0, _DefaultAction.updateSnack)({
+          open: true,
           message: error.name + ": " + error.message
-        });
+        }));
+      });
+    },
+    onUploadDocumentImage: function onUploadDocumentImage(self, data) {
+      var formData = new FormData();
+      formData.append('image', data);
+      _ApiService2.default.onPost('/api/image', formData, function (response) {
+        var responseData = response.data;
+
+        if (responseData.status != 201) {
+          dispatch((0, _DefaultAction.updateSnack)({
+            open: true,
+            message: responseData.message
+          }));
+        } else {
+          var oldDocument = self.state.userDocument;
+
+          var userDocument = [];
+          if (oldDocument) {
+            userDocument = [].concat(_toConsumableArray(oldDocument), [{
+              'document_path': responseData.image,
+              'remark': ''
+            }]);
+          } else {
+            userDocument.push({
+              'document_path': responseData.image,
+              'remark': ''
+            });
+          }
+          self.setState({
+            userDocument: userDocument
+          });
+          dispatch((0, _DefaultAction.updateSnack)({
+            open: true,
+            message: 'Upload Gambar Berhasil'
+          }));
+        }
+      }, function (error) {
+        dispatch((0, _DefaultAction.updateSnack)({
+          open: true,
+          message: error.name + ": " + error.message
+        }));
       });
     },
     getPlace: function getPlace(self, type) {
@@ -18978,7 +19101,8 @@ var RegisterArtContainer = (0, _reactRouterDom.withRouter)((0, _reactRedux.conne
       onUpdateSnack = _ref.onUpdateSnack,
       _onRegister = _ref.onRegister,
       _getUserLogin = _ref.getUserLogin,
-      _onUploadImage = _ref.onUploadImage,
+      onUploadImage = _ref.onUploadImage,
+      onUploadDocumentImage = _ref.onUploadDocumentImage,
       getPlace = _ref.getPlace,
       getLanguage = _ref.getLanguage,
       getJob = _ref.getJob,
@@ -18995,9 +19119,8 @@ var RegisterArtContainer = (0, _reactRouterDom.withRouter)((0, _reactRedux.conne
       getUserLogin: function getUserLogin(self) {
         return _getUserLogin(self, history);
       },
-      onUploadImage: function onUploadImage(self, data) {
-        return _onUploadImage(self, data, history);
-      },
+      onUploadImage: onUploadImage,
+      onUploadDocumentImage: onUploadDocumentImage,
       getPlace: getPlace,
       getLanguage: getLanguage,
       getJob: getJob,

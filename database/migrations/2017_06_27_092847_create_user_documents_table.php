@@ -16,7 +16,7 @@ class CreateUserDocumentsTable extends Migration
         Schema::create('user_documents', function (Blueprint $table) {
             $table->integer('user_id')->unsigned();
             $table->string('document_path');
-            $table->string('remark', 2000);
+            $table->string('remark', 2000)->nullable()->default('');
             $table->timestamps();
 
             $table->foreign('user_id')
