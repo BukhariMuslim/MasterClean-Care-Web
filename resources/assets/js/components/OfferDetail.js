@@ -298,7 +298,14 @@ class OfferDetail extends Component {
                             offer.offer_art.map((art, id) => {
                               return (
                                 <TableRow key={id}>
-                                  <TableRowColumn><Link to={'/art/' + art.art.id} >{art.art.name}</Link></TableRowColumn>
+                                  <TableRowColumn>
+                                    {
+                                      this.props.user && this.props.user.role_id == 3 ?
+                                      art.art.name
+                                      :
+                                      <Link to={'/art/' + art.art.id} >{art.art.name}</Link>
+                                    }
+                                  </TableRowColumn>
                                   <TableRowColumn>
                                     {
                                       art.status != 0 ?

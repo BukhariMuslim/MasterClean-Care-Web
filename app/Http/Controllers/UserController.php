@@ -39,7 +39,6 @@ class UserController extends Controller
             'user_document',
             'user_language',
             'user_job',
-            'user_wallet',
             'user_work_time',
             'contact',
         ])->get();
@@ -60,7 +59,6 @@ class UserController extends Controller
             'user_document',
             'user_language',
             'user_job',
-            'user_wallet',
             'user_work_time',
             'contact'
         ]);
@@ -93,7 +91,6 @@ class UserController extends Controller
                 'user_document',
                 'user_language.language',
                 'user_job.job',
-                'user_wallet',
                 'user_work_time.workTime',
                 'contact.city',
             ]);
@@ -154,17 +151,8 @@ class UserController extends Controller
             // Save Contact
             $user->contact()->create($data['contact']);
 
-            if ($user->role_id == 2) {
-                // Initial Wallet
-                $user_wallet = new UserWallet;
-                $user_wallet->amt = 0; 
-                $user->user_wallet()->save($user_wallet);
-            }
-            else if ($user->role_id == 3)
+            if ($user->role_id == 3)
             {
-                // Save Wallet
-                $user->user_wallet()->create($data['user_wallet']);
-
                 // Save Language
                 $user->user_language()->createMany($data['user_language']);
 
@@ -190,7 +178,6 @@ class UserController extends Controller
                 'user_document',
                 'user_language',
                 'user_job',
-                'user_wallet',
                 'user_work_time',
                 'contact'
             ]), 'status' => 201]);
@@ -337,12 +324,6 @@ class UserController extends Controller
                 $user->contact()->create($data['contact']);
             }
             
-            // Update Wallet
-            if (array_key_exists('user_wallet', $data)) {
-                $user->user_wallet()->delete();
-                $user->user_wallet()->create($data['user_wallet']);
-            }
-
             // Update Language
             if (array_key_exists('user_language', $data)) {
                 $user->user_language()->delete();
@@ -381,7 +362,6 @@ class UserController extends Controller
                     'user_document',
                     'user_language.language',
                     'user_job.job',
-                    'user_wallet',
                     'user_work_time.workTime',
                     'contact.city',
                 ]), 'status' => 200]);
@@ -392,7 +372,6 @@ class UserController extends Controller
                     'user_document',
                     'user_language',
                     'user_job',
-                    'user_wallet',
                     'user_work_time',
                     'contact',
                 ]), 'status' => 200]);
@@ -510,7 +489,6 @@ class UserController extends Controller
                 'user_document',
                 'user_language',
                 'user_job',
-                'user_wallet',
                 'user_work_time',
                 'contact'
             ]);
@@ -538,7 +516,6 @@ class UserController extends Controller
                 'user_document',
                 'user_language',
                 'user_job',
-                'user_wallet',
                 'user_work_time',
                 'contact',
             ])
@@ -613,7 +590,6 @@ class UserController extends Controller
                 'user_document',
                 'user_language',
                 'user_job',
-                'user_wallet',
                 'user_work_time',
                 'contact',
             ])
@@ -636,7 +612,6 @@ class UserController extends Controller
                 'user_document',
                 'user_language.language',
                 'user_job.job',
-                'user_wallet',
                 'user_work_time.workTime',
                 'contact.city',
             ])
@@ -656,7 +631,6 @@ class UserController extends Controller
     public function getMemberById($member)
     {
         $users = User::with([
-                'user_wallet',
                 'contact.city',
             ])
             ->where('id', $member)

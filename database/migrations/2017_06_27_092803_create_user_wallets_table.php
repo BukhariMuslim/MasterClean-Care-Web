@@ -13,15 +13,15 @@ class CreateUserWalletsTable extends Migration
      */
     public function up()
     {
-        Schema::create('user_wallets', function (Blueprint $table) {
-            $table->integer('user_id')->unsigned();
-            $table->decimal('amt', 16, 2);
-            $table->timestamps();
+        // Schema::create('user_wallets', function (Blueprint $table) {
+        //     $table->integer('user_id')->unsigned();
+        //     $table->decimal('amt', 16, 2);
+        //     $table->timestamps();
 
-            $table->foreign('user_id')
-                  ->references('id')->on('users')
-                  ->onDelete('cascade');
-        });
+        //     $table->foreign('user_id')
+        //           ->references('id')->on('users')
+        //           ->onDelete('cascade');
+        // });
     }
 
     /**

@@ -123,7 +123,6 @@ class LoginController extends Controller
                             'user_document',
                             'user_language',
                             'user_job',
-                            'user_wallet',
                             'user_work_time',
                             'contact'
                         ]);
@@ -134,7 +133,6 @@ class LoginController extends Controller
                             'user_document',
                             'user_language.language',
                             'user_job.job',
-                            'user_wallet',
                             'user_work_time.workTime',
                             'contact.city',
                         ]);

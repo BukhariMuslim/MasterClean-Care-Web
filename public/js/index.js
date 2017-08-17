@@ -10546,7 +10546,7 @@ var OfferDetail = function (_Component) {
                         _react2.default.createElement(
                           _Table.TableRowColumn,
                           null,
-                          _react2.default.createElement(
+                          _this2.props.user && _this2.props.user.role_id == 3 ? art.art.name : _react2.default.createElement(
                             _reactRouterDom.Link,
                             { to: '/art/' + art.art.id },
                             art.art.name
