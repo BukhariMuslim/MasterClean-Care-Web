@@ -5808,12 +5808,12 @@ var ArtDetail = function (_Component) {
                               null,
                               _react2.default.createElement(
                                 _Table.TableRowColumn,
-                                { style: { textAlign: 'right', verticalAlign: 'top', color: '#888' } },
+                                { style: { textAlign: 'right', verticalAlign: 'top', color: '#888', width: '40%' } },
                                 'Nama'
                               ),
                               _react2.default.createElement(
                                 _Table.TableRowColumn,
-                                { className: 'bold' },
+                                { className: 'bold', style: { width: '60%' } },
                                 this.state.art.name
                               )
                             ),
@@ -9911,7 +9911,7 @@ var Offer = function (_Component) {
                       _react2.default.createElement(
                         _Table.TableRowColumn,
                         { style: { textAlign: 'right', verticalAlign: 'top' } },
-                        'Informasi Penawar'
+                        'Informasi Pencari'
                       ),
                       _react2.default.createElement(
                         _Table.TableRowColumn,
@@ -10391,7 +10391,7 @@ var OfferDetail = function (_Component) {
                     _react2.default.createElement(
                       _Table.TableRowColumn,
                       { style: { textAlign: 'right', verticalAlign: 'top' } },
-                      'Informasi Penawar'
+                      'Informasi Pencari'
                     ),
                     _react2.default.createElement(
                       _Table.TableRowColumn,
@@ -10411,12 +10411,12 @@ var OfferDetail = function (_Component) {
                             null,
                             _react2.default.createElement(
                               _Table.TableRowColumn,
-                              null,
+                              { style: { width: '35%' } },
                               'Nama'
                             ),
                             _react2.default.createElement(
                               _Table.TableRowColumn,
-                              null,
+                              { style: { width: '65%' } },
                               _react2.default.createElement(
                                 'b',
                                 null,
@@ -12039,12 +12039,12 @@ var OrderDetail = function (_Component) {
                               null,
                               _react2.default.createElement(
                                 _Table.TableHeaderColumn,
-                                { tooltip: 'Detail Pekerjaan' },
+                                { style: { width: '35%' }, tooltip: 'Detail Pekerjaan' },
                                 'Detail Pekerjaan'
                               ),
                               _react2.default.createElement(
                                 _Table.TableHeaderColumn,
-                                { tooltip: 'Status' },
+                                { style: { width: '65%' }, tooltip: 'Status' },
                                 'Status'
                               )
                             )
@@ -12125,12 +12125,12 @@ var OrderDetail = function (_Component) {
                             null,
                             _react2.default.createElement(
                               _Table.TableRowColumn,
-                              null,
+                              { style: { width: '35%' } },
                               'Nama'
                             ),
                             _react2.default.createElement(
                               _Table.TableRowColumn,
-                              null,
+                              { style: { width: '65%' } },
                               _react2.default.createElement(
                                 'b',
                                 null,
@@ -14250,12 +14250,12 @@ var ProfileDetail = function (_Component) {
                               null,
                               _react2.default.createElement(
                                 _Table.TableRowColumn,
-                                { style: { textAlign: 'right', verticalAlign: 'top', color: '#888' } },
+                                { style: { textAlign: 'right', verticalAlign: 'top', color: '#888', width: '40%' } },
                                 'Nama'
                               ),
                               _react2.default.createElement(
                                 _Table.TableRowColumn,
-                                { className: 'bold' },
+                                { className: 'bold', style: { width: '60%' } },
                                 this.state.isEdit ? _react2.default.createElement(_reactMaterialUiFormValidator.TextValidator, {
                                   style: { fontSize: '13px', lineHeight: '13px', height: 'auto' },
                                   hintText: 'Nama',

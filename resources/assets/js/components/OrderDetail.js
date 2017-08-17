@@ -197,8 +197,8 @@ class OrderDetail extends Component {
                                   adjustForCheckbox={false}
                                 >
                                   <TableRow>
-                                    <TableHeaderColumn tooltip="Detail Pekerjaan">Detail Pekerjaan</TableHeaderColumn>
-                                    <TableHeaderColumn tooltip="Status">Status</TableHeaderColumn>
+                                    <TableHeaderColumn style={{ width: '35%' }} tooltip="Detail Pekerjaan">Detail Pekerjaan</TableHeaderColumn>
+                                    <TableHeaderColumn style={{ width: '65%' }} tooltip="Status">Status</TableHeaderColumn>
                                   </TableRow>
                                 </TableHeader>
                                   {
@@ -245,8 +245,8 @@ class OrderDetail extends Component {
                                   displayRowCheckbox={false}
                                 >
                                   <TableRow>
-                                    <TableRowColumn>Nama</TableRowColumn>
-                                    <TableRowColumn><b><Link to={'/member/' + order.member.id} >{order.member.name}</Link></b></TableRowColumn>
+                                    <TableRowColumn style={{ width: '35%' }}>Nama</TableRowColumn>
+                                    <TableRowColumn style={{ width: '65%' }}><b><Link to={'/member/' + order.member.id} >{order.member.name}</Link></b></TableRowColumn>
                                   </TableRow>
                                   <TableRow>
                                     <TableRowColumn>Alamat</TableRowColumn>

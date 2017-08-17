@@ -156,7 +156,7 @@ class Offer extends Component {
                       <TableRowColumn><b>{obj.cost ? <NumberFormat value={obj.cost} displayType={'text'} thousandSeparator={true} prefix={'Rp. '} /> : '-'}</b></TableRowColumn>
                     </TableRow>
                     <TableRow>
-                      <TableRowColumn style={{ textAlign: 'right', verticalAlign: 'top' }}>Informasi Penawar</TableRowColumn>
+                      <TableRowColumn style={{ textAlign: 'right', verticalAlign: 'top' }}>Informasi Pencari</TableRowColumn>
                       <TableRowColumn>
                         {
                           obj.contact ?

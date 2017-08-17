@@ -235,7 +235,7 @@ class OfferDetail extends Component {
                         </TableRowColumn>
                       </TableRow>
                       <TableRow>
-                        <TableRowColumn style={{ textAlign: 'right', verticalAlign: 'top' }}>Informasi Penawar</TableRowColumn>
+                        <TableRowColumn style={{ textAlign: 'right', verticalAlign: 'top' }}>Informasi Pencari</TableRowColumn>
                         <TableRowColumn>
                           {
                             offer.contact ?
@@ -246,8 +246,8 @@ class OfferDetail extends Component {
                                   displayRowCheckbox={false}
                                 >
                                   <TableRow>
-                                    <TableRowColumn>Nama</TableRowColumn>
-                                    <TableRowColumn><b><Link to={'/member/' + offer.member.id} >{offer.member.name}</Link></b></TableRowColumn>
+                                    <TableRowColumn style={{ width: '35%' }}>Nama</TableRowColumn>
+                                    <TableRowColumn style={{ width: '65%' }}><b><Link to={'/member/' + offer.member.id} >{offer.member.name}</Link></b></TableRowColumn>
                                   </TableRow>
                                   <TableRow>
                                     <TableRowColumn>Alamat</TableRowColumn>

@@ -845,6 +845,22 @@ class DataRowsTableSeeder extends Seeder
                 'order'        => 5,
             ])->save();
         }
+
+        $dataRow = $this->dataRow($walletTransactionDataType, 'trc_img');
+        if (!$dataRow->exists) {
+            $dataRow->fill([
+                'type'         => 'image',
+                'display_name' => 'Transaction Image',
+                'required'     => 1,
+                'browse'       => 1,
+                'read'         => 1,
+                'edit'         => 1,
+                'add'          => 1,
+                'delete'       => 1,
+                'details'      => '',
+                'order'        => 6,
+            ])->save();
+        }
         
         $dataRow = $this->dataRow($walletTransactionDataType, 'created_at');
         if (!$dataRow->exists) {
@@ -858,7 +874,7 @@ class DataRowsTableSeeder extends Seeder
                 'add'          => 0,
                 'delete'       => 1,
                 'details'      => '',
-                'order'        => 6,
+                'order'        => 7,
             ])->save();
         }
 
@@ -874,7 +890,7 @@ class DataRowsTableSeeder extends Seeder
                 'add'          => 0,
                 'delete'       => 0,
                 'details'      => '',
-                'order'        => 7,
+                'order'        => 8,
             ])->save();
         }
 

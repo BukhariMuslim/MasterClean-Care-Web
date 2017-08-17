@@ -477,8 +477,8 @@ class ProfileDetail extends Component {
                                 displayRowCheckbox={false}
                               >
                                 <TableRow>
-                                  <TableRowColumn style={{ textAlign: 'right', verticalAlign: 'top' , color: '#888' }}>Nama</TableRowColumn>
-                                  <TableRowColumn className="bold" >
+                                  <TableRowColumn style={{ textAlign: 'right', verticalAlign: 'top' , color: '#888', width: '40%' }}>Nama</TableRowColumn>
+                                  <TableRowColumn className="bold" style={{ width: '60%' }}>
                                     {
                                       this.state.isEdit ?
                                       <TextValidator
