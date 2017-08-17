@@ -171,6 +171,7 @@ class UserContactTableSeeder extends Seeder
                 'emergency_numb' => '081234432165',
                 'city' => 2,
                 'address' => 'Jl. Halat',
+                'location' => '3.566698, 98.701024',
 		'acc_no' => '1004290781'
             ]
         ]);
