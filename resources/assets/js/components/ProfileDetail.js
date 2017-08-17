@@ -243,7 +243,7 @@ class ProfileDetail extends Component {
               isNeedTextBox ?
                 <div className="col s6">
                   <NumberFormat
-                    hintText={'Gaji ' + obj.work_time}
+                    hintText={'Honor ' + obj.work_time}
                     thousandSeparator={true}
                     prefix={'Rp. '}
                     value={costEnabled ? values[curIdx].cost : ''}
@@ -253,7 +253,7 @@ class ProfileDetail extends Component {
                     name="user_work_time"
                     onChange={(e) => this.onChangeTextHandler(e, curIdx)}
                     validators={ isNeedTextBox && checked ? ['required'] : []}
-                    errorMessages={ isNeedTextBox && checked ? ['Gaji dibutuhkan'] : []}
+                    errorMessages={ isNeedTextBox && checked ? ['Honor dibutuhkan'] : []}
                     customInput={TextValidator}
                     />
                 </div>
@@ -445,10 +445,16 @@ class ProfileDetail extends Component {
                                 </IconButton>
                               }
                             </h5>
+                            Wallet: <b>{ this.props.user.user_wallet ? <NumberFormat value={this.props.user.user_wallet.amt} displayType={'text'} thousandSeparator={true} prefix={'Rp. '} /> : '-'}</b>
                           </div>
-                          <div className={ `col s12${ this.state.isEdit ? ' grey-text' : '' }` }>
-                            <StarComponent rate={this.props.user.rate} isShowRate={true} />
-                          </div>
+                          {
+                            this.props.user.role_id == 3 ?
+                            <div className={ `col s12${ this.state.isEdit ? ' grey-text' : '' }` }>
+                              <StarComponent rate={this.props.user.rate} isShowRate={true} />
+                            </div>
+                            :
+                            null
+                          }
                           <div className={ `col s12${ this.state.isEdit ? ' grey-text' : '' }` }>
                             <small>
                               { this.props.user.description || ''}
@@ -464,7 +470,7 @@ class ProfileDetail extends Component {
                               >
                                 <TableRow>
                                   <TableHeaderColumn colSpan="2" style={{textAlign: 'center'}}>
-                                    Informasi ART
+                                    Informasi Detail
                                   </TableHeaderColumn>
                                 </TableRow>
                               </TableHeader>
@@ -472,8 +478,8 @@ class ProfileDetail extends Component {
                                 displayRowCheckbox={false}
                               >
                                 <TableRow>
-                                  <TableRowColumn style={{ textAlign: 'right', verticalAlign: 'top' , color: '#888' }}>Nama</TableRowColumn>
-                                  <TableRowColumn className="bold" >
+                                  <TableRowColumn style={{ textAlign: 'right', verticalAlign: 'top' , color: '#888', width: '40%' }}>Nama</TableRowColumn>
+                                  <TableRowColumn className="bold" style={{ width: '60%' }}>
                                     {
                                       this.state.isEdit ?
                                       <TextValidator
@@ -753,7 +759,7 @@ class ProfileDetail extends Component {
                                           >
                                             <TableRow>
                                               <TableHeaderColumn tooltip="Waktu Kerja">Waktu Kerja</TableHeaderColumn>
-                                              <TableHeaderColumn tooltip="Upah">Upah</TableHeaderColumn>
+                                              <TableHeaderColumn tooltip="Honor">Honor</TableHeaderColumn>
                                             </TableRow>
                                           </TableHeader>
                                           <TableBody
@@ -831,7 +837,7 @@ class ProfileDetail extends Component {
             </ValidatorForm>
             :
             <Card className="col s12" >
-              <CardHeader title="Profile tidak ditemukan" />
+              <CardHeader title="Profil tidak ditemukan" />
             </Card>
         }
       </div>

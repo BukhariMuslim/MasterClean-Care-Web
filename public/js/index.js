@@ -2366,7 +2366,7 @@ var onLogin = function onLogin(data, onSuccess, onFail) {
 };
 
 var onLogout = function onLogout() {
-  document.cookie = 'laravel_token=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+  document.cookie = 'laravel_token=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
 };
 
 var ApiService = {
@@ -5808,12 +5808,12 @@ var ArtDetail = function (_Component) {
                               null,
                               _react2.default.createElement(
                                 _Table.TableRowColumn,
-                                { style: { textAlign: 'right', verticalAlign: 'top', color: '#888' } },
+                                { style: { textAlign: 'right', verticalAlign: 'top', color: '#888', width: '40%' } },
                                 'Nama'
                               ),
                               _react2.default.createElement(
                                 _Table.TableRowColumn,
-                                { className: 'bold' },
+                                { className: 'bold', style: { width: '60%' } },
                                 this.state.art.name
                               )
                             ),
@@ -5987,8 +5987,8 @@ var ArtDetail = function (_Component) {
                                       ),
                                       _react2.default.createElement(
                                         _Table.TableHeaderColumn,
-                                        { tooltip: 'Upah' },
-                                        'Upah'
+                                        { tooltip: 'Honor' },
+                                        'Honor'
                                       )
                                     )
                                   ),
@@ -6319,7 +6319,7 @@ var ArtPage = function (_Component) {
                 return x.id == val;
               })].work_time + '"'));
             } else if (p[0] == 'maxCost') {
-              tempCriteria.push("Upah maksimum " + ('"' + val + '"'));
+              tempCriteria.push("Honor maksimum " + ('"' + val + '"'));
             }
           }
         });
@@ -6403,7 +6403,7 @@ var ArtPage = function (_Component) {
               'div',
               { className: 'col s6' },
               _react2.default.createElement(_reactNumberFormat2.default, {
-                hintText: 'Gaji ' + obj.work_time,
+                hintText: 'Honor ' + obj.work_time,
                 thousandSeparator: true,
                 prefix: 'Rp. ',
                 value: enabled ? values[curIdx].cost : '',
@@ -6414,7 +6414,7 @@ var ArtPage = function (_Component) {
                   return _this3.onChangeTextHandler(e, curIdx);
                 },
                 validators: [isNeedTextBox ? 'required' : ''],
-                errorMessages: [isNeedTextBox ? 'Gaji dibutuhkan' : ''],
+                errorMessages: [isNeedTextBox ? 'Honor dibutuhkan' : ''],
                 customInput: _reactMaterialUiFormValidator.TextValidator
               })
             ) : null
@@ -6522,7 +6522,7 @@ var ArtPage = function (_Component) {
 
       if (maxCost) {
         queryString.push('maxCost=' + encodeURIComponent(maxCost));
-        tempCriteria.push('Upah maksimum ' + ('"' + maxCost + '"'));
+        tempCriteria.push('Honor maksimum ' + ('"' + maxCost + '"'));
       }
 
       if (queryString.length > 0) {
@@ -6812,8 +6812,8 @@ var ArtPage = function (_Component) {
                     'div',
                     { className: 'col m6' },
                     _react2.default.createElement(_reactNumberFormat2.default, {
-                      hintText: 'Upah maksimum',
-                      floatingLabelText: 'Upah maksimum',
+                      hintText: 'Honor maksimum',
+                      floatingLabelText: 'Honor maksimum',
                       thousandSeparator: true,
                       prefix: 'Rp. ',
                       value: this.state.maxCost,
@@ -8472,7 +8472,7 @@ var MemberDetail = function (_Component) {
               'div',
               { className: 'col s6' },
               _react2.default.createElement(_reactNumberFormat2.default, {
-                hintText: 'Gaji ' + obj.work_time,
+                hintText: 'Honor ' + obj.work_time,
                 inputStyle: disabledInputStyle,
                 thousandSeparator: true,
                 prefix: 'Rp. ',
@@ -8485,7 +8485,7 @@ var MemberDetail = function (_Component) {
                   return _this2.onChangeTextHandler(e, curIdx);
                 },
                 validators: [isNeedTextBox ? 'required' : ''],
-                errorMessages: [isNeedTextBox ? 'Gaji dibutuhkan' : ''],
+                errorMessages: [isNeedTextBox ? 'Honor dibutuhkan' : ''],
                 customInput: _reactMaterialUiFormValidator.TextValidator
               })
             ) : null
@@ -9032,7 +9032,7 @@ var MyOfferPage = function (_Component) {
               return x.id == val;
             })].work_time + '"'));
           } else if (p[0] == 'maxCost') {
-            tempCriteria.push("Upah maksimum " + ('"' + val + '"'));
+            tempCriteria.push("Honor maksimum " + ('"' + val + '"'));
           }
         });
         if (tempCriteria.length > 0) {
@@ -9134,7 +9134,7 @@ var MyOfferPage = function (_Component) {
 
       if (maxCost) {
         queryString.push('maxCost=' + encodeURIComponent(maxCost));
-        tempCriteria.push('Upah maksimum ' + ('"' + maxCost + '"'));
+        tempCriteria.push('Honor maksimum ' + ('"' + maxCost + '"'));
       }
 
       if (queryString.length > 0) {
@@ -9397,8 +9397,8 @@ var MyOfferPage = function (_Component) {
                     'div',
                     { className: 'col m6' },
                     _react2.default.createElement(_reactNumberFormat2.default, {
-                      hintText: 'Upah maksimum',
-                      floatingLabelText: 'Upah maksimum',
+                      hintText: 'Honor maksimum',
+                      floatingLabelText: 'Honor maksimum',
                       thousandSeparator: true,
                       prefix: 'Rp. ',
                       value: this.state.maxCost,
@@ -9893,7 +9893,7 @@ var Offer = function (_Component) {
                       _react2.default.createElement(
                         _Table.TableRowColumn,
                         { style: { textAlign: 'right', verticalAlign: 'top' } },
-                        'Upah yang ditawarkan'
+                        'Honor yang ditawarkan'
                       ),
                       _react2.default.createElement(
                         _Table.TableRowColumn,
@@ -9911,7 +9911,7 @@ var Offer = function (_Component) {
                       _react2.default.createElement(
                         _Table.TableRowColumn,
                         { style: { textAlign: 'right', verticalAlign: 'top' } },
-                        'Informasi Penawar'
+                        'Informasi Pencari'
                       ),
                       _react2.default.createElement(
                         _Table.TableRowColumn,
@@ -10340,7 +10340,7 @@ var OfferDetail = function (_Component) {
                     _react2.default.createElement(
                       _Table.TableRowColumn,
                       { style: { textAlign: 'right', verticalAlign: 'top' } },
-                      'Upah yang ditawarkan'
+                      'Honor yang ditawarkan'
                     ),
                     _react2.default.createElement(
                       _Table.TableRowColumn,
@@ -10391,7 +10391,7 @@ var OfferDetail = function (_Component) {
                     _react2.default.createElement(
                       _Table.TableRowColumn,
                       { style: { textAlign: 'right', verticalAlign: 'top' } },
-                      'Informasi Penawar'
+                      'Informasi Pencari'
                     ),
                     _react2.default.createElement(
                       _Table.TableRowColumn,
@@ -10411,12 +10411,12 @@ var OfferDetail = function (_Component) {
                             null,
                             _react2.default.createElement(
                               _Table.TableRowColumn,
-                              null,
+                              { style: { width: '35%' } },
                               'Nama'
                             ),
                             _react2.default.createElement(
                               _Table.TableRowColumn,
-                              null,
+                              { style: { width: '65%' } },
                               _react2.default.createElement(
                                 'b',
                                 null,
@@ -10546,7 +10546,7 @@ var OfferDetail = function (_Component) {
                         _react2.default.createElement(
                           _Table.TableRowColumn,
                           null,
-                          _react2.default.createElement(
+                          _this2.props.user && _this2.props.user.role_id == 3 ? art.art.name : _react2.default.createElement(
                             _reactRouterDom.Link,
                             { to: '/art/' + art.art.id },
                             art.art.name
@@ -10839,7 +10839,7 @@ var OfferPage = function (_Component) {
               return x.id == val;
             })].work_time + '"'));
           } else if (p[0] == 'maxCost') {
-            tempCriteria.push("Upah maksimum " + ('"' + val + '"'));
+            tempCriteria.push("Honor maksimum " + ('"' + val + '"'));
           }
         });
         if (tempCriteria.length > 0) {
@@ -10942,7 +10942,7 @@ var OfferPage = function (_Component) {
 
       if (maxCost) {
         queryString.push('maxCost=' + encodeURIComponent(maxCost));
-        tempCriteria.push('Upah maksimum ' + ('"' + maxCost + '"'));
+        tempCriteria.push('Honor maksimum ' + ('"' + maxCost + '"'));
       }
 
       if (queryString.length > 0) {
@@ -11203,8 +11203,8 @@ var OfferPage = function (_Component) {
                     'div',
                     { className: 'col m6' },
                     _react2.default.createElement(_reactNumberFormat2.default, {
-                      hintText: 'Upah maksimum',
-                      floatingLabelText: 'Upah maksimum',
+                      hintText: 'Honor maksimum',
+                      floatingLabelText: 'Honor maksimum',
                       thousandSeparator: true,
                       prefix: 'Rp. ',
                       value: this.state.maxCost,
@@ -11568,7 +11568,7 @@ var Order = function (_Component) {
                     _react2.default.createElement(
                       _Table.TableRowColumn,
                       { style: { textAlign: 'right', verticalAlign: 'top' } },
-                      'Upah yang ditawarkan'
+                      'Honor yang ditawarkan'
                     ),
                     _react2.default.createElement(
                       _Table.TableRowColumn,
@@ -11995,7 +11995,7 @@ var OrderDetail = function (_Component) {
                     _react2.default.createElement(
                       _Table.TableRowColumn,
                       { style: { textAlign: 'right', verticalAlign: 'top' } },
-                      'Upah yang ditawarkan'
+                      'Honor yang ditawarkan'
                     ),
                     _react2.default.createElement(
                       _Table.TableRowColumn,
@@ -12039,12 +12039,12 @@ var OrderDetail = function (_Component) {
                               null,
                               _react2.default.createElement(
                                 _Table.TableHeaderColumn,
-                                { tooltip: 'Detail Pekerjaan' },
+                                { style: { width: '35%' }, tooltip: 'Detail Pekerjaan' },
                                 'Detail Pekerjaan'
                               ),
                               _react2.default.createElement(
                                 _Table.TableHeaderColumn,
-                                { tooltip: 'Status' },
+                                { style: { width: '65%' }, tooltip: 'Status' },
                                 'Status'
                               )
                             )
@@ -12125,12 +12125,12 @@ var OrderDetail = function (_Component) {
                             null,
                             _react2.default.createElement(
                               _Table.TableRowColumn,
-                              null,
+                              { style: { width: '35%' } },
                               'Nama'
                             ),
                             _react2.default.createElement(
                               _Table.TableRowColumn,
-                              null,
+                              { style: { width: '65%' } },
                               _react2.default.createElement(
                                 'b',
                                 null,
@@ -12505,7 +12505,7 @@ var OrderHistoryPage = function (_Component) {
               return x.id == val;
             })].work_time + '"'));
           } else if (p[0] == 'maxCost') {
-            tempCriteria.push("Upah maksimum " + ('"' + val + '"'));
+            tempCriteria.push("Honor maksimum " + ('"' + val + '"'));
           }
         });
         if (tempCriteria.length > 0) {
@@ -12607,7 +12607,7 @@ var OrderHistoryPage = function (_Component) {
 
       if (maxCost) {
         queryString.push('maxCost=' + encodeURIComponent(maxCost));
-        tempCriteria.push('Upah maksimum ' + ('"' + maxCost + '"'));
+        tempCriteria.push('Honor maksimum ' + ('"' + maxCost + '"'));
       }
 
       if (queryString.length > 0) {
@@ -12870,8 +12870,8 @@ var OrderHistoryPage = function (_Component) {
                     'div',
                     { className: 'col m6' },
                     _react2.default.createElement(_reactNumberFormat2.default, {
-                      hintText: 'Upah maksimum',
-                      floatingLabelText: 'Upah maksimum',
+                      hintText: 'Honor maksimum',
+                      floatingLabelText: 'Honor maksimum',
                       thousandSeparator: true,
                       prefix: 'Rp. ',
                       value: this.state.maxCost,
@@ -13177,7 +13177,7 @@ var OrderPage = function (_Component) {
               return x.id == val;
             })].work_time + '"'));
           } else if (p[0] == 'maxCost') {
-            tempCriteria.push("Upah maksimum " + ('"' + val + '"'));
+            tempCriteria.push("Honor maksimum " + ('"' + val + '"'));
           }
         });
         if (tempCriteria.length > 0) {
@@ -13279,7 +13279,7 @@ var OrderPage = function (_Component) {
 
       if (maxCost) {
         queryString.push('maxCost=' + encodeURIComponent(maxCost));
-        tempCriteria.push('Upah maksimum ' + ('"' + maxCost + '"'));
+        tempCriteria.push('Honor maksimum ' + ('"' + maxCost + '"'));
       }
 
       if (queryString.length > 0) {
@@ -13542,8 +13542,8 @@ var OrderPage = function (_Component) {
                     'div',
                     { className: 'col m6' },
                     _react2.default.createElement(_reactNumberFormat2.default, {
-                      hintText: 'Upah maksimum',
-                      floatingLabelText: 'Upah maksimum',
+                      hintText: 'Honor maksimum',
+                      floatingLabelText: 'Honor maksimum',
                       thousandSeparator: true,
                       prefix: 'Rp. ',
                       value: this.state.maxCost,
@@ -13967,7 +13967,7 @@ var ProfileDetail = function (_Component) {
               'div',
               { className: 'col s6' },
               _react2.default.createElement(_reactNumberFormat2.default, {
-                hintText: 'Gaji ' + obj.work_time,
+                hintText: 'Honor ' + obj.work_time,
                 thousandSeparator: true,
                 prefix: 'Rp. ',
                 value: costEnabled ? values[curIdx].cost : '',
@@ -13979,7 +13979,7 @@ var ProfileDetail = function (_Component) {
                   return _this2.onChangeTextHandler(e, curIdx);
                 },
                 validators: isNeedTextBox && checked ? ['required'] : [],
-                errorMessages: isNeedTextBox && checked ? ['Gaji dibutuhkan'] : [],
+                errorMessages: isNeedTextBox && checked ? ['Honor dibutuhkan'] : [],
                 customInput: _reactMaterialUiFormValidator.TextValidator
               })
             ) : null
@@ -14200,13 +14200,19 @@ var ProfileDetail = function (_Component) {
                             { tooltip: 'Ubah', iconClassName: 'material-icons', className: 'right', onClick: this.onEdit },
                             'create'
                           )
+                        ),
+                        'Wallet: ',
+                        _react2.default.createElement(
+                          'b',
+                          null,
+                          this.props.user.user_wallet ? _react2.default.createElement(_reactNumberFormat2.default, { value: this.props.user.user_wallet.amt, displayType: 'text', thousandSeparator: true, prefix: 'Rp. ' }) : '-'
                         )
                       ),
-                      _react2.default.createElement(
+                      this.props.user.role_id == 3 ? _react2.default.createElement(
                         'div',
                         { className: 'col s12' + (this.state.isEdit ? ' grey-text' : '') },
                         _react2.default.createElement(_StarComponent2.default, { rate: this.props.user.rate, isShowRate: true })
-                      ),
+                      ) : null,
                       _react2.default.createElement(
                         'div',
                         { className: 'col s12' + (this.state.isEdit ? ' grey-text' : '') },
@@ -14236,7 +14242,7 @@ var ProfileDetail = function (_Component) {
                               _react2.default.createElement(
                                 _Table.TableHeaderColumn,
                                 { colSpan: '2', style: { textAlign: 'center' } },
-                                'Informasi ART'
+                                'Informasi Detail'
                               )
                             )
                           ),
@@ -14250,12 +14256,12 @@ var ProfileDetail = function (_Component) {
                               null,
                               _react2.default.createElement(
                                 _Table.TableRowColumn,
-                                { style: { textAlign: 'right', verticalAlign: 'top', color: '#888' } },
+                                { style: { textAlign: 'right', verticalAlign: 'top', color: '#888', width: '40%' } },
                                 'Nama'
                               ),
                               _react2.default.createElement(
                                 _Table.TableRowColumn,
-                                { className: 'bold' },
+                                { className: 'bold', style: { width: '60%' } },
                                 this.state.isEdit ? _react2.default.createElement(_reactMaterialUiFormValidator.TextValidator, {
                                   style: { fontSize: '13px', lineHeight: '13px', height: 'auto' },
                                   hintText: 'Nama',
@@ -14564,8 +14570,8 @@ var ProfileDetail = function (_Component) {
                                       ),
                                       _react2.default.createElement(
                                         _Table.TableHeaderColumn,
-                                        { tooltip: 'Upah' },
-                                        'Upah'
+                                        { tooltip: 'Honor' },
+                                        'Honor'
                                       )
                                     )
                                   ),
@@ -14651,7 +14657,7 @@ var ProfileDetail = function (_Component) {
         ) : _react2.default.createElement(
           _Card.Card,
           { className: 'col s12' },
-          _react2.default.createElement(_Card.CardHeader, { title: 'Profile tidak ditemukan' })
+          _react2.default.createElement(_Card.CardHeader, { title: 'Profil tidak ditemukan' })
         )
       );
     }
@@ -14875,6 +14881,7 @@ var RegisterArt = function (_Component) {
       born_date: null,
       phone: '',
       emergency_numb: '',
+      acc_no: '',
       city: '',
       address: '',
       location: '',
@@ -15017,7 +15024,7 @@ var RegisterArt = function (_Component) {
             'div',
             { className: 'col s6' },
             _react2.default.createElement(_reactNumberFormat2.default, {
-              hintText: 'Gaji ' + obj.work_time,
+              hintText: 'Honor ' + obj.work_time,
               thousandSeparator: true,
               prefix: 'Rp. ',
               value: enabled ? values[curIdx].cost : '',
@@ -15028,7 +15035,7 @@ var RegisterArt = function (_Component) {
                 return _this3.onChangeTextHandler(e, curIdx);
               },
               validators: [isNeedTextBox ? 'required' : ''],
-              errorMessages: [isNeedTextBox ? 'Gaji dibutuhkan' : ''],
+              errorMessages: [isNeedTextBox ? 'Honor dibutuhkan' : ''],
               customInput: _reactMaterialUiFormValidator.TextValidator
             })
           ) : null
@@ -15078,6 +15085,7 @@ var RegisterArt = function (_Component) {
           contact: {
             phone: this.state.phone,
             emergency_numb: this.state.emergency_numb,
+            acc_no: this.state.acc_no,
             city: this.state.city,
             address: this.state.address,
             location: this.state.location
@@ -15404,6 +15412,21 @@ var RegisterArt = function (_Component) {
                     autoComplete: false,
                     validators: ['required', 'matchRegexp:^[0-9]*$'],
                     errorMessages: ['No. Telepon Darurat dibutuhkan', 'Input harus angka']
+                  })
+                ),
+                _react2.default.createElement(
+                  'div',
+                  { className: 'col s12' },
+                  _react2.default.createElement(_reactMaterialUiFormValidator.TextValidator, {
+                    hintText: 'No. Rekening',
+                    floatingLabelText: 'No. Rekening',
+                    value: this.state.acc_no,
+                    fullWidth: true,
+                    name: 'acc_no',
+                    onChange: this.onChangeHandler,
+                    autoComplete: false,
+                    validators: ['required', 'matchRegexp:^[0-9]*$'],
+                    errorMessages: ['No. Telepon dibutuhkan', 'Input harus angka']
                   })
                 ),
                 _react2.default.createElement(
@@ -15753,6 +15776,7 @@ var RegisterMember = function (_Component) {
       born_date: null,
       emergency_numb: '',
       phone: '',
+      acc_no: '',
       city: '',
       address: '',
       location: '',
@@ -15827,6 +15851,7 @@ var RegisterMember = function (_Component) {
         contact: {
           emergency_numb: this.state.emergency_numb,
           phone: this.state.phone,
+          acc_no: this.state.acc_no,
           city: this.state.city,
           address: this.state.address,
           location: this.state.location
@@ -17259,7 +17284,7 @@ exports.default = HomeContainer;
 
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
 
 var _react = __webpack_require__(0);
@@ -17283,39 +17308,39 @@ var _ApiService2 = _interopRequireDefault(_ApiService);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var mapStateToProps = function mapStateToProps(state) {
-    return {
-        user: state.UserLoginReducer
-    };
+  return {
+    user: state.UserLoginReducer
+  };
 };
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
-    return {
-        onLogout: function onLogout(history, parent) {
-            dispatch((0, _DefaultAction.updateLoadingSpin)({
-                show: true
-            }));
+  return {
+    onLogout: function onLogout(history, parent) {
+      dispatch((0, _DefaultAction.updateLoadingSpin)({
+        show: true
+      }));
 
-            _ApiService2.default.onLogout();
-            dispatch((0, _DefaultAction.logoutUser)());
-            dispatch((0, _DefaultAction.resetLoadingSpin)());
-            history.push('/');
-            parent.setState({ open: false });
-            dispatch((0, _DefaultAction.updateSnack)({
-                open: true,
-                message: 'Logout Berhasil'
-            }));
-        }
-    };
+      _ApiService2.default.onLogout();
+      dispatch((0, _DefaultAction.logoutUser)());
+      dispatch((0, _DefaultAction.resetLoadingSpin)());
+      history.push('/');
+      parent.setState({ open: false });
+      dispatch((0, _DefaultAction.updateSnack)({
+        open: true,
+        message: 'Logout Berhasil'
+      }));
+    }
+  };
 };
 
 var LogoutContainer = (0, _reactRouterDom.withRouter)((0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(function (_ref) {
-    var history = _ref.history,
-        onLogout = _ref.onLogout,
-        user = _ref.user,
-        parent = _ref.parent;
-    return _react2.default.createElement(_Logout2.default, { onClick: function onClick() {
-            return onLogout(history, parent);
-        } });
+  var history = _ref.history,
+      onLogout = _ref.onLogout,
+      user = _ref.user,
+      parent = _ref.parent;
+  return _react2.default.createElement(_Logout2.default, { onClick: function onClick() {
+      return onLogout(history, parent);
+    } });
 }));
 
 exports.default = LogoutContainer;
@@ -21398,7 +21423,7 @@ var Breadcrumbs = (0, _autoBreadcrumb2.default)({
     '/my_offer': 'Penawaran Saya',
     '/order': 'Pemesanan Saya',
     '/order_history': 'Riwayat Pemesanan',
-    '/profile': 'Profile',
+    '/profile': 'Profil',
     '/term': 'Syarat & Ketentuan',
     '/term_mobile': 'Syarat & Ketentuan'
   },

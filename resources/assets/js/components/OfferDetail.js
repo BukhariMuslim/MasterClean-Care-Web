@@ -214,7 +214,7 @@ class OfferDetail extends Component {
                         </TableRowColumn>
                       </TableRow>
                       <TableRow>
-                        <TableRowColumn style={{ textAlign: 'right', verticalAlign: 'top' }}>Upah yang ditawarkan</TableRowColumn>
+                        <TableRowColumn style={{ textAlign: 'right', verticalAlign: 'top' }}>Honor yang ditawarkan</TableRowColumn>
                         <TableRowColumn><b>{offer.cost ? <NumberFormat value={offer.cost} displayType={'text'} thousandSeparator={true} prefix={'Rp. '} /> : '-'}</b></TableRowColumn>
                       </TableRow>
                       <TableRow>
@@ -235,7 +235,7 @@ class OfferDetail extends Component {
                         </TableRowColumn>
                       </TableRow>
                       <TableRow>
-                        <TableRowColumn style={{ textAlign: 'right', verticalAlign: 'top' }}>Informasi Penawar</TableRowColumn>
+                        <TableRowColumn style={{ textAlign: 'right', verticalAlign: 'top' }}>Informasi Pencari</TableRowColumn>
                         <TableRowColumn>
                           {
                             offer.contact ?
@@ -246,8 +246,8 @@ class OfferDetail extends Component {
                                   displayRowCheckbox={false}
                                 >
                                   <TableRow>
-                                    <TableRowColumn>Nama</TableRowColumn>
-                                    <TableRowColumn><b><Link to={'/member/' + offer.member.id} >{offer.member.name}</Link></b></TableRowColumn>
+                                    <TableRowColumn style={{ width: '35%' }}>Nama</TableRowColumn>
+                                    <TableRowColumn style={{ width: '65%' }}><b><Link to={'/member/' + offer.member.id} >{offer.member.name}</Link></b></TableRowColumn>
                                   </TableRow>
                                   <TableRow>
                                     <TableRowColumn>Alamat</TableRowColumn>
@@ -298,7 +298,14 @@ class OfferDetail extends Component {
                             offer.offer_art.map((art, id) => {
                               return (
                                 <TableRow key={id}>
-                                  <TableRowColumn><Link to={'/art/' + art.art.id} >{art.art.name}</Link></TableRowColumn>
+                                  <TableRowColumn>
+                                    {
+                                      this.props.user && this.props.user.role_id == 3 ?
+                                      art.art.name
+                                      :
+                                      <Link to={'/art/' + art.art.id} >{art.art.name}</Link>
+                                    }
+                                  </TableRowColumn>
                                   <TableRowColumn>
                                     {
                                       art.status != 0 ?

@@ -36,6 +36,7 @@ class RegisterMember extends Component {
       born_date: null,
       emergency_numb: '',
       phone: '',
+      acc_no: '',
       city: '',
       address: '',
       location: '',
@@ -102,6 +103,7 @@ class RegisterMember extends Component {
         contact: {
           emergency_numb: this.state.emergency_numb,
           phone: this.state.phone,
+          acc_no: this.state.acc_no,
           city: this.state.city,
           address: this.state.address,
           location: this.state.location,

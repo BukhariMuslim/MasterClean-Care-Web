@@ -369,8 +369,8 @@ class ArtDetail extends Component {
                                 displayRowCheckbox={false}
                               >
                                 <TableRow>
-                                  <TableRowColumn style={{ textAlign: 'right', verticalAlign: 'top' , color: '#888' }}>Nama</TableRowColumn>
-                                  <TableRowColumn className="bold" >{this.state.art.name}</TableRowColumn>
+                                  <TableRowColumn style={{ textAlign: 'right', verticalAlign: 'top' , color: '#888', width: '40%' }}>Nama</TableRowColumn>
+                                  <TableRowColumn className="bold" style={{ width: '60%' }}>{this.state.art.name}</TableRowColumn>
                                 </TableRow>
                                 <TableRow>
                                   <TableRowColumn style={{ textAlign: 'right', verticalAlign: 'top' , color: '#888' }}>Gender</TableRowColumn>
@@ -469,7 +469,7 @@ class ArtDetail extends Component {
                                         >
                                           <TableRow>
                                             <TableHeaderColumn tooltip="Waktu Kerja">Waktu Kerja</TableHeaderColumn>
-                                            <TableHeaderColumn tooltip="Upah">Upah</TableHeaderColumn>
+                                            <TableHeaderColumn tooltip="Honor">Honor</TableHeaderColumn>
                                           </TableRow>
                                         </TableHeader>
                                         <TableBody

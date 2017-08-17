@@ -5,6 +5,7 @@ namespace App\Models;
 use Laravel\Passport\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use TCG\Voyager\Models\Role;
 
 class User extends Authenticatable
 {
@@ -37,7 +38,10 @@ class User extends Authenticatable
      *
      * @var array
      */
-    protected $appends = ['rate'];
+    protected $appends = [
+        'rate',
+        'user_wallet',
+    ];
 
     /**
      * The attributes that should be hidden for arrays.
@@ -59,9 +63,16 @@ class User extends Authenticatable
     /**
      * Get the user_wallet record associated with the user.
      */
-    public function user_wallet()
+    public function getUserWalletAttribute()
     {
-        return $this->hasOne(UserWallet::class);
+        $positive = $this->wallet_transaction()->where('trc_type', 0)->where('status', 1)->sum('amount');
+        $negative = $this->wallet_transaction()->where('trc_type', 1)->where('status', 1)->sum('amount');
+
+
+        return [
+            'user_id' => $this->id,
+            'amt' => $positive - $negative,
+        ];
     }
 
     /**
@@ -144,13 +155,13 @@ class User extends Authenticatable
         return $this->hasMany(WalletTransaction::class);
     }
 
-    /**
-     * Get the wallet record associated with the user.
-     */
-    public function wallet()
-    {
-        return $this->hasManyThrough(Wallet::class, WalletTransaction::class);
-    }
+    // /**
+    //  * Get the wallet record associated with the user.
+    //  */
+    // public function wallet()
+    // {
+    //     return $this->hasManyThrough(Wallet::class, WalletTransaction::class);
+    // }
 
     /**
      * Get the article record associated with the user.
@@ -230,5 +241,13 @@ class User extends Authenticatable
     public function getRateAttribute()
     {
         return $this->order_rate()->avg('rate');
+    }
+
+    /**
+     * Get the order rate associated with the user.
+     */
+    public function role()
+    {
+        return $this->belongsTo(Role::class);
     }
 }

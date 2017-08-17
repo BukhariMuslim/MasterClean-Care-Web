@@ -15,6 +15,7 @@ class UserContact extends Model
         'user_id',
         'phone',
         'emergency_numb',
+        'acc_no',
         'city',
         'address',
         'location',

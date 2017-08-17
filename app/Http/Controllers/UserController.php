@@ -39,7 +39,6 @@ class UserController extends Controller
             'user_document',
             'user_language',
             'user_job',
-            'user_wallet',
             'user_work_time',
             'contact',
         ])->get();
@@ -60,7 +59,6 @@ class UserController extends Controller
             'user_document',
             'user_language',
             'user_job',
-            'user_wallet',
             'user_work_time',
             'contact'
         ]);
@@ -93,7 +91,6 @@ class UserController extends Controller
                 'user_document',
                 'user_language.language',
                 'user_job.job',
-                'user_wallet',
                 'user_work_time.workTime',
                 'contact.city',
             ]);
@@ -154,17 +151,8 @@ class UserController extends Controller
             // Save Contact
             $user->contact()->create($data['contact']);
 
-            if ($user->role_id == 2) {
-                // Initial Wallet
-                $user_wallet = new UserWallet;
-                $user_wallet->amt = 0; 
-                $user->user_wallet()->save($user_wallet);
-            }
-            else if ($user->role_id == 3)
+            if ($user->role_id == 3)
             {
-                // Save Wallet
-                $user->user_wallet()->create($data['user_wallet']);
-
                 // Save Language
                 $user->user_language()->createMany($data['user_language']);
 
@@ -190,7 +178,6 @@ class UserController extends Controller
                 'user_document',
                 'user_language',
                 'user_job',
-                'user_wallet',
                 'user_work_time',
                 'contact'
             ]), 'status' => 201]);
@@ -337,12 +324,6 @@ class UserController extends Controller
                 $user->contact()->create($data['contact']);
             }
             
-            // Update Wallet
-            if (array_key_exists('user_wallet', $data)) {
-                $user->user_wallet()->delete();
-                $user->user_wallet()->create($data['user_wallet']);
-            }
-
             // Update Language
             if (array_key_exists('user_language', $data)) {
                 $user->user_language()->delete();
@@ -381,7 +362,6 @@ class UserController extends Controller
                     'user_document',
                     'user_language.language',
                     'user_job.job',
-                    'user_wallet',
                     'user_work_time.workTime',
                     'contact.city',
                 ]), 'status' => 200]);
@@ -392,7 +372,6 @@ class UserController extends Controller
                     'user_document',
                     'user_language',
                     'user_job',
-                    'user_wallet',
                     'user_work_time',
                     'contact',
                 ]), 'status' => 200]);
@@ -463,68 +442,6 @@ class UserController extends Controller
             $inputs = $request->all();
             
             foreach($inputs as $key => $input) {
-                if ($key == 'user_job') {
-                    $user = $user->has('user_job', $input);
-                }
-                else if ($key == 'user_language') {
-                    $user = $user->has('user_language', $input);
-                }
-                else if ($key == 'user_work_time') {
-                    $user = $user->has('user_work_time', $input);
-                }
-                else if ($key == 'gender'
-                    || $key == 'religion'
-                    || $key == 'born_date'
-                ) {
-                    $user = $user->where($key, $input);
-                }
-                else {
-                    $user = $user->where($key, Operators::LIKE, '%'.$input.'%');
-                }
-            }
-            
-            return $user->get()->load([
-                'user_additional_info',
-                'user_document',
-                'user_language',
-                'user_job',
-                'user_wallet',
-                'user_work_time',
-                'contact'
-            ]);
-        }
-        catch (Exception $e) {
-            return response()->json([ 'message' => $e->getMessage(), 
-                                      'status' => 400 ]);
-        }
-    }
-
-    /**
-     * Display a listing of the ART resource.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\Response
-     */
-    public function searchArt(Request $request, User $user)
-    {
-        try {
-            $inputs = $request->all();
-            
-            $user = User::with([
-                'user_additional_info',
-                'user_document',
-                'user_language',
-                'user_job',
-                'user_wallet',
-                'user_work_time',
-                'contact',
-            ])
-            ->where('role_id', 3);
-
-            $dateNow = Carbon::now();
-
-            foreach($inputs as $key => $input) {
                 if ($key == 'user_job' || $key == 'job') {
                     $user = $user->has('user_job', $input);
                 }
@@ -553,7 +470,93 @@ class UserController extends Controller
                 }
                 else if ($key == 'city') {
                     $user = $user->whereHas('contact', function($query) use ($input) {
-                        $query->where('name', $input);
+                        $query->where('city', $input);
+                    });
+                }
+                else if ($key == 'gender'
+                    || $key == 'religion'
+                    || $key == 'born_date'
+                ) {
+                    $user = $user->where($key, $input);
+                }
+                else if ($key == 'name'){
+                    $user = $user->where($key, Operators::LIKE, '%'.$input.'%');
+                }
+            }
+            
+            return $user->get()->load([
+                'user_additional_info',
+                'user_document',
+                'user_language',
+                'user_job',
+                'user_work_time',
+                'contact'
+            ]);
+        }
+        catch (Exception $e) {
+            return response()->json([ 'message' => $e->getMessage(), 
+                                      'status' => 400 ]);
+        }
+    }
+
+    /**
+     * Display a listing of the ART resource.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\User  $user
+     * @return \Illuminate\Http\Response
+     */
+    public function searchArt(Request $request, User $user)
+    {
+        try {
+            $inputs = $request->all();
+            
+            $user = User::with([
+                'user_additional_info',
+                'user_document',
+                'user_language',
+                'user_job',
+                'user_work_time',
+                'contact',
+            ])
+            ->where('role_id', 3);
+
+            $dateNow = Carbon::now();
+
+            foreach($inputs as $key => $input) {
+                if ($key == 'user_job' || $key == 'job') {
+                    $user = $user->whereHas('user_job', function($query) use ($input) {
+                        $query->where('job_id', $input);
+                    });
+                }
+                else if ($key == 'user_language') {
+                    $user = $user->has('user_language', $input);
+                }
+                else if ($key == 'language') {
+                    $temp = explode(',', $input);
+                    $user = $user->whereHas('user_language', function($query) use ($temp) {
+                        $query->whereIn('language_id', $temp);
+                    });
+                }
+                else if ($key == 'user_work_time' || $key == 'work_time') {
+                    $user = $user->whereHas('user_work_time', function($query) use ($input) {
+                        $query->where('work_time_id', $input);
+                    });
+                }
+                else if ($key == 'minAge') {
+                    $user = $user->where('born_date', Operators::LESS_THAN_EQUAL, $dateNow->copy()->addYear($input * -1));
+                }
+                else if ($key == 'maxAge') {
+                    $user = $user->where('born_date', Operators::GREATER_THAN_EQUAL, $dateNow->copy()->addYear($input * -1)->addYear(-1));
+                }
+                else if ($key == 'maxCost') {
+                    $user = $user->whereHas('user_work_time', function($query) use ($input) {
+                        $query->where('cost', Operators::LESS_THAN_EQUAL, $input);
+                    });
+                }
+                else if ($key == 'city') {
+                    $user = $user->whereHas('contact', function($query) use ($input) {
+                        $query->where('city', $input);
                     });
                 }
                 else if ($key == 'gender'
@@ -587,7 +590,6 @@ class UserController extends Controller
                 'user_document',
                 'user_language',
                 'user_job',
-                'user_wallet',
                 'user_work_time',
                 'contact',
             ])
@@ -610,7 +612,6 @@ class UserController extends Controller
                 'user_document',
                 'user_language.language',
                 'user_job.job',
-                'user_wallet',
                 'user_work_time.workTime',
                 'contact.city',
             ])
@@ -630,7 +631,6 @@ class UserController extends Controller
     public function getMemberById($member)
     {
         $users = User::with([
-                'user_wallet',
                 'contact.city',
             ])
             ->where('id', $member)

@@ -13,23 +13,29 @@ class EmergencyCallsSeeder extends Seeder
     public function run()
     {
         DB::table('emergency_calls')->insert([
-			[
-				'user_id' => 4,   
-		        'init_time' => Carbon::now(),
-		        'status' => 0,
-		    ],
+		[
+			'user_id' => 4,
+			'init_time' => Carbon::now(),
+			'status' => 0,
+	    	],
 
-		   	[
-				'user_id' => 2,   
-		        'init_time' => Carbon::now(),
-		        'status' => 0,
-		   	],
+	   	[
+			'user_id' => 2,
+			'init_time' => Carbon::now(),
+			'status' => 0,
+	   	],
 
-		   	[
-				'user_id' => 3,   
-		        'init_time' => Carbon::now(),
-		        'status' => 0,
-		   	],
+	   	[
+			'user_id' => 3,
+			'init_time' => Carbon::now(),
+			'status' => 0,
+	   	],
+
+	   	[
+			'user_id' => 17,
+			'init_time' => Carbon::now(),
+			'status' => 1,
+	   	],
 
     	]);
     }

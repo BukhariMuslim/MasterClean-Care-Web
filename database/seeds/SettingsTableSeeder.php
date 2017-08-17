@@ -14,7 +14,7 @@ class SettingsTableSeeder extends Seeder
         if (!$setting->exists) {
             $setting->fill([
                 'display_name' => 'Site Title',
-                'value'        => 'Site Title',
+                'value'        => '',
                 'details'      => '',
                 'type'         => 'text',
                 'order'        => 1,
@@ -25,7 +25,7 @@ class SettingsTableSeeder extends Seeder
         if (!$setting->exists) {
             $setting->fill([
                 'display_name' => 'Site Description',
-                'value'        => 'Site Description',
+                'value'        => '',
                 'details'      => '',
                 'type'         => 'text',
                 'order'        => 2,
@@ -36,7 +36,7 @@ class SettingsTableSeeder extends Seeder
         if (!$setting->exists) {
             $setting->fill([
                 'display_name' => 'Site Logo',
-                'value'        => '',
+                'value'        => 'settings/logo.png',
                 'details'      => '',
                 'type'         => 'image',
                 'order'        => 3,
@@ -47,7 +47,7 @@ class SettingsTableSeeder extends Seeder
         if (!$setting->exists) {
             $setting->fill([
                 'display_name' => 'Admin Background Image',
-                'value'        => '',
+                'value'        => 'settings/bg-img.jpg',
                 'details'      => '',
                 'type'         => 'image',
                 'order'        => 9,
@@ -58,7 +58,7 @@ class SettingsTableSeeder extends Seeder
         if (!$setting->exists) {
             $setting->fill([
                 'display_name' => 'Admin Title',
-                'value'        => 'MCC',
+                'value'        => 'MCC-Admin',
                 'details'      => '',
                 'type'         => 'text',
                 'order'        => 4,
@@ -80,7 +80,7 @@ class SettingsTableSeeder extends Seeder
         if (!$setting->exists) {
             $setting->fill([
                 'display_name' => 'Admin Description',
-                'value'        => 'Master Clean & Care',
+                'value'        => 'Temukan solusi kebersihan dan perawatan rumah tangga terbaik.',
                 'details'      => '',
                 'type'         => 'text',
                 'order'        => 6,
@@ -91,7 +91,7 @@ class SettingsTableSeeder extends Seeder
         if (!$setting->exists) {
             $setting->fill([
                 'display_name' => 'Admin Loader',
-                'value'        => '',
+                'value'        => 'settings/logo.png',
                 'details'      => '',
                 'type'         => 'image',
                 'order'        => 7,
@@ -102,7 +102,7 @@ class SettingsTableSeeder extends Seeder
         if (!$setting->exists) {
             $setting->fill([
                 'display_name' => 'Admin Icon Image',
-                'value'        => '',
+                'value'        => 'settings/logo.png',
                 'details'      => '',
                 'type'         => 'image',
                 'order'        => 8,

@@ -218,7 +218,7 @@ class MemberDetail extends Component {
               isNeedTextBox ?
                 <div className="col s6">
                   <NumberFormat
-                    hintText={'Gaji ' + obj.work_time}
+                    hintText={'Honor ' + obj.work_time}
                     inputStyle={disabledInputStyle}
                     thousandSeparator={true}
                     prefix={'Rp. '}
@@ -229,7 +229,7 @@ class MemberDetail extends Component {
                     name="user_work_time"
                     onChange={(e) => this.onChangeTextHandler(e, curIdx)}
                     validators={[isNeedTextBox ? ('required') : '']}
-                    errorMessages={[isNeedTextBox ? ('Gaji dibutuhkan') : '']}
+                    errorMessages={[isNeedTextBox ? ('Honor dibutuhkan') : '']}
                     customInput={TextValidator}
                     />
                 </div>

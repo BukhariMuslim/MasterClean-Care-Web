@@ -145,7 +145,7 @@ class ArtPage extends Component {
             tempCriteria.push('Kelompok Waktu Kerja ' + `"${this.state.workTimeItem[this.state.workTimeItem.findIndex(x => x.id == val)].work_time}"`)
           }
           else if (p[0] == 'maxCost') {
-            tempCriteria.push("Upah maksimum " + `"${val}"`)
+            tempCriteria.push("Honor maksimum " + `"${val}"`)
           }
         }
       })
@@ -217,7 +217,7 @@ class ArtPage extends Component {
               isNeedTextBox ?
                 <div className="col s6">
                   <NumberFormat
-                    hintText={'Gaji ' + obj.work_time}
+                    hintText={'Honor ' + obj.work_time}
                     thousandSeparator={true}
                     prefix={'Rp. '}
                     value={enabled ? values[curIdx].cost : ''}
@@ -226,7 +226,7 @@ class ArtPage extends Component {
                     name="userWorkTime"
                     onChange={(e) => this.onChangeTextHandler(e, curIdx)}
                     validators={[isNeedTextBox ? ('required') : '']}
-                    errorMessages={[isNeedTextBox ? ('Gaji dibutuhkan') : '']}
+                    errorMessages={[isNeedTextBox ? ('Honor dibutuhkan') : '']}
                     customInput={TextValidator}
                     />
                 </div>
@@ -322,7 +322,7 @@ class ArtPage extends Component {
 
     if (maxCost) {
       queryString.push('maxCost=' + encodeURIComponent(maxCost))
-      tempCriteria.push('Upah maksimum ' + `"${maxCost}"`)
+      tempCriteria.push('Honor maksimum ' + `"${maxCost}"`)
     }
 
     if (queryString.length > 0) {
@@ -558,8 +558,8 @@ class ArtPage extends Component {
                       </div>
                       <div className="col m6">
                         <NumberFormat
-                          hintText="Upah maksimum"
-                          floatingLabelText="Upah maksimum"
+                          hintText="Honor maksimum"
+                          floatingLabelText="Honor maksimum"
                           thousandSeparator={true}
                           prefix={'Rp. '}
                           value={this.state.maxCost}

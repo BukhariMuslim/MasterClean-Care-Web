@@ -122,6 +122,20 @@ class DataTypesTableSeeder extends Seeder
             ])->save();
         }
 
+        $dataType = $this->dataType('slug', 'task-lists');
+        if (!$dataType->exists) {
+            $dataType->fill([
+                'name'                  => 'task_lists',
+                'display_name_singular' => 'Task List',
+                'display_name_plural'   => 'Task Lists',
+                'icon'                  => 'voyager-list',
+                'model_name'            => 'App\\Models\\TaskList',
+                'controller'            => '',
+                'generate_permissions'  => 1,
+                'description'           => '',
+            ])->save();
+        }
+
         $dataType = $this->dataType('slug', 'languages');
         if (!$dataType->exists) {
             $dataType->fill([
@@ -158,6 +172,48 @@ class DataTypesTableSeeder extends Seeder
                 'display_name_plural'   => 'Review Orders',
                 'icon'                  => 'voyager-location',
                 'model_name'            => 'App\\Models\\ReviewOrder',
+                'controller'            => '',
+                'generate_permissions'  => 1,
+                'description'           => '',
+            ])->save();
+        }
+
+        $dataType = $this->dataType('slug', 'reports');
+        if (!$dataType->exists) {
+            $dataType->fill([
+                'name'                  => 'reports',
+                'display_name_singular' => 'Report',
+                'display_name_plural'   => 'Reports',
+                'icon'                  => 'voyager-exclamation',
+                'model_name'            => 'App\\Models\\Report',
+                'controller'            => '',
+                'generate_permissions'  => 1,
+                'description'           => '',
+            ])->save();
+        }
+
+        $dataType = $this->dataType('slug', 'emergency-calls');
+        if (!$dataType->exists) {
+            $dataType->fill([
+                'name'                  => 'emergency_calls',
+                'display_name_singular' => 'Emergency Call',
+                'display_name_plural'   => 'Emergency Calls',
+                'icon'                  => 'voyager-bell',
+                'model_name'            => 'App\\Models\\EmergencyCall',
+                'controller'            => '',
+                'generate_permissions'  => 1,
+                'description'           => '',
+            ])->save();
+        }
+
+        $dataType = $this->dataType('slug', 'critisms');
+        if (!$dataType->exists) {
+            $dataType->fill([
+                'name'                  => 'critisms',
+                'display_name_singular' => 'Critism',
+                'display_name_plural'   => 'Critisms',
+                'icon'                  => 'voyager-bulb',
+                'model_name'            => 'App\\Models\\Critism',
                 'controller'            => '',
                 'generate_permissions'  => 1,
                 'description'           => '',
