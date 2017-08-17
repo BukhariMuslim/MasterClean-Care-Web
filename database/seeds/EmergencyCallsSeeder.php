@@ -14,7 +14,7 @@ class EmergencyCallsSeeder extends Seeder
     {
         DB::table('emergency_calls')->insert([
 			[
-				'user_id' => 1,   
+				'user_id' => 4,   
 		        'init_time' => Carbon::now(),
 		        'status' => 0,
 		    ],
@@ -22,13 +22,13 @@ class EmergencyCallsSeeder extends Seeder
 		   	[
 				'user_id' => 2,   
 		        'init_time' => Carbon::now(),
-		        'status' => 1,
+		        'status' => 0,
 		   	],
 
 		   	[
 				'user_id' => 3,   
 		        'init_time' => Carbon::now(),
-		        'status' => 1,
+		        'status' => 0,
 		   	],
 
     	]);

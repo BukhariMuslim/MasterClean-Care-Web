@@ -131,6 +131,84 @@ class OrdersTableSeeder extends Seeder
 				'status_member' => 1,
 				'status_art' => 1
 			],
+			[
+				'member_id' => 2,
+				'art_id' => 15,
+				'work_time_id' => 1,
+				'job_id' => 2,
+				'start_date' => Carbon::create('2017', '8', '25', '8', '0', '0'),
+				'end_date' => Carbon::create('2017', '8', '25', '17', '0', '0'),
+				'cost' => 150000,
+				'remark' => '',
+				'status' => 0,
+				'status_member' => 0,
+				'status_art' => 0
+			],
+			[
+				'member_id' => 2,
+				'art_id' => 15,
+				'work_time_id' => 1,
+				'job_id' => 2,
+				'start_date' => Carbon::create('2017', '8', '25', '8', '0', '0'),
+				'end_date' => Carbon::create('2017', '8', '25', '17', '0', '0'),
+				'cost' => 150000,
+				'remark' => '',
+				'status' => 1,
+				'status_member' => 0,
+				'status_art' => 0
+			],
+			[
+				'member_id' => 2,
+				'art_id' => 15,
+				'work_time_id' => 1,
+				'job_id' => 2,
+				'start_date' => Carbon::create('2017', '7', '25', '8', '0', '0'),
+				'end_date' => Carbon::create('2017', '7', '25', '17', '0', '0'),
+				'cost' => 150000,
+				'remark' => '',
+				'status' => 3,
+				'status_member' => 1,
+				'status_art' => 1
+			],
+			[
+				'member_id' => 2,
+				'art_id' => 15,
+				'work_time_id' => 1,
+				'job_id' => 2,
+				'start_date' => Carbon::create('2017', '7', '25', '8', '0', '0'),
+				'end_date' => Carbon::create('2017', '7', '25', '17', '0', '0'),
+				'cost' => 150000,
+				'remark' => '',
+				'status' => 2,
+				'status_member' => 0,
+				'status_art' => 0
+			],
+			[
+				'member_id' => 2,
+				'art_id' => 15,
+				'work_time_id' => 1,
+				'job_id' => 2,
+				'start_date' => Carbon::create('2017', '7', '25', '8', '0', '0'),
+				'end_date' => Carbon::create('2017', '7', '25', '17', '0', '0'),
+				'cost' => 150000,
+				'remark' => '',
+				'status' => 4,
+				'status_member' => 0,
+				'status_art' => 0
+			],
+			[
+				'member_id' => 2,
+				'art_id' => 15,
+				'work_time_id' => 1,
+				'job_id' => 2,
+				'start_date' => Carbon::create('2017', '7', '25', '8', '0', '0'),
+				'end_date' => Carbon::create('2017', '7', '25', '17', '0', '0'),
+				'cost' => 150000,
+				'remark' => '',
+				'status' => 5,
+				'status_member' => 0,
+				'status_art' => 0
+			],
     	]);
     }
 }
