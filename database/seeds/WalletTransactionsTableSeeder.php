@@ -15,11 +15,27 @@ class WalletTransactionsTableSeeder extends Seeder
         DB::table('wallet_transactions')->insert([
             [
                 'user_id'=>2,
-                'amount'=>10000000,
+                'amount'=>5000000,
                 'trc_type'=>0,
 		        'trc_img'=>'ncBa7ORi81VueI9Sv3Aw.jpg',
-                'trc_time'=> Carbon::create('2017', '07', '19', '10', '15', '0'),
+                'trc_time'=> Carbon::create('2017', '06', '19', '10', '15', '0'),
                 'status'=> 1,
+            ],
+            [
+                'user_id'=>2,
+                'amount'=>5000000,
+                'trc_type'=>0,
+		        'trc_img'=>'ncBa7ORi81VueI9Sv3Aw.jpg',
+                'trc_time'=> Carbon::create('2017', '07', '21', '10', '15', '0'),
+                'status'=> 1,
+            ],
+            [
+                'user_id'=>2,
+                'amount'=>1000000,
+                'trc_type'=>0,
+		        'trc_img'=>'ncBa7ORi81VueI9Sv3Aw.jpg',
+                'trc_time'=> Carbon::create('2017', '07', '24', '10', '15', '0'),
+                'status'=> 0,
             ],
             [
                 'user_id'=>3,

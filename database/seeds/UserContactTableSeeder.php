@@ -23,12 +23,12 @@ class UserContactTableSeeder extends Seeder
             ],
             [
                 'user_id' => 2,
-                'phone' => '081234123412',
-                'emergency_numb' => '081234567890',
+                'phone' => '082168360303',
+                'emergency_numb' => '082279900604',
                 'city' => 2,
-                'address' => 'Jl. Satu',
+                'address' => 'Jl.Denai no47c',
                 'location' => '3.595237, 98.652423',
-                'acc_no' => '1004874201'
+		        'acc_no' => '1004874201'
             ],
             [
                 'user_id' => 3,
@@ -37,7 +37,7 @@ class UserContactTableSeeder extends Seeder
                 'city' => 2,
                 'address' => 'Jl. Sana',
                 'location' => '3.605688, 98.707355',
-                'acc_no' => '1004874201'
+		        'acc_no' => '1004820989'
             ],
             [
                 'user_id' => 4,
@@ -46,7 +46,7 @@ class UserContactTableSeeder extends Seeder
                 'city' => 2,
                 'address' => 'Jl. Sini',
                 'location' => '3.577248, 98.653796',
-                'acc_no' => '1004874201'
+		        'acc_no' => '1004820989'
             ],
             [
                 'user_id' => 5,
@@ -55,7 +55,7 @@ class UserContactTableSeeder extends Seeder
                 'city' => 2,
                 'address' => 'Jl. Riau',
                 'location' => '3.587870, 98.702205',
-                'acc_no' => '1004874201'
+		        'acc_no' => '1004820989'
             ],
             [
                 'user_id' => 6,
@@ -171,7 +171,7 @@ class UserContactTableSeeder extends Seeder
                 'emergency_numb' => '081234432165',
                 'city' => 2,
                 'address' => 'Jl. Halat',
-                'location' => '',
+                'location' => '3.566698, 98.701024',
 		        'acc_no' => '1004290781'
             ]
         ]);

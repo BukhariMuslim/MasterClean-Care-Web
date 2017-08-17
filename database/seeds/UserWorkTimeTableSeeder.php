@@ -150,7 +150,7 @@ class UserWorkTimeTableSeeder extends Seeder
             [
                 'user_id' => 15,
                 'work_time_id' => 1,
-                'cost' => 80000,
+                'cost' => 50000,
             ],
             [
                 'user_id' => 15,
@@ -160,7 +160,7 @@ class UserWorkTimeTableSeeder extends Seeder
             [
                 'user_id' => 15,
                 'work_time_id' => 3,
-                'cost' => 1800000,
+                'cost' => 2000000,
             ],
             [
                 'user_id' => 16,

@@ -13,24 +13,20 @@ class UserJobTableSeeder extends Seeder
     {
         DB::table('user_jobs')->insert([
             [
-                'user_id' => 2,
+                'user_id' => 6,
                 'job_id' => 1,
             ],
             [
-                'user_id' => 2,
+                'user_id' => 6,
                 'job_id' => 2,
             ],
             [
-                'user_id' => 3,
-                'job_id' => 1,
-            ],
-            [
-                'user_id' => 3,
+                'user_id' => 6,
                 'job_id' => 3,
             ],
             [
-                'user_id' => 4,
-                'job_id' => 1,
+                'user_id' => 6,
+                'job_id' => 4,
             ],
             [
                 'user_id' => 7,
@@ -51,6 +47,38 @@ class UserJobTableSeeder extends Seeder
             [
                 'user_id' => 8,
                 'job_id' => 3,
+            ],
+            [
+                'user_id' => 9,
+                'job_id' => 1,
+            ],
+            [
+                'user_id' => 9,
+                'job_id' => 2,
+            ],
+            [
+                'user_id' => 9,
+                'job_id' => 3,
+            ],
+            [
+                'user_id' => 9,
+                'job_id' => 4,
+            ],
+            [
+                'user_id' => 10,
+                'job_id' => 1,
+            ],
+            [
+                'user_id' => 10,
+                'job_id' => 2,
+            ],
+            [
+                'user_id' => 10,
+                'job_id' => 3,
+            ],
+            [
+                'user_id' => 10,
+                'job_id' => 4,
             ],
             [
                 'user_id' => 11,
