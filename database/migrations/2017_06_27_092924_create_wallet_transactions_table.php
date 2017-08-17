@@ -17,7 +17,7 @@ class CreateWalletTransactionsTable extends Migration
             $table->increments('id');
             $table->integer('user_id')->unsigned();
             $table->decimal('amount', 18, 2);
-            $table->tinyInteger('trc_type')->comment('0: masuk, 1: active ');
+            $table->tinyInteger('trc_type')->comment('0: masuk, 1: keluar ');
             $table->dateTime('trc_time');
             $table->string('trc_img')->nullable()->default('');
             $table->tinyInteger('status')->comment('0: pending, 1: success, 2: batal ');
