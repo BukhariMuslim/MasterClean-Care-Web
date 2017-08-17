@@ -14200,6 +14200,12 @@ var ProfileDetail = function (_Component) {
                             { tooltip: 'Ubah', iconClassName: 'material-icons', className: 'right', onClick: this.onEdit },
                             'create'
                           )
+                        ),
+                        'Wallet: ',
+                        _react2.default.createElement(
+                          'b',
+                          null,
+                          this.props.user.user_wallet ? _react2.default.createElement(_reactNumberFormat2.default, { value: this.props.user.user_wallet.amt, displayType: 'text', thousandSeparator: true, prefix: 'Rp. ' }) : '-'
                         )
                       ),
                       this.props.user.role_id == 3 ? _react2.default.createElement(

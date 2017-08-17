@@ -445,6 +445,7 @@ class ProfileDetail extends Component {
                                 </IconButton>
                               }
                             </h5>
+                            Wallet: <b>{ this.props.user.user_wallet ? <NumberFormat value={this.props.user.user_wallet.amt} displayType={'text'} thousandSeparator={true} prefix={'Rp. '} /> : '-'}</b>
                           </div>
                           {
                             this.props.user.role_id == 3 ?
