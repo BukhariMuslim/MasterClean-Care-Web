@@ -33,7 +33,9 @@ class Header extends Component {
                     {this.props.username}<br/>
                     {
                       this.props.wallet ?
-                      <NumberFormat value={this.props.wallet.amt} displayType={'text'} thousandSeparator={true} prefix={'Rp. '} />
+                      <small>
+                        <NumberFormat value={this.props.wallet.amt} displayType={'text'} thousandSeparator={true} prefix={'Rp. '} />
+                      </small>
                       :
                       ''
                     }

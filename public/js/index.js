@@ -7392,7 +7392,11 @@ var Header = function (_Component) {
                     },
                     this.props.username,
                     _react2.default.createElement('br', null),
-                    this.props.wallet ? _react2.default.createElement(_reactNumberFormat2.default, { value: this.props.wallet.amt, displayType: 'text', thousandSeparator: true, prefix: 'Rp. ' }) : ''
+                    this.props.wallet ? _react2.default.createElement(
+                      'small',
+                      null,
+                      _react2.default.createElement(_reactNumberFormat2.default, { value: this.props.wallet.amt, displayType: 'text', thousandSeparator: true, prefix: 'Rp. ' })
+                    ) : ''
                   )
                 )
               )

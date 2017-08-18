@@ -609,7 +609,7 @@ class DataRowsTableSeeder extends Seeder
         $dataRow = $this->dataRow($emergencyCallDataType, 'status');
         if (!$dataRow->exists) {
             $dataRow->fill([
-                'type'         => 'timestamp',
+                'type'         => 'select_dropdown',
                 'display_name' => 'Status',
                 'required'     => 0,
                 'browse'       => 1,
@@ -1553,7 +1553,7 @@ class DataRowsTableSeeder extends Seeder
         $dataRow = $this->dataRow($userDataType, 'status');
         if (!$dataRow->exists) {
             $dataRow->fill([
-                'type'         => 'radio_btn',
+                'type'         => 'select_dropdown',
                 'display_name' => 'Status',
                 'required'     => 1,
                 'browse'       => 1,
