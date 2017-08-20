@@ -159,7 +159,7 @@ class Art extends Component {
     return (
       <div>
         {
-          arts.length > 0 ?
+          arts && arts.length > 0 ?
             this.props.maxItem ?
               <div className="col s12" style={{ padding: 30 }}>
                 <Slider {...settings} >

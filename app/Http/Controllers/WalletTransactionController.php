@@ -105,6 +105,9 @@ class WalletTransactionController extends Controller
             if (array_key_exists('trc_time', $data)) {
                 $walletTransaction->trc_time = $data['trc_time'];
             }
+            if (array_key_exists('acc_no', $data)) {
+                $walletTransaction->acc_no = $data['acc_no'];
+            }
 
             $walletTransaction->save();
 

@@ -20,6 +20,7 @@ class WalletTransaction extends Model
         'trc_type',
         'trc_time',
         'trc_img',
+        'acc_no',
         'status',
     ];
 

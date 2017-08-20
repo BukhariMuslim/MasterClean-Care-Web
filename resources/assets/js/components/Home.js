@@ -80,7 +80,7 @@ class Home extends Component {
                   <i className="material-icons" style={{ fontSize: '7rem', color: '#00bcd4' }}>location_on</i>
                   <p>Dimana saja</p>
                   <p className="light center">
-                    Pesan ART di mana saja disekitar Anda melalui aplikasi <i>mobile</i>.
+                    Pesan ART di mana saja di sekitar Anda melalui aplikasi <i>mobile</i>.
                   </p>
                 </div>
               </div>

@@ -6,6 +6,7 @@ use App\Models\OfferArt;
 use Illuminate\Http\Request;
 use App\Helpers\Operators;
 use App\Models\Offer;
+use App\Models\Order;
 use App\Models\User;
 use Exception;
 
@@ -107,13 +108,30 @@ class OfferArtController extends Controller
             if (array_key_exists('data', $data)) {
                 $data = $data['data'];
             }
-            if (array_key_exists('request_id', $data)) {
-                $offerArt->request_id = $data['request_id'];
+            if (array_key_exists('offer_id', $data)) {
+                $offerArt->offer_id = $data['offer_id'];
             }
             if (array_key_exists('art_id', $data)) {
                 $offerArt->art_id = $data['art_id'];
             }
             if (array_key_exists('status', $data)) {
+                if ($offerArt->status == 0 && $data['status'] == 1) {
+                    $offer = Offer::find($offerArt->offer_id);
+                    $order = Order::create([
+                        'member_id' => $offer->member_id,
+                        'art_id' => $offerArt->art_id,
+                        'work_time_id' => $offer->work_time_id,
+                        'job_id' => $offer->job_id,
+                        'cost' => $offerArt->art()->user_job()->where('job_id', $offer->job_id)->cost, // wrong
+                        'start_date' => $offer->start_date,
+                        'end_date' => $offer->end_date,
+                        'remark' => $offer->remark,
+                        'status' => 0,
+                        'status_member' => 0,
+                        'status_art' => 0,
+                    ]);
+                }
+                
                 $offerArt->status = $data['status'];
             }
 

@@ -24,7 +24,7 @@ var _FontIcon = __webpack_require__(39);
 
 var _FontIcon2 = _interopRequireDefault(_FontIcon);
 
-var _IconButton = __webpack_require__(38);
+var _IconButton = __webpack_require__(35);
 
 var _IconButton2 = _interopRequireDefault(_IconButton);
 
@@ -3252,7 +3252,7 @@ var _keyboardArrowDown = __webpack_require__(781);
 
 var _keyboardArrowDown2 = _interopRequireDefault(_keyboardArrowDown);
 
-var _IconButton = __webpack_require__(38);
+var _IconButton = __webpack_require__(35);
 
 var _IconButton2 = _interopRequireDefault(_IconButton);
 
@@ -4844,11 +4844,11 @@ var _IconMenu = __webpack_require__(734);
 
 var _IconMenu2 = _interopRequireDefault(_IconMenu);
 
-var _IconButton = __webpack_require__(38);
+var _IconButton = __webpack_require__(35);
 
 var _IconButton2 = _interopRequireDefault(_IconButton);
 
-var _MenuItem = __webpack_require__(35);
+var _MenuItem = __webpack_require__(36);
 
 var _MenuItem2 = _interopRequireDefault(_MenuItem);
 
@@ -5273,7 +5273,7 @@ var Art = function (_Component) {
       return _react2.default.createElement(
         'div',
         null,
-        arts.length > 0 ? this.props.maxItem ? _react2.default.createElement(
+        arts && arts.length > 0 ? this.props.maxItem ? _react2.default.createElement(
           'div',
           { className: 'col s12', style: { padding: 30 } },
           _react2.default.createElement(
@@ -5374,7 +5374,7 @@ var _TextField = __webpack_require__(30);
 
 var _TextField2 = _interopRequireDefault(_TextField);
 
-var _MenuItem = __webpack_require__(35);
+var _MenuItem = __webpack_require__(36);
 
 var _MenuItem2 = _interopRequireDefault(_MenuItem);
 
@@ -6141,7 +6141,7 @@ var _SelectField = __webpack_require__(52);
 
 var _SelectField2 = _interopRequireDefault(_SelectField);
 
-var _MenuItem = __webpack_require__(35);
+var _MenuItem = __webpack_require__(36);
 
 var _MenuItem2 = _interopRequireDefault(_MenuItem);
 
@@ -6161,7 +6161,7 @@ var _FontIcon = __webpack_require__(39);
 
 var _FontIcon2 = _interopRequireDefault(_FontIcon);
 
-var _IconButton = __webpack_require__(38);
+var _IconButton = __webpack_require__(35);
 
 var _IconButton2 = _interopRequireDefault(_IconButton);
 
@@ -7633,7 +7633,7 @@ var Home = function (_Component) {
                   _react2.default.createElement(
                     'p',
                     { className: 'light center' },
-                    'Pesan ART di mana saja disekitar Anda melalui aplikasi ',
+                    'Pesan ART di mana saja di sekitar Anda melalui aplikasi ',
                     _react2.default.createElement(
                       'i',
                       null,
@@ -8072,7 +8072,7 @@ var _propTypes = __webpack_require__(1);
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
-var _MenuItem = __webpack_require__(35);
+var _MenuItem = __webpack_require__(36);
 
 var _MenuItem2 = _interopRequireDefault(_MenuItem);
 
@@ -8245,7 +8245,7 @@ var _TextField = __webpack_require__(30);
 
 var _TextField2 = _interopRequireDefault(_TextField);
 
-var _MenuItem = __webpack_require__(35);
+var _MenuItem = __webpack_require__(36);
 
 var _MenuItem2 = _interopRequireDefault(_MenuItem);
 
@@ -8896,7 +8896,7 @@ var _SelectField = __webpack_require__(52);
 
 var _SelectField2 = _interopRequireDefault(_SelectField);
 
-var _MenuItem = __webpack_require__(35);
+var _MenuItem = __webpack_require__(36);
 
 var _MenuItem2 = _interopRequireDefault(_MenuItem);
 
@@ -8916,7 +8916,7 @@ var _FontIcon = __webpack_require__(39);
 
 var _FontIcon2 = _interopRequireDefault(_FontIcon);
 
-var _IconButton = __webpack_require__(38);
+var _IconButton = __webpack_require__(35);
 
 var _IconButton2 = _interopRequireDefault(_IconButton);
 
@@ -9984,7 +9984,7 @@ var Offer = function (_Component) {
       return _react2.default.createElement(
         'div',
         null,
-        offers.length > 0 ? _react2.default.createElement(
+        offers && offers.length > 0 ? _react2.default.createElement(
           _GridList.GridList,
           {
             style: styles.gridListVertical,
@@ -10045,7 +10045,7 @@ var _FlatButton = __webpack_require__(22);
 
 var _FlatButton2 = _interopRequireDefault(_FlatButton);
 
-var _IconButton = __webpack_require__(38);
+var _IconButton = __webpack_require__(35);
 
 var _IconButton2 = _interopRequireDefault(_IconButton);
 
@@ -10586,13 +10586,6 @@ var OfferDetail = function (_Component) {
                               null,
                               _react2.default.createElement(
                                 _IconButton2.default,
-                                { tooltip: 'Tolak', iconClassName: 'material-icons text-green accent-4', className: 'right', onClick: function onClick() {
-                                    return _this2.handleOpen(2);
-                                  }, style: { verticalAlign: 'middle' } },
-                                'clear'
-                              ),
-                              _react2.default.createElement(
-                                _IconButton2.default,
                                 { tooltip: 'Terima', iconClassName: 'material-icons text-red darken-4', className: 'right', onClick: function onClick() {
                                     return _this2.handleOpen(1);
                                   }, style: { verticalAlign: 'middle' } },
@@ -10703,7 +10696,7 @@ var _SelectField = __webpack_require__(52);
 
 var _SelectField2 = _interopRequireDefault(_SelectField);
 
-var _MenuItem = __webpack_require__(35);
+var _MenuItem = __webpack_require__(36);
 
 var _MenuItem2 = _interopRequireDefault(_MenuItem);
 
@@ -10723,7 +10716,7 @@ var _FontIcon = __webpack_require__(39);
 
 var _FontIcon2 = _interopRequireDefault(_FontIcon);
 
-var _IconButton = __webpack_require__(38);
+var _IconButton = __webpack_require__(35);
 
 var _IconButton2 = _interopRequireDefault(_IconButton);
 
@@ -12369,7 +12362,7 @@ var _SelectField = __webpack_require__(52);
 
 var _SelectField2 = _interopRequireDefault(_SelectField);
 
-var _MenuItem = __webpack_require__(35);
+var _MenuItem = __webpack_require__(36);
 
 var _MenuItem2 = _interopRequireDefault(_MenuItem);
 
@@ -12389,7 +12382,7 @@ var _FontIcon = __webpack_require__(39);
 
 var _FontIcon2 = _interopRequireDefault(_FontIcon);
 
-var _IconButton = __webpack_require__(38);
+var _IconButton = __webpack_require__(35);
 
 var _IconButton2 = _interopRequireDefault(_IconButton);
 
@@ -13041,7 +13034,7 @@ var _SelectField = __webpack_require__(52);
 
 var _SelectField2 = _interopRequireDefault(_SelectField);
 
-var _MenuItem = __webpack_require__(35);
+var _MenuItem = __webpack_require__(36);
 
 var _MenuItem2 = _interopRequireDefault(_MenuItem);
 
@@ -13061,7 +13054,7 @@ var _FontIcon = __webpack_require__(39);
 
 var _FontIcon2 = _interopRequireDefault(_FontIcon);
 
-var _IconButton = __webpack_require__(38);
+var _IconButton = __webpack_require__(35);
 
 var _IconButton2 = _interopRequireDefault(_IconButton);
 
@@ -13717,7 +13710,7 @@ var _TextField = __webpack_require__(30);
 
 var _TextField2 = _interopRequireDefault(_TextField);
 
-var _MenuItem = __webpack_require__(35);
+var _MenuItem = __webpack_require__(36);
 
 var _MenuItem2 = _interopRequireDefault(_MenuItem);
 
@@ -13725,7 +13718,7 @@ var _StarComponent = __webpack_require__(102);
 
 var _StarComponent2 = _interopRequireDefault(_StarComponent);
 
-var _IconButton = __webpack_require__(38);
+var _IconButton = __webpack_require__(35);
 
 var _IconButton2 = _interopRequireDefault(_IconButton);
 
@@ -14817,7 +14810,7 @@ var _RaisedButton = __webpack_require__(40);
 
 var _RaisedButton2 = _interopRequireDefault(_RaisedButton);
 
-var _IconButton = __webpack_require__(38);
+var _IconButton = __webpack_require__(35);
 
 var _IconButton2 = _interopRequireDefault(_IconButton);
 
@@ -14833,7 +14826,7 @@ var _SelectField = __webpack_require__(52);
 
 var _SelectField2 = _interopRequireDefault(_SelectField);
 
-var _MenuItem = __webpack_require__(35);
+var _MenuItem = __webpack_require__(36);
 
 var _MenuItem2 = _interopRequireDefault(_MenuItem);
 
@@ -15810,7 +15803,7 @@ var _SelectField = __webpack_require__(52);
 
 var _SelectField2 = _interopRequireDefault(_SelectField);
 
-var _MenuItem = __webpack_require__(35);
+var _MenuItem = __webpack_require__(36);
 
 var _MenuItem2 = _interopRequireDefault(_MenuItem);
 
@@ -16376,7 +16369,7 @@ var _propTypes = __webpack_require__(1);
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
-var _MenuItem = __webpack_require__(35);
+var _MenuItem = __webpack_require__(36);
 
 var _MenuItem2 = _interopRequireDefault(_MenuItem);
 
@@ -19578,7 +19571,7 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactRedux = __webpack_require__(13);
 
-var _reactRouter = __webpack_require__(36);
+var _reactRouter = __webpack_require__(37);
 
 var _reactRouterDom = __webpack_require__(10);
 
@@ -52024,7 +52017,7 @@ var _propTypes = __webpack_require__(1);
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
-var _IconButton = __webpack_require__(38);
+var _IconButton = __webpack_require__(35);
 
 var _IconButton2 = _interopRequireDefault(_IconButton);
 

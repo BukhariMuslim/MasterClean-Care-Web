@@ -201,7 +201,7 @@ class Offer extends Component {
     return (
       <div>
         {
-          offers.length > 0 ?
+          offers && offers.length > 0 ?
             <GridList
               style={styles.gridListVertical}
               cols={2}
