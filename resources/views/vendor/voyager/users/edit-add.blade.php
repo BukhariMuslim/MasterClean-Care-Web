@@ -82,18 +82,16 @@
                             @if(isset($dataTypeContent) && $dataTypeContent->role_id == 3)
                                 <div class="form-group">
                                     <label for="avatar">User Documents</label>
-                                    <?php $documents = App\Models\UserDocument::where('user_id', $dataTypeContent->id); ?>
-                                    @if(isset($documents) && count($documents) > 0)
+                                    <?php $documents = App\Models\UserDocument::where('user_id', $dataTypeContent->id)->get(); ?>
+                                    @if(isset($documents) && $documents->first())
                                         @foreach($documents as $document)
-                                            testing
-                                            <?php echo $document->id; ?>
                                             @if(isset($document->document_path))
                                                 <img src="{{ Voyager::image( $document->document_path ) }}"
                                                     style="width:200px; height:auto; clear:both; display:block; padding:2px; border:1px solid #ddd; margin-bottom:10px;">
                                             @endif
                                         @endforeach
                                     @else
-                                        No Document found.
+                                        <br/><small>No Document found.</small>
                                     @endif
                                 </div>
                             @endif
