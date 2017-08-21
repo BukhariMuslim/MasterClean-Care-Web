@@ -63,6 +63,19 @@ class OrderController extends Controller
 
             $order->orderTaskList()->createMany($data['orderTaskList']);
 
+            $cost = $order->art()->user_job()->where('job_id', $order->job_id)->cost;  // wrong
+
+            // Add Wallet Transaction
+            $walletTransaction = WalletTransaction::create([
+                'user_id' => $order->member_id,
+                'amount' => $cost,
+                'trc_type' => 1, // Keluar
+                'trc_time' => Carbon::now(),
+                'trc_img' => '',
+                'acc_no' => '',
+                'status' => 0,
+            ]);
+
             DB::commit();
 
             return response()->json([ 'data' => $order, 
@@ -151,11 +164,29 @@ class OrderController extends Controller
                 $order->status = $data['status'];
             }
             if (array_key_exists('status_member', $data)) {
+                if ($order->status_member == 0 && $data['status_member'] == 1 && $order->status_art == 1) {
+                    WalletTransaction::where('id', $order->wallet_transaction_id)
+                        ->update([
+                            'status' => 1
+                        ]);
+                    
+                    $artWalletTransaction = WalletTransaction::create([
+                        'user_id' => $order->art_id,
+                        'amount' => $cost,
+                        'trc_type' => 0, // Masuk
+                        'trc_time' => Carbon::now(),
+                        'trc_img' => '',
+                        'acc_no' => '',
+                        'status' => 1,
+                    ]);
+                }
+
                 $order->status_member = $data['status_member'];
             }
             if (array_key_exists('status_art', $data)) {
                 $order->status_art = $data['status_art'];
             }
+            
 
             if (array_key_exists('contact', $data)) {
                 $order->contact()->delete();

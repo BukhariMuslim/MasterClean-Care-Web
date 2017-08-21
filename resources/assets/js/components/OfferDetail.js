@@ -24,10 +24,9 @@ class OfferDetail extends Component {
     this.state = {
       offer: {},
       openModal: false,
-      mode: 0,
+      artName: '',
     }
 
-    this.onCancel = this.onCancel.bind(this)
     this.onAccept = this.onAccept.bind(this)
   }
 
@@ -35,34 +34,21 @@ class OfferDetail extends Component {
     this.props.getOffer(this.props.id, this)
   }
 
-  handleOpen(mode) {
-    if (mode) {
-      this.setState({
-        openModal: true,
-        mode,
-      });
-    }
-    else {
-      this.setState({
-        openModal: true,
-        mode,
-      });
-    }
+  handleOpen(offer_art) {
+    this.setState({
+      openModal: true,
+      selectedOfferArt: offer_art,
+    });
   }
 
   handleClose(confirmation) {
     if (confirmation) {
-      if (mode == 1) {
-        this.onAccept()
-      }
-      else if (mode == 2) {
-        this.onCancel()
-      }
+      this.onAccept()
     }
 
     this.setState({
       openModal: false,
-      mode: 0,
+      selectedOfferArt: null,
     });
   }
 
@@ -70,35 +56,13 @@ class OfferDetail extends Component {
     this.props.submitAccept(
       this,
       {
-        // id: this.state.user.id,
-        // name: this.state.user.name,
-        // email: this.state.user.email,
-        // password: this.state.user.password,
-        // gender: this.state.user.gender,
-        // born_place: this.state.user.born_place,
-        // born_date: this.state.user.born_date,
-        // contact: {
-        //   address: this.state.user.contact.address,
-        //   location: this.state.user.contact.location,
-        //   emergency_numb: this.state.user.contact.emergency_numb,
-        //   location: this.state.user.contact.location,
-        //   phone: this.state.user.contact.phone,
-        //   city: this.state.user.contact.city.id,
-        // },
-        // religion: this.state.user.religion,
-        // race: this.state.user.race,
-        // user_type: this.state.user.user_type,
-        // status: this.state.user.status,
-        // user_language: this.state.user.user_language,
-        // user_job: this.state.user.user_job, 
-        // user_work_time: this.state.user.user_work_time,
-        // user_additional_info: this.state.user.user_additional_info,
+        id: this.state.selectedOfferArt.id,
+        offer_id: this.state.selectedOfferArt.offer_id,
+        art_id: this.state.selectedOfferArt.art_id,
+        status: 1,
+        webMode: 1,
       },
     )
-  }
-
-  onCancel() {
-
   }
 
   render() {
@@ -319,7 +283,7 @@ class OfferDetail extends Component {
                                           {
                                             this.props.user && this.props.user.role_id == 2 && this.props.user.id == offer.member_id ?
                                             <span>
-                                              <IconButton tooltip="Terima" iconClassName="material-icons text-red darken-4" className="right" onClick={() => this.handleOpen(1)} style={{ verticalAlign: 'middle' }} >
+                                              <IconButton tooltip="Terima" iconClassName="material-icons text-red darken-4" className="right" onClick={() => this.handleOpen(art)} style={{ verticalAlign: 'middle' }} >
                                                 done
                                               </IconButton>
                                             </span>
@@ -349,20 +313,12 @@ class OfferDetail extends Component {
             </Card>
         }
         <Dialog
-          title={ `Konfirmasi ${ this.state.mode == 1 ? 'Terima' :  this.state.mode == 2 ? 'Tolak' : ''}` }
+          title={ 'Konfirmasi Terima' }
           actions={actions}
           modal={true}
           open={this.state.openModal}
         >
-          {
-            this.state.mode == 1 ?
-            'Terima?'
-            :
-            this.state.mode == 2 ?
-            'Tolak?'
-            :
-            ''
-          }
+          Terima ART "{ this.state.selectedOfferArt ? this.state.selectedOfferArt.art.name : ''}"?
         </Dialog>
       </div>
     )

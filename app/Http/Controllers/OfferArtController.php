@@ -7,8 +7,11 @@ use Illuminate\Http\Request;
 use App\Helpers\Operators;
 use App\Models\Offer;
 use App\Models\Order;
+use App\Models\WalletTransaction;
 use App\Models\User;
+use Carbon\Carbon;
 use Exception;
+use DB;
 
 class OfferArtController extends Controller
 {
@@ -105,6 +108,8 @@ class OfferArtController extends Controller
         $data = $request->all();
 
         try {
+            DB::beginTransaction();
+
             if (array_key_exists('data', $data)) {
                 $data = $data['data'];
             }
@@ -116,20 +121,41 @@ class OfferArtController extends Controller
             }
             if (array_key_exists('status', $data)) {
                 if ($offerArt->status == 0 && $data['status'] == 1) {
+                    // Find Offer
                     $offer = Offer::find($offerArt->offer_id);
-                    $order = Order::create([
-                        'member_id' => $offer->member_id,
-                        'art_id' => $offerArt->art_id,
-                        'work_time_id' => $offer->work_time_id,
-                        'job_id' => $offer->job_id,
-                        'cost' => $offerArt->art()->user_job()->where('job_id', $offer->job_id)->cost, // wrong
-                        'start_date' => $offer->start_date,
-                        'end_date' => $offer->end_date,
-                        'remark' => $offer->remark,
-                        'status' => 0,
-                        'status_member' => 0,
-                        'status_art' => 0,
-                    ]);
+                    if ($offer) {
+                        $offer->update([
+                            'status' => 1
+                        ]);
+                        
+                        $cost = $offerArt->art->user_work_time->where('work_time_id', $offer->work_time_id)->first()->cost;  // wrong
+                        $acc_no = $offerArt->art->contact->acc_no;  // wrong
+
+                        // Add Order
+                        $order = Order::create([
+                            'member_id' => $offer->member_id,
+                            'art_id' => $offerArt->art_id,
+                            'work_time_id' => $offer->work_time_id,
+                            'job_id' => $offer->job_id,
+                            'cost' => $cost,
+                            'start_date' => $offer->start_date,
+                            'end_date' => $offer->end_date,
+                            'remark' => $offer->remark,
+                            'status' => 0,
+                            'status_member' => 0,
+                            'status_art' => 0,
+                        ]);
+                        
+                        // Get Other ART
+                        OfferArt::where('offer_id', $offerArt->offer_id)
+                            ->where('art_id', '!=', $offerArt->art_id)
+                            ->update([
+                                'status' => 2
+                            ]);
+                    }
+                    else {
+                        throw new Exception('Penawaran tidak ditemukan.');
+                    }
                 }
                 
                 $offerArt->status = $data['status'];
@@ -137,10 +163,30 @@ class OfferArtController extends Controller
 
             $offerArt->save();
 
-            return response()->json([ 'data' => $offerArt, 
-                                      'status' => 200]);
+            DB::commit();
+
+            if (array_key_exists('webMode', $data)) {
+                $offer = Offer::with([
+                    'member.contact',
+                    'workTime',
+                    'contact',
+                    'offer_art.art',
+                    'offerTaskList',
+                    'job',
+                ])
+                ->find($offerArt->offer_id);
+
+                return response()->json([ 'data' => $offer, 
+                                          'status' => 200]);
+            }
+            else {
+                return response()->json([ 'data' => $offerArt, 
+                                          'status' => 200]);
+            }
         }
         catch(Exception $e) {
+            DB::rollback();
+            
             return response()->json([ 'message' => $e->getMessage(), 
                                       'status' => 400 ]);
         }

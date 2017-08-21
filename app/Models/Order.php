@@ -16,6 +16,7 @@ class Order extends Model
         'art_id',
         'work_time_id',
         'job_id',
+        'wallet_transaction_id',
         'cost',
         'start_date',
         'end_date',

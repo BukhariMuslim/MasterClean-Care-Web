@@ -51,11 +51,11 @@ const mapDispatchToProps = (dispatch) => {
       )
     },
     submitAccept: (self, data) => {
-      let order = {}
+      let offer = self.state.offer
       ApiService.onPatch(
-        '/api/offer/full',
-        data.order_id,
-        { offer_art: data },
+        '/api/offer/offer_art',
+        data.id,
+        data,
         function (response) {
           let data = response
 
@@ -66,12 +66,22 @@ const mapDispatchToProps = (dispatch) => {
             }))
           }
           else {
-            const order = data.data.data
-            self.setState({ order })
-            dispatch(updateSnack({
-              open: true,
-              message: 'Art Berhasil diterima',
-            }))
+            if (data.data.status != 201 && data.data.status != 200) {
+              dispatch(updateSnack({
+                open: true,
+                message: data.data.message
+              }))
+            }
+            else {
+              offer = data.data.data
+              self.setState({
+                offer
+              })
+              dispatch(updateSnack({
+                open: true,
+                message: 'Art Berhasil diterima',
+              }))
+            }
           }
         },
         function (error) {
@@ -79,7 +89,7 @@ const mapDispatchToProps = (dispatch) => {
             open: true,
             message: error.name + ": " + error.message
           }))
-          this.setState(order)
+          this.setState(offer)
         }
       )
     },

@@ -2893,8 +2893,8 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
       });
     },
     submitAccept: function submitAccept(self, data) {
-      var order = {};
-      _ApiService2.default.onPatch('/api/offer/full', data.order_id, { offer_art: data }, function (response) {
+      var offer = self.state.offer;
+      _ApiService2.default.onPatch('/api/offer/offer_art', data.id, data, function (response) {
         var data = response;
 
         if (data.status != 201 && data.status != 200) {
@@ -2903,19 +2903,28 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
             message: data.message
           }));
         } else {
-          var _order = data.data.data;
-          self.setState({ order: _order });
-          dispatch((0, _DefaultAction.updateSnack)({
-            open: true,
-            message: 'Art Berhasil diterima'
-          }));
+          if (data.data.status != 201 && data.data.status != 200) {
+            dispatch((0, _DefaultAction.updateSnack)({
+              open: true,
+              message: data.data.message
+            }));
+          } else {
+            offer = data.data.data;
+            self.setState({
+              offer: offer
+            });
+            dispatch((0, _DefaultAction.updateSnack)({
+              open: true,
+              message: 'Art Berhasil diterima'
+            }));
+          }
         }
       }, function (error) {
         dispatch((0, _DefaultAction.updateSnack)({
           open: true,
           message: error.name + ": " + error.message
         }));
-        this.setState(order);
+        this.setState(offer);
       });
     }
   };
@@ -10080,10 +10089,9 @@ var OfferDetail = function (_Component) {
     _this.state = {
       offer: {},
       openModal: false,
-      mode: 0
+      artName: ''
     };
 
-    _this.onCancel = _this.onCancel.bind(_this);
     _this.onAccept = _this.onAccept.bind(_this);
     return _this;
   }
@@ -10095,67 +10103,35 @@ var OfferDetail = function (_Component) {
     }
   }, {
     key: 'handleOpen',
-    value: function handleOpen(mode) {
-      if (mode) {
-        this.setState({
-          openModal: true,
-          mode: mode
-        });
-      } else {
-        this.setState({
-          openModal: true,
-          mode: mode
-        });
-      }
+    value: function handleOpen(offer_art) {
+      this.setState({
+        openModal: true,
+        selectedOfferArt: offer_art
+      });
     }
   }, {
     key: 'handleClose',
     value: function handleClose(confirmation) {
       if (confirmation) {
-        if (mode == 1) {
-          this.onAccept();
-        } else if (mode == 2) {
-          this.onCancel();
-        }
+        this.onAccept();
       }
 
       this.setState({
         openModal: false,
-        mode: 0
+        selectedOfferArt: null
       });
     }
   }, {
     key: 'onAccept',
     value: function onAccept() {
       this.props.submitAccept(this, {
-        // id: this.state.user.id,
-        // name: this.state.user.name,
-        // email: this.state.user.email,
-        // password: this.state.user.password,
-        // gender: this.state.user.gender,
-        // born_place: this.state.user.born_place,
-        // born_date: this.state.user.born_date,
-        // contact: {
-        //   address: this.state.user.contact.address,
-        //   location: this.state.user.contact.location,
-        //   emergency_numb: this.state.user.contact.emergency_numb,
-        //   location: this.state.user.contact.location,
-        //   phone: this.state.user.contact.phone,
-        //   city: this.state.user.contact.city.id,
-        // },
-        // religion: this.state.user.religion,
-        // race: this.state.user.race,
-        // user_type: this.state.user.user_type,
-        // status: this.state.user.status,
-        // user_language: this.state.user.user_language,
-        // user_job: this.state.user.user_job, 
-        // user_work_time: this.state.user.user_work_time,
-        // user_additional_info: this.state.user.user_additional_info,
+        id: this.state.selectedOfferArt.id,
+        offer_id: this.state.selectedOfferArt.offer_id,
+        art_id: this.state.selectedOfferArt.art_id,
+        status: 1,
+        webMode: 1
       });
     }
-  }, {
-    key: 'onCancel',
-    value: function onCancel() {}
   }, {
     key: 'render',
     value: function render() {
@@ -10587,7 +10563,7 @@ var OfferDetail = function (_Component) {
                               _react2.default.createElement(
                                 _IconButton2.default,
                                 { tooltip: 'Terima', iconClassName: 'material-icons text-red darken-4', className: 'right', onClick: function onClick() {
-                                    return _this2.handleOpen(1);
+                                    return _this2.handleOpen(art);
                                   }, style: { verticalAlign: 'middle' } },
                                 'done'
                               )
@@ -10617,12 +10593,14 @@ var OfferDetail = function (_Component) {
         _react2.default.createElement(
           _Dialog2.default,
           {
-            title: 'Konfirmasi ' + (this.state.mode == 1 ? 'Terima' : this.state.mode == 2 ? 'Tolak' : ''),
+            title: 'Konfirmasi Terima',
             actions: actions,
             modal: true,
             open: this.state.openModal
           },
-          this.state.mode == 1 ? 'Terima?' : this.state.mode == 2 ? 'Tolak?' : ''
+          'Terima ART "',
+          this.state.selectedOfferArt ? this.state.selectedOfferArt.art.name : '',
+          '"?'
         )
       );
     }
@@ -21496,7 +21474,7 @@ var alternativeProps = {
   order: 'msFlexOrder',
   flexGrow: 'msFlexPositive',
   flexShrink: 'msFlexNegative',
-  flexBasis: 'msPreferredSize'
+  flexBasis: 'msFlexPreferredSize'
 };
 
 function flexboxIE(property, value, style, _ref) {
@@ -21945,7 +21923,7 @@ var alternativeProps = {
   order: 'msFlexOrder',
   flexGrow: 'msFlexPositive',
   flexShrink: 'msFlexNegative',
-  flexBasis: 'msPreferredSize'
+  flexBasis: 'msFlexPreferredSize'
 };
 
 function flexboxIE(property, value, style) {
@@ -57283,8 +57261,7 @@ var Table = function (_Component) {
         onRowHover: this.onRowHover,
         onRowHoverExit: this.onRowHoverExit,
         onRowSelection: this.onRowSelection,
-        selectable: this.props.selectable,
-        style: (0, _simpleAssign2.default)({ height: this.props.height }, base.props.style)
+        selectable: this.props.selectable
       });
     }
   }, {

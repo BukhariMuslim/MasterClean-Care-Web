@@ -20,6 +20,7 @@ class CreateOrdersTable extends Migration
             $table->integer('work_time_id')->unsigned();
             $table->integer('job_id')->unsigned();
             $table->decimal('cost', 18, 2);
+            $table->integer('wallet_transaction_id')->unsigned()->nullable();
             $table->dateTime('start_date');
             $table->dateTime('end_date');
             $table->string('remark', 200)->nullable()->default('');
