@@ -63,7 +63,7 @@ class OrderController extends Controller
 
             $order->orderTaskList()->createMany($data['orderTaskList']);
 
-            $cost = $order->art()->user_job()->where('job_id', $order->job_id)->cost;  // wrong
+            $cost = $order->art->user_work_time->where('work_time_id', $offer->work_time_id)->first()->cost;
 
             // Add Wallet Transaction
             $walletTransaction = WalletTransaction::create([
@@ -172,7 +172,7 @@ class OrderController extends Controller
                     
                     $artWalletTransaction = WalletTransaction::create([
                         'user_id' => $order->art_id,
-                        'amount' => $cost,
+                        'amount' => $order->$cost,
                         'trc_type' => 0, // Masuk
                         'trc_time' => Carbon::now(),
                         'trc_img' => '',

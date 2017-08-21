@@ -21474,7 +21474,7 @@ var alternativeProps = {
   order: 'msFlexOrder',
   flexGrow: 'msFlexPositive',
   flexShrink: 'msFlexNegative',
-  flexBasis: 'msFlexPreferredSize'
+  flexBasis: 'msPreferredSize'
 };
 
 function flexboxIE(property, value, style, _ref) {
@@ -21923,7 +21923,7 @@ var alternativeProps = {
   order: 'msFlexOrder',
   flexGrow: 'msFlexPositive',
   flexShrink: 'msFlexNegative',
-  flexBasis: 'msFlexPreferredSize'
+  flexBasis: 'msPreferredSize'
 };
 
 function flexboxIE(property, value, style) {
@@ -57261,7 +57261,8 @@ var Table = function (_Component) {
         onRowHover: this.onRowHover,
         onRowHoverExit: this.onRowHoverExit,
         onRowSelection: this.onRowSelection,
-        selectable: this.props.selectable
+        selectable: this.props.selectable,
+        style: (0, _simpleAssign2.default)({ height: this.props.height }, base.props.style)
       });
     }
   }, {

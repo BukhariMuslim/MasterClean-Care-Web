@@ -129,7 +129,6 @@ class OfferArtController extends Controller
                         ]);
                         
                         $cost = $offerArt->art->user_work_time->where('work_time_id', $offer->work_time_id)->first()->cost;  // wrong
-                        $acc_no = $offerArt->art->contact->acc_no;  // wrong
 
                         // Add Order
                         $order = Order::create([
