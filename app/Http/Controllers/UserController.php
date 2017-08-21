@@ -288,8 +288,9 @@ class UserController extends Controller
             if (array_key_exists('avatar', $data)) {
                 $user->avatar = $data['avatar'];
             }
+            
             if (array_key_exists('password', $data)) {
-                $data['password'] = Hash::make($data['password']);
+                $user->password = Hash::make($data['password']);
             }
             if (array_key_exists('gender', $data)) {
                 $user->gender = $data['gender'];
