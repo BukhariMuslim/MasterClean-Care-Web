@@ -63,7 +63,7 @@ class OrderController extends Controller
 
             $order->orderTaskList()->createMany($data['orderTaskList']);
 
-            $cost = $order->art->user_work_time->where('work_time_id', $offer->work_time_id)->first()->cost;
+            $cost = $order->art->user_work_time->where('work_time_id', $order->work_time_id)->first()->cost;
 
             // Add Wallet Transaction
             $walletTransaction = WalletTransaction::create([
