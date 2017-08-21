@@ -861,6 +861,38 @@ class DataRowsTableSeeder extends Seeder
                 'order'        => 6,
             ])->save();
         }
+
+        $dataRow = $this->dataRow($walletTransactionDataType, 'acc_no');
+        if (!$dataRow->exists) {
+            $dataRow->fill([
+                'type'         => 'text',
+                'display_name' => 'Account Number',
+                'required'     => 1,
+                'browse'       => 1,
+                'read'         => 1,
+                'edit'         => 1,
+                'add'          => 1,
+                'delete'       => 1,
+                'details'      => '',
+                'order'        => 7,
+            ])->save();
+        }
+
+        $dataRow = $this->dataRow($walletTransactionDataType, 'status');
+        if (!$dataRow->exists) {
+            $dataRow->fill([
+                'type'         => 'select_dropdown',
+                'display_name' => 'Status',
+                'required'     => 1,
+                'browse'       => 1,
+                'read'         => 1,
+                'edit'         => 1,
+                'add'          => 0,
+                'delete'       => 1,
+                'details'      => '{"default":"0","options":{"0":"Inactive","1":"Active"}}',
+                'order'        => 8,
+            ])->save();
+        }
         
         $dataRow = $this->dataRow($walletTransactionDataType, 'created_at');
         if (!$dataRow->exists) {
@@ -874,7 +906,7 @@ class DataRowsTableSeeder extends Seeder
                 'add'          => 0,
                 'delete'       => 1,
                 'details'      => '',
-                'order'        => 7,
+                'order'        => 9,
             ])->save();
         }
 
@@ -890,7 +922,7 @@ class DataRowsTableSeeder extends Seeder
                 'add'          => 0,
                 'delete'       => 0,
                 'details'      => '',
-                'order'        => 8,
+                'order'        => 10,
             ])->save();
         }
 
