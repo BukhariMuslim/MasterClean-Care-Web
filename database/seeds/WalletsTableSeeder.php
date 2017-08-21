@@ -17,7 +17,7 @@ class WalletsTableSeeder extends Seeder
                 'price' => 55000,
             ],
             [
-                'amt' => 10000,
+                'amt' => 100000,
                 'price' => 105000,
             ],
             [

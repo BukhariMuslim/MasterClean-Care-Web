@@ -194,7 +194,7 @@ class UserTableSeeder extends Seeder
                 'name' => 'Indah Purnama Sari',
                 'role_id' => 3,
                 'email' => 'indah123@mail.com',
-                'avatar' => 'users/profile4.jpg',
+                'avatar' => 'users/profile2.jpg',
                 'password' => Hash::make('password'),
                 'gender' => 2,
                 'born_place' => 'binjai',
