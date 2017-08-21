@@ -38,7 +38,7 @@
                                 <label for="name">Name</label>
                                 <input type="text" class="form-control" name="name"
                                     placeholder="Name" id="name"
-                                    @if(!(isset($dataTypeContent->role_id) && $dataTypeContent->role_id == 1))
+                                    @if(!(isset($dataTypeContent) && $dataTypeContent->role_id == 1))
                                     disabled
                                     @endif
                                     value="@if(isset($dataTypeContent->name)){{ old('name', $dataTypeContent->name) }}@else{{old('name')}}@endif">
@@ -48,7 +48,7 @@
                                 <label for="name">Email</label>
                                 <input type="text" class="form-control" name="email"
                                        placeholder="Email" id="email"
-                                       @if(!(isset($dataTypeContent->role_id) && $dataTypeContent->role_id == 1))
+                                       @if(!(isset($dataTypeContent) && $dataTypeContent->role_id == 1))
                                         disabled
                                         @endif
                                        value="@if(isset($dataTypeContent->email)){{ old('email', $dataTypeContent->email) }}@else{{old('email')}}@endif">
@@ -62,22 +62,41 @@
                                 @endif
                                 <input type="password" class="form-control" name="password"
                                        placeholder="Password" id="password"
-                                       @if(!(isset($dataTypeContent->role_id) && $dataTypeContent->role_id == 1))
+                                       @if(!(isset($dataTypeContent) && $dataTypeContent->role_id == 1))
                                         disabled
                                         @endif
                                        value="">
                             </div>
 
                             <div class="form-group">
-                                <label for="password">Avatar</label>
+                                <label for="avatar">Avatar</label>
                                 @if(isset($dataTypeContent->avatar))
                                     <img src="{{ Voyager::image( $dataTypeContent->avatar ) }}"
                                          style="width:200px; height:auto; clear:both; display:block; padding:2px; border:1px solid #ddd; margin-bottom:10px;">
                                 @endif
-                                <input type="file" name="avatar" @if(!(isset($dataTypeContent->role_id) && $dataTypeContent->role_id == 1))
+                                <input type="file" name="avatar" @if(!(isset($dataTypeContent) && $dataTypeContent->role_id == 1))
                                     disabled
                                     @endif>
                             </div>
+
+                            @if(isset($dataTypeContent) && $dataTypeContent->role_id == 3)
+                                <div class="form-group">
+                                    <label for="avatar">User Documents</label>
+                                    <?php $documents = App\Models\UserDocument::where('user_id', $dataTypeContent->id); ?>
+                                    @if(isset($documents) && count($documents) > 0)
+                                        @foreach($documents as $document)
+                                            testing
+                                            <?php echo $document->id; ?>
+                                            @if(isset($document->document_path))
+                                                <img src="{{ Voyager::image( $document->document_path ) }}"
+                                                    style="width:200px; height:auto; clear:both; display:block; padding:2px; border:1px solid #ddd; margin-bottom:10px;">
+                                            @endif
+                                        @endforeach
+                                    @else
+                                        No Document found.
+                                    @endif
+                                </div>
+                            @endif
 
                             <div class="form-group">
                                 <label for="role">User Role</label>

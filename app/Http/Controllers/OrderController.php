@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Order;
 use App\Models\User;
+use App\Models\WalletTransaction;
 use Illuminate\Http\Request;
 use App\Helpers\Operators;
 use Carbon\Carbon;
@@ -165,11 +166,13 @@ class OrderController extends Controller
             }
             if (array_key_exists('status_member', $data)) {
                 if ($order->status_member == 0 && $data['status_member'] == 1 && $order->status_art == 1) {
+                    // Update user Wallet
                     WalletTransaction::where('id', $order->wallet_transaction_id)
                         ->update([
                             'status' => 1
                         ]);
-                    
+
+                    // Add ART Wallet
                     $artWalletTransaction = WalletTransaction::create([
                         'user_id' => $order->art_id,
                         'amount' => $order->$cost,
@@ -179,6 +182,8 @@ class OrderController extends Controller
                         'acc_no' => '',
                         'status' => 1,
                     ]);
+
+                    $order->status = 1;
                 }
 
                 $order->status_member = $data['status_member'];
