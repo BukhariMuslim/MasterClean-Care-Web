@@ -77,6 +77,10 @@ class OrderController extends Controller
                 'status' => 0,
             ]);
 
+            $order->update([
+                'wallet_transaction_id' => $walletTransaction->id
+            ]);
+
             DB::commit();
 
             return response()->json([ 'data' => $order, 
