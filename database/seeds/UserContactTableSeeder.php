@@ -17,7 +17,7 @@ class UserContactTableSeeder extends Seeder
                 'phone' => '081234567890',
                 'emergency_numb' => '081234123412',
                 'city' => 1,
-                'address' => 'Jl. Besar',
+                'address' => 'Jl. Gotong Royong No.22, Denai, Medan',
                 'location' => '3.610485, 98.675769',
                 'acc_no' => '1004874201'
             ],
@@ -26,7 +26,7 @@ class UserContactTableSeeder extends Seeder
                 'phone' => '082168360303',
                 'emergency_numb' => '082279900604',
                 'city' => 2,
-                'address' => 'Jl.Denai no47c',
+                'address' => 'Jl. Gotong Royong No.22, Denai, Medan',
                 'location' => '3.595237, 98.652423',
 		        'acc_no' => '1004874201'
             ],
@@ -35,7 +35,7 @@ class UserContactTableSeeder extends Seeder
                 'phone' => '0888888888',
                 'emergency_numb' => '081234567890',
                 'city' => 2,
-                'address' => 'Jl. Sana',
+                'address' => 'Jl. Gotong Royong No.22, Denai, Medan',
                 'location' => '3.605688, 98.707355',
 		        'acc_no' => '1004820989'
             ],
@@ -44,7 +44,7 @@ class UserContactTableSeeder extends Seeder
                 'phone' => '0888888888',
                 'emergency_numb' => '081234567890',
                 'city' => 2,
-                'address' => 'Jl. Sini',
+                'address' => 'Jl. Bersama No.2, Denai, Medan',
                 'location' => '3.577248, 98.653796',
 		        'acc_no' => '1004820989'
             ],
@@ -53,7 +53,7 @@ class UserContactTableSeeder extends Seeder
                 'phone' => '081234432165',
                 'emergency_numb' => '081234567890',
                 'city' => 2,
-                'address' => 'Jl. Riau',
+                'address' => 'Jl. Keluarga No.22, Denai, Medan',
                 'location' => '3.587870, 98.702205',
 		        'acc_no' => '1004820989'
             ],
@@ -62,7 +62,7 @@ class UserContactTableSeeder extends Seeder
                 'phone' => '080808080808',
                 'emergency_numb' => '081234432165',
                 'city' => 2,
-                'address' => 'Jl. Padang',
+                'address' => 'Jl. Padang Ujung No.22, Medan',
                 'location' => '3.588384, 98.681434',
         		'acc_no' => '1004874425'
             ],
@@ -71,7 +71,7 @@ class UserContactTableSeeder extends Seeder
                 'phone' => '08080881123',
                 'emergency_numb' => '081234432165',
                 'city' => 2,
-                'address' => 'Jl. Satu Lagi',
+                'address' => 'Jl. Jati Raya No.13, Medan',
                 'location' => '3.572794, 98.656886',
 		        'acc_no' => '1008294201'
             ],
@@ -80,7 +80,7 @@ class UserContactTableSeeder extends Seeder
                 'phone' => '08080198897',
                 'emergency_numb' => '081234432165',
                 'city' => 2,
-                'address' => 'Jl. Itu',
+                'address' => 'Jl. Sutrisno No.30, Medan',
                 'location' => '3.569196, 98.701175',
 		        'acc_no' => '1004286101'
             ],
@@ -89,7 +89,7 @@ class UserContactTableSeeder extends Seeder
                 'phone' => '08086784563',
                 'emergency_numb' => '081234432165',
                 'city' => 2,
-                'address' => 'Jl. Jepara',
+                'address' => 'Jl. Jepara No.5, Medan',
                 'location' => '3.569196, 98.701175',
 		        'acc_no' => '1004801839'
             ],
@@ -98,16 +98,16 @@ class UserContactTableSeeder extends Seeder
                 'phone' => '08086283749',
                 'emergency_numb' => '081234432165',
                 'city' => 2,
-                'address' => 'Jl. Thamrin',
+                'address' => 'Jl. Thamrin No.20, Medan',
                 'location' => '3.569196, 98.701175',
-		        'acc_no' => '1090287201'
+		'acc_no' => '1090287201'
             ],
             [
                 'user_id' => 11,
                 'phone' => '08080739286',
                 'emergency_numb' => '081234432165',
                 'city' => 2,
-                'address' => 'Jl. Denai',
+                'address' => 'Jl. Panglima Denai No.9, Medan',
                 'location' => '-6.154048, 106.776076',
 		        'acc_no' => '1004872986'
             ],
@@ -116,7 +116,7 @@ class UserContactTableSeeder extends Seeder
                 'phone' => '08089107384',
                 'emergency_numb' => '081234432165',
                 'city' => 2,
-                'address' => 'Jl. Tomat',
+                'address' => 'Jl. Grogol, Gg.Pisang, No.3, Medan',
                 'location' => '3.603704, 98.693814',
 		        'acc_no' => '1004871234'
             ],
@@ -125,16 +125,16 @@ class UserContactTableSeeder extends Seeder
                 'phone' => '08082918375',
                 'emergency_numb' => '081234432165',
                 'city' => 2,
-                'address' => 'Jl. Mangga',
+                'address' => 'Jl. Rawa Cangkuk No.11, Medan',
                 'location' => '3.590341, 98.679223',
-		        'acc_no' => '1004829875'
+		'acc_no' => '1004829875'
             ],
             [
                 'user_id' => 14,
                 'phone' => '08089572837',
                 'emergency_numb' => '081234432165',
                 'city' => 2,
-                'address' => 'Jl. Padi',
+                'address' => 'Jl. Padi Raya No.44, Medan',
                 'location' => '3.615525, 98.651586',
 		        'acc_no' => '1004820978'
             ],
@@ -143,7 +143,7 @@ class UserContactTableSeeder extends Seeder
                 'phone' => '08080925835',
                 'emergency_numb' => '081234432165',
                 'city' => 2,
-                'address' => 'Jl. Buntu',
+                'address' => 'Jl. Intan Gg.Langgar, No.21, Medan',
                 'location' => '3.577834, 98.666349',
                 'acc_no' => '1004801897'
             ],
@@ -152,7 +152,7 @@ class UserContactTableSeeder extends Seeder
                 'phone' => '08080886392',
                 'emergency_numb' => '081234432165',
                 'city' => 2,
-                'address' => 'Jl. Ujung',
+                'address' => 'Jl. Rawa Cangkuk No.11, Medan',
                 'location' => '3.566698, 98.701024',
 		        'acc_no' => '1004820989'
             ],
@@ -161,7 +161,7 @@ class UserContactTableSeeder extends Seeder
                 'phone' => '08089882125',
                 'emergency_numb' => '081234432165',
                 'city' => 2,
-                'address' => 'Jl. Merdeka',
+                'address' => 'Jl. Merdeka No.21, Medan',
                 'location' => '3.550764, 98.651071',
         		'acc_no' => '1004820989'
             ],
@@ -170,7 +170,7 @@ class UserContactTableSeeder extends Seeder
                 'phone' => '08080881125',
                 'emergency_numb' => '081234432165',
                 'city' => 2,
-                'address' => 'Jl. Halat',
+                'address' => 'Jl. Halat No.12, Medan',
                 'location' => '3.566698, 98.701024',
 		        'acc_no' => '1004290781'
             ]
