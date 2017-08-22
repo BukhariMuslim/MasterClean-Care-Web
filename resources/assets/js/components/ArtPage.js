@@ -44,6 +44,7 @@ class ArtPage extends Component {
     this.handleToggle = this.handleToggle.bind(this)
     this.handlePageChanged = this.handlePageChanged.bind(this)
     this.onChangeHandler = this.onChangeHandler.bind(this)
+    this.onNumberChangeHandler = this.onNumberChangeHandler.bind(this)
     this.resetForm = this.resetForm.bind(this)
   }
 
@@ -72,6 +73,13 @@ class ArtPage extends Component {
     const name = target.name
 
     this.setState({ [name]: value })
+  }
+
+  onNumberChangeHandler(e, values) {
+    const target = e.target
+    const name = target.name
+
+    this.setState({ [name]: values.value })
   }
 
   componentDidMount() {
@@ -224,7 +232,7 @@ class ArtPage extends Component {
                     disabled={!enabled}
                     fullWidth={true}
                     name="userWorkTime"
-                    onChange={(e) => this.onChangeTextHandler(e, curIdx)}
+                    onChange={(e, values) => this.onChangeTextHandler(e, values, curIdx)}
                     validators={[isNeedTextBox ? ('required') : '']}
                     errorMessages={[isNeedTextBox ? ('Honor dibutuhkan') : '']}
                     customInput={TextValidator}
@@ -334,14 +342,13 @@ class ArtPage extends Component {
     }
   }
 
-  onChangeTextHandler(e, idx) {
+  onChangeTextHandler(e, values, idx) {
     const target = e.target
-    const value = target.value
     const name = target.name
     let old = this.state[name]
 
     if (idx > -1) {
-      old[idx].cost = target.value
+      old[idx].cost = values.value
     }
     this.setState({ [name]: old })
   }
@@ -441,6 +448,7 @@ class ArtPage extends Component {
                         <TextValidator
                           hintText="Nama"
                           floatingLabelText="Nama"
+                          maxLength={191}
                           value={this.state.name}
                           fullWidth={true}
                           name="name"
@@ -452,10 +460,11 @@ class ArtPage extends Component {
                         <NumberFormat
                           hintText="Usia (min)"
                           floatingLabelText="Usia (min)"
+                          maxLength={191}
                           value={this.state.minAge}
                           fullWidth={true}
                           name="minAge"
-                          onChange={this.onChangeHandler}
+                          onChange={this.onNumberChangeHandler}
                           customInput={TextValidator}
                           autoComplete={false}
                           validators={['minNumber:0', 'maxNumber:' + this.state.maxAge ]}
@@ -466,10 +475,11 @@ class ArtPage extends Component {
                         <NumberFormat
                           hintText="Usia (maks)"
                           floatingLabelText="Usia (maks)"
+                          maxLength={191}
                           value={this.state.maxAge}
                           fullWidth={true}
                           name="maxAge"
-                          onChange={this.onChangeHandler}
+                          onChange={this.onNumberChangeHandler}
                           customInput={TextValidator}
                           autoComplete={false}
                           validators={['minNumber:' + this.state.minAge, 'maxNumber:100' ]}
@@ -519,6 +529,7 @@ class ArtPage extends Component {
                         <TextValidator
                           hintText="Suku"
                           floatingLabelText="Suku"
+                          maxLength={191}
                           value={this.state.race}
                           fullWidth={true}
                           name="race"
@@ -561,11 +572,12 @@ class ArtPage extends Component {
                           hintText="Honor maksimum"
                           floatingLabelText="Honor maksimum"
                           thousandSeparator={true}
+                          maxLength={191}
                           prefix={'Rp. '}
                           value={this.state.maxCost}
                           fullWidth={true}
                           name="maxCost"
-                          onChange={this.onChangeHandler}
+                          onChange={this.onNumberChangeHandler}
                           customInput={TextValidator}
                           />
                       </div>

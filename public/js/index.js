@@ -5738,7 +5738,7 @@ var ArtDetail = function (_Component) {
                 {
                   className: 'col s12 m3'
                 },
-                _react2.default.createElement('img', { src: '/image/medium/' + this.state.art.avatar || 'image/medium/users/profile.png', alt: '' })
+                _react2.default.createElement('img', { src: '/image/medium/' + this.state.art.avatar || 'image/medium/users/profile.png', alt: '', className: 'circle' })
               ),
               _react2.default.createElement(
                 'div',
@@ -6224,6 +6224,7 @@ var ArtPage = function (_Component) {
     _this.handleToggle = _this.handleToggle.bind(_this);
     _this.handlePageChanged = _this.handlePageChanged.bind(_this);
     _this.onChangeHandler = _this.onChangeHandler.bind(_this);
+    _this.onNumberChangeHandler = _this.onNumberChangeHandler.bind(_this);
     _this.resetForm = _this.resetForm.bind(_this);
     return _this;
   }
@@ -6258,6 +6259,14 @@ var ArtPage = function (_Component) {
       var name = target.name;
 
       this.setState(_defineProperty({}, name, value));
+    }
+  }, {
+    key: 'onNumberChangeHandler',
+    value: function onNumberChangeHandler(e, values) {
+      var target = e.target;
+      var name = target.name;
+
+      this.setState(_defineProperty({}, name, values.value));
     }
   }, {
     key: 'componentDidMount',
@@ -6419,8 +6428,8 @@ var ArtPage = function (_Component) {
                 disabled: !enabled,
                 fullWidth: true,
                 name: 'userWorkTime',
-                onChange: function onChange(e) {
-                  return _this3.onChangeTextHandler(e, curIdx);
+                onChange: function onChange(e, values) {
+                  return _this3.onChangeTextHandler(e, values, curIdx);
                 },
                 validators: [isNeedTextBox ? 'required' : ''],
                 errorMessages: [isNeedTextBox ? 'Honor dibutuhkan' : ''],
@@ -6544,14 +6553,13 @@ var ArtPage = function (_Component) {
     }
   }, {
     key: 'onChangeTextHandler',
-    value: function onChangeTextHandler(e, idx) {
+    value: function onChangeTextHandler(e, values, idx) {
       var target = e.target;
-      var value = target.value;
       var name = target.name;
       var old = this.state[name];
 
       if (idx > -1) {
-        old[idx].cost = target.value;
+        old[idx].cost = values.value;
       }
       this.setState(_defineProperty({}, name, old));
     }
@@ -6672,6 +6680,7 @@ var ArtPage = function (_Component) {
                     _react2.default.createElement(_reactMaterialUiFormValidator.TextValidator, {
                       hintText: 'Nama',
                       floatingLabelText: 'Nama',
+                      maxLength: 191,
                       value: this.state.name,
                       fullWidth: true,
                       name: 'name',
@@ -6685,10 +6694,11 @@ var ArtPage = function (_Component) {
                     _react2.default.createElement(_reactNumberFormat2.default, {
                       hintText: 'Usia (min)',
                       floatingLabelText: 'Usia (min)',
+                      maxLength: 191,
                       value: this.state.minAge,
                       fullWidth: true,
                       name: 'minAge',
-                      onChange: this.onChangeHandler,
+                      onChange: this.onNumberChangeHandler,
                       customInput: _reactMaterialUiFormValidator.TextValidator,
                       autoComplete: false,
                       validators: ['minNumber:0', 'maxNumber:' + this.state.maxAge],
@@ -6701,10 +6711,11 @@ var ArtPage = function (_Component) {
                     _react2.default.createElement(_reactNumberFormat2.default, {
                       hintText: 'Usia (maks)',
                       floatingLabelText: 'Usia (maks)',
+                      maxLength: 191,
                       value: this.state.maxAge,
                       fullWidth: true,
                       name: 'maxAge',
-                      onChange: this.onChangeHandler,
+                      onChange: this.onNumberChangeHandler,
                       customInput: _reactMaterialUiFormValidator.TextValidator,
                       autoComplete: false,
                       validators: ['minNumber:' + this.state.minAge, 'maxNumber:100'],
@@ -6772,6 +6783,7 @@ var ArtPage = function (_Component) {
                     _react2.default.createElement(_reactMaterialUiFormValidator.TextValidator, {
                       hintText: 'Suku',
                       floatingLabelText: 'Suku',
+                      maxLength: 191,
                       value: this.state.race,
                       fullWidth: true,
                       name: 'race',
@@ -6824,11 +6836,12 @@ var ArtPage = function (_Component) {
                       hintText: 'Honor maksimum',
                       floatingLabelText: 'Honor maksimum',
                       thousandSeparator: true,
+                      maxLength: 191,
                       prefix: 'Rp. ',
                       value: this.state.maxCost,
                       fullWidth: true,
                       name: 'maxCost',
-                      onChange: this.onChangeHandler,
+                      onChange: this.onNumberChangeHandler,
                       customInput: _reactMaterialUiFormValidator.TextValidator
                     })
                   ),
@@ -8661,7 +8674,7 @@ var MemberDetail = function (_Component) {
                     {
                       className: 'col s12 m3'
                     },
-                    _react2.default.createElement('img', { src: '/image/medium/' + this.state.member.avatar || 'image/medium/users/profile.png', alt: '' })
+                    _react2.default.createElement('img', { src: '/image/medium/' + this.state.member.avatar || 'image/medium/users/profile.png', alt: '', className: 'circle' })
                   ),
                   _react2.default.createElement(
                     'div',
@@ -8984,6 +8997,7 @@ var MyOfferPage = function (_Component) {
     _this.handleToggle = _this.handleToggle.bind(_this);
     _this.handlePageChanged = _this.handlePageChanged.bind(_this);
     _this.onChangeHandler = _this.onChangeHandler.bind(_this);
+    _this.onNumberChangeHandler = _this.onNumberChangeHandler.bind(_this);
     _this.resetForm = _this.resetForm.bind(_this);
     return _this;
   }
@@ -9012,6 +9026,14 @@ var MyOfferPage = function (_Component) {
       var name = target.name;
 
       this.setState(_defineProperty({}, name, value));
+    }
+  }, {
+    key: 'onNumberChangeHandler',
+    value: function onNumberChangeHandler(e, values) {
+      var target = e.target;
+      var name = target.name;
+
+      this.setState(_defineProperty({}, name, values.value));
     }
   }, {
     key: 'componentDidMount',
@@ -9423,7 +9445,7 @@ var MyOfferPage = function (_Component) {
                       value: this.state.maxCost,
                       fullWidth: true,
                       name: 'maxCost',
-                      onChange: this.onChangeHandler,
+                      onChange: this.onNumberChangeHandler,
                       customInput: _reactMaterialUiFormValidator.TextValidator
                     })
                   ),
@@ -10753,6 +10775,7 @@ var OfferPage = function (_Component) {
     _this.handleToggle = _this.handleToggle.bind(_this);
     _this.handlePageChanged = _this.handlePageChanged.bind(_this);
     _this.onChangeHandler = _this.onChangeHandler.bind(_this);
+    _this.onNumberChangeHandler = _this.onNumberChangeHandler.bind(_this);
     _this.resetForm = _this.resetForm.bind(_this);
     return _this;
   }
@@ -10948,6 +10971,14 @@ var OfferPage = function (_Component) {
       this.setState(_defineProperty({}, name, old));
     }
   }, {
+    key: 'onNumberChangeHandler',
+    value: function onNumberChangeHandler(e, values) {
+      var target = e.target;
+      var name = target.name;
+
+      this.setState(_defineProperty({}, name, values.value));
+    }
+  }, {
     key: 'onSelectFieldChangeHandler',
     value: function onSelectFieldChangeHandler(name) {
       var form = this;
@@ -11087,6 +11118,7 @@ var OfferPage = function (_Component) {
                     _react2.default.createElement(_reactMaterialUiFormValidator.TextValidator, {
                       hintText: 'Nama Penawar',
                       floatingLabelText: 'Nama Penawar',
+                      maxLength: 191,
                       value: this.state.name,
                       fullWidth: true,
                       name: 'name',
@@ -11188,10 +11220,11 @@ var OfferPage = function (_Component) {
                       floatingLabelText: 'Honor maksimum',
                       thousandSeparator: true,
                       prefix: 'Rp. ',
+                      maxLength: 191,
                       value: this.state.maxCost,
                       fullWidth: true,
                       name: 'maxCost',
-                      onChange: this.onChangeHandler,
+                      onChange: this.onNumberChangeHandler,
                       customInput: _reactMaterialUiFormValidator.TextValidator
                     })
                   ),
@@ -12419,6 +12452,7 @@ var OrderHistoryPage = function (_Component) {
     _this.handleToggle = _this.handleToggle.bind(_this);
     _this.handlePageChanged = _this.handlePageChanged.bind(_this);
     _this.onChangeHandler = _this.onChangeHandler.bind(_this);
+    _this.onNumberChangeHandler = _this.onNumberChangeHandler.bind(_this);
     _this.resetForm = _this.resetForm.bind(_this);
     return _this;
   }
@@ -12447,6 +12481,14 @@ var OrderHistoryPage = function (_Component) {
       var name = target.name;
 
       this.setState(_defineProperty({}, name, value));
+    }
+  }, {
+    key: 'onNumberChangeHandler',
+    value: function onNumberChangeHandler(e, values) {
+      var target = e.target;
+      var name = target.name;
+
+      this.setState(_defineProperty({}, name, values.value));
     }
   }, {
     key: 'componentDidMount',
@@ -12858,7 +12900,7 @@ var OrderHistoryPage = function (_Component) {
                       value: this.state.maxCost,
                       fullWidth: true,
                       name: 'maxCost',
-                      onChange: this.onChangeHandler,
+                      onChange: this.onNumberChangeHandler,
                       customInput: _reactMaterialUiFormValidator.TextValidator
                     })
                   ),
@@ -13091,6 +13133,7 @@ var OrderPage = function (_Component) {
     _this.handleToggle = _this.handleToggle.bind(_this);
     _this.handlePageChanged = _this.handlePageChanged.bind(_this);
     _this.onChangeHandler = _this.onChangeHandler.bind(_this);
+    _this.onNumberChangeHandler = _this.onNumberChangeHandler.bind(_this);
     _this.resetForm = _this.resetForm.bind(_this);
     return _this;
   }
@@ -13119,6 +13162,14 @@ var OrderPage = function (_Component) {
       var name = target.name;
 
       this.setState(_defineProperty({}, name, value));
+    }
+  }, {
+    key: 'onNumberChangeHandler',
+    value: function onNumberChangeHandler(e, values) {
+      var target = e.target;
+      var name = target.name;
+
+      this.setState(_defineProperty({}, name, values.value));
     }
   }, {
     key: 'componentDidMount',
@@ -13425,6 +13476,7 @@ var OrderPage = function (_Component) {
                     { className: 'col m6' },
                     _react2.default.createElement(_reactMaterialUiFormValidator.TextValidator, {
                       hintText: 'Nama ART',
+                      maxLength: 191,
                       floatingLabelText: 'Nama ART',
                       value: this.state.name,
                       fullWidth: true,
@@ -13527,10 +13579,11 @@ var OrderPage = function (_Component) {
                       floatingLabelText: 'Honor maksimum',
                       thousandSeparator: true,
                       prefix: 'Rp. ',
+                      maxLength: 191,
                       value: this.state.maxCost,
                       fullWidth: true,
                       name: 'maxCost',
-                      onChange: this.onChangeHandler,
+                      onChange: this.onNumberChangeHandler,
                       customInput: _reactMaterialUiFormValidator.TextValidator
                     })
                   ),
@@ -13746,6 +13799,7 @@ var ProfileDetail = function (_Component) {
       cityItem: [],
       user: {
         email: '',
+        old_password: '',
         password: '',
         re_password: '',
         name: '',
@@ -13776,13 +13830,16 @@ var ProfileDetail = function (_Component) {
         user_work_timeErrorText: '',
         user_documentErrorText: ''
       },
-      isEdit: false
+      isEdit: false,
+      isPasswordEdit: false
     };
 
     _this.baseState = _this.state;
     _this.onChangeHandler = _this.onChangeHandler.bind(_this);
     _this.onEdit = _this.onEdit.bind(_this);
+    _this.onPasswordEdit = _this.onPasswordEdit.bind(_this);
     _this.onCancelEdit = _this.onCancelEdit.bind(_this);
+    _this.onCancelPasswordEdit = _this.onCancelPasswordEdit.bind(_this);
     return _this;
   }
 
@@ -13803,7 +13860,14 @@ var ProfileDetail = function (_Component) {
       var name = target.name;
 
       var user = this.state.user;
-      this.setState({ user: Object.assign({}, user, _defineProperty({}, name, value)) });
+      if (name == 'address') {
+        this.setState({ user: Object.assign({}, user, {
+            contact: Object.assign({}, user.contact, _defineProperty({}, name, value))
+          })
+        });
+      } else {
+        this.setState({ user: Object.assign({}, user, _defineProperty({}, name, value)) });
+      }
     }
   }, {
     key: 'onChangeDateHandler',
@@ -13826,6 +13890,18 @@ var ProfileDetail = function (_Component) {
       this.props.getWorkTime(this, 'workTimeItem');
 
       this.props.getAdditionalInfo(this, 'additionalInfoItem');
+    }
+  }, {
+    key: 'componentWillMount',
+    value: function componentWillMount() {
+      var _this2 = this;
+
+      _reactMaterialUiFormValidator.ValidatorForm.addValidationRule('isPasswordMatch', function (value) {
+        if (value !== _this2.state.user.password) {
+          return false;
+        }
+        return true;
+      });
     }
   }, {
     key: 'componentDidMount',
@@ -13898,11 +13974,11 @@ var ProfileDetail = function (_Component) {
   }, {
     key: 'checkItems',
     value: function checkItems(type, collection, isNeedTextBox) {
-      var _this2 = this;
+      var _this3 = this;
 
       if (collection && collection.length > 0) {
         return collection.map(function (obj, idx) {
-          var values = _this2.state.user[type];
+          var values = _this3.state.user[type];
           var curIdx = -1;
           var costEnabled = false;
           var name = '';
@@ -13938,10 +14014,10 @@ var ProfileDetail = function (_Component) {
               _react2.default.createElement(_Checkbox2.default, {
                 checked: checked,
                 value: obj.id,
-                disabled: !_this2.state.isEdit,
+                disabled: !_this3.state.isEdit,
                 name: name,
                 label: obj.language || obj.job || obj.work_time || obj.info,
-                onCheck: _this2.onCheckHandler(type, name, isNeedTextBox)
+                onCheck: _this3.onCheckHandler(type, name, isNeedTextBox)
               })
             ),
             isNeedTextBox ? _react2.default.createElement(
@@ -13949,15 +14025,16 @@ var ProfileDetail = function (_Component) {
               { className: 'col s6' },
               _react2.default.createElement(_reactNumberFormat2.default, {
                 hintText: 'Honor ' + obj.work_time,
+                maxLength: 191,
                 thousandSeparator: true,
                 prefix: 'Rp. ',
                 value: costEnabled ? values[curIdx].cost : '',
-                disabled: !costEnabled || !_this2.state.isEdit,
-                underlineShow: _this2.state.isEdit,
+                disabled: !costEnabled || !_this3.state.isEdit,
+                underlineShow: _this3.state.isEdit,
                 fullWidth: true,
                 name: 'user_work_time',
                 onChange: function onChange(e) {
-                  return _this2.onChangeTextHandler(e, curIdx);
+                  return _this3.onChangeTextHandler(e, curIdx);
                 },
                 validators: isNeedTextBox && checked ? ['required'] : [],
                 errorMessages: isNeedTextBox && checked ? ['Honor dibutuhkan'] : [],
@@ -14060,6 +14137,8 @@ var ProfileDetail = function (_Component) {
           id: this.state.user.id,
           name: this.state.user.name,
           email: this.state.user.email,
+          isPasswordChange: this.state.isPasswordEdit,
+          old_password: this.state.user.old_password,
           password: this.state.user.password,
           gender: this.state.user.gender,
           born_place: this.state.user.born_place,
@@ -14076,7 +14155,8 @@ var ProfileDetail = function (_Component) {
           user_language: this.state.user.user_language,
           user_job: this.state.user.user_job,
           user_work_time: this.state.user.user_work_time,
-          user_additional_info: this.state.user.user_additional_info
+          user_additional_info: this.state.user.user_additional_info,
+          isWeb: true
         });
       }
     }
@@ -14093,6 +14173,13 @@ var ProfileDetail = function (_Component) {
       });
     }
   }, {
+    key: 'onPasswordEdit',
+    value: function onPasswordEdit() {
+      this.setState({
+        isPasswordEdit: true
+      });
+    }
+  }, {
     key: 'onCancelEdit',
     value: function onCancelEdit() {
       var oldProfile = this.state.user;
@@ -14102,9 +14189,21 @@ var ProfileDetail = function (_Component) {
       });
     }
   }, {
+    key: 'onCancelPasswordEdit',
+    value: function onCancelPasswordEdit() {
+      this.setState({
+        user: Object.assign({}, this.state.user, {
+          old_password: '',
+          password: '',
+          re_password: ''
+        }),
+        isPasswordEdit: false
+      });
+    }
+  }, {
     key: 'render',
     value: function render() {
-      var _this3 = this;
+      var _this4 = this;
 
       var age = 0;
       var calculateAge = function calculateAge(birthday) {
@@ -14127,10 +14226,10 @@ var ProfileDetail = function (_Component) {
           {
             ref: 'form',
             onSubmit: function onSubmit(e) {
-              return _this3.postHandler(e);
+              return _this4.postHandler(e);
             },
             onError: function onError(errors) {
-              return _this3.onError(errors);
+              return _this4.onError(errors);
             } },
           _react2.default.createElement(
             _Card.Card,
@@ -14143,7 +14242,7 @@ var ProfileDetail = function (_Component) {
                 {
                   className: 'col s12 m3'
                 },
-                _react2.default.createElement('img', { src: '/image/medium/' + this.props.user.avatar || 'image/medium/users/profile.png', alt: '' })
+                _react2.default.createElement('img', { src: '/image/medium/' + this.props.user.avatar || 'image/medium/users/profile.png', alt: '', className: 'circle' })
               ),
               _react2.default.createElement(
                 'div',
@@ -14244,9 +14343,9 @@ var ProfileDetail = function (_Component) {
                                 _Table.TableRowColumn,
                                 { className: 'bold', style: { width: '60%' } },
                                 this.state.isEdit ? _react2.default.createElement(_reactMaterialUiFormValidator.TextValidator, {
-                                  style: { fontSize: '13px', lineHeight: '13px', height: 'auto' },
                                   hintText: 'Nama',
                                   value: this.state.user.name,
+                                  maxLength: 191,
                                   fullWidth: true,
                                   name: 'name',
                                   onChange: this.onChangeHandler,
@@ -14256,6 +14355,80 @@ var ProfileDetail = function (_Component) {
                                 }) : this.props.user.name
                               )
                             ),
+                            this.state.isEdit ? _react2.default.createElement(
+                              _Table.TableRow,
+                              null,
+                              _react2.default.createElement(
+                                _Table.TableRowColumn,
+                                { style: { textAlign: 'right', verticalAlign: 'top', color: '#888', width: '40%' } },
+                                'Password'
+                              ),
+                              _react2.default.createElement(
+                                _Table.TableRowColumn,
+                                { className: 'bold', style: { width: '60%' } },
+                                this.state.isPasswordEdit ? _react2.default.createElement(
+                                  'div',
+                                  null,
+                                  _react2.default.createElement(
+                                    'div',
+                                    null,
+                                    _react2.default.createElement(_reactMaterialUiFormValidator.TextValidator, {
+                                      hintText: 'Password Lama',
+                                      type: 'password',
+                                      maxLength: 32,
+                                      value: this.state.user.old_password,
+                                      fullWidth: true,
+                                      name: 'old_password',
+                                      onChange: this.onChangeHandler,
+                                      validators: this.state.isPasswordEdit ? ['required'] : [],
+                                      errorMessages: this.state.isPasswordEdit ? ['Password Lama dibutuhkan'] : []
+                                    })
+                                  ),
+                                  _react2.default.createElement(
+                                    'div',
+                                    null,
+                                    _react2.default.createElement(_reactMaterialUiFormValidator.TextValidator, {
+                                      hintText: 'Password Baru',
+                                      maxLength: 32,
+                                      type: 'password',
+                                      value: this.state.user.password,
+                                      fullWidth: true,
+                                      name: 'password',
+                                      onChange: this.onChangeHandler,
+                                      validators: this.state.isPasswordEdit ? ['required'] : [],
+                                      errorMessages: this.state.isPasswordEdit ? ['Password Baru dibutuhkan'] : []
+                                    })
+                                  ),
+                                  _react2.default.createElement(
+                                    'div',
+                                    null,
+                                    _react2.default.createElement(_reactMaterialUiFormValidator.TextValidator, {
+                                      hintText: 'Konfirmasi Password Baru',
+                                      maxLength: 32,
+                                      type: 'password',
+                                      value: this.state.user.re_password,
+                                      fullWidth: true,
+                                      name: 're_password',
+                                      onChange: this.onChangeHandler,
+                                      validators: this.state.isPasswordEdit ? ['isPasswordMatch', 'required'] : [],
+                                      errorMessages: this.state.isPasswordEdit ? ['Password Baru tidak cocok', 'Konfirmasi Password Baru dibutuhkan'] : []
+                                    })
+                                  ),
+                                  _react2.default.createElement(_FlatButton2.default, {
+                                    label: 'Batal',
+                                    className: 'right',
+                                    onClick: function onClick() {
+                                      return _this4.onCancelPasswordEdit();
+                                    }
+                                  })
+                                ) : _react2.default.createElement(_FlatButton2.default, {
+                                  label: 'Ubah Password',
+                                  onClick: function onClick() {
+                                    return _this4.onPasswordEdit();
+                                  }
+                                })
+                              )
+                            ) : null,
                             _react2.default.createElement(
                               _Table.TableRow,
                               null,
@@ -14270,7 +14443,6 @@ var ProfileDetail = function (_Component) {
                                 this.state.isEdit ? _react2.default.createElement(
                                   _reactMaterialUiFormValidator.SelectValidator,
                                   {
-                                    style: { fontSize: '13px', lineHeight: '13px', height: 'auto' },
                                     hintText: 'Gender',
                                     value: this.state.user.gender,
                                     fullWidth: true,
@@ -14302,8 +14474,8 @@ var ProfileDetail = function (_Component) {
                                     'div',
                                     { className: 'col s12 m6', style: { paddingLeft: 0 } },
                                     _react2.default.createElement(_reactMaterialUiFormValidator.TextValidator, {
-                                      style: { fontSize: '13px', lineHeight: '13px', height: 'auto' },
                                       hintText: 'Tempat Lahir',
+                                      maxLength: 191,
                                       value: this.state.user.born_place,
                                       fullWidth: true,
                                       name: 'born_place',
@@ -14318,7 +14490,6 @@ var ProfileDetail = function (_Component) {
                                     { className: 'col s12 m6', style: { paddingRight: 0 } },
                                     _react2.default.createElement(_reactMaterialUiFormValidator.DateValidator, {
                                       hintText: 'Tanggal Lahir',
-                                      textFieldStyle: { fontSize: '13px', lineHeight: '13px', height: 'auto' },
                                       value: this.state.user.born_date ? new Date(this.state.user.born_date) : {},
                                       onChange: this.onChangeDateHandler('born_date'),
                                       name: 'born_date',
@@ -14357,7 +14528,6 @@ var ProfileDetail = function (_Component) {
                                   _reactMaterialUiFormValidator.SelectValidator,
                                   {
                                     hintText: 'Kota',
-                                    style: { fontSize: '13px', lineHeight: '13px', height: 'auto' },
                                     value: this.state.user.contact.city.id,
                                     name: 'city',
                                     fullWidth: true,
@@ -14382,14 +14552,14 @@ var ProfileDetail = function (_Component) {
                                 { className: 'bold' },
                                 this.state.isEdit ? _react2.default.createElement(_reactMaterialUiFormValidator.TextValidator, {
                                   hintText: 'Alamat',
-                                  style: { fontSize: '13px', lineHeight: '13px', height: 'auto' },
+                                  maxLength: 191,
                                   value: this.state.user.contact.address,
                                   fullWidth: true,
                                   name: 'address',
                                   onChange: this.onChangeHandler,
                                   autoComplete: false,
                                   multiLine: true,
-                                  rows: 2,
+                                  rows: 1,
                                   rowsMax: 4,
                                   validators: ['required'],
                                   errorMessages: ['Alamat dibutuhkan']
@@ -14411,7 +14581,6 @@ var ProfileDetail = function (_Component) {
                                   _reactMaterialUiFormValidator.SelectValidator,
                                   {
                                     hintText: 'Agama',
-                                    style: { fontSize: '13px', lineHeight: '13px', height: 'auto' },
                                     value: this.state.user.religion,
                                     name: 'religion',
                                     fullWidth: true,
@@ -14442,7 +14611,6 @@ var ProfileDetail = function (_Component) {
                                 { className: 'bold' },
                                 this.state.isEdit ? _react2.default.createElement(_TextField2.default, {
                                   hintText: 'Suku',
-                                  style: { fontSize: '13px', lineHeight: '13px', height: 'auto' },
                                   fullWidth: true,
                                   value: this.state.user.race,
                                   name: 'race',
@@ -14562,20 +14730,22 @@ var ProfileDetail = function (_Component) {
                                       displayRowCheckbox: false
                                     },
                                     this.props.user.user_work_time.map(function (work_time, idx) {
-                                      return _react2.default.createElement(
-                                        _Table.TableRow,
-                                        { key: idx },
-                                        _react2.default.createElement(
-                                          _Table.TableRowColumn,
-                                          null,
-                                          work_time.work_time.work_time
-                                        ),
-                                        _react2.default.createElement(
-                                          _Table.TableRowColumn,
-                                          null,
-                                          _react2.default.createElement(_reactNumberFormat2.default, { value: work_time.cost, displayType: 'text', thousandSeparator: true, prefix: 'Rp. ' })
-                                        )
-                                      );
+                                      if (work_time) {
+                                        return _react2.default.createElement(
+                                          _Table.TableRow,
+                                          { key: idx },
+                                          _react2.default.createElement(
+                                            _Table.TableRowColumn,
+                                            null,
+                                            work_time.work_time.work_time
+                                          ),
+                                          _react2.default.createElement(
+                                            _Table.TableRowColumn,
+                                            null,
+                                            _react2.default.createElement(_reactNumberFormat2.default, { value: work_time.cost, displayType: 'text', thousandSeparator: true, prefix: 'Rp. ' })
+                                          )
+                                        );
+                                      }
                                     })
                                   )
                                 ) : '-'
@@ -21474,7 +21644,7 @@ var alternativeProps = {
   order: 'msFlexOrder',
   flexGrow: 'msFlexPositive',
   flexShrink: 'msFlexNegative',
-  flexBasis: 'msPreferredSize'
+  flexBasis: 'msFlexPreferredSize'
 };
 
 function flexboxIE(property, value, style, _ref) {
@@ -21923,7 +22093,7 @@ var alternativeProps = {
   order: 'msFlexOrder',
   flexGrow: 'msFlexPositive',
   flexShrink: 'msFlexNegative',
-  flexBasis: 'msPreferredSize'
+  flexBasis: 'msFlexPreferredSize'
 };
 
 function flexboxIE(property, value, style) {
@@ -57261,8 +57431,7 @@ var Table = function (_Component) {
         onRowHover: this.onRowHover,
         onRowHoverExit: this.onRowHoverExit,
         onRowSelection: this.onRowSelection,
-        selectable: this.props.selectable,
-        style: (0, _simpleAssign2.default)({ height: this.props.height }, base.props.style)
+        selectable: this.props.selectable
       });
     }
   }, {

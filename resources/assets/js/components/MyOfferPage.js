@@ -50,6 +50,7 @@ class MyOfferPage extends Component {
     this.handleToggle = this.handleToggle.bind(this)
     this.handlePageChanged = this.handlePageChanged.bind(this)
     this.onChangeHandler = this.onChangeHandler.bind(this)
+    this.onNumberChangeHandler = this.onNumberChangeHandler.bind(this)
     this.resetForm = this.resetForm.bind(this)
   }
 
@@ -72,6 +73,13 @@ class MyOfferPage extends Component {
     const name = target.name
 
     this.setState({ [name]: value })
+  }
+
+  onNumberChangeHandler(e, values) {
+    const target = e.target
+    const name = target.name
+
+    this.setState({ [name]: values.value })
   }
 
   componentDidMount() {
@@ -421,7 +429,7 @@ class MyOfferPage extends Component {
                           value={this.state.maxCost}
                           fullWidth={true}
                           name="maxCost"
-                          onChange={this.onChangeHandler}
+                          onChange={this.onNumberChangeHandler}
                           customInput={TextValidator}
                           />
                       </div>

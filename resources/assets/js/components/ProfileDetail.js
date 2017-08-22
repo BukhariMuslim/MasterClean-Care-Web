@@ -52,6 +52,7 @@ class ProfileDetail extends Component {
       cityItem: [],
       user: {
         email: '',
+        old_password: '',
         password: '',
         re_password: '',
         name: '',
@@ -83,12 +84,15 @@ class ProfileDetail extends Component {
         user_documentErrorText: '',
       },
       isEdit: false,
+      isPasswordEdit: false,
     }
 
     this.baseState = this.state
     this.onChangeHandler = this.onChangeHandler.bind(this)
     this.onEdit = this.onEdit.bind(this)
+    this.onPasswordEdit = this.onPasswordEdit.bind(this)
     this.onCancelEdit = this.onCancelEdit.bind(this)
+    this.onCancelPasswordEdit = this.onCancelPasswordEdit.bind(this)
   }
 
   onSelectFieldChangeHandler(name) {
@@ -103,9 +107,19 @@ class ProfileDetail extends Component {
     const target = e.target
     const value = target.value
     const name = target.name
-
+    
     let user = this.state.user
-    this.setState({ user: Object.assign({}, user, { [name]: value }) })
+    if (name == 'address') {
+      this.setState({ user: Object.assign({}, user, { 
+          contact: Object.assign({}, user.contact, {
+            [name]: value
+          })
+        }) 
+      })
+    }
+    else {
+      this.setState({ user: Object.assign({}, user, { [name]: value }) })
+    }
   }
 
   onChangeDateHandler(name) {
@@ -126,6 +140,15 @@ class ProfileDetail extends Component {
     this.props.getWorkTime(this, 'workTimeItem')
 
     this.props.getAdditionalInfo(this, 'additionalInfoItem')
+  }
+
+  componentWillMount() {
+    ValidatorForm.addValidationRule('isPasswordMatch', (value) => {
+      if (value !== this.state.user.password) {
+        return false;
+      }
+      return true;
+    });
   }
 
   componentDidMount() {
@@ -244,6 +267,7 @@ class ProfileDetail extends Component {
                 <div className="col s6">
                   <NumberFormat
                     hintText={'Honor ' + obj.work_time}
+                    maxLength={191}
                     thousandSeparator={true}
                     prefix={'Rp. '}
                     value={costEnabled ? values[curIdx].cost : ''}
@@ -355,6 +379,8 @@ class ProfileDetail extends Component {
           id: this.state.user.id,
           name: this.state.user.name,
           email: this.state.user.email,
+          isPasswordChange: this.state.isPasswordEdit,
+          old_password: this.state.user.old_password,
           password: this.state.user.password,
           gender: this.state.user.gender,
           born_place: this.state.user.born_place,
@@ -375,6 +401,7 @@ class ProfileDetail extends Component {
           user_job: this.state.user.user_job, 
           user_work_time: this.state.user.user_work_time,
           user_additional_info: this.state.user.user_additional_info,
+          isWeb: true,
         },
       )
     }
@@ -390,11 +417,28 @@ class ProfileDetail extends Component {
     })
   }
 
+  onPasswordEdit() {
+    this.setState({
+      isPasswordEdit: true,
+    })
+  }
+
   onCancelEdit() {
     const oldProfile = this.state.user
     this.setState({
       user: Object.assign({}, oldProfile, this.props.user),
       isEdit: false,
+    })
+  }
+
+  onCancelPasswordEdit() {
+    this.setState({
+      user: Object.assign({}, this.state.user, {
+        old_password: '',
+        password: '',
+        re_password: '',
+      }),
+      isPasswordEdit: false,
     })
   }
 
@@ -425,7 +469,7 @@ class ProfileDetail extends Component {
                   <CardMedia
                     className="col s12 m3"
                   >
-                    <img src={'/image/medium/' + this.props.user.avatar || 'image/medium/users/profile.png'} alt="" />
+                    <img src={'/image/medium/' + this.props.user.avatar || 'image/medium/users/profile.png'} alt="" className="circle" />
                   </CardMedia>
                   <div className="col s12 m9" >
                     <div className="row">
@@ -483,9 +527,9 @@ class ProfileDetail extends Component {
                                     {
                                       this.state.isEdit ?
                                       <TextValidator
-                                        style={{ fontSize: '13px', lineHeight: '13px', height: 'auto'}}
                                         hintText="Nama"
                                         value={this.state.user.name}
+                                        maxLength={191}
                                         fullWidth={true}
                                         name="name"
                                         onChange={this.onChangeHandler}
@@ -498,13 +542,76 @@ class ProfileDetail extends Component {
                                     }
                                   </TableRowColumn>
                                 </TableRow>
+                                {
+                                  this.state.isEdit ?
+                                    <TableRow>
+                                      <TableRowColumn style={{ textAlign: 'right', verticalAlign: 'top' , color: '#888', width: '40%' }}>Password</TableRowColumn>
+                                      <TableRowColumn className="bold" style={{ width: '60%' }}>
+                                        {
+                                          this.state.isPasswordEdit ?
+                                          <div>
+                                            <div>
+                                              <TextValidator
+                                                hintText="Password Lama"
+                                                type="password"
+                                                maxLength={32}
+                                                value={this.state.user.old_password}
+                                                fullWidth={true}
+                                                name="old_password"
+                                                onChange={this.onChangeHandler}
+                                                validators={ this.state.isPasswordEdit ? ['required'] : [] }
+                                                errorMessages={ this.state.isPasswordEdit ? ['Password Lama dibutuhkan'] : [] }
+                                              />
+                                            </div>
+                                            <div>
+                                              <TextValidator
+                                                hintText="Password Baru"
+                                                maxLength={32}
+                                                type="password"
+                                                value={this.state.user.password}
+                                                fullWidth={true}
+                                                name="password"
+                                                onChange={this.onChangeHandler}
+                                                validators={ this.state.isPasswordEdit ? ['required'] : [] }
+                                                errorMessages={ this.state.isPasswordEdit ? ['Password Baru dibutuhkan'] : [] }
+                                              />
+                                            </div>
+                                            <div>
+                                              <TextValidator
+                                                hintText="Konfirmasi Password Baru"
+                                                maxLength={32}
+                                                type="password"
+                                                value={this.state.user.re_password}
+                                                fullWidth={true}
+                                                name="re_password"
+                                                onChange={this.onChangeHandler}
+                                                validators={ this.state.isPasswordEdit ? ['isPasswordMatch', 'required'] : []}
+                                                errorMessages={ this.state.isPasswordEdit ? ['Password Baru tidak cocok', 'Konfirmasi Password Baru dibutuhkan'] : []}
+                                              />
+                                            </div>
+                                            <FlatButton
+                                              label="Batal"
+                                              className="right"
+                                              onClick={()=>this.onCancelPasswordEdit()}
+                                            />
+                                          </div>
+                                          :
+                                          <FlatButton
+                                            label="Ubah Password"
+                                            onClick={()=>this.onPasswordEdit()}
+                                          />
+                                        }
+                                      </TableRowColumn>
+                                    </TableRow>
+                                  :
+                                    null                                  
+                                }
                                 <TableRow>
                                   <TableRowColumn style={{ textAlign: 'right', verticalAlign: 'top' , color: '#888' }}>Gender</TableRowColumn>
                                   <TableRowColumn className="bold" >
                                     {
                                       this.state.isEdit ?
                                       <SelectValidator
-                                        style={{ fontSize: '13px', lineHeight: '13px', height: 'auto'}}
                                         hintText="Gender"
                                         value={this.state.user.gender}
                                         fullWidth={true}
@@ -529,8 +636,8 @@ class ProfileDetail extends Component {
                                       <div>
                                         <div className="col s12 m6" style={{ paddingLeft: 0 }}>
                                           <TextValidator
-                                            style={{ fontSize: '13px', lineHeight: '13px', height: 'auto'}}
                                             hintText="Tempat Lahir"
+                                            maxLength={191}
                                             value={this.state.user.born_place}
                                             fullWidth={true}
                                             name="born_place"
@@ -543,7 +650,6 @@ class ProfileDetail extends Component {
                                         <div className="col s12 m6" style={{ paddingRight: 0 }}>
                                           <DateValidator
                                             hintText="Tanggal Lahir"
-                                            textFieldStyle={{ fontSize: '13px', lineHeight: '13px', height: 'auto'}}
                                             value={this.state.user.born_date ? new Date(this.state.user.born_date) : {}}
                                             onChange={this.onChangeDateHandler('born_date')}
                                             name="born_date"
@@ -573,7 +679,6 @@ class ProfileDetail extends Component {
                                       this.state.isEdit ?
                                       <SelectValidator
                                         hintText="Kota"
-                                        style={{ fontSize: '13px', lineHeight: '13px', height: 'auto'}}
                                         value={this.state.user.contact.city.id}
                                         name="city"
                                         fullWidth={true}
@@ -595,14 +700,14 @@ class ProfileDetail extends Component {
                                       this.state.isEdit ?
                                       <TextValidator
                                         hintText="Alamat"
-                                        style={{ fontSize: '13px', lineHeight: '13px', height: 'auto'}}
+                                        maxLength={191}
                                         value={this.state.user.contact.address}
                                         fullWidth={true}
                                         name="address"
                                         onChange={this.onChangeHandler}
                                         autoComplete={false}
                                         multiLine={true}
-                                        rows={2}
+                                        rows={1}
                                         rowsMax={4}
                                         validators={['required']}
                                         errorMessages={['Alamat dibutuhkan']}
@@ -619,7 +724,6 @@ class ProfileDetail extends Component {
                                       this.state.isEdit ?
                                       <SelectValidator
                                         hintText="Agama"
-                                        style={{ fontSize: '13px', lineHeight: '13px', height: 'auto'}}
                                         value={this.state.user.religion}
                                         name="religion"
                                         fullWidth={true}
@@ -660,7 +764,6 @@ class ProfileDetail extends Component {
                                       this.state.isEdit ?
                                       <TextField
                                         hintText="Suku"
-                                        style={{ fontSize: '13px', lineHeight: '13px', height: 'auto'}}
                                         fullWidth={true}
                                         value={this.state.user.race}
                                         name="race"
@@ -766,12 +869,16 @@ class ProfileDetail extends Component {
                                             displayRowCheckbox={false}
                                           >
                                           {
-                                            this.props.user.user_work_time.map((work_time, idx) => (
-                                              <TableRow key={idx}>
-                                                <TableRowColumn >{work_time.work_time.work_time}</TableRowColumn>
-                                                <TableRowColumn ><NumberFormat value={work_time.cost} displayType={'text'} thousandSeparator={true} prefix={'Rp. '} /></TableRowColumn>
-                                              </TableRow>
-                                            ))
+                                            this.props.user.user_work_time.map((work_time, idx) => {
+                                              if (work_time) {
+                                                return(
+                                                  <TableRow key={idx}>
+                                                    <TableRowColumn >{work_time.work_time.work_time}</TableRowColumn>
+                                                    <TableRowColumn ><NumberFormat value={work_time.cost} displayType={'text'} thousandSeparator={true} prefix={'Rp. '} /></TableRowColumn>
+                                                  </TableRow>
+                                                )
+                                              }
+                                            })
                                           }
                                           </TableBody>
                                         </Table>

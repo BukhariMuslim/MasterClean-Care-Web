@@ -128,12 +128,10 @@ class OfferArtController extends Controller
                             'status' => 1
                         ]);
                         
-                        $cost = $offerArt->art->user_work_time->where('work_time_id', $offer->work_time_id)->first()->cost;  // wrong
-                        
                         // Add Wallet Transaction
                         $walletTransaction = WalletTransaction::create([
                             'user_id' => $offer->member_id,
-                            'amount' => $cost,
+                            'amount' => $offer->cost,
                             'trc_type' => 1, // Keluar
                             'trc_time' => Carbon::now(),
                             'trc_img' => '',
@@ -148,7 +146,7 @@ class OfferArtController extends Controller
                             'work_time_id' => $offer->work_time_id,
                             'job_id' => $offer->job_id,
                             'wallet_transaction_id' => $walletTransaction->id,
-                            'cost' => $cost,
+                            'cost' => $offer->cost,
                             'start_date' => $offer->start_date,
                             'end_date' => $offer->end_date,
                             'remark' => $offer->remark,

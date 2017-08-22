@@ -334,7 +334,7 @@ class ArtDetail extends Component {
                   <CardMedia
                     className="col s12 m3"
                   >
-                    <img src={'/image/medium/' + this.state.art.avatar || 'image/medium/users/profile.png'} alt="" />
+                    <img src={'/image/medium/' + this.state.art.avatar || 'image/medium/users/profile.png'} alt="" className="circle" />
                   </CardMedia>
                   <div className="col s12 m9" >
                     <div className="row">

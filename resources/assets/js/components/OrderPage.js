@@ -50,6 +50,7 @@ class OrderPage extends Component {
     this.handleToggle = this.handleToggle.bind(this)
     this.handlePageChanged = this.handlePageChanged.bind(this)
     this.onChangeHandler = this.onChangeHandler.bind(this)
+    this.onNumberChangeHandler = this.onNumberChangeHandler.bind(this)
     this.resetForm = this.resetForm.bind(this)
   }
 
@@ -72,6 +73,13 @@ class OrderPage extends Component {
     const name = target.name
 
     this.setState({ [name]: value })
+  }
+
+  onNumberChangeHandler(e, values) {
+    const target = e.target
+    const name = target.name
+
+    this.setState({ [name]: values.value })
   }
 
   componentDidMount() {
@@ -320,6 +328,7 @@ class OrderPage extends Component {
                       <div className="col m6">
                         <TextValidator
                           hintText="Nama ART"
+                          maxLength={191}
                           floatingLabelText="Nama ART"
                           value={this.state.name}
                           fullWidth={true}
@@ -418,10 +427,11 @@ class OrderPage extends Component {
                           floatingLabelText="Honor maksimum"
                           thousandSeparator={true}
                           prefix={'Rp. '}
+                          maxLength={191}
                           value={this.state.maxCost}
                           fullWidth={true}
                           name="maxCost"
-                          onChange={this.onChangeHandler}
+                          onChange={this.onNumberChangeHandler}
                           customInput={TextValidator}
                           />
                       </div>

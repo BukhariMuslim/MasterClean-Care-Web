@@ -50,6 +50,7 @@ class OfferPage extends Component {
     this.handleToggle = this.handleToggle.bind(this)
     this.handlePageChanged = this.handlePageChanged.bind(this)
     this.onChangeHandler = this.onChangeHandler.bind(this)
+    this.onNumberChangeHandler = this.onNumberChangeHandler.bind(this)
     this.resetForm = this.resetForm.bind(this)
   }
 
@@ -216,6 +217,13 @@ class OfferPage extends Component {
     this.setState({ [name]: old })
   }
 
+  onNumberChangeHandler(e, values) {
+    const target = e.target
+    const name = target.name
+
+    this.setState({ [name]: values.value })
+  }
+
   onSelectFieldChangeHandler(name) {
     const form = this
     return function (event, index, value) {
@@ -321,6 +329,7 @@ class OfferPage extends Component {
                         <TextValidator
                           hintText="Nama Penawar"
                           floatingLabelText="Nama Penawar"
+                          maxLength={191}
                           value={this.state.name}
                           fullWidth={true}
                           name="name"
@@ -418,10 +427,11 @@ class OfferPage extends Component {
                           floatingLabelText="Honor maksimum"
                           thousandSeparator={true}
                           prefix={'Rp. '}
+                          maxLength={191}
                           value={this.state.maxCost}
                           fullWidth={true}
                           name="maxCost"
-                          onChange={this.onChangeHandler}
+                          onChange={this.onNumberChangeHandler}
                           customInput={TextValidator}
                           />
                       </div>

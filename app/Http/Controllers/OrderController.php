@@ -167,6 +167,12 @@ class OrderController extends Controller
             }
             if (array_key_exists('status', $data)) {
                 $order->status = $data['status'];
+                if ($order->status == 2 || $order->status == 4) {
+                    WalletTransaction::where('id', $order->wallet_transaction_id)
+                        ->update([
+                            'status' => 2
+                        ]);
+                }
             }
             if (array_key_exists('status_member', $data)) {
                 if ($order->status_member == 0 && $data['status_member'] == 1 && $order->status_art == 1) {

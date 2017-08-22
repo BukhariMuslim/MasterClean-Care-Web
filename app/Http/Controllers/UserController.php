@@ -289,8 +289,21 @@ class UserController extends Controller
                 $user->avatar = $data['avatar'];
             }
             
-            if (array_key_exists('password', $data)) {
-                $user->password = Hash::make($data['password']);
+            if (array_key_exists('isWeb', $data)) {
+                if (array_key_exists('isPasswordChange', $data)) {
+                    
+                    if (Hash::check($data['old_password'], $user->password)) {
+                        $user->password = Hash::make($data['password']);
+                    }
+                    else {
+                        throw new Exception('Password lama salah.');
+                    }
+                }
+            }
+            else {
+                if (array_key_exists('password', $data)) {
+                    $user->password = Hash::make($data['password']);
+                }
             }
             if (array_key_exists('gender', $data)) {
                 $user->gender = $data['gender'];
@@ -314,7 +327,7 @@ class UserController extends Controller
                 $user->status = $data['status'];
             }
             if (array_key_exists('activation', $data)) {
-                $user->status_activation = $data['activation'];
+                $user->activation = $data['activation'];
             }
 
             $user->save();
@@ -520,6 +533,8 @@ class UserController extends Controller
                 'user_work_time',
                 'contact',
             ])
+            ->where('activation', 1)
+            ->where('status', 1)
             ->where('role_id', 3);
 
             $dateNow = Carbon::now();
@@ -594,6 +609,8 @@ class UserController extends Controller
                 'user_work_time',
                 'contact',
             ])
+            ->where('activation', 1)
+            ->where('status', 1)
             ->where('role_id', 3)
             ->paginate(10);
 

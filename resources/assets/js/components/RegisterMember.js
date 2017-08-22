@@ -384,15 +384,15 @@ class RegisterMember extends Component {
                 </div>
                 <div className="col s12" >
                   <RaisedButton
-                    containerElement='label'
-                    label='Unggah Foto Profile'>
+                    containerElement="label"
+                    label="Unggah Foto Profile">
                       <input type="file" 
                         style={{ display: 'none' }} 
                         name="avatar"
                         onChange={(e)=>this._handleImageChange(e)} />
                   </RaisedButton>&nbsp;
                   <FlatButton
-                    label='Hapus Foto'
+                    label="Hapus Foto"
                     className={ avatarUrl ? '' : 'hide' }
                     onClick={(e)=>this._handleClearImage(e)}
                     />
