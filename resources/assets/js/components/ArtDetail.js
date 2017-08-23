@@ -224,7 +224,6 @@ class ArtDetail extends Component {
     }
 
     return reviews.map((review, id) => {
-      console.log(review)
       return (
         <Card className="col s12" style={id > 0 ? { marginTop: '10px' } : {}} key={id}>
           <CardHeader
@@ -344,7 +343,7 @@ class ArtDetail extends Component {
                             <h5>{this.state.art.name || ''} <small>({age} thn)</small></h5>
                           </div>
                           <div className="col s12">
-                              <StarComponent rate={this.state.art.rate} isShowRate={true} />
+                              <StarComponent rate={this.state.art.rate} rateCount={this.state.art.rate_count} isShowRate={true} />
                           </div>
                           <div className="col s12">
                             <small>

@@ -40,6 +40,7 @@ class User extends Authenticatable
      */
     protected $appends = [
         'rate',
+        'rate_count',
         'user_wallet',
     ];
 
@@ -243,6 +244,14 @@ class User extends Authenticatable
     {
         return $this->order_rate()->avg('rate');
     }
+
+    /**
+     * Get the order rate count associated with the user.
+     */
+     public function getRateCountAttribute()
+     {
+         return $this->order_rate()->count('rate');
+     }
 
     /**
      * Get the order rate associated with the user.

@@ -494,7 +494,7 @@ class ProfileDetail extends Component {
                           {
                             this.props.user.role_id == 3 ?
                             <div className={ `col s12${ this.state.isEdit ? ' grey-text' : '' }` }>
-                              <StarComponent rate={this.props.user.rate} isShowRate={true} />
+                              <StarComponent rate={this.props.user.rate} rateCount={this.props.user.rate_count} isShowRate={true} />
                             </div>
                             :
                             null
