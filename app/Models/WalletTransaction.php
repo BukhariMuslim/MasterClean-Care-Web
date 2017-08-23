@@ -38,4 +38,12 @@ class WalletTransaction extends Model
     {
         return $this->belongsTo(Wallet::class);
     }
+
+    /**
+     * Get the wallet record associated with the walletTransaction.
+     */
+    public function order()
+    {
+        return $this->hasOne(Order::class);
+    }
 }

@@ -33,6 +33,7 @@ class DatabaseSeeder extends Seeder
         $this->call(UserWorkTimeTableSeeder::class);
         $this->call(UserDocumentsTableSeeder::class);
 
+        $this->call(WalletTransactionsTableSeeder::class);
         $this->call(OrdersTableSeeder::class);
         $this->call(OrderContactsTableSeeder::class);
         $this->call(OrderTaskListTableSeeder::class);
@@ -44,7 +45,6 @@ class DatabaseSeeder extends Seeder
         // $this->call(ArticlesTableSeeder::class);
         // $this->call(CommentsTableSeeder::class);
         $this->call(PasswordResetsTableSeeder::class);
-        $this->call(WalletTransactionsTableSeeder::class);
         $this->call(MessageTableSeeder::class);
         $this->call(EmergencyCallsTableSeeder::class);
         $this->call(CritismsTableSeeder::class);

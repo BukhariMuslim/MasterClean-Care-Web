@@ -301,7 +301,7 @@ class UserController extends Controller
                             $user->password = Hash::make($data['password']);
                         }
                         else {
-                            throw new Exception('Password lama salah.');
+                            throw new Exception('Kata Sandi lama salah.');
                         }
                     }
                 }

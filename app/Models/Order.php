@@ -110,7 +110,7 @@ class Order extends Model
      */
     public function workTimeId()
     {
-        return $this->belongsTo(WorkTime::class);
+        return $this->belongsTo(WorkTime::class, 'work_time_id');
     }
 
     /**
@@ -134,7 +134,7 @@ class Order extends Model
      */
     public function jobId()
     {
-        return $this->belongsTo(Job::class);
+        return $this->belongsTo(Job::class, 'job_id');
     }
 
     /**
@@ -158,7 +158,7 @@ class Order extends Model
      */
     public function reviewOrderId()
     {
-        return $this->hasOne(ReviewOrder::class);
+        return $this->hasOne(ReviewOrder::class, 'review_order_id');
     }
 
     /**
@@ -174,7 +174,7 @@ class Order extends Model
      */
     public function walletTransactionId()
     {
-        return $this->belongsTo(WalletTransaction::class);
+        return $this->belongsTo(WalletTransaction::class, 'wallet_transaction_id');
     }
  
      /**

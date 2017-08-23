@@ -153,12 +153,12 @@ class LoginController extends Controller
                 }
             }
             else {
-                return response()->json([ 'message' => 'Kombinasi Email dan Password tidak cocok', 
+                return response()->json([ 'message' => 'Kombinasi Email dan Kata Sandi tidak cocok', 
                                         'status' => 403 ]);
             }
         }
         else {
-            return response()->json([ 'message' => 'Kombinasi Email dan Password tidak cocok', 
+            return response()->json([ 'message' => 'Kombinasi Email dan Kata Sandi tidak cocok', 
                                       'status' => 403 ]);
         }
     }
