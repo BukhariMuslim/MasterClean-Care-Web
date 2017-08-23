@@ -91,8 +91,8 @@ class LoginController extends Controller
 
         if ($user) {
             if(Hash::check($password, $user->password)) {
-                if ($user->status == 0) {
-                    return response()->json([ 'message' => '',
+                if ($user->activation == 0) {
+                    return response()->json([ 'message' => 'Akun Anda belum diaktifkan.',
                                                 'status' => 403 ]);    
                 }
                 if ($user->role_id != $role_id && $role_id != 0) {
