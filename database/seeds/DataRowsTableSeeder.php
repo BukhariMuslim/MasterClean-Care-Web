@@ -889,7 +889,7 @@ class DataRowsTableSeeder extends Seeder
                 'edit'         => 1,
                 'add'          => 0,
                 'delete'       => 1,
-                'details'      => '{"default":"0","options":{"0":"Inactive","1":"Active"}}',
+                'details'      => '{"default":"0","options":{"0":"Pending","1":"Success","2":"Reject"}}',
                 'order'        => 8,
             ])->save();
         }

@@ -67,11 +67,12 @@ class User extends Authenticatable
     {
         $positive = $this->wallet_transaction()->where('trc_type', 0)->where('status', 1)->sum('amount');
         $negative = $this->wallet_transaction()->where('trc_type', 1)->where('status', 1)->sum('amount');
+        $negative1 = $this->wallet_transaction()->where('trc_type', 1)->where('status', 0)->sum('amount');
 
 
         return [
             'user_id' => $this->id,
-            'amt' => $positive - $negative,
+            'amt' => $positive - $negative - $negative1,
         ];
     }
 
