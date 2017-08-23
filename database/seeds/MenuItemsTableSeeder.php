@@ -269,7 +269,7 @@ class MenuItemsTableSeeder extends Seeder
                     'icon_class' => 'voyager-check',
                     'color'      => null,
                     'parent_id'  => $managementMenuItem->id,
-                    'order'      => 7,
+                    'order'      => 8,
                 ])->save();
             }
 
@@ -284,7 +284,22 @@ class MenuItemsTableSeeder extends Seeder
                     'icon_class' => 'voyager-dollar',
                     'color'      => null,
                     'parent_id'  => $managementMenuItem->id,
-                    'order'      => 8,
+                    'order'      => 9,
+                ])->save();
+            }
+
+            $menuItem = MenuItem::firstOrNew([
+                'menu_id'    => $menu->id,
+                'title'      => 'Order',
+                'url'        => '/admin/orders',
+            ]);
+            if (!$menuItem->exists) {
+                $menuItem->fill([
+                    'target'     => '_self',
+                    'icon_class' => 'voyager-paper-plane',
+                    'color'      => null,
+                    'parent_id'  => $managementMenuItem->id,
+                    'order'      => 7,
                 ])->save();
             }
 

@@ -29,6 +29,7 @@ class DataRowsTableSeeder extends Seeder
         $walletTransactionDataType = DataType::where('slug', 'wallet-transactions')->firstOrFail();
         $walletDataType = DataType::where('slug', 'wallets')->firstOrFail();
         $workTimeDataType = DataType::where('slug', 'work-times')->firstOrFail();
+        $orderDataType = DataType::where('slug', 'orders')->firstOrFail();
 
         $dataRow = $this->dataRow($additionalInfoDataType, 'id');
         if (!$dataRow->exists) {
@@ -1975,6 +1976,246 @@ class DataRowsTableSeeder extends Seeder
                 'delete'       => 1,
                 'details'      => '',
                 'order'        => 10,
+            ])->save();
+        }
+
+        $dataRow = $this->dataRow($orderDataType, 'id');
+        if (!$dataRow->exists) {
+            $dataRow->fill([
+                'type'         => 'number',
+                'display_name' => 'ID',
+                'required'     => 1,
+                'browse'       => 0,
+                'read'         => 0,
+                'edit'         => 0,
+                'add'          => 0,
+                'delete'       => 0,
+                'details'      => '',
+                'order'        => 1,
+            ])->save();
+        }
+
+        $dataRow = $this->dataRow($orderDataType, 'member_id');
+        if (!$dataRow->exists) {
+            $dataRow->fill([
+                'type'         => 'select_dropdown',
+                'display_name' => 'Member',
+                'required'     => 1,
+                'browse'       => 1,
+                'read'         => 1,
+                'edit'         => 1,
+                'add'          => 1,
+                'delete'       => 1,
+                'details'      => '{"relationship":{"key":"id","label":"name","page_slug":"admin/users"}}',
+                'order'        => 2,
+            ])->save();
+        }
+
+        $dataRow = $this->dataRow($orderDataType, 'art_id');
+        if (!$dataRow->exists) {
+            $dataRow->fill([
+                'type'         => 'select_dropdown',
+                'display_name' => 'ART',
+                'required'     => 1,
+                'browse'       => 1,
+                'read'         => 1,
+                'edit'         => 1,
+                'add'          => 1,
+                'delete'       => 1,
+                'details'      => '{"relationship":{"key":"id","label":"name","page_slug":"admin/users"}}',
+                'order'        => 3,
+            ])->save();
+        }
+
+        $dataRow = $this->dataRow($orderDataType, 'work_time_id');
+        if (!$dataRow->exists) {
+            $dataRow->fill([
+                'type'         => 'select_dropdown',
+                'display_name' => 'Work Time',
+                'required'     => 1,
+                'browse'       => 1,
+                'read'         => 1,
+                'edit'         => 0,
+                'add'          => 1,
+                'delete'       => 1,
+                'details'      => '{"relationship":{"key":"id","label":"work_time","page_slug":"admin/work-times"}}',
+                'order'        => 4,
+            ])->save();
+        }
+
+        $dataRow = $this->dataRow($orderDataType, 'job_id');
+        if (!$dataRow->exists) {
+            $dataRow->fill([
+                'type'         => 'select_dropdown',
+                'display_name' => 'Job',
+                'required'     => 1,
+                'browse'       => 1,
+                'read'         => 1,
+                'edit'         => 0,
+                'add'          => 1,
+                'delete'       => 1,
+                'details'      => '{"relationship":{"key":"id","label":"job","page_slug":"admin/jobs"}}',
+                'order'        => 5,
+            ])->save();
+        }
+
+        $dataRow = $this->dataRow($orderDataType, 'wallet_transaction_id');
+        if (!$dataRow->exists) {
+            $dataRow->fill([
+                'type'         => 'select_dropdown',
+                'display_name' => 'Wallet Transaction',
+                'required'     => 1,
+                'browse'       => 1,
+                'read'         => 1,
+                'edit'         => 0,
+                'add'          => 1,
+                'delete'       => 1,
+                'details'      => '{"relationship":{"key":"id","label":"id","page_slug":"admin/wallet-transactions"}}',
+                'order'        => 6,
+            ])->save();
+        }
+
+        $dataRow = $this->dataRow($orderDataType, 'cost');
+        if (!$dataRow->exists) {
+            $dataRow->fill([
+                'type'         => 'text',
+                'display_name' => 'Cost',
+                'required'     => 1,
+                'browse'       => 1,
+                'read'         => 1,
+                'edit'         => 0,
+                'add'          => 1,
+                'delete'       => 1,
+                'details'      => '',
+                'order'        => 7,
+            ])->save();
+        }
+
+        $dataRow = $this->dataRow($orderDataType, 'start_date');
+        if (!$dataRow->exists) {
+            $dataRow->fill([
+                'type'         => 'timestamp',
+                'display_name' => 'Start Date',
+                'required'     => 1,
+                'browse'       => 1,
+                'read'         => 1,
+                'edit'         => 0,
+                'add'          => 1,
+                'delete'       => 1,
+                'details'      => '',
+                'order'        => 8,
+            ])->save();
+        }
+
+        $dataRow = $this->dataRow($orderDataType, 'end_date');
+        if (!$dataRow->exists) {
+            $dataRow->fill([
+                'type'         => 'timestamp',
+                'display_name' => 'End Date',
+                'required'     => 1,
+                'browse'       => 1,
+                'read'         => 1,
+                'edit'         => 0,
+                'add'          => 1,
+                'delete'       => 1,
+                'details'      => '',
+                'order'        => 9,
+            ])->save();
+        }
+
+        $dataRow = $this->dataRow($orderDataType, 'remark');
+        if (!$dataRow->exists) {
+            $dataRow->fill([
+                'type'         => 'text',
+                'display_name' => 'Remark',
+                'required'     => 1,
+                'browse'       => 1,
+                'read'         => 1,
+                'edit'         => 0,
+                'add'          => 1,
+                'delete'       => 1,
+                'details'      => '',
+                'order'        => 10,
+            ])->save();
+        }
+
+        $dataRow = $this->dataRow($orderDataType, 'status');
+        if (!$dataRow->exists) {
+            $dataRow->fill([
+                'type'         => 'select_dropdown',
+                'display_name' => 'Status',
+                'required'     => 1,
+                'browse'       => 1,
+                'read'         => 1,
+                'edit'         => 1,
+                'add'          => 1,
+                'delete'       => 1,
+                'details'      => '{"default":"0","options":{"0":"Pending","1":"Receive","2":"Cancel","3":"Success","4":"Reject","5":"Issued Transaction"}}',
+                'order'        => 11,
+            ])->save();
+        }
+
+        $dataRow = $this->dataRow($orderDataType, 'status_member');
+        if (!$dataRow->exists) {
+            $dataRow->fill([
+                'type'         => 'select_dropdown',
+                'display_name' => 'Status Member',
+                'required'     => 1,
+                'browse'       => 1,
+                'read'         => 1,
+                'edit'         => 0,
+                'add'          => 0,
+                'delete'       => 1,
+                'details'      => '{"default":"0","options":{"0":"Pending","1":"Accept"}}',
+                'order'        => 12,
+            ])->save();
+        }
+
+        $dataRow = $this->dataRow($orderDataType, 'status_art');
+        if (!$dataRow->exists) {
+            $dataRow->fill([
+                'type'         => 'select_dropdown',
+                'display_name' => 'Status ART',
+                'required'     => 1,
+                'browse'       => 1,
+                'read'         => 1,
+                'edit'         => 0,
+                'add'          => 0,
+                'delete'       => 1,
+                'details'      => '{"default":"0","options":{"0":"Pending","1":"Accept"}}',
+                'order'        => 13,
+            ])->save();
+        }
+
+        $dataRow = $this->dataRow($orderDataType, 'created_at');
+        if (!$dataRow->exists) {
+            $dataRow->fill([
+                'type'         => 'timestamp',
+                'display_name' => 'Created At',
+                'required'     => 0,
+                'browse'       => 1,
+                'read'         => 1,
+                'edit'         => 0,
+                'add'          => 0,
+                'delete'       => 1,
+                'details'      => '',
+                'order'        => 14,
+            ])->save();
+        }
+
+        $dataRow = $this->dataRow($orderDataType, 'updated_at');
+        if (!$dataRow->exists) {
+            $dataRow->fill([
+                'type'         => 'timestamp',
+                'display_name' => 'Updated At',
+                'required'     => 0,
+                'browse'       => 0,
+                'read'         => 0,
+                'edit'         => 0,
+                'add'          => 0,
+                'delete'       => 0,
+                'details'      => '',
+                'order'        => 15,
             ])->save();
         }
     }
