@@ -150,9 +150,16 @@ class OfferArtController extends Controller
                             'start_date' => $offer->start_date,
                             'end_date' => $offer->end_date,
                             'remark' => $offer->remark,
-                            'status' => 0,
+                            'status' => 1,
                             'status_member' => 0,
                             'status_art' => 0,
+                        ]);
+
+                        $order->contact()->create([
+                            'phone' => $offer->contact->phone,
+                            'city' => $offer->contact->city,
+                            'address' => $offer->contact->address,
+                            'location' => $offer->contact->location,
                         ]);
                         
                         // Get Other ART
