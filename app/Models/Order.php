@@ -50,6 +50,22 @@ class Order extends Model
     }
 
     /**
+     * Get the member record associated with the additionalInfo.
+     */
+     public function memberId()
+     {
+         return $this->belongsTo(User::class, 'member_id');
+     }
+ 
+     /**
+      * Get the member record associated with the additionalInfo.
+      */
+     public function memberIdList()
+     {
+         return User::where('status', 1)->where('role_id', 2)->get();
+     }
+
+    /**
      * Get the art record associated with the additionalInfo.
      */
     public function art()
@@ -66,11 +82,43 @@ class Order extends Model
     }
 
     /**
+     * Get the art record associated with the additionalInfo.
+     */
+    public function artId()
+    {
+        return $this->belongsTo(User::class, 'art_id');
+    }
+
+    /**
+     * Get the member record associated with the additionalInfo.
+     */
+    public function artIdList()
+    {
+        return User::where('status', 1)->where('role_id', 3)->get();
+    }
+
+    /**
      * Get the work_time record associated with the additionalInfo.
      */
     public function workTime()
     {
         return $this->belongsTo(WorkTime::class);
+    }
+
+    /**
+     * Get the work_time record associated with the additionalInfo.
+     */
+    public function workTimeId()
+    {
+        return $this->belongsTo(WorkTime::class);
+    }
+
+    /**
+     * Get the work_time record associated with the additionalInfo.
+     */
+    public function workTimeIdList()
+    {
+        return WorkTime::all();
     }
     
     /**
@@ -82,11 +130,19 @@ class Order extends Model
     }
 
     /**
-     * Get the work_time record associated with the additionalInfo.
+     * Get the job record associated with the additionalInfo.
      */
-    public function workTimeList()
+    public function jobId()
     {
-        return WorkTime::all();
+        return $this->belongsTo(Job::class);
+    }
+
+    /**
+     * Get the job record associated with the additionalInfo.
+     */
+    public function jobIdList()
+    {
+        return Job::all();
     }
 
     /**
@@ -95,6 +151,38 @@ class Order extends Model
     public function reviewOrder()
     {
         return $this->hasOne(ReviewOrder::class);
+    }
+
+    /**
+     * Get the review_order record associated with the additionalInfo.
+     */
+    public function reviewOrderId()
+    {
+        return $this->hasOne(ReviewOrder::class);
+    }
+
+    /**
+     * Get the review_order record associated with the additionalInfo.
+     */
+    public function reviewOrderIdList()
+    {
+        return ReviewOrder::all();
+    }
+
+    /**
+     * Get the review_order record associated with the additionalInfo.
+     */
+    public function walletTransactionId()
+    {
+        return $this->hasOne(WalletTransaction::class);
+    }
+ 
+     /**
+      * Get the review_order record associated with the additionalInfo.
+      */
+    public function walletTransactionIdList()
+    {
+        return WalletTransaction::all();
     }
 
     /**
