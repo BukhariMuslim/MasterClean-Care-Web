@@ -161,6 +161,17 @@ class OfferArtController extends Controller
                             'address' => $offer->contact->address,
                             'location' => $offer->contact->location,
                         ]);
+
+                        $orderTaskList = $offer->offerTaskList->mapWithKeys(function ($item) {
+                            return [
+                                'task_list_id' => $item['task_list_id'],
+                                'status' => $item['status']
+                            ];
+                        });
+                        
+                        if ($orderTaskList->first()) {
+                            $order->orderTaskList()->createMany($orderTaskList);
+                        }
                         
                         // Get Other ART
                         OfferArt::where('offer_id', $offerArt->offer_id)
