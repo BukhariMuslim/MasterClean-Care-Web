@@ -353,23 +353,26 @@ class ProfileDetail extends Component {
   postHandler(e) {
     e.preventDefault()
     let isValid = true
-    if (this.state.user.user_language.length <= 0) {
-      isValid = false
-      this.setState({
-        user_languageErrorText: "Pilih minimal 1 Bahasa yang dikuasai.",
-      })
-    }
-    if (this.state.user.user_job.length <= 0) {
-      isValid = false
-      this.setState({
-        user_jobErrorText: "Pilih minimal 1 Profesi.",
-      })
-    }
-    if (this.state.user.user_work_time.length <= 0) {
-      isValid = false
-      this.setState({
-        user_work_timeErrorText: "Pilih minimal 1 Waktu Kerja.",
-      })
+    
+    if (this.props.user.role_id == 3) {
+      if (this.state.user.user_language.length <= 0) {
+        isValid = false
+        this.setState({
+          user_languageErrorText: "Pilih minimal 1 Bahasa yang dikuasai.",
+        })
+      }
+      if (this.state.user.user_job.length <= 0) {
+        isValid = false
+        this.setState({
+          user_jobErrorText: "Pilih minimal 1 Profesi.",
+        })
+      }
+      if (this.state.user.user_work_time.length <= 0) {
+        isValid = false
+        this.setState({
+          user_work_timeErrorText: "Pilih minimal 1 Waktu Kerja.",
+        })
+      }
     }
 
     if (isValid) {

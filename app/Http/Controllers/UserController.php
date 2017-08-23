@@ -296,12 +296,13 @@ class UserController extends Controller
             
             if (array_key_exists('isWeb', $data)) {
                 if (array_key_exists('isPasswordChange', $data)) {
-                    
-                    if (Hash::check($data['old_password'], $user->password)) {
-                        $user->password = Hash::make($data['password']);
-                    }
-                    else {
-                        throw new Exception('Password lama salah.');
+                    if ($data['isPasswordChange'] == true) {
+                        if (Hash::check($data['old_password'], $user->password)) {
+                            $user->password = Hash::make($data['password']);
+                        }
+                        else {
+                            throw new Exception('Password lama salah.');
+                        }
                     }
                 }
             }
