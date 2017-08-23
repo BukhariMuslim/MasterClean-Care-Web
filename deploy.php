@@ -25,7 +25,7 @@ task('npm:production', function () {
 });
 
 // Configuration
-
+set('default_timeout', 420);
 set('repository', 'https://github.com/BukhariMuslim/MasterClean-Care-Web');
 set('ssh_type', 'native');
 set('writable_use_sudo', false);
