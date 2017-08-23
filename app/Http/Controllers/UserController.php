@@ -141,7 +141,12 @@ class UserController extends Controller
 
             //Set Default Img
             if ($data['avatar'] == '') {
-                $data['avatar'] = 'default.png';
+                if ($data['gender'] == 1) {
+                    $data['avatar'] = 'users/profile3.jpg';                    
+                }
+                else {
+                    $data['avatar'] = 'users/profile1.jpg';
+                }
             }
             
             DB::beginTransaction();
