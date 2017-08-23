@@ -170,7 +170,7 @@ class OfferArtController extends Controller
                         });
                         
                         if ($orderTaskList->first()) {
-                            $order->orderTaskList()->createMany($orderTaskList);
+                            $order->orderTaskList()->createMany($orderTaskList->get());
                         }
                         
                         // Get Other ART
