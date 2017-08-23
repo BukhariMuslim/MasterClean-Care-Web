@@ -2078,7 +2078,7 @@ class DataRowsTableSeeder extends Seeder
         $dataRow = $this->dataRow($orderDataType, 'cost');
         if (!$dataRow->exists) {
             $dataRow->fill([
-                'type'         => 'text',
+                'type'         => 'number',
                 'display_name' => 'Cost',
                 'required'     => 1,
                 'browse'       => 1,
