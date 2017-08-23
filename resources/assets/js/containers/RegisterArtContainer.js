@@ -45,6 +45,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
           }
           else {
             self.resetForm()
+            history.push('/login')
             dispatch(updateSnack({
               open: true,
               message: 'Mendaftar berhasil! Silahkan login.'

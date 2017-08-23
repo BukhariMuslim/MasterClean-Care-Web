@@ -174,7 +174,7 @@ class Order extends Model
      */
     public function walletTransactionId()
     {
-        return $this->hasOne(WalletTransaction::class);
+        return $this->belongsTo(WalletTransaction::class);
     }
  
      /**

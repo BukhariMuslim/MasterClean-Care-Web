@@ -19022,6 +19022,7 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch, ownProps) {
           }));
         } else {
           self.resetForm();
+          history.push('/login');
           dispatch((0, _DefaultAction.updateSnack)({
             open: true,
             message: 'Mendaftar berhasil! Silahkan login.'
@@ -19340,6 +19341,7 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch, ownProps) {
           }));
         } else {
           self.resetForm();
+          history.push('/login');
           dispatch((0, _DefaultAction.updateSnack)({
             open: true,
             message: 'Mendaftar berhasil! Silahkan login.'
