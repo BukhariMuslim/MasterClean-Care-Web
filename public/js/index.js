@@ -9765,248 +9765,250 @@ var Offer = function (_Component) {
     value: function offerList(collection) {
       var _this2 = this;
 
-      if (this.props.sortBy) {
-        var sort = this.props.sortBy;
-        collection.sort(function (a, b) {
-          return parseFloat(b[sort]) - parseFloat(a[sort]);
-        });
-      }
+      if (collection) {
+        if (this.props.sortBy) {
+          var sort = this.props.sortBy;
+          collection.sort(function (a, b) {
+            return parseFloat(b[sort]) - parseFloat(a[sort]);
+          });
+        }
 
-      return collection.map(function (obj, idx) {
-        if (!_this2.props.maxItem || idx < _this2.props.maxItem) {
-          return _react2.default.createElement(
-            _GridList.GridTile,
-            {
-              key: idx,
-              cols: 1
-            },
-            _react2.default.createElement(
-              _Card.Card,
-              { style: { margin: 3 } },
-              _react2.default.createElement(_Card.CardHeader, {
-                title: _react2.default.createElement(
-                  _reactRouterDom.Link,
-                  { to: "/offer/" + obj.id },
-                  obj.job ? obj.job.job : '-',
-                  obj.work_time ? ' (' + obj.work_time.work_time + ') ' : '',
-                  obj.cost ? _react2.default.createElement(_reactNumberFormat2.default, { value: obj.cost, displayType: 'text', thousandSeparator: true, prefix: 'Rp. ' }) : '-',
-                  '\xA0',
-                  obj.status == 0 ? _react2.default.createElement(
-                    'b',
-                    { style: { backgroundColor: '#FFEB3B', padding: '2px 5px', color: 'white' } },
-                    'Pending'
-                  ) : obj.status == 1 ? _react2.default.createElement(
-                    'b',
-                    { style: { backgroundColor: '#64DD17', padding: '2px 5px', color: 'white' } },
-                    'Selesai'
-                  ) : _react2.default.createElement(
-                    'b',
-                    { style: { backgroundColor: '#F44336', padding: '2px 5px', color: 'white' } },
-                    'Dibatalkan'
-                  )
-                ),
-                subtitle: obj.member.name + ' di ' + obj.member.contact.address,
-                avatar: '/image/small/' + obj.member.avatar
-              }),
+        return collection.map(function (obj, idx) {
+          if (!_this2.props.maxItem || idx < _this2.props.maxItem) {
+            return _react2.default.createElement(
+              _GridList.GridTile,
+              {
+                key: idx,
+                cols: 1
+              },
               _react2.default.createElement(
-                _Card.CardText,
-                null,
-                _react2.default.createElement(
-                  _Table.Table,
-                  {
-                    selectable: false
-                  },
-                  _react2.default.createElement(
-                    _Table.TableHeader,
-                    {
-                      displaySelectAll: false,
-                      adjustForCheckbox: false
-                    },
-                    _react2.default.createElement(
-                      _Table.TableRow,
-                      null,
-                      _react2.default.createElement(
-                        _Table.TableHeaderColumn,
-                        { colSpan: '2', style: { textAlign: 'center' } },
-                        'Informasi Penawaran'
-                      )
+                _Card.Card,
+                { style: { margin: 3 } },
+                _react2.default.createElement(_Card.CardHeader, {
+                  title: _react2.default.createElement(
+                    _reactRouterDom.Link,
+                    { to: "/offer/" + obj.id },
+                    obj.job ? obj.job.job : '-',
+                    obj.work_time ? ' (' + obj.work_time.work_time + ') ' : '',
+                    obj.cost ? _react2.default.createElement(_reactNumberFormat2.default, { value: obj.cost, displayType: 'text', thousandSeparator: true, prefix: 'Rp. ' }) : '-',
+                    '\xA0',
+                    obj.status == 0 ? _react2.default.createElement(
+                      'b',
+                      { style: { backgroundColor: '#FFEB3B', padding: '2px 5px', color: 'white' } },
+                      'Pending'
+                    ) : obj.status == 1 ? _react2.default.createElement(
+                      'b',
+                      { style: { backgroundColor: '#64DD17', padding: '2px 5px', color: 'white' } },
+                      'Selesai'
+                    ) : _react2.default.createElement(
+                      'b',
+                      { style: { backgroundColor: '#F44336', padding: '2px 5px', color: 'white' } },
+                      'Dibatalkan'
                     )
                   ),
+                  subtitle: obj.member.name + ' di ' + obj.member.contact.address,
+                  avatar: '/image/small/' + obj.member.avatar
+                }),
+                _react2.default.createElement(
+                  _Card.CardText,
+                  null,
                   _react2.default.createElement(
-                    _Table.TableBody,
+                    _Table.Table,
                     {
-                      displayRowCheckbox: false
+                      selectable: false
                     },
                     _react2.default.createElement(
-                      _Table.TableRow,
-                      null,
+                      _Table.TableHeader,
+                      {
+                        displaySelectAll: false,
+                        adjustForCheckbox: false
+                      },
                       _react2.default.createElement(
-                        _Table.TableRowColumn,
-                        { style: { textAlign: 'right', verticalAlign: 'top' } },
-                        'Jenis Pekerja'
-                      ),
-                      _react2.default.createElement(
-                        _Table.TableRowColumn,
+                        _Table.TableRow,
                         null,
                         _react2.default.createElement(
-                          'b',
-                          null,
-                          obj.job ? obj.job.job : '-'
+                          _Table.TableHeaderColumn,
+                          { colSpan: '2', style: { textAlign: 'center' } },
+                          'Informasi Penawaran'
                         )
                       )
                     ),
                     _react2.default.createElement(
-                      _Table.TableRow,
-                      null,
+                      _Table.TableBody,
+                      {
+                        displayRowCheckbox: false
+                      },
                       _react2.default.createElement(
-                        _Table.TableRowColumn,
-                        { style: { textAlign: 'right', verticalAlign: 'top' } },
-                        'Kelompok Waktu Kerja'
-                      ),
-                      _react2.default.createElement(
-                        _Table.TableRowColumn,
+                        _Table.TableRow,
                         null,
                         _react2.default.createElement(
-                          'b',
-                          null,
-                          obj.work_time ? obj.work_time.work_time : ''
-                        )
-                      )
-                    ),
-                    _react2.default.createElement(
-                      _Table.TableRow,
-                      null,
-                      _react2.default.createElement(
-                        _Table.TableRowColumn,
-                        { style: { textAlign: 'right', verticalAlign: 'top' } },
-                        'Mulai Kerja'
-                      ),
-                      _react2.default.createElement(
-                        _Table.TableRowColumn,
-                        null,
-                        obj.work_time ? _react2.default.createElement(
-                          'b',
-                          null,
-                          _react2.default.createElement(_reactIntl.FormattedDate, { value: obj.start_date, day: 'numeric', month: 'long', year: 'numeric' }),
-                          obj.work_time_id === 1 ? _react2.default.createElement(
-                            'span',
-                            null,
-                            '\xA0',
-                            _react2.default.createElement(_reactIntl.FormattedTime, { value: obj.start_date })
-                          ) : null
-                        ) : _react2.default.createElement(
-                          'b',
-                          null,
-                          '-'
-                        )
-                      )
-                    ),
-                    _react2.default.createElement(
-                      _Table.TableRow,
-                      null,
-                      _react2.default.createElement(
-                        _Table.TableRowColumn,
-                        { style: { textAlign: 'right', verticalAlign: 'top' } },
-                        'Selesai Kerja'
-                      ),
-                      _react2.default.createElement(
-                        _Table.TableRowColumn,
-                        null,
-                        obj.work_time ? _react2.default.createElement(
-                          'b',
-                          null,
-                          _react2.default.createElement(_reactIntl.FormattedDate, { value: obj.end_date, day: 'numeric', month: 'long', year: 'numeric' }),
-                          obj.work_time_id === 1 ? _react2.default.createElement(
-                            'span',
-                            null,
-                            '\xA0',
-                            _react2.default.createElement(_reactIntl.FormattedTime, { value: obj.end_date })
-                          ) : null
-                        ) : _react2.default.createElement(
-                          'b',
-                          null,
-                          '-'
-                        )
-                      )
-                    ),
-                    _react2.default.createElement(
-                      _Table.TableRow,
-                      null,
-                      _react2.default.createElement(
-                        _Table.TableRowColumn,
-                        { style: { textAlign: 'right', verticalAlign: 'top' } },
-                        'Honor yang ditawarkan'
-                      ),
-                      _react2.default.createElement(
-                        _Table.TableRowColumn,
-                        null,
+                          _Table.TableRowColumn,
+                          { style: { textAlign: 'right', verticalAlign: 'top' } },
+                          'Jenis Pekerja'
+                        ),
                         _react2.default.createElement(
-                          'b',
-                          null,
-                          obj.cost ? _react2.default.createElement(_reactNumberFormat2.default, { value: obj.cost, displayType: 'text', thousandSeparator: true, prefix: 'Rp. ' }) : '-'
-                        )
-                      )
-                    ),
-                    _react2.default.createElement(
-                      _Table.TableRow,
-                      null,
-                      _react2.default.createElement(
-                        _Table.TableRowColumn,
-                        { style: { textAlign: 'right', verticalAlign: 'top' } },
-                        'Informasi Pencari'
-                      ),
-                      _react2.default.createElement(
-                        _Table.TableRowColumn,
-                        null,
-                        obj.contact ? _react2.default.createElement(
-                          'b',
+                          _Table.TableRowColumn,
                           null,
                           _react2.default.createElement(
-                            _reactRouterDom.Link,
-                            { to: '/member/' + obj.member.id },
-                            obj.member.name
+                            'b',
+                            null,
+                            obj.job ? obj.job.job : '-'
                           )
-                        ) : _react2.default.createElement(
-                          'b',
-                          null,
-                          '-'
                         )
-                      )
-                    ),
-                    _react2.default.createElement(
-                      _Table.TableRow,
-                      null,
-                      _react2.default.createElement(
-                        _Table.TableRowColumn,
-                        { style: { textAlign: 'right', verticalAlign: 'top' } },
-                        'Catatan'
                       ),
                       _react2.default.createElement(
-                        _Table.TableRowColumn,
+                        _Table.TableRow,
                         null,
                         _react2.default.createElement(
-                          'b',
+                          _Table.TableRowColumn,
+                          { style: { textAlign: 'right', verticalAlign: 'top' } },
+                          'Kelompok Waktu Kerja'
+                        ),
+                        _react2.default.createElement(
+                          _Table.TableRowColumn,
                           null,
-                          obj.remark.length > 200 ? obj.remark.substring(0, 200) + '...' : obj.remark || '-'
+                          _react2.default.createElement(
+                            'b',
+                            null,
+                            obj.work_time ? obj.work_time.work_time : ''
+                          )
+                        )
+                      ),
+                      _react2.default.createElement(
+                        _Table.TableRow,
+                        null,
+                        _react2.default.createElement(
+                          _Table.TableRowColumn,
+                          { style: { textAlign: 'right', verticalAlign: 'top' } },
+                          'Mulai Kerja'
+                        ),
+                        _react2.default.createElement(
+                          _Table.TableRowColumn,
+                          null,
+                          obj.work_time ? _react2.default.createElement(
+                            'b',
+                            null,
+                            _react2.default.createElement(_reactIntl.FormattedDate, { value: obj.start_date, day: 'numeric', month: 'long', year: 'numeric' }),
+                            obj.work_time_id === 1 ? _react2.default.createElement(
+                              'span',
+                              null,
+                              '\xA0',
+                              _react2.default.createElement(_reactIntl.FormattedTime, { value: obj.start_date })
+                            ) : null
+                          ) : _react2.default.createElement(
+                            'b',
+                            null,
+                            '-'
+                          )
+                        )
+                      ),
+                      _react2.default.createElement(
+                        _Table.TableRow,
+                        null,
+                        _react2.default.createElement(
+                          _Table.TableRowColumn,
+                          { style: { textAlign: 'right', verticalAlign: 'top' } },
+                          'Selesai Kerja'
+                        ),
+                        _react2.default.createElement(
+                          _Table.TableRowColumn,
+                          null,
+                          obj.work_time ? _react2.default.createElement(
+                            'b',
+                            null,
+                            _react2.default.createElement(_reactIntl.FormattedDate, { value: obj.end_date, day: 'numeric', month: 'long', year: 'numeric' }),
+                            obj.work_time_id === 1 ? _react2.default.createElement(
+                              'span',
+                              null,
+                              '\xA0',
+                              _react2.default.createElement(_reactIntl.FormattedTime, { value: obj.end_date })
+                            ) : null
+                          ) : _react2.default.createElement(
+                            'b',
+                            null,
+                            '-'
+                          )
+                        )
+                      ),
+                      _react2.default.createElement(
+                        _Table.TableRow,
+                        null,
+                        _react2.default.createElement(
+                          _Table.TableRowColumn,
+                          { style: { textAlign: 'right', verticalAlign: 'top' } },
+                          'Honor yang ditawarkan'
+                        ),
+                        _react2.default.createElement(
+                          _Table.TableRowColumn,
+                          null,
+                          _react2.default.createElement(
+                            'b',
+                            null,
+                            obj.cost ? _react2.default.createElement(_reactNumberFormat2.default, { value: obj.cost, displayType: 'text', thousandSeparator: true, prefix: 'Rp. ' }) : '-'
+                          )
+                        )
+                      ),
+                      _react2.default.createElement(
+                        _Table.TableRow,
+                        null,
+                        _react2.default.createElement(
+                          _Table.TableRowColumn,
+                          { style: { textAlign: 'right', verticalAlign: 'top' } },
+                          'Informasi Pencari'
+                        ),
+                        _react2.default.createElement(
+                          _Table.TableRowColumn,
+                          null,
+                          obj.contact ? _react2.default.createElement(
+                            'b',
+                            null,
+                            _react2.default.createElement(
+                              _reactRouterDom.Link,
+                              { to: '/member/' + obj.member.id },
+                              obj.member.name
+                            )
+                          ) : _react2.default.createElement(
+                            'b',
+                            null,
+                            '-'
+                          )
+                        )
+                      ),
+                      _react2.default.createElement(
+                        _Table.TableRow,
+                        null,
+                        _react2.default.createElement(
+                          _Table.TableRowColumn,
+                          { style: { textAlign: 'right', verticalAlign: 'top' } },
+                          'Catatan'
+                        ),
+                        _react2.default.createElement(
+                          _Table.TableRowColumn,
+                          null,
+                          _react2.default.createElement(
+                            'b',
+                            null,
+                            obj.remark && obj.remark.length > 200 ? obj.remark.substring(0, 200) + '...' : obj.remark || '-'
+                          )
                         )
                       )
                     )
                   )
+                ),
+                _react2.default.createElement(
+                  _Card.CardActions,
+                  { className: 'right-align' },
+                  _react2.default.createElement(_FlatButton2.default, {
+                    label: 'Selengkapnya...',
+                    primary: true,
+                    containerElement: _react2.default.createElement(_reactRouterDom.Link, { to: "/offer/" + obj.id })
+                  })
                 )
-              ),
-              _react2.default.createElement(
-                _Card.CardActions,
-                { className: 'right-align' },
-                _react2.default.createElement(_FlatButton2.default, {
-                  label: 'Selengkapnya...',
-                  primary: true,
-                  containerElement: _react2.default.createElement(_reactRouterDom.Link, { to: "/offer/" + obj.id })
-                })
               )
-            )
-          );
-        }
-      });
+            );
+          }
+        });
+      }
     }
   }, {
     key: 'render',
@@ -10372,18 +10374,18 @@ var OfferDetail = function (_Component) {
                     _react2.default.createElement(
                       _Table.TableRowColumn,
                       null,
-                      offer.offer_art_task_list ? _react2.default.createElement(
+                      offer.offer_task_list ? _react2.default.createElement(
                         'ul',
                         null,
-                        offer.offer_art_task_list.map(function (task, idx) {
+                        offer.offer_task_list.map(function (task, idx) {
                           return _react2.default.createElement(
                             'li',
-                            null,
+                            { key: idx },
                             '- ',
                             _react2.default.createElement(
                               'b',
                               null,
-                              task.task
+                              task.task_list.task
                             )
                           );
                         })
@@ -11653,7 +11655,7 @@ var Order = function (_Component) {
                       _react2.default.createElement(
                         'b',
                         null,
-                        obj.remark.length > 200 ? obj.remark.substring(0, 200) + '...' : obj.remark || '-'
+                        obj.remark && obj.remark.length > 200 ? obj.remark.substring(0, 200) + '...' : obj.remark || '-'
                       )
                     )
                   )
@@ -11681,7 +11683,7 @@ var Order = function (_Component) {
       return _react2.default.createElement(
         'div',
         null,
-        orders.length > 0 ? _react2.default.createElement(
+        orders && orders.length > 0 ? _react2.default.createElement(
           _GridList.GridList,
           {
             style: styles.gridListVertical,
@@ -13754,6 +13756,10 @@ var _IconButton = __webpack_require__(35);
 
 var _IconButton2 = _interopRequireDefault(_IconButton);
 
+var _FontIcon = __webpack_require__(39);
+
+var _FontIcon2 = _interopRequireDefault(_FontIcon);
+
 var _reactNumberFormat = __webpack_require__(33);
 
 var _reactNumberFormat2 = _interopRequireDefault(_reactNumberFormat);
@@ -14143,6 +14149,7 @@ var ProfileDetail = function (_Component) {
           email: this.state.user.email,
           isPasswordChange: this.state.isPasswordEdit,
           old_password: this.state.user.old_password,
+          avatar: this.state.user.avatar,
           password: this.state.user.password,
           gender: this.state.user.gender,
           born_place: this.state.user.born_place,
@@ -14163,6 +14170,27 @@ var ProfileDetail = function (_Component) {
           isWeb: true
         });
       }
+    }
+  }, {
+    key: '_handleImageChange',
+    value: function _handleImageChange(e) {
+      e.preventDefault();
+
+      var avatar = e.target.files[0];
+      e.target.value = '';
+
+      this.props.onUploadImage(this, avatar);
+    }
+  }, {
+    key: '_handleClearImage',
+    value: function _handleClearImage(e) {
+      e.preventDefault();
+
+      this.setState({
+        user: Object.assign({}, this.state.user, {
+          avatar: this.props.user.avatar
+        })
+      });
     }
   }, {
     key: 'onError',
@@ -14244,9 +14272,39 @@ var ProfileDetail = function (_Component) {
               _react2.default.createElement(
                 _Card.CardMedia,
                 {
-                  className: 'col s12 m3'
+                  className: 'col s12 m3',
+                  overlay: _react2.default.createElement(
+                    'div',
+                    { className: 'col s12' + (this.state.isEdit ? '' : ' hide') },
+                    _react2.default.createElement(
+                      _FlatButton2.default,
+                      {
+                        containerElement: 'label',
+                        style: { minWidth: 'initial', padding: '2px 5px' },
+                        icon: _react2.default.createElement(
+                          _FontIcon2.default,
+                          { className: 'material-icons' },
+                          'create'
+                        )
+                      },
+                      _react2.default.createElement('input', { type: 'file',
+                        style: { display: 'none' },
+                        name: 'avatar',
+                        onChange: function onChange(e) {
+                          return _this4._handleImageChange(e);
+                        } })
+                    ),
+                    '\xA0'
+                  ),
+                  overlayContentStyle: {
+                    background: 'none',
+                    top: 0,
+                    bottom: 'initial',
+                    left: 'initial',
+                    right: 0
+                  }
                 },
-                _react2.default.createElement('img', { src: '/image/medium/' + this.props.user.avatar || 'image/medium/users/profile.png', alt: '', className: 'circle' })
+                _react2.default.createElement('img', { src: '/image/medium/' + this.state.user.avatar || 'image/medium/users/profile.png', alt: '', className: 'circle' })
               ),
               _react2.default.createElement(
                 'div',
@@ -18509,6 +18567,34 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
           open: true,
           message: error.name + ": " + error.message
         }));
+      });
+    },
+    onUploadImage: function onUploadImage(self, data, history) {
+      var formData = new FormData();
+      formData.append('image', data);
+      _ApiService2.default.onPost('/api/image', formData, function (response) {
+        var responseData = response.data;
+
+        if (responseData.status != 201) {
+          dispatch((0, _DefaultAction.updateSnack)({
+            open: true,
+            message: responseData.message
+          }));
+        } else {
+          self.setState({
+            user: Object.assign({}, self.state.user, {
+              avatar: responseData.image
+            })
+          });
+          dispatch((0, _DefaultAction.updateSnack)({
+            open: true,
+            message: 'Upload Gambar Berhasil'
+          }));
+        }
+      }, function (error) {
+        self.setState({
+          message: error.name + ": " + error.message
+        });
       });
     },
     getProfile: function getProfile(self) {

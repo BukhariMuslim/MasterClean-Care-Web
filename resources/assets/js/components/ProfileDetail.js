@@ -22,6 +22,7 @@ import TextField from 'material-ui/TextField'
 import MenuItem from 'material-ui/MenuItem'
 import StarComponent from './StarComponent'
 import IconButton from 'material-ui/IconButton'
+import FontIcon from 'material-ui/FontIcon'
 import NumberFormat from 'react-number-format'
 
 const fieldStyle = {
@@ -384,6 +385,7 @@ class ProfileDetail extends Component {
           email: this.state.user.email,
           isPasswordChange: this.state.isPasswordEdit,
           old_password: this.state.user.old_password,
+          avatar: this.state.user.avatar,
           password: this.state.user.password,
           gender: this.state.user.gender,
           born_place: this.state.user.born_place,
@@ -408,6 +410,25 @@ class ProfileDetail extends Component {
         },
       )
     }
+  }
+
+  _handleImageChange(e) {
+    e.preventDefault();
+
+    let avatar = e.target.files[0];
+    e.target.value = ''
+
+    this.props.onUploadImage(this, avatar)
+  }
+
+  _handleClearImage(e) {
+    e.preventDefault();
+
+    this.setState({
+      user: Object.assign({}, this.state.user, {
+        avatar: this.props.user.avatar,
+      }),
+    })
   }
 
   onError(errors) {
@@ -471,8 +492,29 @@ class ProfileDetail extends Component {
                 <CardText>
                   <CardMedia
                     className="col s12 m3"
+                    overlay={
+                      <div className={ 'col s12' + ( this.state.isEdit ? '' : ' hide')} >
+                        <FlatButton
+                          containerElement="label"
+                          style={{ minWidth: 'initial', padding: '2px 5px' }}
+                          icon={<FontIcon className="material-icons">create</FontIcon>}
+                          >
+                            <input type="file" 
+                              style={{ display: 'none' }} 
+                              name="avatar"
+                              onChange={(e)=>this._handleImageChange(e)} />
+                        </FlatButton>&nbsp;
+                      </div>
+                    }
+                    overlayContentStyle={{
+                      background: 'none',
+                      top: 0,
+                      bottom: 'initial',
+                      left: 'initial',
+                      right: 0,
+                    }}
                   >
-                    <img src={'/image/medium/' + this.props.user.avatar || 'image/medium/users/profile.png'} alt="" className="circle" />
+                    <img src={'/image/medium/' + this.state.user.avatar || 'image/medium/users/profile.png'} alt="" className="circle" />
                   </CardMedia>
                   <div className="col s12 m9" >
                     <div className="row">

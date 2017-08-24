@@ -60,6 +60,40 @@ const mapDispatchToProps = (dispatch) => {
         },
       )
     },
+    onUploadImage: (self, data, history) => {
+      let formData = new FormData()
+      formData.append('image', data)
+      ApiService.onPost(
+        '/api/image',
+        formData,
+        function (response) {
+          let responseData = response.data
+          
+          if (responseData.status != 201) {
+            dispatch(updateSnack({
+              open: true,
+              message: responseData.message
+            }))
+          }
+          else {
+            self.setState({
+              user: Object.assign({}, self.state.user, {
+                avatar: responseData.image,
+              }),
+            })
+            dispatch(updateSnack({
+              open: true,
+              message: 'Upload Gambar Berhasil'
+            }))
+          }
+        },
+        function (error) {
+          self.setState({
+            message: error.name + ": " + error.message
+          })
+        }
+      )
+    },
     getProfile: (self) => {
       let user = self.state.user
       ApiService.onGet(
