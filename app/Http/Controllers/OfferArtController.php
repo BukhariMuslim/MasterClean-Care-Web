@@ -162,15 +162,14 @@ class OfferArtController extends Controller
                             'location' => $offer->contact->location,
                         ]);
 
-                        $orderTaskList = $offer->offerTaskList->mapWithKeys(function ($item) {
-                            return [
-                                'task_list_id' => $item['task_list_id'],
-                                'status' => $item['status']
-                            ];
+                        $orderTaskList = $offer->offerTaskList->map(function ($taskList) {
+                            return collect($taskList->toArray())
+                                ->only(['task_list_id', 'status'])
+                                ->all();
                         });
                         
                         if ($orderTaskList->first()) {
-                            $order->orderTaskList()->createMany($orderTaskList->get());
+                            $order->orderTaskList()->createMany($orderTaskList->toArray());
                         }
                         
                         // Get Other ART

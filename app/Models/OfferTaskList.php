@@ -31,4 +31,12 @@ class OfferTaskList extends Model
     {
         return $this->belongsTo(Offer::class);
     }
+
+    /**
+     * Get the offer record associated with the additionalInfo.
+     */
+    public function taskList()
+    {
+        return $this->belongsTo(TaskList::class);
+    }
 }

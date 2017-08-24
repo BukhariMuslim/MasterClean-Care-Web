@@ -50,23 +50,17 @@ class OrderController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
-        
+        dd($data);
         try {
             if (array_key_exists('data', $data)) {
                 $data = $data['data'];
             }
 
             DB::beginTransaction();
-            
-            $order = Order::create($data);
-
-            $order->contact()->create($data['contact']);
-
-            $order->orderTaskList()->createMany($data['orderTaskList']);
 
             // Add Wallet Transaction
             $walletTransaction = WalletTransaction::create([
-                'user_id' => $order->member_id,
+                'user_id' => $data['member_id'],
                 'amount' => $data['cost'],
                 'trc_type' => 1,
                 'trc_time' => Carbon::now(),
@@ -75,9 +69,13 @@ class OrderController extends Controller
                 'status' => 0,
             ]);
 
-            $order->update([
-                'wallet_transaction_id' => $walletTransaction->id
-            ]);
+            $data['wallet_transaction_id'] = $walletTransaction->id;
+            
+            $order = Order::create($data);
+
+            $order->contact()->create($data['contact']);
+
+            $order->orderTaskList()->createMany($data['orderTaskList']);
 
             DB::commit();
 

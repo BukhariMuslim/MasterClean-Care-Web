@@ -24,7 +24,7 @@ class OfferController extends Controller
             'workTime',
             'contact',
             'offer_art',
-            'offerTaskList',
+            'offerTaskList.taskList',
             'job',
         ])->get();
     }
@@ -94,7 +94,7 @@ class OfferController extends Controller
             'workTime',
             'contact',
             'offer_art',
-            'offerTaskList',
+            'offerTaskList.taskList',
             'job',
         ]);
     }
@@ -112,7 +112,7 @@ class OfferController extends Controller
             'workTime',
             'contact',
             'offer_art.art',
-            'offerTaskList',
+            'offerTaskList.taskList',
             'job',
         ]);
     }
@@ -251,7 +251,7 @@ class OfferController extends Controller
                 'workTime',
                 'contact',
                 'offer_art',
-                'offerTaskList',
+                'offerTaskList.taskList',
                 'job',
             ]);
     }
@@ -274,7 +274,7 @@ class OfferController extends Controller
                 'workTime',
                 'contact',
                 'offer_art',
-                'offerTaskList',
+                'offerTaskList.taskList',
                 'job',
             ]);
     }
@@ -291,7 +291,7 @@ class OfferController extends Controller
                 'workTime',
                 'contact',
                 'offer_art',
-                'offerTaskList',
+                'offerTaskList.taskList',
                 'job',
             ])
             ->paginate(10);
@@ -338,7 +338,7 @@ class OfferController extends Controller
                 'workTime',
                 'contact',
                 'offer_art',
-                'offerTaskList',
+                'offerTaskList.taskList',
                 'job',
             ]);
 
@@ -404,7 +404,7 @@ class OfferController extends Controller
                 'workTime',
                 'contact',
                 'offer_art',
-                'offerTaskList',
+                'offerTaskList.taskList',
                 'job',
             ]);
 

@@ -94,6 +94,7 @@ class WalletTransactionsTableSeeder extends Seeder
                 'status'=> 1,
 		        'created_at' => Carbon::create('2017', '6', '20', '17', '0', '0')
             ],
+            //10
             [
                 'user_id'=>15,
                 'amount'=>150000,
@@ -174,6 +175,143 @@ class WalletTransactionsTableSeeder extends Seeder
                 'trc_time'=> Carbon::create('2017', '7', '19', '17', '0', '0'),
                 'status'=> 1,
 		        'created_at' => Carbon::create('2017', '7', '19', '17', '0', '0')
+            ],
+            [
+                'user_id'=>5,
+                'amount'=>250000,
+                'trc_type'=>1,
+		        'trc_img'=>'',
+                'trc_time'=> Carbon::create('2017', '6', '10', '17', '0', '0'),
+                'status'=> 1,
+		        'created_at' => Carbon::create('2017', '6', '10', '17', '0', '0')
+            ],
+            //20
+            [
+                'user_id'=>2,
+                'amount'=>150000,
+                'trc_type'=>1,
+		        'trc_img'=>'',
+                'trc_time'=> Carbon::create('2017', '6', '10', '17', '0', '0'),
+                'status'=> 1,
+		        'created_at' => Carbon::create('2017', '6', '10', '17', '0', '0')
+            ],
+            [
+                'user_id'=>2,
+                'amount'=>150000,
+                'trc_type'=>1,
+		        'trc_img'=>'',
+                'trc_time'=> Carbon::create('2017', '6', '4', '17', '0', '0'),
+                'status'=> 1,
+		        'created_at' => Carbon::create('2017', '6', '4', '17', '0', '0')
+            ],
+            [
+                'user_id'=>2,
+                'amount'=>150000,
+                'trc_type'=>1,
+		        'trc_img'=>'',
+                'trc_time'=> Carbon::create('2017', '6', '4', '17', '0', '0'),
+                'status'=> 1,
+		        'created_at' => Carbon::create('2017', '6', '4', '17', '0', '0')
+            ],
+            [
+                'user_id'=>2,
+                'amount'=>150000,
+                'trc_type'=>1,
+		        'trc_img'=>'',
+                'trc_time'=> Carbon::create('2017', '6', '4', '17', '0', '0'),
+                'status'=> 1,
+		        'created_at' => Carbon::create('2017', '6', '4', '17', '0', '0')
+            ],
+            [
+                'user_id'=>3,
+                'amount'=>2000000,
+                'trc_type'=>1,
+		        'trc_img'=>'',
+                'trc_time'=> Carbon::create('2017', '6', '4', '17', '0', '0'),
+                'status'=> 0,
+		        'created_at' => Carbon::create('2017', '6', '4', '17', '0', '0')
+            ],
+            [
+                'user_id'=>3,
+                'amount'=>1900000,
+                'trc_type'=>1,
+		        'trc_img'=>'',
+                'trc_time'=> Carbon::create('2017', '6', '4', '17', '0', '0'),
+                'status'=> 0,
+		        'created_at' => Carbon::create('2017', '6', '4', '17', '0', '0')
+            ],
+            [
+                'user_id'=>3,
+                'amount'=>1900000,
+                'trc_type'=>1,
+		        'trc_img'=>'',
+                'trc_time'=> Carbon::create('2017', '6', '4', '17', '0', '0'),
+                'status'=> 0,
+		        'created_at' => Carbon::create('2017', '6', '4', '17', '0', '0')
+            ],
+            [
+                'user_id'=>3,
+                'amount'=>2200000,
+                'trc_type'=>1,
+		        'trc_img'=>'',
+                'trc_time'=> Carbon::create('2017', '6', '4', '17', '0', '0'),
+                'status'=> 0,
+		        'created_at' => Carbon::create('2017', '6', '4', '17', '0', '0')
+            ],
+            [
+                'user_id'=>2,
+                'amount'=>150000,
+                'trc_type'=>1,
+		        'trc_img'=>'',
+                'trc_time'=> Carbon::create('2017', '6', '4', '17', '0', '0'),
+                'status'=> 0,
+		        'created_at' => Carbon::create('2017', '6', '4', '17', '0', '0')
+            ],
+            [
+                'user_id'=>2,
+                'amount'=>150000,
+                'trc_type'=>1,
+		        'trc_img'=>'',
+                'trc_time'=> Carbon::create('2017', '6', '4', '17', '0', '0'),
+                'status'=> 0,
+		        'created_at' => Carbon::create('2017', '6', '4', '17', '0', '0')
+            ],
+            //30
+            [
+                'user_id'=>2,
+                'amount'=>150000,
+                'trc_type'=>1,
+		        'trc_img'=>'',
+                'trc_time'=> Carbon::create('2017', '6', '4', '17', '0', '0'),
+                'status'=> 1,
+		        'created_at' => Carbon::create('2017', '6', '4', '17', '0', '0')
+            ],
+            [
+                'user_id'=>2,
+                'amount'=>150000,
+                'trc_type'=>1,
+		        'trc_img'=>'',
+                'trc_time'=> Carbon::create('2017', '6', '4', '17', '0', '0'),
+                'status'=> 2,
+		        'created_at' => Carbon::create('2017', '6', '4', '17', '0', '0')
+            ],
+            [
+                'user_id'=>2,
+                'amount'=>150000,
+                'trc_type'=>1,
+		        'trc_img'=>'',
+                'trc_time'=> Carbon::create('2017', '6', '4', '17', '0', '0'),
+                'status'=> 2,
+		        'created_at' => Carbon::create('2017', '6', '4', '17', '0', '0')
+            ],
+            [
+                'user_id'=>2,
+                'amount'=>150000,
+                'trc_type'=>1,
+		        'trc_img'=>'',
+                'trc_time'=> Carbon::create('2017', '6', '4', '17', '0', '0'),
+                'status'=> 0,
+		        'created_at' => Carbon::create('2017', '6', '4', '17', '0', '0')
             ],
         ]);
     }

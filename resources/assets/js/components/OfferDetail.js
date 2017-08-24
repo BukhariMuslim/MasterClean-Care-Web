@@ -185,11 +185,11 @@ class OfferDetail extends Component {
                         <TableRowColumn style={{ textAlign: 'right', verticalAlign: 'top' }}>List Pekerjaan</TableRowColumn>
                         <TableRowColumn>
                           {
-                            offer.offer_art_task_list ?
+                            offer.offer_task_list ?
                               <ul>
                                 {
-                                  offer.offer_art_task_list.map((task, idx) => (
-                                    <li>- <b>{task.task}</b></li>
+                                  offer.offer_task_list.map((task, idx) => (
+                                    <li key={idx}>- <b>{task.task_list.task}</b></li>
                                   ))
                                 }
                               </ul>

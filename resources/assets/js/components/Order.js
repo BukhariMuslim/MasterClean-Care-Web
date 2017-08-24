@@ -175,7 +175,7 @@ class Order extends Component {
                     <TableRowColumn>
                       <b>
                         {
-                          obj.remark.length > 200 ?
+                          obj.remark && obj.remark.length > 200 ?
                             obj.remark.substring(0, 200) + '...'
                             :
                             obj.remark || '-'
@@ -204,7 +204,7 @@ class Order extends Component {
     return (
       <div>
         {
-          orders.length > 0 ?
+          orders && orders.length > 0 ?
             <GridList
               style={styles.gridListVertical}
               cols={2}

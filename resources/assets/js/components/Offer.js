@@ -48,152 +48,154 @@ class Offer extends Component {
   }
 
   offerList(collection) {
-    if (this.props.sortBy) {
-      let sort = this.props.sortBy
-      collection.sort(function (a, b) {
-        return parseFloat(b[sort]) - parseFloat(a[sort])
+    if (collection) {
+      if (this.props.sortBy) {
+        let sort = this.props.sortBy
+        collection.sort(function (a, b) {
+          return parseFloat(b[sort]) - parseFloat(a[sort])
+        })
+      }
+      
+      return collection.map((obj, idx) => {
+        if (!this.props.maxItem || idx < this.props.maxItem) {
+          return (
+            <GridTile
+              key={idx}
+              cols={1}
+            >
+              <Card style={{ margin: 3 }}>
+                <CardHeader
+                  title={
+                  <Link to={"/offer/" + obj.id} >
+                    {obj.job ? obj.job.job : '-'}
+                    {obj.work_time ? ' (' + obj.work_time.work_time + ') ' : ''}
+                    {obj.cost ? <NumberFormat value={obj.cost} displayType={'text'} thousandSeparator={true} prefix={'Rp. '} /> : '-'}
+                    &nbsp;
+                    {
+                      obj.status == 0 ?
+                      <b style={{ backgroundColor: '#FFEB3B', padding: '2px 5px', color: 'white' }}>Pending</b>
+                      :
+                      obj.status == 1 ?
+                      <b style={{ backgroundColor: '#64DD17', padding: '2px 5px', color: 'white' }}>Selesai</b>
+                      :
+                      <b style={{ backgroundColor: '#F44336', padding: '2px 5px', color: 'white' }}>Dibatalkan</b>
+                    }
+                  </Link>
+                  }
+                  subtitle={obj.member.name + ' di ' + obj.member.contact.address}
+                  avatar={'/image/small/' + obj.member.avatar}
+                />
+                <CardText>
+                  <Table
+                    selectable={false}
+                  >
+                    <TableHeader
+                      displaySelectAll={false}
+                      adjustForCheckbox={false}
+                    >
+                      <TableRow>
+                        <TableHeaderColumn colSpan="2" style={{textAlign: 'center'}}>
+                          Informasi Penawaran
+                        </TableHeaderColumn>
+                      </TableRow>
+                    </TableHeader>
+                    <TableBody
+                      displayRowCheckbox={false}
+                    >
+                      <TableRow>
+                        <TableRowColumn style={{ textAlign: 'right', verticalAlign: 'top' }}>Jenis Pekerja</TableRowColumn>
+                        <TableRowColumn><b>{obj.job ? obj.job.job : '-'}</b></TableRowColumn>
+                      </TableRow>
+                      <TableRow>
+                        <TableRowColumn style={{ textAlign: 'right', verticalAlign: 'top' }}>Kelompok Waktu Kerja</TableRowColumn>
+                        <TableRowColumn><b>{obj.work_time ? obj.work_time.work_time : ''}</b></TableRowColumn>
+                      </TableRow>
+                      <TableRow>
+                        <TableRowColumn style={{ textAlign: 'right', verticalAlign: 'top' }}>Mulai Kerja</TableRowColumn>
+                        <TableRowColumn>
+                          {
+                            obj.work_time ?
+                              <b>
+                                <FormattedDate value={obj.start_date} day="numeric" month="long" year="numeric" />
+                                {
+                                  obj.work_time_id === 1 ?
+                                    <span>
+                                      &nbsp;
+                                  <FormattedTime value={obj.start_date} />
+                                    </span>
+                                    : null
+                                }
+                              </b>
+                              :
+                              <b>-</b>
+                          }
+                        </TableRowColumn>
+                      </TableRow>
+                      <TableRow>
+                        <TableRowColumn style={{ textAlign: 'right', verticalAlign: 'top' }}>Selesai Kerja</TableRowColumn>
+                        <TableRowColumn>
+                          {
+                            obj.work_time ?
+                              <b>
+                                <FormattedDate value={obj.end_date} day="numeric" month="long" year="numeric"/>
+                                {
+                                  obj.work_time_id === 1 ?
+                                    <span>
+                                      &nbsp;
+                                  <FormattedTime value={obj.end_date} />
+                                    </span>
+                                    : null
+                                }
+                              </b>
+                              :
+                              <b>-</b>
+                          }
+                        </TableRowColumn>
+                      </TableRow>
+                      <TableRow>
+                        <TableRowColumn style={{ textAlign: 'right', verticalAlign: 'top' }}>Honor yang ditawarkan</TableRowColumn>
+                        <TableRowColumn><b>{obj.cost ? <NumberFormat value={obj.cost} displayType={'text'} thousandSeparator={true} prefix={'Rp. '} /> : '-'}</b></TableRowColumn>
+                      </TableRow>
+                      <TableRow>
+                        <TableRowColumn style={{ textAlign: 'right', verticalAlign: 'top' }}>Informasi Pencari</TableRowColumn>
+                        <TableRowColumn>
+                          {
+                            obj.contact ?
+                              <b><Link to={'/member/' + obj.member.id} >{obj.member.name}</Link></b>
+                              :
+                              <b>-</b>
+                          }
+                        </TableRowColumn>
+                      </TableRow>
+                      <TableRow>
+                        <TableRowColumn style={{ textAlign: 'right', verticalAlign: 'top' }}>Catatan</TableRowColumn>
+                        <TableRowColumn>
+                          <b>
+                            {
+                              obj.remark && obj.remark.length > 200 ?
+                                obj.remark.substring(0, 200) + '...'
+                                :
+                                obj.remark || '-'
+                            }
+                          </b>
+                        </TableRowColumn>
+                      </TableRow>
+                    </TableBody>
+                  </Table>
+                </CardText>
+                <CardActions className="right-align">
+                  <FlatButton
+                    label="Selengkapnya..."
+                    primary={true}
+                    containerElement={<Link to={"/offer/" + obj.id} />}
+                  />
+                </CardActions>
+              </Card>
+            </GridTile>
+          )
+        }
       })
     }
-    
-    return collection.map((obj, idx) => {
-      if (!this.props.maxItem || idx < this.props.maxItem) {
-        return (
-          <GridTile
-            key={idx}
-            cols={1}
-          >
-            <Card style={{ margin: 3 }}>
-              <CardHeader
-                title={
-                <Link to={"/offer/" + obj.id} >
-                  {obj.job ? obj.job.job : '-'}
-                  {obj.work_time ? ' (' + obj.work_time.work_time + ') ' : ''}
-                  {obj.cost ? <NumberFormat value={obj.cost} displayType={'text'} thousandSeparator={true} prefix={'Rp. '} /> : '-'}
-                  &nbsp;
-                  {
-                    obj.status == 0 ?
-                    <b style={{ backgroundColor: '#FFEB3B', padding: '2px 5px', color: 'white' }}>Pending</b>
-                    :
-                    obj.status == 1 ?
-                    <b style={{ backgroundColor: '#64DD17', padding: '2px 5px', color: 'white' }}>Selesai</b>
-                    :
-                    <b style={{ backgroundColor: '#F44336', padding: '2px 5px', color: 'white' }}>Dibatalkan</b>
-                  }
-                </Link>
-                }
-                subtitle={obj.member.name + ' di ' + obj.member.contact.address}
-                avatar={'/image/small/' + obj.member.avatar}
-              />
-              <CardText>
-                <Table
-                  selectable={false}
-                >
-                  <TableHeader
-                    displaySelectAll={false}
-                    adjustForCheckbox={false}
-                  >
-                    <TableRow>
-                      <TableHeaderColumn colSpan="2" style={{textAlign: 'center'}}>
-                        Informasi Penawaran
-                      </TableHeaderColumn>
-                    </TableRow>
-                  </TableHeader>
-                  <TableBody
-                    displayRowCheckbox={false}
-                  >
-                    <TableRow>
-                      <TableRowColumn style={{ textAlign: 'right', verticalAlign: 'top' }}>Jenis Pekerja</TableRowColumn>
-                      <TableRowColumn><b>{obj.job ? obj.job.job : '-'}</b></TableRowColumn>
-                    </TableRow>
-                    <TableRow>
-                      <TableRowColumn style={{ textAlign: 'right', verticalAlign: 'top' }}>Kelompok Waktu Kerja</TableRowColumn>
-                      <TableRowColumn><b>{obj.work_time ? obj.work_time.work_time : ''}</b></TableRowColumn>
-                    </TableRow>
-                    <TableRow>
-                      <TableRowColumn style={{ textAlign: 'right', verticalAlign: 'top' }}>Mulai Kerja</TableRowColumn>
-                      <TableRowColumn>
-                        {
-                          obj.work_time ?
-                            <b>
-                              <FormattedDate value={obj.start_date} day="numeric" month="long" year="numeric" />
-                              {
-                                obj.work_time_id === 1 ?
-                                  <span>
-                                    &nbsp;
-                                <FormattedTime value={obj.start_date} />
-                                  </span>
-                                  : null
-                              }
-                            </b>
-                            :
-                            <b>-</b>
-                        }
-                      </TableRowColumn>
-                    </TableRow>
-                    <TableRow>
-                      <TableRowColumn style={{ textAlign: 'right', verticalAlign: 'top' }}>Selesai Kerja</TableRowColumn>
-                      <TableRowColumn>
-                        {
-                          obj.work_time ?
-                            <b>
-                              <FormattedDate value={obj.end_date} day="numeric" month="long" year="numeric"/>
-                              {
-                                obj.work_time_id === 1 ?
-                                  <span>
-                                    &nbsp;
-                                <FormattedTime value={obj.end_date} />
-                                  </span>
-                                  : null
-                              }
-                            </b>
-                            :
-                            <b>-</b>
-                        }
-                      </TableRowColumn>
-                    </TableRow>
-                    <TableRow>
-                      <TableRowColumn style={{ textAlign: 'right', verticalAlign: 'top' }}>Honor yang ditawarkan</TableRowColumn>
-                      <TableRowColumn><b>{obj.cost ? <NumberFormat value={obj.cost} displayType={'text'} thousandSeparator={true} prefix={'Rp. '} /> : '-'}</b></TableRowColumn>
-                    </TableRow>
-                    <TableRow>
-                      <TableRowColumn style={{ textAlign: 'right', verticalAlign: 'top' }}>Informasi Pencari</TableRowColumn>
-                      <TableRowColumn>
-                        {
-                          obj.contact ?
-                            <b><Link to={'/member/' + obj.member.id} >{obj.member.name}</Link></b>
-                            :
-                            <b>-</b>
-                        }
-                      </TableRowColumn>
-                    </TableRow>
-                    <TableRow>
-                      <TableRowColumn style={{ textAlign: 'right', verticalAlign: 'top' }}>Catatan</TableRowColumn>
-                      <TableRowColumn>
-                        <b>
-                          {
-                            obj.remark.length > 200 ?
-                              obj.remark.substring(0, 200) + '...'
-                              :
-                              obj.remark || '-'
-                          }
-                        </b>
-                      </TableRowColumn>
-                    </TableRow>
-                  </TableBody>
-                </Table>
-              </CardText>
-              <CardActions className="right-align">
-                <FlatButton
-                  label="Selengkapnya..."
-                  primary={true}
-                  containerElement={<Link to={"/offer/" + obj.id} />}
-                />
-              </CardActions>
-            </Card>
-          </GridTile>
-        )
-      }
-    })
   }
 
   render() {
