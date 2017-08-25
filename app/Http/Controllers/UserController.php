@@ -87,6 +87,7 @@ class UserController extends Controller
         if (Auth::guard('api')->check()) {
             $user = Auth::guard('api')->user();
             $user->load([
+                'role',
                 'user_additional_info.additionalInfo',
                 'user_document',
                 'user_language.language',

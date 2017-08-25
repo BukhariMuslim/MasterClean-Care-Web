@@ -274,7 +274,7 @@ class OrderPage extends Component {
                 <Card expanded={this.state.expanded} onExpandChange={this.handleExpandChange} className="col s12" zDepth={0} >
                   <CardTitle>
                     <h5 style={{ marginTop: 35 }}>
-                      Pemesanan Saya
+                      Pemesanan
                       <IconButton tooltip="Pencarian" className="right" onClick={this.handleToggle}>
                           <FontIcon className="material-icons">
                             {

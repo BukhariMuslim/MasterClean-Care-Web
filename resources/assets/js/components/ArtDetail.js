@@ -11,6 +11,7 @@ import {
   TableRow,
   TableRowColumn,
 } from 'material-ui/Table'
+import { Link } from 'react-router-dom'
 import Paper from 'material-ui/Paper'
 import FlatButton from 'material-ui/FlatButton'
 import RaisedButton from 'material-ui/RaisedButton'
@@ -227,11 +228,13 @@ class ArtDetail extends Component {
       return (
         <Card className="col s12" style={id > 0 ? { marginTop: '10px' } : {}} key={id}>
           <CardHeader
-            title={review.member.name}
+            title={<Link to={`/member/${review.member.id}`}>{review.member.name}</Link>}
             subtitle={
               <div>
                 <div>
-                  {GetFormattedDate(review.review_order.created_at)}
+                  <Link to={`/order/${review.review_order.order_id}`}>
+                    {GetFormattedDate(review.review_order.created_at)}
+                  </Link>                  
                 </div>
                 <div>
                   <StarComponent rate={review.review_order.rate} isShowRate={true} />

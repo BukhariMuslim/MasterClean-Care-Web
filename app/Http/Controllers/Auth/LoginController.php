@@ -129,6 +129,7 @@ class LoginController extends Controller
                     }
                     else {
                         $user->load([
+                            'role',
                             'user_additional_info.additionalInfo',
                             'user_document',
                             'user_language.language',

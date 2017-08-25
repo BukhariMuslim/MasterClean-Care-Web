@@ -29,7 +29,7 @@ const DefaultMenuCollection = [
   },
   {
     id: 5,
-    label: 'Pemesanan Saya',
+    label: 'Pemesanan',
     link: '/order',
     iconLabel: 'event_note',
     allowUser: [2, 3],

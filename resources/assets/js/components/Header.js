@@ -30,7 +30,7 @@ class Header extends Component {
                     verticalAlign: "middle",
                   }}
                   >
-                    {this.props.username}<br/>
+                    {this.props.username} <small>({this.props.role ? this.props.role.name : ''})</small><br/>
                     {
                       this.props.wallet ?
                       <small>

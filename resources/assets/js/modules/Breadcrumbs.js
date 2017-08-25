@@ -7,7 +7,7 @@ const Breadcrumbs = breadcrumbConfig({
     '/member': 'Member',
     '/offer': 'Penawaran',
     '/my_offer': 'Penawaran Saya',
-    '/order': 'Pemesanan Saya',
+    '/order': 'Pemesanan',
     '/order_history': 'Riwayat Pemesanan',
     '/profile': 'Profil',
     '/term': 'Syarat & Ketentuan',
