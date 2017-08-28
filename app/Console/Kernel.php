@@ -2,11 +2,9 @@
 
 namespace App\Console;
 
+use App\Console\Commands\RefundWallet;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
-use Carbon\Carbon;
-use DB;
-use Exception;
 
 class Kernel extends ConsoleKernel
 {
@@ -16,7 +14,7 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        //
+        RefundWallet::class,
     ];
 
     /**
@@ -27,24 +25,9 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->call(function(){
-            try {
-                DB::beginTransaction();
-                $order = \App\Models\Order::where('status', 0)
-                         ->where('start_date', '<=', Carbon::now());
+        $update = $schedule->command('wallet:refund');
 
-                $order->update('status', 2);
-
-                if ($order->first()) {
-                    $walletTransaction = \App\Models\WalletTransaction::whereIn('id', $order->pluck('wallet_transaction_id')->toArray());
-                    $walletTransaction->udpate('status', 2);
-                }
-                DB::commit();
-            }
-            catch(Exception $e) {
-                DB::rollBack();
-            }
-        })->hourly();
+        $update->cron('* * * * * *');
     }
 
     /**

@@ -11515,12 +11515,24 @@ var Order = function (_Component) {
                   'Pending'
                 ) : obj.status == 1 ? _react2.default.createElement(
                   'b',
-                  { style: { backgroundColor: '#64DD17', padding: '2px 5px', color: 'white' } },
-                  'Selesai'
-                ) : _react2.default.createElement(
+                  { style: { backgroundColor: '#2196F3', padding: '2px 5px', color: 'white' } },
+                  'Diterima'
+                ) : obj.status == 2 ? _react2.default.createElement(
                   'b',
                   { style: { backgroundColor: '#F44336', padding: '2px 5px', color: 'white' } },
                   'Dibatalkan'
+                ) : obj.status == 3 ? _react2.default.createElement(
+                  'b',
+                  { style: { backgroundColor: '#64DD17', padding: '2px 5px', color: 'white' } },
+                  'Selesai'
+                ) : obj.status == 4 ? _react2.default.createElement(
+                  'b',
+                  { style: { backgroundColor: '#F44336', padding: '2px 5px', color: 'white' } },
+                  'Ditolak'
+                ) : _react2.default.createElement(
+                  'b',
+                  { style: { backgroundColor: '#9E9E9E', padding: '2px 5px', color: 'white' } },
+                  'Bermasalah'
                 )
               ),
               subtitle: obj.member.name + ' di ' + obj.member.contact.address,
@@ -11973,12 +11985,24 @@ var OrderDetail = function (_Component) {
                         'Pending'
                       ) : order.status == 1 ? _react2.default.createElement(
                         'b',
-                        { style: { backgroundColor: '#64DD17', padding: '2px 5px', color: 'white' } },
-                        'Selesai'
-                      ) : _react2.default.createElement(
+                        { style: { backgroundColor: '#2196F3', padding: '2px 5px', color: 'white' } },
+                        'Diterima'
+                      ) : order.status == 2 ? _react2.default.createElement(
                         'b',
                         { style: { backgroundColor: '#F44336', padding: '2px 5px', color: 'white' } },
                         'Dibatalkan'
+                      ) : order.status == 3 ? _react2.default.createElement(
+                        'b',
+                        { style: { backgroundColor: '#64DD17', padding: '2px 5px', color: 'white' } },
+                        'Selesai'
+                      ) : order.status == 4 ? _react2.default.createElement(
+                        'b',
+                        { style: { backgroundColor: '#F44336', padding: '2px 5px', color: 'white' } },
+                        'Ditolak'
+                      ) : _react2.default.createElement(
+                        'b',
+                        { style: { backgroundColor: '#9E9E9E', padding: '2px 5px', color: 'white' } },
+                        'Bermasalah'
                       )
                     )
                   ),
