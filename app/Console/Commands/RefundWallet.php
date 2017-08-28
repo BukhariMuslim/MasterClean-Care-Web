@@ -44,18 +44,22 @@ class RefundWallet extends Command
             $order = \App\Models\Order::where('status', 0)
                         ->where('start_date', '<=', Carbon::now());
 
-            Log::info('Order set fail');
-            $order->update('status', 2);
-
             if ($order->first()) {
-                $walletTransaction = \App\Models\WalletTransaction::whereIn('id', $order->pluck('wallet_transaction_id')->toArray());
-                $walletTransaction->udpate('status', 2);
-                Log::info('Wallet Trc Refunded');
+                $walletTransaction = \App\Models\WalletTransaction::whereIn('id', $order->pluck('wallet_transaction_id')->toArray(), 'or');
+                
+                $order->update(['status' => 2]);
+                
+                if ($walletTransaction->first()) {
+                    Log::info('Wallet Trc Refunding');
+                    $walletTransaction->update(['status' => 2]);
+                    Log::info('Wallet Trc Refunded');
+                }
             }
             DB::commit();
         }
         catch(Exception $e) {
             DB::rollBack();
+            Log::info($e);
             Log::info('Roll Back');
         }
     }
