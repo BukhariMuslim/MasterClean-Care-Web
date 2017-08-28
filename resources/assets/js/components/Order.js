@@ -74,9 +74,18 @@ class Order extends Component {
                   <b style={{ backgroundColor: '#FFEB3B', padding: '2px 5px', color: 'white' }}>Pending</b>
                   :
                   obj.status == 1 ?
+                  <b style={{ backgroundColor: '#2196F3', padding: '2px 5px', color: 'white' }}>Diterima</b>
+                  :
+                  obj.status == 2 ?
+                  <b style={{ backgroundColor: '#F44336', padding: '2px 5px', color: 'white' }}>Dibatalkan</b>
+                  :
+                  obj.status == 3 ?
                   <b style={{ backgroundColor: '#64DD17', padding: '2px 5px', color: 'white' }}>Selesai</b>
                   :
-                  <b style={{ backgroundColor: '#F44336', padding: '2px 5px', color: 'white' }}>Dibatalkan</b>
+                  obj.status == 4 ?
+                  <b style={{ backgroundColor: '#F44336', padding: '2px 5px', color: 'white' }}>Ditolak</b>
+                  :
+                  <b style={{ backgroundColor: '#9E9E9E', padding: '2px 5px', color: 'white' }}>Bermasalah</b>
                 }
               </Link>
               }
