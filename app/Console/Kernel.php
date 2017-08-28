@@ -31,7 +31,7 @@ class Kernel extends ConsoleKernel
             try {
                 DB::beginTransaction();
                 $order = \App\Models\Order::where('status', 0)
-                         ->where('start_date', '<', Carbon::now());
+                         ->where('start_date', '<=', Carbon::now());
 
                 $order->update('status', 2);
 
